@@ -1,8 +1,9 @@
 package data;
 
+import java.io.File;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 Question: [This question has come up more than once]
@@ -45,11 +46,56 @@ public class EmailBean implements Serializable {
     private String subject;
     private String message;
     private String htmlMessage;
-    private ArrayList<byte[]> attachments;
-    private ArrayList<byte[]> imbedAttachments;
+    private ArrayList<File> attachments;
+    private ArrayList<File> imbedAttachments;
+    private String messageType;
+    private Date send;
+    private Date recived;
+    private String folder;
+    private Priority priority;
 
-    public EmailBean() {}
+    public EmailBean() {
+    }
 
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
+    public Date getSend() {
+        return send;
+    }
+
+    public void setSend(Date send) {
+        this.send = send;
+    }
+
+    public Date getRecived() {
+        return recived;
+    }
+
+    public void setRecived(Date recived) {
+        this.recived = recived;
+    }
+
+    public String getFolder() {
+        return folder;
+    }
+
+    public void setFolder(String folder) {
+        this.folder = folder;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
 
     public String getFrom() {
         return from;
@@ -107,19 +153,19 @@ public class EmailBean implements Serializable {
         this.htmlMessage = htmlMessage;
     }
 
-    public ArrayList<byte[]> getAttachments() {
+    public ArrayList<File> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(ArrayList<byte[]> attachments) {
+    public void setAttachments(ArrayList<File> attachments) {
         this.attachments = attachments;
     }
 
-    public ArrayList<byte[]> getImbedAttachments() {
+    public ArrayList<File>  getImbedAttachments() {
         return imbedAttachments;
     }
 
-    public void setImbedAttachments(ArrayList<byte[]> imbedAttachments) {
+    public void setImbedAttachments(ArrayList<File>  imbedAttachments) {
         this.imbedAttachments = imbedAttachments;
     }
 }
