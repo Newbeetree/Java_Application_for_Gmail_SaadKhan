@@ -46,8 +46,8 @@ public class EmailBean implements Serializable {
     private String subject;
     private String message;
     private String htmlMessage;
-    private ArrayList<File> attachments;
-    private ArrayList<File> imbedAttachments;
+    private ArrayList<byte[]> attachments;
+    private ArrayList<byte[]> imbedAttachments;
     private String messageType;
     private Date send;
     private Date recived;
@@ -153,19 +153,19 @@ public class EmailBean implements Serializable {
         this.htmlMessage = htmlMessage;
     }
 
-    public ArrayList<File> getAttachments() {
+    public ArrayList<byte[]> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(ArrayList<File> attachments) {
+    public void setAttachments(ArrayList<byte[]> attachments) {
         this.attachments = attachments;
     }
 
-    public ArrayList<File>  getImbedAttachments() {
+    public ArrayList<byte[]> getImbedAttachments() {
         return imbedAttachments;
     }
 
-    public void setImbedAttachments(ArrayList<File>  imbedAttachments) {
+    public void setImbedAttachments(ArrayList<byte[]> imbedAttachments) {
         this.imbedAttachments = imbedAttachments;
     }
 }
