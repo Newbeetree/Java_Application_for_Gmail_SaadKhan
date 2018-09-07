@@ -1,8 +1,7 @@
 package data;
 
-import java.io.File;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /*
@@ -50,8 +49,8 @@ public class EmailBean implements Serializable {
     private ArrayList<byte[]> attachments;
     private ArrayList<byte[]> imbedAttachments;
     private String messageType;
-    private Date send;
-    private Date recived;
+    private LocalDateTime send;
+    private LocalDateTime recived;
     private String folder;
     private Priority priority;
 
@@ -70,7 +69,7 @@ public class EmailBean implements Serializable {
         send = null;
         recived = null;
         folder = "";
-        priority= Priority.LOW;
+        priority= Priority.PRIORITY_LOWEST;
     }
 
     public String getFrom() {
@@ -161,19 +160,19 @@ public class EmailBean implements Serializable {
         this.messageType = messageType;
     }
 
-    public Date getSend() {
+    public LocalDateTime getSend() {
         return send;
     }
 
-    public void setSend(Date send) {
+    public void setSend(LocalDateTime send) {
         this.send = send;
     }
 
-    public Date getRecived() {
+    public LocalDateTime getRecived() {
         return recived;
     }
 
-    public void setRecived(Date recived) {
+    public void setRecived(LocalDateTime recived) {
         this.recived = recived;
     }
 

@@ -3,6 +3,8 @@ package test;
 import org.junit.Test;
 
 import buisness.EmailSender;
+import data.EmailBean;
+import data.Priority;
 
 import static org.junit.Assert.*;
 
@@ -14,8 +16,20 @@ public class SendEmailTest {
     private final String emailCC1 = "other.1633839@gmail.com";
 
     @Test
-    public void send(String user, String password, String receiver){
+    public void send(){
         EmailSender es = new EmailSender(emailSend,emailSendPwd);
-        //es.send();
+        EmailBean bean = setup();
+        es.send(bean);
+    }
+
+    private EmailBean setup() {
+        EmailBean bean = new EmailBean();
+        bean.setFrom(emailSend);
+        bean.getTo().add(emailReceive);
+        bean.getCc().add(emailCC1);
+        bean.setMessage("Mother fucker work us stupid bitch");
+        bean.setSubject("test");
+        bean.setPriority(Priority.PRIORITY_LOW);
+        return bean;
     }
 }

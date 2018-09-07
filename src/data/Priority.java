@@ -1,7 +1,9 @@
 package data;
 
 public enum Priority {
-    LOW,
-    MEDIUM,
-    HIGH;
+    PRIORITY_LOW,
+    PRIORITY_LOWEST,
+    PRIORITY_NORMAL,
+    PRIORITY_HIGHEST,
+    PRIORITY_HIGH;
 }

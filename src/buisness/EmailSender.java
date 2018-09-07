@@ -1,11 +1,15 @@
 package buisness;
 
+import javax.activation.MimeType;
+
 import data.EmailBean;
 import jodd.mail.Email;
+import jodd.mail.EmailMessage;
 import jodd.mail.MailServer;
 import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
+import jodd.net.MimeTypes;
 
 public class EmailSender {
     private final String smtpServerName = "smtp.gmail.com";
@@ -26,7 +30,7 @@ public class EmailSender {
                 .debugMode(true)
                 .buildSmtpMailServer();
 
-        Email email = convertBeantoJodd(sendingEmail);
+        Email email = convertBeanToJodd(sendingEmail);
         try ( // A session is the object responsible for communicating with the server
               SendMailSession session = smtpServer.createSession()) {
             // Like a file we open the session, send the message and close the
@@ -36,18 +40,18 @@ public class EmailSender {
         }
     }
 
-    private Email convertBeantoJodd(EmailBean sendingEmail) {
+    private Email convertBeanToJodd(EmailBean sendingEmail) {
         Email email = Email.create()
                 .from(sendingEmail.getFrom())
                 .to(sendingEmail.getTo().toArray(new String[0]))
                 .cc(sendingEmail.getCc().toArray(new String[0]))
                 .bcc(sendingEmail.getBcc().toArray(new String[0]))
                 .subject(sendingEmail.getSubject())
-                .message(sendingEmail.getMessage()));
-
+                .textMessage(sendingEmail.getMessage())
+                .htmlMessage(sendingEmail.getHtmlMessage())
+                .priority(sendingEmail.getPriority().ordinal());
+        return email;
     }
-
-}
 
     /**
      * Use the RFC2822AddressParser to validate that the email string could be a
