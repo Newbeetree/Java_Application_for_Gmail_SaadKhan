@@ -46,6 +46,7 @@ public class EmailBean implements Serializable {
     private String subject;
     private String message;
     private String htmlMessage;
+    private boolean seen;
     private ArrayList<byte[]> attachments;
     private ArrayList<byte[]> imbedAttachments;
     private String messageType;
@@ -55,46 +56,21 @@ public class EmailBean implements Serializable {
     private Priority priority;
 
     public EmailBean() {
-    }
-
-    public String getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
-    }
-
-    public Date getSend() {
-        return send;
-    }
-
-    public void setSend(Date send) {
-        this.send = send;
-    }
-
-    public Date getRecived() {
-        return recived;
-    }
-
-    public void setRecived(Date recived) {
-        this.recived = recived;
-    }
-
-    public String getFolder() {
-        return folder;
-    }
-
-    public void setFolder(String folder) {
-        this.folder = folder;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+        from = "";
+        to = new ArrayList<>();
+        cc = new ArrayList<>();
+        bcc = new ArrayList<>();
+        subject = "";
+        message = "";
+        htmlMessage = "";
+        seen = false;
+        attachments = new ArrayList<>();
+        imbedAttachments = new ArrayList<>();
+        messageType = "";
+        send = null;
+        recived = null;
+        folder = "";
+        priority= Priority.LOW;
     }
 
     public String getFrom() {
@@ -153,6 +129,14 @@ public class EmailBean implements Serializable {
         this.htmlMessage = htmlMessage;
     }
 
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
+    }
+
     public ArrayList<byte[]> getAttachments() {
         return attachments;
     }
@@ -167,5 +151,45 @@ public class EmailBean implements Serializable {
 
     public void setImbedAttachments(ArrayList<byte[]> imbedAttachments) {
         this.imbedAttachments = imbedAttachments;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
+    public Date getSend() {
+        return send;
+    }
+
+    public void setSend(Date send) {
+        this.send = send;
+    }
+
+    public Date getRecived() {
+        return recived;
+    }
+
+    public void setRecived(Date recived) {
+        this.recived = recived;
+    }
+
+    public String getFolder() {
+        return folder;
+    }
+
+    public void setFolder(String folder) {
+        this.folder = folder;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 }

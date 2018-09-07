@@ -2,6 +2,8 @@ package test;
 
 import org.junit.Test;
 
+import buisness.EmailSender;
+
 import static org.junit.Assert.*;
 
 public class SendEmailTest {
@@ -13,6 +15,7 @@ public class SendEmailTest {
 
     @Test
     public void send(String user, String password, String receiver){
-
+        EmailSender es = new EmailSender(emailSend,emailSendPwd);
+        //es.send();
     }
 }
