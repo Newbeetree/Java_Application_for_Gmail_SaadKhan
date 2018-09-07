@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import jodd.mail.EmailAddress;
+
 /*
 Question: [This question has come up more than once]
 Also, for the E-mail JavaBeans, I would like to know if there is any reason why we are not using
@@ -38,16 +40,16 @@ In most cases the value for fields is defined by Jodd but remember that you cann
 the database so some Jodd objects may need to become strings or numbers.*/
 public class EmailBean implements Serializable {
 
-    private String from;
-    private ArrayList<String> to;
-    private ArrayList<String> cc;
-    private ArrayList<String> bcc;
+    private EmailAddress from;
+    private ArrayList<EmailAddress> to;
+    private ArrayList<EmailAddress> cc;
+    private ArrayList<EmailAddress> bcc;
     private String subject;
     private String message;
     private String htmlMessage;
     private boolean seen;
-    private ArrayList<byte[]> attachments;
-    private ArrayList<byte[]> imbedAttachments;
+    private ArrayList<FileAttachment> attachments;
+    private ArrayList<FileAttachment> imbedAttachments;
     private String messageType;
     private LocalDateTime send;
     private LocalDateTime recived;
@@ -55,7 +57,7 @@ public class EmailBean implements Serializable {
     private Priority priority;
 
     public EmailBean() {
-        from = "";
+        from = null;
         to = new ArrayList<>();
         cc = new ArrayList<>();
         bcc = new ArrayList<>();
@@ -69,126 +71,141 @@ public class EmailBean implements Serializable {
         send = null;
         recived = null;
         folder = "";
-        priority= Priority.PRIORITY_LOWEST;
+        priority = Priority.PRIORITY_LOWEST;
     }
 
-    public String getFrom() {
+    public EmailAddress getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public EmailBean setFrom(EmailAddress from) {
         this.from = from;
+        return this;
     }
 
-    public ArrayList<String> getTo() {
+    public ArrayList<EmailAddress> getTo() {
         return to;
     }
 
-    public void setTo(ArrayList<String> to) {
+    public EmailBean setTo(ArrayList<EmailAddress> to) {
         this.to = to;
+        return this;
     }
 
-    public ArrayList<String> getCc() {
+    public ArrayList<EmailAddress> getCc() {
         return cc;
     }
 
-    public void setCc(ArrayList<String> cc) {
+    public EmailBean setCc(ArrayList<EmailAddress> cc) {
         this.cc = cc;
+        return this;
     }
 
-    public ArrayList<String> getBcc() {
+    public ArrayList<EmailAddress> getBcc() {
         return bcc;
     }
 
-    public void setBcc(ArrayList<String> bcc) {
+    public EmailBean setBcc(ArrayList<EmailAddress> bcc) {
         this.bcc = bcc;
+        return this;
     }
 
     public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public EmailBean setSubject(String subject) {
         this.subject = subject;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public EmailBean setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public String getHtmlMessage() {
         return htmlMessage;
     }
 
-    public void setHtmlMessage(String htmlMessage) {
+    public EmailBean setHtmlMessage(String htmlMessage) {
         this.htmlMessage = htmlMessage;
+        return this;
     }
 
     public boolean isSeen() {
         return seen;
     }
 
-    public void setSeen(boolean seen) {
+    public EmailBean setSeen(boolean seen) {
         this.seen = seen;
+        return this;
     }
 
-    public ArrayList<byte[]> getAttachments() {
+    public ArrayList<FileAttachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(ArrayList<byte[]> attachments) {
+    public EmailBean setAttachments(ArrayList<FileAttachment> attachments) {
         this.attachments = attachments;
+        return this;
     }
 
-    public ArrayList<byte[]> getImbedAttachments() {
+    public ArrayList<FileAttachment> getImbedAttachments() {
         return imbedAttachments;
     }
 
-    public void setImbedAttachments(ArrayList<byte[]> imbedAttachments) {
+    public EmailBean setImbedAttachments(ArrayList<FileAttachment> imbedAttachments) {
         this.imbedAttachments = imbedAttachments;
+        return this;
     }
 
     public String getMessageType() {
         return messageType;
     }
 
-    public void setMessageType(String messageType) {
+    public EmailBean setMessageType(String messageType) {
         this.messageType = messageType;
+        return this;
     }
 
     public LocalDateTime getSend() {
         return send;
     }
 
-    public void setSend(LocalDateTime send) {
+    public EmailBean setSend(LocalDateTime send) {
         this.send = send;
+        return this;
     }
 
     public LocalDateTime getRecived() {
         return recived;
     }
 
-    public void setRecived(LocalDateTime recived) {
+    public EmailBean setRecived(LocalDateTime recived) {
         this.recived = recived;
+        return this;
     }
 
     public String getFolder() {
         return folder;
     }
 
-    public void setFolder(String folder) {
+    public EmailBean setFolder(String folder) {
         this.folder = folder;
+        return this;
     }
 
     public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public EmailBean setPriority(Priority priority) {
         this.priority = priority;
+        return this;
     }
 }

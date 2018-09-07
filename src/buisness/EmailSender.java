@@ -31,6 +31,7 @@ public class EmailSender {
                 .buildSmtpMailServer();
 
         Email email = convertBeanToJodd(sendingEmail);
+        System.out.println(email);
         try ( // A session is the object responsible for communicating with the server
               SendMailSession session = smtpServer.createSession()) {
             // Like a file we open the session, send the message and close the
@@ -49,7 +50,7 @@ public class EmailSender {
                 .subject(sendingEmail.getSubject())
                 .textMessage(sendingEmail.getMessage())
                 .htmlMessage(sendingEmail.getHtmlMessage())
-                .priority(sendingEmail.getPriority().ordinal());
+                .priority(sendingEmail.getPriority().getValue());
         return email;
     }
 
