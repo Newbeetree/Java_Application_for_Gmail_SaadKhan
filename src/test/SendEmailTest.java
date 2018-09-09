@@ -3,8 +3,10 @@ package test;
 import org.junit.Test;
 
 import buisness.EmailSender;
+import buisness.ReceiveEmail;
 import data.EmailBean;
 import data.Priority;
+import jodd.mail.EmailAddress;
 
 import static org.junit.Assert.*;
 
@@ -17,19 +19,26 @@ public class SendEmailTest {
 
     @Test
     public void send(){
-        EmailSender es = new EmailSender(emailSend,emailSendPwd);
-        EmailBean bean = setup();
-        es.send(bean);
+      //  EmailSender es = new EmailSender(emailSend,emailSendPwd);
+      //  EmailBean bean = setup();
+      //  es.send(bean);
+        ReceiveEmail re = new ReceiveEmail(emailReceive,emailReceivePwd);
+        re.receiveEmail();
     }
 
     private EmailBean setup() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(emailSend);
-        bean.getTo().add(emailReceive);
-        bean.getCc().add(emailCC1);
-        bean.setMessage("Mother fucker work us stupid bitch");
-        bean.setSubject("test");
-        bean.setPriority(Priority.PRIORITY_LOW);
+        bean.setFrom(new EmailAddress("name",emailSend));
+        bean.getTo().add(new EmailAddress("receiver",emailReceive));
+        bean.getCc().add(new EmailAddress("other", emailCC1));
+        bean.setMessage("hello testing 1 2 3");
+        bean.setHtmlMessage("<html><META http-equiv=Content-Type "
+                + "content=\"text/html; charset=utf-8\">"
+                + "<body><h1>Here is my photograph embedded in "
+                + "this email.</h1>"
+                + "<h2>I'm flying!</h2></body></html>");
+        bean.setSubject("test4");
+        bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
     }
 }

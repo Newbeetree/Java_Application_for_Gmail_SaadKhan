@@ -1,15 +1,12 @@
 package buisness;
 
-import javax.activation.MimeType;
-
 import data.EmailBean;
 import jodd.mail.Email;
-import jodd.mail.EmailMessage;
+import jodd.mail.EmailAddress;
 import jodd.mail.MailServer;
 import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
-import jodd.net.MimeTypes;
 
 public class EmailSender {
     private final String smtpServerName = "smtp.gmail.com";
@@ -44,12 +41,16 @@ public class EmailSender {
     private Email convertBeanToJodd(EmailBean sendingEmail) {
         Email email = Email.create()
                 .from(sendingEmail.getFrom())
-                .to(sendingEmail.getTo().toArray(new String[0]))
-                .cc(sendingEmail.getCc().toArray(new String[0]))
-                .bcc(sendingEmail.getBcc().toArray(new String[0]))
+                .to(sendingEmail.getTo().toArray(new EmailAddress[0]))
+                .cc(sendingEmail.getCc().toArray(new EmailAddress[0]))
+                .bcc(sendingEmail.getBcc().toArray(new EmailAddress[0]))
                 .subject(sendingEmail.getSubject())
                 .textMessage(sendingEmail.getMessage())
-                .htmlMessage(sendingEmail.getHtmlMessage())
+                .htmlMessage("<html><META http-equiv=Content-Type "
+                        + "content=\"text/html; charset=utf-8\">"
+                        + "<body><h1>Here is my photograph embedded in "
+                        + "this email.</h1>"
+                        + "<h2>I'm flying!</h2></body></html>")
                 .priority(sendingEmail.getPriority().getValue());
         return email;
     }

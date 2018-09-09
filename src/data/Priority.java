@@ -1,16 +1,20 @@
 package data;
+import jodd.mail.Email;
+import jodd.mail.ReceivedEmail;
 
 public enum Priority {
-    PRIORITY_LOW (0),
-    PRIORITY_LOWEST (1),
+    PRIORITY_LOWEST (0),
+    PRIORITY_LOW (1),
     PRIORITY_NORMAL (2),
-    PRIORITY_HIGHEST (3),
-    PRIORITY_HIGH (4);
+    PRIORITY_HIGH (3),
+    PRIORITY_HIGHEST (4);
 
     Priority(int value){
         this.value = value;
     }
+
     private int value;
+
     public int getValue(){
         return value;
     }

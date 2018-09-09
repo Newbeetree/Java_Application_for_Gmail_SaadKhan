@@ -58,20 +58,20 @@ public class EmailBean implements Serializable {
 
     public EmailBean() {
         from = null;
-        to = new ArrayList<>();
-        cc = new ArrayList<>();
-        bcc = new ArrayList<>();
+        to = new ArrayList<EmailAddress>();
+        cc = new ArrayList<EmailAddress>();
+        bcc = new ArrayList<EmailAddress>();
         subject = "";
         message = "";
         htmlMessage = "";
         seen = false;
-        attachments = new ArrayList<>();
-        imbedAttachments = new ArrayList<>();
+        attachments = new ArrayList<FileAttachment>();
+        imbedAttachments = new ArrayList<FileAttachment>();
         messageType = "";
         send = null;
         recived = null;
         folder = "";
-        priority = Priority.PRIORITY_LOWEST;
+        priority = Priority.PRIORITY_NORMAL;
     }
 
     public EmailAddress getFrom() {
@@ -207,5 +207,26 @@ public class EmailBean implements Serializable {
     public EmailBean setPriority(Priority priority) {
         this.priority = priority;
         return this;
+    }
+
+    public Priority setPriority(int priority) {
+        switch (priority) {
+            case 0:
+                this.priority = Priority.PRIORITY_LOWEST;
+                break;
+            case 1:
+                this.priority = Priority.PRIORITY_LOW;
+                break;
+            case 2:
+                this.priority = Priority.PRIORITY_NORMAL;
+                break;
+            case 3:
+                this.priority = Priority.PRIORITY_HIGH;
+                break;
+            case 4:
+                this.priority = Priority.PRIORITY_HIGHEST;
+                break;
+        }
+        return this.priority;
     }
 }
