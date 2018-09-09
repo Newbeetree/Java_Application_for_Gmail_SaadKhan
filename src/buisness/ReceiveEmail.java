@@ -11,6 +11,7 @@ import javax.activation.DataSource;
 import javax.mail.Flags;
 
 import data.EmailBean;
+import data.FileAttachment;
 import jodd.mail.EmailAddress;
 import jodd.mail.EmailAttachment;
 import jodd.mail.EmailFilter;
@@ -49,17 +50,11 @@ public class ReceiveEmail {
                     System.out.println("\n\n===[" + email.messageNumber() + "]===");
 
                     // common info
-                    System.out.println("FROM:" + email.from());
                     bean.setFrom(email.from());
-                    System.out.println("TO:" + email.to()[0]);
                     bean.setTo(new ArrayList<EmailAddress>(Arrays.asList(email.to()[0])));
-                    System.out.println("SUBJECT:" + email.subject());
                     bean.setSubject(email.subject());
-                    System.out.println("PRIORITY:" + email.priority());
                     bean.setPriority(email.priority());
-                    System.out.println("SENT DATE:" + email.sentDate());
                     bean.setSend(LocalDateTime.ofInstant(email.sentDate().toInstant(), ZoneId.systemDefault()));
-                    System.out.println("RECEIVED DATE: " + email.receivedDate());
                     bean.setSend(LocalDateTime.ofInstant(email.receivedDate().toInstant(), ZoneId.systemDefault()));
 
                     // process messages
@@ -75,16 +70,20 @@ public class ReceiveEmail {
                         System.out.println(msg.getMimeType());
                         return msg;
                     }).forEachOrdered((msg) -> {
-                        bean.setMessage(msg.getContent());
-                        System.out.println(msg.getContent());
+                        if (msg.getMimeType().equals("TEXT/PLAIN"))
+                            bean.setMessage(msg.getContent());
+                        else
+                            bean.setHtmlMessage(msg.getContent());
                     });
 
                     // process attachments
                     List<EmailAttachment<? extends DataSource>> attachments = email.attachments();
+                    FileAttachment fs = new FileAttachment();
                     if (attachments != null) {
                         System.out.println("+++++");
                         attachments.stream().map((attachment) -> {
                             System.out.println("name: " + attachment.getName());
+                            fs.setName(attachment.getName());
                             return attachment;
                         }).map((attachment) -> {
                             System.out.println("cid: " + attachment.getContentId());
@@ -93,8 +92,11 @@ public class ReceiveEmail {
                             System.out.println("size: " + attachment.getSize());
                             return attachment;
                         }).forEachOrdered((attachment) -> {
-                            attachment.writeToFile(
-                                    new File("c:\\temp", attachment.getName()));
+                            fs.setFile(attachment.toByteArray());
+                            if (attachment.isEmbedded())
+                                bean.addImbedAttatchments(fs);
+                            else
+                                bean.addAttachments(fs);
                         });
                     }
                 }

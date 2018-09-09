@@ -19,11 +19,15 @@ public class SendEmailTest {
 
     @Test
     public void send(){
-      //  EmailSender es = new EmailSender(emailSend,emailSendPwd);
-      //  EmailBean bean = setup();
-      //  es.send(bean);
+        EmailSender es = new EmailSender(emailSend,emailSendPwd);
+        EmailBean bean = setup();
+       es.send(bean);
         ReceiveEmail re = new ReceiveEmail(emailReceive,emailReceivePwd);
-        re.receiveEmail();
+        EmailBean rbean = re.receiveEmail();
+        rbean.setSubject("test6");
+        es.send(rbean);
+        EmailBean rbean2 = re.receiveEmail();
+
     }
 
     private EmailBean setup() {
@@ -37,7 +41,7 @@ public class SendEmailTest {
                 + "<body><h1>Here is my photograph embedded in "
                 + "this email.</h1>"
                 + "<h2>I'm flying!</h2></body></html>");
-        bean.setSubject("test4");
+        bean.setSubject("test5");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
     }
