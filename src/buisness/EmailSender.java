@@ -1,8 +1,12 @@
 package buisness;
 
+import java.util.ArrayList;
+
 import data.EmailBean;
+import data.FileAttachmentBean;
 import jodd.mail.Email;
 import jodd.mail.EmailAddress;
+import jodd.mail.EmailAttachment;
 import jodd.mail.MailServer;
 import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
@@ -18,7 +22,7 @@ public class EmailSender {
         this.userPassword = userPassword;
     }
 
-    public void send(EmailBean sendingEmail) {
+    public void send(EmailBean sendingEmail, boolean option) {
         // Create am SMTP server object
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
@@ -27,7 +31,7 @@ public class EmailSender {
                 .debugMode(true)
                 .buildSmtpMailServer();
 
-        Email email = convertBeanToJodd(sendingEmail);
+        Email email = convertBeanToJodd(sendingEmail, option);
         System.out.println(email);
         try ( // A session is the object responsible for communicating with the server
               SendMailSession session = smtpServer.createSession()) {
@@ -38,7 +42,7 @@ public class EmailSender {
         }
     }
 
-    private Email convertBeanToJodd(EmailBean sendingEmail) {
+    private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) {
         Email email = Email.create()
                 .from(sendingEmail.getFrom())
                 .to(sendingEmail.getTo().toArray(new EmailAddress[0]))
@@ -46,12 +50,23 @@ public class EmailSender {
                 .bcc(sendingEmail.getBcc().toArray(new EmailAddress[0]))
                 .subject(sendingEmail.getSubject())
                 .textMessage(sendingEmail.getMessage())
-                .htmlMessage("<html><META http-equiv=Content-Type "
-                        + "content=\"text/html; charset=utf-8\">"
-                        + "<body><h1>Here is my photograph embedded in "
-                        + "this email.</h1>"
-                        + "<h2>I'm flying!</h2></body></html>")
+                .htmlMessage(sendingEmail.getHtmlMessage())
                 .priority(sendingEmail.getPriority().getValue());
+        email = option ? email : addAtttachments(email, sendingEmail.getAttachments(), true);
+        email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
+        return email;
+    }
+
+    private Email addAtttachments(Email email, ArrayList<FileAttachmentBean> attachments, boolean option) {
+        if (option) {
+            for (FileAttachmentBean fab : attachments) {
+                email.attachment(EmailAttachment.with().content(fab.getFile()).name(fab.getName()));
+            }
+        } else {
+            for (FileAttachmentBean fab : attachments) {
+                email.embeddedAttachment(EmailAttachment.with().content(fab.getFile()).name(fab.getName()));
+            }
+        }
         return email;
     }
 

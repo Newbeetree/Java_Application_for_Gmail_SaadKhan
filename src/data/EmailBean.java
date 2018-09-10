@@ -48,8 +48,8 @@ public class EmailBean implements Serializable {
     private String message;
     private String htmlMessage;
     private boolean seen;
-    private ArrayList<FileAttachment> attachments;
-    private ArrayList<FileAttachment> imbedAttachments;
+    private ArrayList<FileAttachmentBean> attachments;
+    private ArrayList<FileAttachmentBean> imbedAttachments;
     private String messageType;
     private LocalDateTime send;
     private LocalDateTime recived;
@@ -65,8 +65,8 @@ public class EmailBean implements Serializable {
         message = "";
         htmlMessage = "";
         seen = false;
-        attachments = new ArrayList<FileAttachment>();
-        imbedAttachments = new ArrayList<FileAttachment>();
+        attachments = new ArrayList<FileAttachmentBean>();
+        imbedAttachments = new ArrayList<FileAttachmentBean>();
         messageType = "";
         send = null;
         recived = null;
@@ -146,28 +146,28 @@ public class EmailBean implements Serializable {
         return this;
     }
 
-    public ArrayList<FileAttachment> getAttachments() {
+    public ArrayList<FileAttachmentBean> getAttachments() {
         return attachments;
     }
 
-    public EmailBean setAttachments(ArrayList<FileAttachment> attachments) {
+    public EmailBean setAttachments(ArrayList<FileAttachmentBean> attachments) {
         this.attachments = attachments;
         return this;
     }
-    public void addAttachments(FileAttachment attachments) {
+    public void addAttachments(FileAttachmentBean attachments) {
         this.attachments.add(attachments);
     }
 
-    public ArrayList<FileAttachment> getImbedAttachments() {
+    public ArrayList<FileAttachmentBean> getImbedAttachments() {
         return imbedAttachments;
     }
 
-    public EmailBean setImbedAttachments(ArrayList<FileAttachment> imbedAttachments) {
+    public EmailBean setImbedAttachments(ArrayList<FileAttachmentBean> imbedAttachments) {
         this.imbedAttachments = imbedAttachments;
         return this;
     }
 
-    public void addImbedAttatchments(FileAttachment attachment){
+    public void addImbedAttatchments(FileAttachmentBean attachment){
         this.imbedAttachments.add(attachment);
     }
 

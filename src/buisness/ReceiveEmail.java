@@ -1,6 +1,5 @@
 package buisness;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import javax.activation.DataSource;
 import javax.mail.Flags;
 
 import data.EmailBean;
-import data.FileAttachment;
+import data.FileAttachmentBean;
 import jodd.mail.EmailAddress;
 import jodd.mail.EmailAttachment;
 import jodd.mail.EmailFilter;
@@ -78,7 +77,7 @@ public class ReceiveEmail {
 
                     // process attachments
                     List<EmailAttachment<? extends DataSource>> attachments = email.attachments();
-                    FileAttachment fs = new FileAttachment();
+                    FileAttachmentBean fs = new FileAttachmentBean();
                     if (attachments != null) {
                         System.out.println("+++++");
                         attachments.stream().map((attachment) -> {
