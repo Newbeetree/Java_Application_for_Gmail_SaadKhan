@@ -1,5 +1,10 @@
 package buisness;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 
 import data.EmailBean;
@@ -49,6 +54,7 @@ public class EmailSender {
                 .cc(sendingEmail.getCc().toArray(new EmailAddress[0]))
                 .bcc(sendingEmail.getBcc().toArray(new EmailAddress[0]))
                 .subject(sendingEmail.getSubject())
+                .sentDate(Date.from(sendingEmail.getSend().toInstant(ZoneOffset.UTC)))
                 .textMessage(sendingEmail.getMessage())
                 .htmlMessage(sendingEmail.getHtmlMessage())
                 .priority(sendingEmail.getPriority().getValue());

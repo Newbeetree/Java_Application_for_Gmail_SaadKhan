@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
 
 import buisness.EmailSender;
 import buisness.ReceiveEmail;
@@ -29,11 +30,11 @@ public class SendEmailTest {
     }
     @Test
     public void sendAndReceive() throws IOException {
-        EmailSender es = new EmailSender(emailSend,emailSendPwd);
+        EmailSender es = new EmailSender(emailSend, emailSendPwd);
         EmailBean bean = setup();
         bean = setupAndAttachments(bean);
         bean = setupAndImbeddedAttachments(bean);
-        es.send(bean,true);
+        es.send(bean, false);
 
         ReceiveEmail re = new ReceiveEmail(emailReceive,emailReceivePwd);
         EmailBean rbean = re.receiveEmail();
@@ -54,6 +55,7 @@ public class SendEmailTest {
         bean.getTo().add(new EmailAddress("receiver",emailReceive));
         bean.getCc().add(new EmailAddress("other", emailCC1));
         bean.setMessage("hello testing 1 2 3");
+        bean.setSend(LocalDateTime.now());
         bean.setHtmlMessage("<html><META http-equiv=Content-Type "
                 + "content=\"text/html; charset=utf-8\">"
                 + "<body><h1>Here is my photograph embedded in "

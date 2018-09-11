@@ -154,9 +154,7 @@ public class EmailBean implements Serializable {
         this.attachments = attachments;
         return this;
     }
-    public void addAttachments(FileAttachmentBean attachments) {
-        this.attachments.add(attachments);
-    }
+
 
     public ArrayList<FileAttachmentBean> getImbedAttachments() {
         return imbedAttachments;

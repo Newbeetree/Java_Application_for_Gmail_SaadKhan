@@ -92,10 +92,11 @@ public class ReceiveEmail {
                             return attachment;
                         }).forEachOrdered((attachment) -> {
                             fs.setFile(attachment.toByteArray());
-                            if (attachment.isEmbedded())
-                                bean.addImbedAttatchments(fs);
-                            else
-                                bean.addAttachments(fs);
+                            if (attachment.isEmbedded()) {
+                                bean.getImbedAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
+                            }else {
+                                bean.getAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
+                            }
                         });
                     }
                 }

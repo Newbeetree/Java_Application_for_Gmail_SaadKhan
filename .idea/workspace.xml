@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20e9c681-6d9d-42d9-bfc7-c453c306a6c8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/FreeFall.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WindsorKen180.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/buisness/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/buisness/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/buisness/ReceiveEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/buisness/ReceiveEmail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/EmailBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/EmailBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/FileAttachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/FileAttachmentBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/FileAttachmentBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/FileAttachmentBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/SendEmailTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/SendEmailTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/buisness/ReceiveEmail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/buisness/ReceiveEmail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data/EmailBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data/EmailBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/test/SendEmailTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/SendEmailTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,14 +26,14 @@
     </SUITE>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.48242188">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/buisness/EmailSender.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="108">
-                  <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+                <state relative-caret-position="94">
+                  <caret line="59" column="65" lean-forward="true" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -44,11 +41,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SendEmailTest.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SendEmailTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/SendEmailTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="104">
-                  <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
+                <state relative-caret-position="65">
+                  <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -60,11 +57,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ReceiveEmail.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ReceiveEmail.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/buisness/ReceiveEmail.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+                <state relative-caret-position="135">
+                  <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -72,11 +69,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FileAttachmentBean.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="FileAttachmentBean.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/data/FileAttachmentBean.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+                <state relative-caret-position="-209">
+                  <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
@@ -84,10 +81,12 @@
           <file leaf-file-name="EmailBean.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/data/EmailBean.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-130">
-                  <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+                <state relative-caret-position="147">
+                  <caret line="180" column="32" selection-start-line="180" selection-start-column="25" selection-end-line="180" selection-end-column="32" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#5019#5020#0" expanded="true" />
+                    <element signature="e#5046#5047#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -117,6 +116,8 @@
       <find>atta</find>
       <find>attach</find>
       <find>if</find>
+      <find>local</find>
+      <find>getSend</find>
     </findStrings>
     <replaceStrings>
       <replace>EmailSender</replace>
@@ -134,11 +135,11 @@
         <option value="$PROJECT_DIR$/src/data/FileAttachment.java" />
         <option value="$PROJECT_DIR$/src/buisness/RecieveEmail.java" />
         <option value="$PROJECT_DIR$/src/data/Priority.java" />
-        <option value="$PROJECT_DIR$/src/buisness/ReceiveEmail.java" />
         <option value="$PROJECT_DIR$/src/data/EmailBean.java" />
         <option value="$PROJECT_DIR$/src/data/FileAttachmentBean.java" />
-        <option value="$PROJECT_DIR$/src/buisness/EmailSender.java" />
+        <option value="$PROJECT_DIR$/src/buisness/ReceiveEmail.java" />
         <option value="$PROJECT_DIR$/src/test/SendEmailTest.java" />
+        <option value="$PROJECT_DIR$/src/buisness/EmailSender.java" />
       </list>
     </option>
   </component>
@@ -157,17 +158,14 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +188,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SendEmailTest.sendAndReceive">
+  <component name="RunManager" selected="JUnit.SendEmailTest.send">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -351,9 +352,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SendEmailTest.send" />
         <item itemvalue="JUnit.SendEmailTest.sendAndReceive" />
         <item itemvalue="JUnit.SendEmailTest.sendWithAttachments" />
-        <item itemvalue="JUnit.SendEmailTest.send" />
       </list>
     </recent_temporary>
   </component>
@@ -380,48 +381,48 @@
       <workItem from="1536424737196" duration="6125000" />
       <workItem from="1536437886354" duration="22134000" />
       <workItem from="1536531131265" duration="306000" />
-      <workItem from="1536536409791" duration="10751000" />
+      <workItem from="1536536409791" duration="10949000" />
+      <workItem from="1536587583945" duration="20167000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 36m 32s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 38m 03s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 41m 44s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 42m 46s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 44m 52s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 45m 27s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 45m 53s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 46m 03s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendWithAttachments - 2018.09.09 at 23h 47m 09s.xml">
-      <configuration name="SendEmailTest.sendWithAttachments" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.09 at 23h 47m 45s.xml">
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 14h 23m 13s.xml">
       <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 14h 48m 51s.xml">
+      <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 15h 30m 49s.xml">
+      <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 15h 31m 38s.xml">
+      <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 15h 32m 34s.xml">
+      <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_sendAndReceive - 2018.09.10 at 20h 44m 01s.xml">
+      <configuration name="SendEmailTest.sendAndReceive" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_send - 2018.09.10 at 21h 16m 14s.xml">
+      <configuration name="SendEmailTest.send" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_send - 2018.09.10 at 21h 17m 07s.xml">
+      <configuration name="SendEmailTest.send" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_send - 2018.09.10 at 21h 18m 49s.xml">
+      <configuration name="SendEmailTest.send" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SendEmailTest_send - 2018.09.10 at 22h 33m 02s.xml">
+      <configuration name="SendEmailTest.send" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78154000" />
+    <option name="totallyTimeSpent" value="98519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -433,20 +434,20 @@
       <window_info anchor="right" x="700" y="174" width="135" height="476" id="Maven Projects" order="7" type="FLOATING" weight="0.087890625" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49934897" visible="true" weight="0.16760564" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49934897" visible="true" weight="0.6732394" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17447917" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17447917" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4986979" weight="0.31830987" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.4986979" weight="0.33521128" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3294271" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="1" />
@@ -465,12 +466,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/buisness/EmailSender.java</url>
-          <line>34</line>
+          <line>45</line>
           <properties />
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/buisness/ReceiveEmail.java</url>
+          <line>78</line>
+          <properties />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -515,6 +522,8 @@
           <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -545,6 +554,8 @@
           <caret line="172" column="20" lean-forward="true" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -553,12 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-          <folding>
-            <element signature="e#216#217#0" expanded="true" />
-            <element signature="e#243#244#0" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-            <element signature="e#404#405#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -588,6 +593,8 @@
           <caret line="45" column="26" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -642,6 +649,8 @@
           <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -693,6 +702,8 @@
           <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -710,6 +721,8 @@
           <caret line="42" column="33" lean-forward="true" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -727,6 +740,8 @@
           <caret line="37" column="75" selection-start-line="37" selection-start-column="75" selection-end-line="37" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -744,6 +759,8 @@
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -761,6 +778,8 @@
           <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -793,38 +812,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="76" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/InvokeMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -866,37 +857,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="94">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
           <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/EmailBean.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-130">
-          <caret line="146" column="5" lean-forward="true" selection-start-line="146" selection-start-column="5" selection-end-line="146" selection-end-column="5" />
+        <state relative-caret-position="79">
+          <caret line="208" selection-start-line="208" selection-end-line="208" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/InvokeMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#870#1063#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/buisness/ReceiveEmail.java">
+    <entry file="file://$PROJECT_DIR$/src/test/SendEmailTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/buisness/EmailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+        <state relative-caret-position="65">
+          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -905,15 +908,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/FileAttachmentBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="-209">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/SendEmailTest.java">
+    <entry file="file://$PROJECT_DIR$/src/data/EmailBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
+        <state relative-caret-position="147">
+          <caret line="180" column="32" selection-start-line="180" selection-start-column="25" selection-end-line="180" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5019#5020#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/buisness/ReceiveEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/buisness/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="59" column="65" lean-forward="true" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

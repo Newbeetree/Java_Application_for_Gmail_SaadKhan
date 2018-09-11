@@ -10,6 +10,11 @@ public class FileAttachmentBean implements Serializable {
     public FileAttachmentBean() {
     }
 
+    public FileAttachmentBean(byte[] file, String name) {
+        this.file = file;
+        this.name = name;
+    }
+
     public byte[] getFile() {
         return file;
     }
