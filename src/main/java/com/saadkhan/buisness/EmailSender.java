@@ -20,7 +20,7 @@ import jodd.mail.SmtpServer;
 
 public class EmailSender {
 
-    private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
+//    private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
 
     private final String smtpServerName = "smtp.gmail.com";
     private String userEmail;
@@ -59,7 +59,7 @@ public class EmailSender {
             // open the session, send the message and close the session
             session.open();
             session.sendMail(email);
-            LOG.info("Email sent");
+         //   LOG.info("Email sent");
         }
     }
 

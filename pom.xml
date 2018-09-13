@@ -29,15 +29,15 @@
     <!-- Identifies the programmer or programmers who worked on the project -->
     <developers>
         <developer>
-            <id>Enter your school id</id>
-            <name>Enter your name</name>
-            <email>Enter your email address</email>
+            <id>Dawson College</id>
+            <name>saad khan</name>
+            <email>saaadkhan23@yahoo.ca</email>
         </developer>
     </developers>
 
     <!-- The company or organization that the programmer(s) work for -->
     <organization>
-        <name>Enter school name</name>
+        <name>Dawson College</name>
     </organization>
 
     <!-- Global settings for the project. Settings can be accessed in the pom

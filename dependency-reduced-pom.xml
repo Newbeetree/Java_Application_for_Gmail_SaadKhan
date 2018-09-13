@@ -14,13 +14,13 @@
   <description>Email demo project</description>
   <developers>
     <developer>
-      <id>Enter your school id</id>
-      <name>Enter your name</name>
-      <email>Enter your email address</email>
+      <id>Dawson College</id>
+      <name>saad khan</name>
+      <email>saaadkhan23@yahoo.ca</email>
     </developer>
   </developers>
   <organization>
-    <name>Enter school name</name>
+    <name>Dawson College</name>
   </organization>
   <dependencies>
     <dependency>
