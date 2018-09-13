@@ -77,7 +77,7 @@ public class EmailSenderTest {
                 + "<body><h1>Here is my photograph embedded in "
                 + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
                 + "<h2>I'm flying!</h2></body></html>");
-        bean.setSubject("test9");
+        bean.setSubject("test10");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
     }

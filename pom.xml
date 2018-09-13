@@ -1,64 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-    <!-- Maven version of the xml document currently only 4.0.0 is valid -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- The GAV consists of an arbitrary descriptor that is usually in the
-    form of a reverse domain name. -->
     <groupId>com.saadkhan</groupId>
-    <!-- This is the name given to the packaged build -->
-    <artifactId>jag</artifactId>
-
-    <!-- The version of the build. Any value is valid though a number and a
-    string are common. SNAPSHOT means a project under development. FINAL is commonly
-    used to refer to stable production version -->
-    <version>1.0.0-SNAPSHOT</version>
-
-    <!-- Default value is jar but may be war or ear -->
+    <artifactId>JavaApplicationGMail1633839</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <!-- The name given to the project. Unlike groupId and artifactId a name
-    may have spaces -->
-    <name>jag1633839</name>
-
-    <!-- A description of the program -->
-    <description>Email demo project</description>
-
-    <!-- Identifies the programmer or programmers who worked on the project -->
-    <developers>
-        <developer>
-            <id>Dawson College</id>
-            <name>saad khan</name>
-            <email>saaadkhan23@yahoo.ca</email>
-        </developer>
-    </developers>
-
-    <!-- The company or organization that the programmer(s) work for -->
-    <organization>
-        <name>Dawson College</name>
-    </organization>
-
-    <!-- Global settings for the project. Settings can be accessed in the pom
-    by placing the tag name in ${...} ex. ${mainClass} -->
     <properties>
-        <!-- class that has the main method -->
-        <mainClass>${project.groupId}.${project.artifactId}.MainApp</mainClass>
+        <name>1633839</name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
-    <!-- All of the sample code shares the same dependencies and build         -->
-    <!-- The parent project named web_project_dependencies must be loaded into -->
-    <!-- the IDE and you must Run Maven with a goal of install:install         -->
-    <!-- Now it can be the parent pom of all projects                          -->
-    <!-- https://gitlab.com/omniprof/desktop_project_dependencies.git              -->
-    <parent>
-        <groupId>com.kfdesktopstandard</groupId>
-        <artifactId>desktop_project_dependencies</artifactId>
-        <version>1.0</version>
-    </parent>
-
     <dependencies>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-mail</artifactId>
+            <version>5.0.4</version>
+        </dependency>
         <!-- The dependency for the SLF4J Facade -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -90,13 +48,6 @@
             <version>4.12</version>
             <!-- only to be used during test, phase will not be included in executable jar -->
             <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-mail -->
-        <dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-mail</artifactId>
-            <version>5.0.4</version>
         </dependency>
     </dependencies>
 </project>

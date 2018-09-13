@@ -6,9 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jag" />
         <module name="JavaApplicationGmail1633839" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="desktop_project_dependencies" target="1.8" />
+      <module name="emailClient" target="1.8" />
+      <module name="jag" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
