@@ -112,17 +112,14 @@ public class EmailSender {
     }
 
 
-
     private boolean validateBean(EmailBean bean) {
         try {
-             if(checkEmail(bean.getFrom().getEmail()) &&
-            checkEmailName(bean.getFrom().getPersonalName()) &&
-            checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
-            checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-            checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
-            checkEmailSentDate(bean.getSend()))
-
-            return true;
+            if (checkEmail(bean.getFrom().getEmail()) &&
+                    checkEmailName(bean.getFrom().getPersonalName()) &&
+                    checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
+                    checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
+                    checkListEmail(bean.getBcc().toArray(new EmailAddress[0])))
+                return true;
         } catch (Exception e) {
             return false;
         }
@@ -142,16 +139,17 @@ public class EmailSender {
     private boolean checkEmailSentDate(LocalDateTime date) {
         return (!date.equals(null));
     }
+
     private boolean checkEmailName(String personalName) {
         String regx = "^[\\p{L} .'-]+$";
-        Pattern pattern = Pattern.compile(regx,Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(personalName);
         return matcher.find();
-        }
+    }
 
     private boolean checkListEmail(EmailAddress[] list) throws IllegalAccessException {
         for (EmailAddress email : list) {
-            if(!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
+            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
                 throw new IllegalAccessException("Invalid Email");
         }
         return true;

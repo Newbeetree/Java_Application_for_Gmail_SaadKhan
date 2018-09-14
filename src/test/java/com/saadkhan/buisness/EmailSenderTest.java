@@ -26,10 +26,11 @@ public class EmailSenderTest {
      */
     @Test
     public void send() throws IOException {
-        EmailSender es = new EmailSender(emailSend,emailSendPwd);
+        EmailSender es = new EmailSender(emailSend, emailSendPwd);
         EmailBean bean = setup();
-        bean = addAttachments(bean);
-        es.send(bean,true);
+    //    bean = addAttachments(bean);
+    //    bean = addImbeddedAttachments(bean);
+        es.send(bean, true);
     }
 
     /**
@@ -44,7 +45,7 @@ public class EmailSenderTest {
         bean = addImbeddedAttachments(bean);
         es.send(bean, false);
 
-        EmailReceiver re = new EmailReceiver(emailReceive,emailReceivePwd);
+        EmailReceiver re = new EmailReceiver(emailReceive, emailReceivePwd);
         EmailBean[] rbean = re.receiveEmail();
     }
 
@@ -54,11 +55,10 @@ public class EmailSenderTest {
      */
     @Test
     public void sendWithAttachments() throws IOException {
-        EmailSender es = new EmailSender(emailSend,emailSendPwd);
+        EmailSender es = new EmailSender(emailSend, emailSendPwd);
         EmailBean bean = setup();
         bean = addAttachments(bean);
-        bean = addImbeddedAttachments(bean);
-        es.send(bean,false);
+        es.send(bean, false);
     }
 
     /**
@@ -67,16 +67,17 @@ public class EmailSenderTest {
      */
     private EmailBean setup() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name",emailSend));
-        bean.getTo().add(new EmailAddress("receiver",emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
+        bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.getCc().add(new EmailAddress("other", emailCC1));
         bean.setMessage("hello testing 1 2 3");
         bean.setSend(LocalDateTime.now());
-        bean.setHtmlMessage("<html><META http-equiv=Content-Type "
+        /*bean.setHtmlMessage("<html><META http-equiv=Content-Type "
                 + "content=\"text/html; charset=utf-8\">"
                 + "<body><h1>Here is my photograph embedded in "
                 + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
                 + "<h2>I'm flying!</h2></body></html>");
+*/
         bean.setSubject("test11");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
@@ -90,9 +91,13 @@ public class EmailSenderTest {
      */
     private EmailBean addAttachments(EmailBean bean) throws IOException {
         FileAttachmentBean fa = new FileAttachmentBean();
+        FileAttachmentBean fb = new FileAttachmentBean();
         fa.setName("FreeFall.jpg");
         fa.setFile(Files.readAllBytes(new File("FreeFall.jpg").toPath()));
+        fb.setName("textFile.txt");
+        fb.setFile(Files.readAllBytes(new File("textFile.txt").toPath()));
         bean.getAttachments().add(fa);
+        bean.getAttachments().add(fb);
         return bean;
     }
 

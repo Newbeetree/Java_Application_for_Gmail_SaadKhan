@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.activation.DataSource;
 import javax.mail.Flags;
+
 import jodd.mail.EmailAddress;
 import jodd.mail.EmailAttachment;
 import jodd.mail.EmailFilter;
@@ -85,16 +86,16 @@ public class EmailReceiver {
                     FileAttachmentBean fs = new FileAttachmentBean();
                     if (attachments != null) {
                         for (EmailAttachment<? extends DataSource> attachment : attachments) {
-                        LOG.info("+++++");
+                            LOG.info("+++++");
                             LOG.info("name: " + attachment.getName());
                             fs.setName(attachment.getName());
                             LOG.info("cid: " + attachment.getContentId());
                             LOG.info("size: " + attachment.getSize());
                             fs.setFile(attachment.toByteArray());
                             if (attachment.isEmbedded()) {
-                                bean.getImbedAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
-                            }else {
-                                bean.getAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
+                                bean.getImbedAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName()));
+                            } else {
+                                bean.getAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName()));
                             }
                         }
                     }
