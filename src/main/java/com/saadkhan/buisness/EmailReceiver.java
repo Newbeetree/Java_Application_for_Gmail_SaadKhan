@@ -34,24 +34,26 @@ public class EmailReceiver {
         this.receivePassword = receivePassword;
     }
 
-    public EmailBean receiveEmail() {
-        EmailBean bean = new EmailBean();
+    public EmailBean[] receiveEmail() {
         ImapServer imapServer = MailServer.create()
                 .host(imapServerName)
                 .ssl(true)
                 .auth(receiveEmail, receivePassword)
                 .debugMode(true)
                 .buildImapMailServer();
-        EmailBean[] beanArr;
+
+        ArrayList<EmailBean> beanArrayList = new ArrayList<>();
+        EmailBean bean;
+
         try (ReceiveMailSession session = imapServer.createSession()) {
             session.open();
             LOG.info("Message Count: " + session.getMessageCount());
             ReceivedEmail[] emails = session.receiveEmailAndMarkSeen(EmailFilter.filter().flag(Flags.Flag.SEEN, false));
-            beanArr = new EmailBean[emails.length];
             System.out.println("***********************************************************");
             if (emails != null) {
                 LOG.info("\n >>>> ReceivedEmail count = " + emails.length);
                 for (ReceivedEmail email : emails) {
+                    bean = new EmailBean();
                     LOG.info("===[" + email.messageNumber() + "]===");
 
                     // common info
@@ -70,51 +72,36 @@ public class EmailReceiver {
 
                     // process messages
                     List<EmailMessage> messages = email.messages();
-
-                    messages.stream().map((msg) -> {
-                        LOG.info("------EmailMessage");
-                        return msg;
-                    }).map((msg) -> {
-                        LOG.info("EmailMessage encoding: " + msg.getEncoding());
-                        return msg;
-                    }).map((msg) -> {
-                        LOG.info("EmailMessage mime type " + msg.getMimeType());
-                        return msg;
-                    }).forEachOrdered((msg) -> {
-                        LOG.info("EmailMessage content: " + msg.getContent());
-                        if (msg.getMimeType().equals("TEXT/PLAIN"))
-                            bean.setMessage(msg.getContent());
+                    for (EmailMessage message : messages) {
+                        LOG.info("EmailMessage content: " + message.getContent());
+                        if (message.getMimeType().equals("TEXT/PLAIN"))
+                            bean.setMessage(message.getContent());
                         else
-                            bean.setHtmlMessage(msg.getContent());
-                    });
+                            bean.setHtmlMessage(message.getContent());
+                    }
 
                     // process attachments
                     List<EmailAttachment<? extends DataSource>> attachments = email.attachments();
                     FileAttachmentBean fs = new FileAttachmentBean();
                     if (attachments != null) {
+                        for (EmailAttachment<? extends DataSource> attachment : attachments) {
                         LOG.info("+++++");
-                        attachments.stream().map((attachment) -> {
                             LOG.info("name: " + attachment.getName());
                             fs.setName(attachment.getName());
-                            return attachment;
-                        }).map((attachment) -> {
                             LOG.info("cid: " + attachment.getContentId());
-                            return attachment;
-                        }).map((attachment) -> {
                             LOG.info("size: " + attachment.getSize());
-                            return attachment;
-                        }).forEachOrdered((attachment) -> {
                             fs.setFile(attachment.toByteArray());
                             if (attachment.isEmbedded()) {
                                 bean.getImbedAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
                             }else {
                                 bean.getAttachments().add(new FileAttachmentBean(fs.getFile(),fs.getName()));
                             }
-                        });
+                        }
                     }
+                    beanArrayList.add(bean);
                 }
             }
         }
-        return bean;
+        return beanArrayList.toArray(new EmailBean[0]);
     }
 }

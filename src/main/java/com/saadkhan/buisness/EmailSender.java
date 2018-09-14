@@ -7,8 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jodd.mail.Email;
 import jodd.mail.EmailAddress;
@@ -37,8 +40,6 @@ public class EmailSender {
     }
 
     /**
-     *
-     * @param sendingEmail
      * @param option : option indicates whether or not we want to include attachments
      */
     public void send(EmailBean sendingEmail, boolean option) {
@@ -53,8 +54,8 @@ public class EmailSender {
         Email email = convertBeanToJodd(sendingEmail, option);
         System.out.println(email);
         try (
-            // A session is the object responsible for communicating with the server
-            SendMailSession session = smtpServer.createSession()) {
+                // A session is the object responsible for communicating with the server
+                SendMailSession session = smtpServer.createSession()) {
 
             // open the session, send the message and close the session
             session.open();
@@ -65,21 +66,28 @@ public class EmailSender {
 
     /**
      * creates a jodd email using a bean and an option to specify if attachments are needed
+     *
      * @return Email
      */
     private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) {
-        Email email = Email.create()
-                .from(sendingEmail.getFrom())
-                .to(sendingEmail.getTo().toArray(new EmailAddress[0]))
-                .cc(sendingEmail.getCc().toArray(new EmailAddress[0]))
-                .bcc(sendingEmail.getBcc().toArray(new EmailAddress[0]))
-                .subject(sendingEmail.getSubject())
-                .sentDate(Date.from(sendingEmail.getSend().toInstant(ZoneOffset.UTC)))
-                .textMessage(sendingEmail.getMessage())
-                .htmlMessage(sendingEmail.getHtmlMessage())
-                .priority(sendingEmail.getPriority().getValue());
-        email = option ? email : addAtttachments(email, sendingEmail.getAttachments(), true);
-        email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
+        Email email = null;
+        if (validateBean(sendingEmail)) {
+            email = Email.create()
+                    .from(sendingEmail.getFrom())
+                    .to(sendingEmail.getTo().toArray(new EmailAddress[0]))
+                    .cc(sendingEmail.getCc().toArray(new EmailAddress[0]))
+                    .bcc(sendingEmail.getBcc().toArray(new EmailAddress[0]))
+                    .subject(sendingEmail.getSubject())
+                    .sentDate(Date.from(sendingEmail.getSend().toInstant(ZoneOffset.UTC)))
+                    .textMessage(sendingEmail.getMessage())
+                    .htmlMessage(sendingEmail.getHtmlMessage())
+                    .priority(sendingEmail.getPriority().getValue());
+
+            email = option ? email : addAtttachments(email, sendingEmail.getAttachments(), true);
+            email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
+        } else {
+            LOG.error("Validation error");
+        }
         return email;
     }
 
@@ -103,6 +111,24 @@ public class EmailSender {
         return email;
     }
 
+
+
+    private boolean validateBean(EmailBean bean) {
+        try {
+             if(checkEmail(bean.getFrom().getEmail()) &&
+            checkEmailName(bean.getFrom().getPersonalName()) &&
+            checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
+            checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
+            checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
+            checkEmailSentDate(bean.getSend()))
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
     /**
      * Use the RFC2822AddressParser to validate that the email string could be a
      * valid address
@@ -111,5 +137,23 @@ public class EmailSender {
      */
     private boolean checkEmail(String address) {
         return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
+    }
+
+    private boolean checkEmailSentDate(LocalDateTime date) {
+        return (!date.equals(null));
+    }
+    private boolean checkEmailName(String personalName) {
+        String regx = "^[\\p{L} .'-]+$";
+        Pattern pattern = Pattern.compile(regx,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(personalName);
+        return matcher.find();
+        }
+
+    private boolean checkListEmail(EmailAddress[] list) throws IllegalAccessException {
+        for (EmailAddress email : list) {
+            if(!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
+                throw new IllegalAccessException("Invalid Email");
+        }
+        return true;
     }
 }

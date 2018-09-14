@@ -45,7 +45,7 @@ public class EmailSenderTest {
         es.send(bean, false);
 
         EmailReceiver re = new EmailReceiver(emailReceive,emailReceivePwd);
-        EmailBean rbean = re.receiveEmail();
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
@@ -77,7 +77,7 @@ public class EmailSenderTest {
                 + "<body><h1>Here is my photograph embedded in "
                 + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
                 + "<h2>I'm flying!</h2></body></html>");
-        bean.setSubject("test10");
+        bean.setSubject("test11");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
     }
