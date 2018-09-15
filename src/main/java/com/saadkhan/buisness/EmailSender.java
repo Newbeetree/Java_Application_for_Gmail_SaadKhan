@@ -42,7 +42,7 @@ public class EmailSender {
     /**
      * @param option : option indicates whether or not we want to include attachments
      */
-    public void send(EmailBean sendingEmail, boolean option) {
+    public void send(EmailBean sendingEmail, boolean option) throws IllegalAccessException {
         // Create am SMTP server object
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
@@ -52,10 +52,9 @@ public class EmailSender {
                 .buildSmtpMailServer();
 
         Email email = convertBeanToJodd(sendingEmail, option);
-        System.out.println(email);
         try (
-                // A session is the object responsible for communicating with the server
-                SendMailSession session = smtpServer.createSession()) {
+             // A session is the object responsible for communicating with the server
+            SendMailSession session = smtpServer.createSession()) {
 
             // open the session, send the message and close the session
             session.open();
@@ -69,7 +68,7 @@ public class EmailSender {
      *
      * @return Email
      */
-    private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) {
+    private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) throws IllegalAccessException {
         Email email = null;
         if (validateBean(sendingEmail)) {
             email = Email.create()
@@ -87,6 +86,7 @@ public class EmailSender {
             email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
         } else {
             LOG.error("Validation error");
+            throw new IllegalAccessException("Email has illegal arguements");
         }
         return email;
     }
@@ -112,18 +112,16 @@ public class EmailSender {
     }
 
 
-    private boolean validateBean(EmailBean bean) {
-        try {
-            if (checkEmail(bean.getFrom().getEmail()) &&
-                    checkEmailName(bean.getFrom().getPersonalName()) &&
-                    checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
-                    checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-                    checkListEmail(bean.getBcc().toArray(new EmailAddress[0])))
-                return true;
-        } catch (Exception e) {
-            return false;
+    private boolean validateBean(EmailBean bean) throws IllegalAccessException {
+        if (checkEmail(bean.getFrom().getEmail()) &&
+            checkEmailName(bean.getFrom().getPersonalName()) &&
+            checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
+            checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
+            checkListEmail(bean.getBcc().toArray(new EmailAddress[0]))) {
+            return true;
         }
-        return false;
+        else
+            return false;
     }
 
     /**

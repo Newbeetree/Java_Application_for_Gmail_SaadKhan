@@ -4,6 +4,7 @@ import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -20,33 +21,26 @@ public class EmailSenderTest {
     private final String emailReceivePwd = "receivepassword";
     private final String emailCC1 = "other.1633839@gmail.com";
 
-    /**
-     *
-     * @throws IOException
-     */
-    @Test
-    public void send() throws IOException {
-        EmailSender es = new EmailSender(emailSend, emailSendPwd);
-        EmailBean bean = setup();
-    //    bean = addAttachments(bean);
-    //    bean = addImbeddedAttachments(bean);
-        es.send(bean, true);
-    }
 
     /**
      *
      * @throws IOException
      */
     @Test
-    public void sendAndReceive() throws IOException {
+    public void sendAndReceiveWithAllFields() throws IOException, IllegalAccessException {
         EmailSender es = new EmailSender(emailSend, emailSendPwd);
         EmailBean bean = setup();
         bean = addAttachments(bean);
         bean = addImbeddedAttachments(bean);
         es.send(bean, false);
-
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.exit(1);
+        }
         EmailReceiver re = new EmailReceiver(emailReceive, emailReceivePwd);
         EmailBean[] rbean = re.receiveEmail();
+        Assert.assertTrue(bean.equals(rbean[0]));
     }
 
     /**
@@ -54,7 +48,7 @@ public class EmailSenderTest {
      * @throws IOException
      */
     @Test
-    public void sendWithAttachments() throws IOException {
+    public void sendWithAttachments() throws IOException, IllegalAccessException {
         EmailSender es = new EmailSender(emailSend, emailSendPwd);
         EmailBean bean = setup();
         bean = addAttachments(bean);
@@ -70,15 +64,14 @@ public class EmailSenderTest {
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.getCc().add(new EmailAddress("other", emailCC1));
+        bean.setSubject("test12");
         bean.setMessage("hello testing 1 2 3");
         bean.setSend(LocalDateTime.now());
-        /*bean.setHtmlMessage("<html><META http-equiv=Content-Type "
+        bean.setHtmlMessage("<html><META http-equiv=Content-Type "
                 + "content=\"text/html; charset=utf-8\">"
                 + "<body><h1>Here is my photograph embedded in "
                 + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
                 + "<h2>I'm flying!</h2></body></html>");
-*/
-        bean.setSubject("test11");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         return bean;
     }
