@@ -69,7 +69,9 @@ public class EmailBean implements Serializable {
         boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
         boolean work2 = emailEqual(to,emailBean.to);
         boolean work3 = emailEqual(cc,emailBean.cc) ;
-        boolean work4 = Objects.equals(subject, emailBean.subject);
+        boolean work4 = subjectEquals(subject, emailBean.subject);
+        String sub = subject;
+        String sub2 = emailBean.subject;
         boolean work5=  Objects.equals(message, emailBean.message);
         boolean work6=  Objects.equals(htmlMessage, emailBean.htmlMessage);
         boolean work7 = imbedEqual(attachments,emailBean.attachments);
@@ -77,11 +79,20 @@ public class EmailBean implements Serializable {
         return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
                 emailEqual(to,emailBean.to) &&
                 emailEqual(cc,emailBean.cc) &&
-                Objects.equals(subject, emailBean.subject) &&
+                subjectEquals(subject, emailBean.subject) &&
                 Objects.equals(message, emailBean.message) &&
                 Objects.equals(htmlMessage, emailBean.htmlMessage) &&
                 imbedEqual(attachments, emailBean.attachments) &&
                 imbedEqual(imbedAttachments, emailBean.imbedAttachments);
+    }
+
+    private boolean subjectEquals(String subject, String subject1) {
+        if(Objects.equals(subject,subject1))
+            return true;
+        else if(subject.equals("") && subject1 == null )
+            return true;
+        else
+            return false;
     }
 
     public EmailAddress getFrom() {

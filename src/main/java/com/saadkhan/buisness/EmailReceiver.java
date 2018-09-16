@@ -66,7 +66,8 @@ public class EmailReceiver {
                     LOG.info("RECEIVED DATE: " + email.receivedDate());
                     bean.setFrom(email.from());
                     bean.setTo(new ArrayList<EmailAddress>(Arrays.asList(email.to()[0])));
-                    bean.setCc(new ArrayList<EmailAddress>(Arrays.asList(email.cc()[0])));
+                    if(email.cc().length > 0)
+                        bean.setCc(new ArrayList<EmailAddress>(Arrays.asList(email.cc()[0])));
                     bean.setSubject(email.subject());
                     bean.setPriority(email.priority());
                     bean.setSend(LocalDateTime.ofInstant(email.sentDate().toInstant(), ZoneId.systemDefault()));

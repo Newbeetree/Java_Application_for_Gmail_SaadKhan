@@ -40,9 +40,9 @@ public class EmailSender {
     }
 
     /**
-     * @param option : option indicates whether or not we want to include attachments
+     * @param noAttachments : option indicates whether or not we want to include attachments
      */
-    public void send(EmailBean sendingEmail, boolean option) throws IllegalAccessException {
+    public void send(EmailBean sendingEmail, boolean noAttachments) throws IllegalAccessException, IllegalAccessException {
         // Create am SMTP server object
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
@@ -51,7 +51,7 @@ public class EmailSender {
                 .debugMode(true)
                 .buildSmtpMailServer();
 
-        Email email = convertBeanToJodd(sendingEmail, option);
+        Email email = convertBeanToJodd(sendingEmail, noAttachments);
         try (
              // A session is the object responsible for communicating with the server
             SendMailSession session = smtpServer.createSession()) {
