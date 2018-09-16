@@ -53,8 +53,8 @@ public class EmailSender {
 
         Email email = convertBeanToJodd(sendingEmail, noAttachments);
         try (
-             // A session is the object responsible for communicating with the server
-            SendMailSession session = smtpServer.createSession()) {
+                // A session is the object responsible for communicating with the server
+                SendMailSession session = smtpServer.createSession()) {
 
             // open the session, send the message and close the session
             session.open();
@@ -114,13 +114,14 @@ public class EmailSender {
 
     private boolean validateBean(EmailBean bean) throws IllegalAccessException {
         if (checkEmail(bean.getFrom().getEmail()) &&
-            checkEmailName(bean.getFrom().getPersonalName()) &&
-            checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
-            checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-            checkListEmail(bean.getBcc().toArray(new EmailAddress[0]))) {
+                checkEmailName(bean.getFrom().getPersonalName()) &&
+                checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
+                checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
+                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
+                bean.getHtmlMessage() != null &&
+                bean.getMessage() != null) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 

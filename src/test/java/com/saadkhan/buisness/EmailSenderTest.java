@@ -5,7 +5,9 @@ import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,11 +37,7 @@ public class EmailSenderTest {
         bean = addAttachments(bean);
         bean = addImbeddedAttachments(bean);
         es.send(bean, false);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
+        delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
@@ -73,11 +71,7 @@ public class EmailSenderTest {
         EmailBean bean = setup();
         bean.setSubject(null);
         es.send(bean,true);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
+        delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
@@ -89,30 +83,11 @@ public class EmailSenderTest {
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("Hi im only sending a message");
         es.send(bean,true);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
+        delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
-    @Test
-    public void sendOnlySubject() throws IllegalAccessException {
-        EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailSend));
-        bean.getTo().add(new EmailAddress("receiver", emailReceive));
-        bean.setSubject("hello only this is subject");
-        es.send(bean,true);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
-        EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
-    }
 
     @Test
     public void sendOnlyHtml() throws IllegalAccessException {
@@ -121,11 +96,7 @@ public class EmailSenderTest {
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setHtmlMessage("<html><body><h1>Only a Html message</h1></body></html>");
         es.send(bean,true);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
+        delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
@@ -137,11 +108,7 @@ public class EmailSenderTest {
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean = addAttachments(bean);
         es.send(bean,false);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.exit(1);
-        }
+        delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
@@ -158,7 +125,38 @@ public class EmailSenderTest {
         }
     }
 
+    @Test
+    public void sendHtmlNull() {
+        EmailBean bean = setup();
+        bean.setHtmlMessage(null);
+        delay();
+        try {
+            es.send(bean, true);
+        }catch (Exception e){
+            Assert.assertTrue(true);
+        }
+    }
 
+    @Test
+    public void sendMessageNull() {
+        EmailBean bean = setup();
+        bean.setMessage(null);
+        delay();
+        try {
+            es.send(bean, true);
+        }catch (Exception e){
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void sendOnlyHtmlAndText() throws IllegalAccessException {
+        EmailBean bean = setup();
+        es.send(bean,true);
+        delay();
+        EmailBean[] rbean = re.receiveEmail();
+        Assert.assertTrue(bean.equals(rbean[0]));
+    }
 
 
 
@@ -225,5 +223,12 @@ public class EmailSenderTest {
         fa.setFile(Files.readAllBytes(new File("WindsorKen180.jpg").toPath()));
         bean.getImbedAttachments().add(fa);
         return bean;
+    }
+    private void delay() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.exit(1);
+        }
     }
 }

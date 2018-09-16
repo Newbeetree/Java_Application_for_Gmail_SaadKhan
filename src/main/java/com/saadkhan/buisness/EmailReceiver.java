@@ -71,7 +71,7 @@ public class EmailReceiver {
                     bean.setSubject(email.subject());
                     bean.setPriority(email.priority());
                     bean.setSend(LocalDateTime.ofInstant(email.sentDate().toInstant(), ZoneId.systemDefault()));
-                    bean.setSend(LocalDateTime.ofInstant(email.receivedDate().toInstant(), ZoneId.systemDefault()));
+                    bean.setRecived(LocalDateTime.ofInstant(email.receivedDate().toInstant(), ZoneId.systemDefault()));
 
                     // process messages
                     List<EmailMessage> messages = email.messages();

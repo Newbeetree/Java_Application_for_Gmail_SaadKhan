@@ -5,12 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiverTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailReceiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailSender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/data/EmailBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/data/EmailBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/saadkhan/buisness/EmailSenderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/saadkhan/buisness/EmailSenderTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EmailBean.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EmailBean.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="174">
+              <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,8 +35,8 @@
       <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1374">
-              <caret line="84" selection-start-line="84" selection-end-line="84" />
+            <state relative-caret-position="96">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,13 +44,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmailSenderTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmailSenderTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="109" column="42" lean-forward="true" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+            <state relative-caret-position="87">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#delay#0;class#EmailSenderTest#0" />
               </folding>
             </state>
           </provider>
@@ -63,8 +60,8 @@
       <file leaf-file-name="EmailReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="192">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -89,6 +86,10 @@
       <find>beanArra</find>
       <find>es</find>
       <find>re</find>
+      <find>subje</find>
+      <find>send</find>
+      <find>html</find>
+      <find>from</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,8 +107,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiveTest.java" />
         <option value="$PROJECT_DIR$/textFile.txt" />
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiverTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" />
       </list>
@@ -143,10 +144,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1588" />
+    <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1940" />
-    <option name="height" value="1050" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -155,7 +156,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -240,6 +240,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,7 +312,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EmailSenderTest.sendNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmailSenderTest.sendHtmlNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGmail1633839" />
       <extension name="coverage">
         <pattern>
@@ -323,7 +324,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.saadkhan.buisness" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.buisness.EmailSenderTest" />
-      <option name="METHOD_NAME" value="sendNothing" />
+      <option name="METHOD_NAME" value="sendHtmlNull" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -334,7 +335,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EmailSenderTest.sendNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmailSenderTest.sendMessageNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGmail1633839" />
       <extension name="coverage">
         <pattern>
@@ -346,7 +347,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.saadkhan.buisness" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.buisness.EmailSenderTest" />
-      <option name="METHOD_NAME" value="sendNull" />
+      <option name="METHOD_NAME" value="sendMessageNull" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -357,7 +358,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EmailSenderTest.sendNullSubject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmailSenderTest.sendOnlyHtml" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGmail1633839" />
       <extension name="coverage">
         <pattern>
@@ -369,7 +370,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.saadkhan.buisness" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.buisness.EmailSenderTest" />
-      <option name="METHOD_NAME" value="sendNullSubject" />
+      <option name="METHOD_NAME" value="sendOnlyHtml" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -380,7 +381,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EmailSenderTest.sendOnlySubject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmailSenderTest.sendOnlyHtmlAndText" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGmail1633839" />
       <extension name="coverage">
         <pattern>
@@ -392,7 +393,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.saadkhan.buisness" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.buisness.EmailSenderTest" />
-      <option name="METHOD_NAME" value="sendOnlySubject" />
+      <option name="METHOD_NAME" value="sendOnlyHtmlAndText" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -453,18 +454,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.EmailSenderTest" />
-      <item itemvalue="JUnit.EmailSenderTest.sendNothing" />
-      <item itemvalue="JUnit.EmailSenderTest.sendNullSubject" />
-      <item itemvalue="JUnit.EmailSenderTest.sendNull" />
-      <item itemvalue="JUnit.EmailSenderTest.sendOnlySubject" />
+      <item itemvalue="JUnit.EmailSenderTest.sendHtmlNull" />
+      <item itemvalue="JUnit.EmailSenderTest.sendMessageNull" />
+      <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtml" />
+      <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtmlAndText" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.EmailSenderTest" />
-        <item itemvalue="JUnit.EmailSenderTest.sendOnlySubject" />
-        <item itemvalue="JUnit.EmailSenderTest.sendNothing" />
-        <item itemvalue="JUnit.EmailSenderTest.sendNull" />
-        <item itemvalue="JUnit.EmailSenderTest.sendNullSubject" />
+        <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtmlAndText" />
+        <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtml" />
+        <item itemvalue="JUnit.EmailSenderTest.sendMessageNull" />
+        <item itemvalue="JUnit.EmailSenderTest.sendHtmlNull" />
       </list>
     </recent_temporary>
   </component>
@@ -485,44 +486,45 @@
       <workItem from="1536884096302" duration="13973000" />
       <workItem from="1536928502327" duration="8175000" />
       <workItem from="1536951194216" duration="1525000" />
-      <workItem from="1537033643045" duration="30996000" />
+      <workItem from="1537033643045" duration="31175000" />
+      <workItem from="1537118232091" duration="11612000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EmailSenderTest_sendOnlySubject - 2018.09.15 at 23h 31m 37s.xml">
-      <configuration name="EmailSenderTest.sendOnlySubject" configurationId="JUnit" />
+    <history-entry file="EmailSenderTest_sendOnlyHtml - 2018.09.16 at 16h 10m 57s.xml">
+      <configuration name="EmailSenderTest.sendOnlyHtml" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.15 at 23h 44m 22s.xml">
+    <history-entry file="EmailSenderTest_sendOnlyHtml - 2018.09.16 at 16h 11m 13s.xml">
+      <configuration name="EmailSenderTest.sendOnlyHtml" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailSenderTest - 2018.09.16 at 16h 12m 34s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.15 at 23h 46m 47s.xml">
+    <history-entry file="EmailSenderTest_sendOnlyHtmlAndText - 2018.09.16 at 16h 18m 27s.xml">
+      <configuration name="EmailSenderTest.sendOnlyHtmlAndText" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailSenderTest_sendOnlyHtmlAndText - 2018.09.16 at 16h 20m 47s.xml">
+      <configuration name="EmailSenderTest.sendOnlyHtmlAndText" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailSenderTest_sendOnlyHtmlAndText - 2018.09.16 at 16h 21m 05s.xml">
+      <configuration name="EmailSenderTest.sendOnlyHtmlAndText" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailSenderTest - 2018.09.16 at 16h 22m 29s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.15 at 23h 50m 15s.xml">
+    <history-entry file="EmailSenderTest - 2018.09.16 at 16h 25m 06s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.15 at 23h 57m 51s.xml">
+    <history-entry file="EmailSenderTest - 2018.09.16 at 16h 27m 48s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.15 at 23h 58m 31s.xml">
-      <configuration name="EmailSenderTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.16 at 00h 02m 27s.xml">
-      <configuration name="EmailSenderTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailSenderTest_sendOnlySubject - 2018.09.16 at 00h 02m 58s.xml">
-      <configuration name="EmailSenderTest.sendOnlySubject" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailSenderTest_sendOnlySubject - 2018.09.16 at 00h 03m 52s.xml">
-      <configuration name="EmailSenderTest.sendOnlySubject" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.16 at 00h 09m 14s.xml">
+    <history-entry file="EmailSenderTest - 2018.09.16 at 16h 30m 39s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66343000" />
+    <option name="totallyTimeSpent" value="78134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -534,7 +536,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -547,18 +549,18 @@
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.22684564" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34204793" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47863248" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32965517" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.081125826" visible="true" weight="0.1673774" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" visible="true" weight="0.17449665" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.91887414" side_tool="true" visible="true" weight="0.1673774" />
+      <window_info id="Structure" order="1" sideWeight="0.392936" side_tool="true" weight="0.16979866" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.48474947" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4957265" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -571,11 +573,11 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32896653" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39722222" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5356125" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4945355" visible="true" weight="0.16364606" />
-      <window_info id="Structure" order="1" sideWeight="0.5054645" side_tool="true" weight="0.20067114" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" weight="0.17449665" />
+      <window_info id="Structure" order="1" sideWeight="0.392936" side_tool="true" weight="0.16979866" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
@@ -583,7 +585,7 @@
       <window_info id="Designer" order="3" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5718954" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4957265" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32965517" />
@@ -607,31 +609,31 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java</url>
-          <line>67</line>
-          <properties />
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java</url>
-          <line>97</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java</url>
-          <line>62</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java</url>
+          <line>78</line>
           <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java</url>
-          <line>70</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java</url>
+          <line>67</line>
           <properties />
-          <option name="timeStamp" value="40" />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="41" />
+      <option name="time" value="48" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -675,6 +677,7 @@
           <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
           </folding>
         </state>
       </provider>
@@ -729,6 +732,7 @@
           <caret line="73" column="17" lean-forward="true" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
           </folding>
         </state>
       </provider>
@@ -773,6 +777,7 @@
           <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
           </folding>
         </state>
       </provider>
@@ -827,6 +832,7 @@
           <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
           </folding>
         </state>
       </provider>
@@ -854,6 +860,7 @@
           <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
           </folding>
         </state>
       </provider>
@@ -944,31 +951,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiverTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiverTest.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/jodd/jodd-mail/5.0.4/jodd-mail-5.0.4-sources.jar!/jodd/mail/SendMailSession.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
@@ -979,13 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -993,41 +973,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1374">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="202" selection-start-line="202" selection-end-line="202" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="192">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="86">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1036,8 +999,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="109" column="42" lean-forward="true" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+        <state relative-caret-position="87">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#delay#0;class#EmailSenderTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/BlockJUnit4ClassRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="226" column="43" selection-start-line="226" selection-start-column="43" selection-end-line="226" selection-end-column="43" />
+          <folding>
+            <element signature="e#2111#2112#0" expanded="true" />
+            <element signature="e#2155#2156#0" expanded="true" />
+            <element signature="e#5951#6086#0" expanded="true" />
+            <element signature="e#6085#6086#0" expanded="true" />
+            <element signature="e#6484#6648#0" expanded="true" />
+            <element signature="e#6647#6648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
