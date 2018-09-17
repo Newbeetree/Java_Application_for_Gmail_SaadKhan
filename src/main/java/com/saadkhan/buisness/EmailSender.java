@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -21,18 +20,22 @@ import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
 
+/**
+ * This class is meant to take in EmailBeans and convert them into Jodd Email Objects
+ * to be sent through to a gmail account
+ *
+ * @Author: Saad Khan, 1633839
+ */
 public class EmailSender {
 
     private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
-
     private final String smtpServerName = "smtp.gmail.com";
     private String userEmail;
     private String userPassword;
 
     /**
-     *
-     * @param userEmail
-     * @param userPassword
+     * Constructs an Email Sender when given proper Usernames and Passwords of a gmail account
+     * in order to be able to send emails from said account
      */
     public EmailSender(String userEmail, String userPassword) {
         this.userEmail = userEmail;
@@ -40,9 +43,13 @@ public class EmailSender {
     }
 
     /**
-     * @param noAttachments : option indicates whether or not we want to include attachments
+     * Takes an Email bean that the user provides creates a Jodd Email out of said bean.
+     * Validates bean as well as checks if the user has requested any atachments to be added to said email
+     * Creates a Server and also an Exception before sending the email
+     *
+     * @param sendingEmail Email Bean which will be validate and turned into a Jodd email for sending
      */
-    public void send(EmailBean sendingEmail, boolean noAttachments) throws IllegalAccessException, IllegalAccessException {
+    public void send(EmailBean sendingEmail, boolean noAttachments) {
         // Create am SMTP server object
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
@@ -50,7 +57,7 @@ public class EmailSender {
                 .auth(userEmail, userPassword)
                 .debugMode(true)
                 .buildSmtpMailServer();
-
+        //create a valid jodd email object
         Email email = convertBeanToJodd(sendingEmail, noAttachments);
         try (
                 // A session is the object responsible for communicating with the server
@@ -64,12 +71,16 @@ public class EmailSender {
     }
 
     /**
-     * creates a jodd email using a bean and an option to specify if attachments are needed
+     * Creates a jodd email using a bean and an option to specify if attachments are needed as well
+     * as validate if the EmailBean is alright. Throws an error if the EmailBean is invalid.
      *
-     * @return Email
+     * @param sendingEmail the bean of the email that will be validated and turned into a jodd
+     * @param option       selects whether or not the email needs attachments that will be added to the email
+     * @return Email returns a valid jodd email out of the Eamil Bean
+     * @throws IllegalArgumentException In the case of bean being invalid throw the exception
      */
-    private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) throws IllegalAccessException {
-        Email email = null;
+    private Email convertBeanToJodd(EmailBean sendingEmail, boolean option) throws IllegalArgumentException {
+        Email email;
         if (validateBean(sendingEmail)) {
             email = Email.create()
                     .from(sendingEmail.getFrom())
@@ -86,17 +97,33 @@ public class EmailSender {
             email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
         } else {
             LOG.error("Validation error");
-            throw new IllegalAccessException("Email has illegal arguements");
+            throw new IllegalArgumentException("Email has illegal arguments");
         }
         return email;
     }
 
     /**
+     * Takes an Email bean and validates to, from, name, cc and bcc fields as well as make sure
+     * html and message are not null, if they are however throw an error
      *
-     * @param email
-     * @param attachments
-     * @param attachmentType
-     * @return
+     * @param bean email bean to be converted
+     * @return boolean  if the email is valid returns true or false
+     */
+    private boolean validateBean(EmailBean bean) throws IllegalArgumentException {
+        return checkEmail(bean.getFrom().getEmail()) &&
+                checkEmailName(bean.getFrom().getPersonalName()) &&
+                checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
+                checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
+                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
+                bean.getHtmlMessage() != null &&
+                bean.getMessage() != null;
+    }
+
+
+    /**
+     * Takes an email, a list of attachments and a boolean representing the if the attachment
+     * is embeded or if the attachment is simply an attachment. iterates through the selected
+     * array and adds the attachments to the jodd
      */
     private Email addAtttachments(Email email, ArrayList<FileAttachmentBean> attachments, boolean attachmentType) {
         if (attachmentType) {
@@ -111,20 +138,6 @@ public class EmailSender {
         return email;
     }
 
-
-    private boolean validateBean(EmailBean bean) throws IllegalAccessException {
-        if (checkEmail(bean.getFrom().getEmail()) &&
-                checkEmailName(bean.getFrom().getPersonalName()) &&
-                checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
-                checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
-                bean.getHtmlMessage() != null &&
-                bean.getMessage() != null) {
-            return true;
-        } else
-            return false;
-    }
-
     /**
      * Use the RFC2822AddressParser to validate that the email string could be a
      * valid address
@@ -135,10 +148,11 @@ public class EmailSender {
         return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
     }
 
-    private boolean checkEmailSentDate(LocalDateTime date) {
-        return (!date.equals(null));
-    }
-
+    /**
+     * Use a regex expression to make sure name is alright and not strange or has any symbols
+     *
+     * @return true is OK, false if not
+     */
     private boolean checkEmailName(String personalName) {
         String regx = "^[\\p{L} .'-]+$";
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
@@ -146,10 +160,17 @@ public class EmailSender {
         return matcher.find();
     }
 
-    private boolean checkListEmail(EmailAddress[] list) throws IllegalAccessException {
+    /**
+     * takes an array of email address and checks if each email has a proper email address and name
+     *
+     * @param list an array containing email adresses
+     * @return true if all are valid
+     * @throws IllegalArgumentException throws the exception in case of invalid email
+     */
+    private boolean checkListEmail(EmailAddress[] list) throws IllegalArgumentException {
         for (EmailAddress email : list) {
             if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
-                throw new IllegalAccessException("Invalid Email");
+                throw new IllegalArgumentException("Invalid Email");
         }
         return true;
     }

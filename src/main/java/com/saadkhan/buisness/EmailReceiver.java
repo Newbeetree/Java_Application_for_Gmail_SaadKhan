@@ -24,17 +24,33 @@ import jodd.mail.MailServer;
 import jodd.mail.ReceiveMailSession;
 import jodd.mail.ReceivedEmail;
 
+/**
+ * This class is meant to check gmail servers for unread emails and  return all that are unread
+ *
+ * @Author: Saad Khan, 1633839
+ */
 public class EmailReceiver {
     private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
     private final String imapServerName = "imap.gmail.com";
     private String receiveEmail;
     private String receivePassword;
 
+    /**
+     * Constructs an EmailReciever when given proper Usernames and Passwords of a gmail account
+     * that received emails in order to be able to check all unread emails
+     * @param receiveEmail
+     * @param receivePassword
+     */
     public EmailReceiver(String receiveEmail, String receivePassword) {
         this.receiveEmail = receiveEmail;
         this.receivePassword = receivePassword;
     }
 
+    /**
+     * Opens a server connection with gmail and recieves all emails marking those that are
+     * unread as read and returns an array of said unread emails
+     * @return EmailBean[] returns an array of emails that were recieved from the server
+     */
     public EmailBean[] receiveEmail() {
         ImapServer imapServer = MailServer.create()
                 .host(imapServerName)

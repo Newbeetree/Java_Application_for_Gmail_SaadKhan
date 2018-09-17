@@ -5,9 +5,7 @@ import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 
 import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +15,9 @@ import java.util.ArrayList;
 
 import jodd.mail.EmailAddress;
 
+/**
+ * Class for testing emails sending and receiving
+ */
 public class EmailSenderTest {
     private final String emailSend = "send.1633839@gmail.com";
     private final String emailReceive = "receive.1633839@gmail.com";
@@ -28,11 +29,11 @@ public class EmailSenderTest {
 
 
     /**
-     *
+     * Send an email with all fields to, from, cc,bcc,subject, attachments, imbued, message and html
      * @throws IOException
      */
     @Test
-    public void sendAndReceiveWithAllFields() throws IOException, IllegalAccessException {
+    public void sendAndReceiveWithAllFields() throws IOException {
         EmailBean bean = setup();
         bean = addAttachments(bean);
         bean = addImbeddedAttachments(bean);
@@ -42,77 +43,98 @@ public class EmailSenderTest {
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
+    /**
+     * Send an email with an invalid to address and catches the error
+     */
     @Test
     public void sendInvalidTo() {
         EmailBean bean = setup();
         bean.setTo(new ArrayList<EmailAddress>());
         bean.getTo().add(new EmailAddress("invalid Email", "hfagdsgjfhakjdsfafdddasd"));
-        try{
+        try {
             es.send(bean, true);
-        }catch(IllegalAccessException e){
+        } catch (IllegalArgumentException e) {
             Assert.assertTrue(true);
         }
     }
 
+    /**
+     * Send an Email with an invalid CC and catch the error
+     */
     @Test
     public void sendInvalidCC() {
         EmailBean bean = setup();
         bean.setCc(new ArrayList<EmailAddress>());
         bean.getCc().add(new EmailAddress("invalid CC Email", "hfagdsgjfhakjdsfafdddasd"));
-        try{
+        try {
             es.send(bean, true);
-        }catch(IllegalAccessException e){
+        } catch (IllegalArgumentException e) {
             Assert.assertTrue(true);
         }
     }
 
+    /**
+     * Send an amail with a null subject and recive it to make sure it is correct
+     */
     @Test
-    public void sendNullSubject() throws IllegalAccessException {
+    public void sendNullSubject() {
         EmailBean bean = setup();
         bean.setSubject(null);
-        es.send(bean,true);
+        es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
+    /**
+     * send and receive an email with only a message set
+     */
     @Test
-    public void sendOnlyMessage() throws IllegalAccessException {
+    public void sendOnlyMessage() {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("Hi im only sending a message");
-        es.send(bean,true);
+        es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
-
+    /**
+     * send and receive an email with only html set
+     */
     @Test
-    public void sendOnlyHtml() throws IllegalAccessException {
+    public void sendOnlyHtml() {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setHtmlMessage("<html><body><h1>Only a Html message</h1></body></html>");
-        es.send(bean,true);
+        es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
+    /**
+     * send and receive an email with only attachments set
+     * @throws IOException
+     */
     @Test
-    public void sendOnlyAttachments() throws IllegalAccessException, IOException {
+    public void sendOnlyAttachments() throws IOException {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean = addAttachments(bean);
-        es.send(bean,false);
+        es.send(bean, false);
         delay();
         EmailBean[] rbean = re.receiveEmail();
         Assert.assertTrue(bean.equals(rbean[0]));
     }
 
+    /**
+     * send an email with nothing set
+     */
     @Test
     public void sendNothing() {
         EmailBean bean = new EmailBean();
@@ -120,11 +142,14 @@ public class EmailSenderTest {
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         try {
             es.send(bean, true);
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.assertTrue(true);
         }
     }
 
+    /**
+     * send an email with html field set to null
+     */
     @Test
     public void sendHtmlNull() {
         EmailBean bean = setup();
@@ -132,11 +157,14 @@ public class EmailSenderTest {
         delay();
         try {
             es.send(bean, true);
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.assertTrue(true);
         }
     }
 
+    /**
+     * send and receive an email with the message field set to null
+     */
     @Test
     public void sendMessageNull() {
         EmailBean bean = setup();
@@ -144,37 +172,14 @@ public class EmailSenderTest {
         delay();
         try {
             es.send(bean, true);
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.assertTrue(true);
         }
     }
 
-    @Test
-    public void sendOnlyHtmlAndText() throws IllegalAccessException {
-        EmailBean bean = setup();
-        es.send(bean,true);
-        delay();
-        EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      *
-     * @return
+     * @return Emailbean with all fields set bar the attachments
      */
     private EmailBean setup() {
         EmailBean bean = new EmailBean();
@@ -194,9 +199,10 @@ public class EmailSenderTest {
     }
 
     /**
+     *This method is to add attachments to the emailbean and return it
      *
-     * @param bean
-     * @return
+     * @param bean original emailbean
+     * @return emailbean with the attachments added
      * @throws IOException
      */
     private EmailBean addAttachments(EmailBean bean) throws IOException {
@@ -212,9 +218,10 @@ public class EmailSenderTest {
     }
 
     /**
+     *This method is to add imbeddedattachments to the emailbean and return it
      *
-     * @param bean
-     * @return
+     * @param bean original emailbean
+     * @return emailbean with the imbedded attachments added
      * @throws IOException
      */
     private EmailBean addImbeddedAttachments(EmailBean bean) throws IOException {
@@ -224,6 +231,10 @@ public class EmailSenderTest {
         bean.getImbedAttachments().add(fa);
         return bean;
     }
+
+    /**
+     * delays code for 5 secounds before executing
+     */
     private void delay() {
         try {
             Thread.sleep(5000);
@@ -231,4 +242,14 @@ public class EmailSenderTest {
             System.exit(1);
         }
     }
+
+    //Need to speak to Ken about this one
+   /* @Test
+    public void sendOnlyHtmlAndText() throws IllegalAccessException {
+        EmailBean bean = setup();
+        es.send(bean,true);
+        delay();
+        EmailBean[] rbean = re.receiveEmail();
+        Assert.assertTrue(bean.equals(rbean[0]));
+    }*/
 }
