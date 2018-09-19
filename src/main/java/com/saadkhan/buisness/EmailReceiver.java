@@ -56,7 +56,7 @@ public class EmailReceiver {
                 .host(imapServerName)
                 .ssl(true)
                 .auth(receiveEmail, receivePassword)
-                .debugMode(true)
+               // .debugMode(true)
                 .buildImapMailServer();
 
         ArrayList<EmailBean> beanArrayList = new ArrayList<>();

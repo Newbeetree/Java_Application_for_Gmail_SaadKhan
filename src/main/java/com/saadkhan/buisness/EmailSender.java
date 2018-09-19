@@ -55,7 +55,7 @@ public class EmailSender {
                 .ssl(true)
                 .host(smtpServerName)
                 .auth(userEmail, userPassword)
-                .debugMode(true)
+                //.debugMode(true)
                 .buildSmtpMailServer();
         //create a valid jodd email object
         Email email = convertBeanToJodd(sendingEmail, noAttachments);

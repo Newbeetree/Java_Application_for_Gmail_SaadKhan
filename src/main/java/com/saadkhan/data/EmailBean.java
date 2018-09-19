@@ -317,14 +317,14 @@ public class EmailBean implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmailBean emailBean = (EmailBean) o;
-        /*boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
+        boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
         boolean work2 = emailEqual(to,emailBean.to);
         boolean work3 = emailEqual(cc,emailBean.cc) ;
         boolean work4 = subjectEquals(subject, emailBean.subject);
         boolean work5=  Objects.equals(message, emailBean.message);
         boolean work6=  Objects.equals(htmlMessage, emailBean.htmlMessage);
-        boolean work7 = imbedEqual(attachments,emailBean.attachments);
-        boolean work8  = imbedEqual(imbedAttachments, emailBean.imbedAttachments);*/
+        boolean work7 = attachEqual(attachments,emailBean.attachments);
+        boolean work8  = attachEqual(imbedAttachments, emailBean.imbedAttachments);
         return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
                 emailEqual(to, emailBean.to) &&
                 emailEqual(cc, emailBean.cc) &&

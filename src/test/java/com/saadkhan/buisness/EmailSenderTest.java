@@ -56,6 +56,7 @@ public class EmailSenderTest {
         } catch (IllegalArgumentException e) {
             Assert.assertTrue(true);
         }
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
@@ -71,6 +72,7 @@ public class EmailSenderTest {
         } catch (IllegalArgumentException e) {
             Assert.assertTrue(true);
         }
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
@@ -145,6 +147,7 @@ public class EmailSenderTest {
         } catch (Exception e) {
             Assert.assertTrue(true);
         }
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
@@ -160,6 +163,7 @@ public class EmailSenderTest {
         } catch (Exception e) {
             Assert.assertTrue(true);
         }
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
@@ -175,6 +179,21 @@ public class EmailSenderTest {
         } catch (Exception e) {
             Assert.assertTrue(true);
         }
+        EmailBean[] rbean = re.receiveEmail();
+    }
+
+    //Need to speak to Ken about this one
+    @Test
+    public void sendOnlyHtmlAndText() {
+        EmailBean bean = new EmailBean();
+        bean.setFrom(new EmailAddress("name", emailSend));
+        bean.getTo().add(new EmailAddress("receiver", emailReceive));
+        bean.setMessage("heres some text and html");
+        bean.setHtmlMessage("<html><body><h1>Heres some html and text</h1></body></html>");
+        es.send(bean,true);
+        delay();
+        EmailBean[] rbean = re.receiveEmail();
+        Assert.assertTrue(bean.equals(rbean[0]));
     }
 
     /**
@@ -242,14 +261,4 @@ public class EmailSenderTest {
             System.exit(1);
         }
     }
-
-    //Need to speak to Ken about this one
-   /* @Test
-    public void sendOnlyHtmlAndText() throws IllegalAccessException {
-        EmailBean bean = setup();
-        es.send(bean,true);
-        delay();
-        EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
-    }*/
 }
