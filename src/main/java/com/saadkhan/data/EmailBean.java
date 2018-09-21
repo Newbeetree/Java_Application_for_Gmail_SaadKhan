@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 import jodd.mail.EmailAddress;
@@ -24,7 +26,6 @@ public class EmailBean implements Serializable {
     private String htmlMessage;
     private boolean seen;
     private ArrayList<FileAttachmentBean> attachments;
-    private ArrayList<FileAttachmentBean> imbedAttachments;
     private String messageType;
     private LocalDateTime send;
     private LocalDateTime recived;
@@ -44,7 +45,6 @@ public class EmailBean implements Serializable {
         htmlMessage = "";
         seen = false;
         attachments = new ArrayList<FileAttachmentBean>();
-        imbedAttachments = new ArrayList<FileAttachmentBean>();
         messageType = "";
         send = LocalDateTime.now();
         recived = LocalDateTime.now();
@@ -187,20 +187,6 @@ public class EmailBean implements Serializable {
         return this;
     }
 
-    /**
-     * @return Arraylist of all imbedded attachments
-     */
-    public ArrayList<FileAttachmentBean> getImbedAttachments() {
-        return imbedAttachments;
-    }
-
-    /**
-     * @param imbedAttachments arraylist of attachments to set
-     */
-    public EmailBean setImbedAttachments(ArrayList<FileAttachmentBean> imbedAttachments) {
-        this.imbedAttachments = imbedAttachments;
-        return this;
-    }
 
     /**
      * @return string of message type
@@ -324,15 +310,13 @@ public class EmailBean implements Serializable {
         boolean work5=  Objects.equals(message, emailBean.message);
         boolean work6=  Objects.equals(htmlMessage, emailBean.htmlMessage);
         boolean work7 = attachEqual(attachments,emailBean.attachments);
-        boolean work8  = attachEqual(imbedAttachments, emailBean.imbedAttachments);
         return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
                 emailEqual(to, emailBean.to) &&
                 emailEqual(cc, emailBean.cc) &&
                 subjectEquals(subject, emailBean.subject) &&
                 Objects.equals(message, emailBean.message) &&
                 Objects.equals(htmlMessage, emailBean.htmlMessage) &&
-                attachEqual(attachments, emailBean.attachments) &&
-                attachEqual(imbedAttachments, emailBean.imbedAttachments);
+                attachEqual(attachments, emailBean.attachments);
     }
 
     /**
@@ -371,6 +355,8 @@ public class EmailBean implements Serializable {
      * @return true if same, false if wronge
      */
     private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
+        to.sort(Comparator.comparing(FileAttachmentBean::getName));
+        from.sort(Comparator.comparing(FileAttachmentBean::getName));
         for (int i = 0; i < to.size(); i++) {
             if (!(Arrays.equals(to.get(0).getFile(), from.get(0).getFile()))) {
                 return false;

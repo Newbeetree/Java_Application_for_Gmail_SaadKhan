@@ -12,6 +12,7 @@ public class FileAttachmentBean implements Serializable {
 
     private byte[] file;
     private String name;
+    private boolean type;
 
     /**
      * constructor for default FileAttachmentBean
@@ -25,9 +26,10 @@ public class FileAttachmentBean implements Serializable {
      * @param file the byte array of the file
      * @param name the name of said file
      */
-    public FileAttachmentBean(byte[] file, String name) {
+    public FileAttachmentBean(byte[] file, String name, boolean type) {
         this.file = file;
         this.name = name;
+        this.type = type;
     }
 
     /**
@@ -57,6 +59,22 @@ public class FileAttachmentBean implements Serializable {
      */
     public FileAttachmentBean setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * @return type of file
+     */
+    public boolean getType() { return type; }
+
+    /**
+     *
+     * @param type type of the file to attach, either imbedded or attached
+     *             true for imbed
+     *             false for attach
+     */
+    public FileAttachmentBean setType(boolean type){
+        this.type = type;
         return this;
     }
 }

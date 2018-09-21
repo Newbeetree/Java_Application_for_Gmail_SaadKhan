@@ -93,8 +93,7 @@ public class EmailSender {
                     .htmlMessage(sendingEmail.getHtmlMessage())
                     .priority(sendingEmail.getPriority().getValue());
 
-            email = option ? email : addAtttachments(email, sendingEmail.getAttachments(), true);
-            email = option ? email : addAtttachments(email, sendingEmail.getImbedAttachments(), false);
+            email = option ? email : addAtttachments(email, sendingEmail.getAttachments());
         } else {
             LOG.error("Validation error");
             throw new IllegalArgumentException("Email has illegal arguments");
@@ -121,18 +120,15 @@ public class EmailSender {
 
 
     /**
-     * Takes an email, a list of attachments and a boolean representing the if the attachment
-     * is embeded or if the attachment is simply an attachment. iterates through the selected
+     * Takes an email, a list of attachments iterates through the selected
      * array and adds the attachments to the jodd
      */
-    private Email addAtttachments(Email email, ArrayList<FileAttachmentBean> attachments, boolean attachmentType) {
-        if (attachmentType) {
-            for (FileAttachmentBean fab : attachments) {
-                email.attachment(EmailAttachment.with().content(fab.getFile()).name(fab.getName()));
-            }
-        } else {
-            for (FileAttachmentBean fab : attachments) {
-                email.embeddedAttachment(EmailAttachment.with().content(fab.getFile()).name(fab.getName()));
+    private Email addAtttachments(Email email, ArrayList<FileAttachmentBean> attachments) {
+        for (FileAttachmentBean attachment : attachments) {
+            if (!attachment.getType()) {
+                email.attachment(EmailAttachment.with().content(attachment.getFile()).name(attachment.getName()));
+            } else {
+                email.embeddedAttachment(EmailAttachment.with().content(attachment.getFile()).name(attachment.getName()));
             }
         }
         return email;

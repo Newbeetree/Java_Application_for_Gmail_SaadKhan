@@ -229,8 +229,10 @@ public class EmailSenderTest {
         FileAttachmentBean fb = new FileAttachmentBean();
         fa.setName("FreeFall.jpg");
         fa.setFile(Files.readAllBytes(new File("FreeFall.jpg").toPath()));
+        fa.setType(false);
         fb.setName("textFile.txt");
         fb.setFile(Files.readAllBytes(new File("textFile.txt").toPath()));
+        fb.setType(false);
         bean.getAttachments().add(fa);
         bean.getAttachments().add(fb);
         return bean;
@@ -247,7 +249,8 @@ public class EmailSenderTest {
         FileAttachmentBean fa = new FileAttachmentBean();
         fa.setName("WindsorKen180.jpg");
         fa.setFile(Files.readAllBytes(new File("WindsorKen180.jpg").toPath()));
-        bean.getImbedAttachments().add(fa);
+        fa.setType(true);
+        bean.getAttachments().add(fa);
         return bean;
     }
 

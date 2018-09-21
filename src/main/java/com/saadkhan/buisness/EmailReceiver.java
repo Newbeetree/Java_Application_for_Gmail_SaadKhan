@@ -38,8 +38,6 @@ public class EmailReceiver {
     /**
      * Constructs an EmailReciever when given proper Usernames and Passwords of a gmail account
      * that received emails in order to be able to check all unread emails
-     * @param receiveEmail
-     * @param receivePassword
      */
     public EmailReceiver(String receiveEmail, String receivePassword) {
         this.receiveEmail = receiveEmail;
@@ -49,6 +47,7 @@ public class EmailReceiver {
     /**
      * Opens a server connection with gmail and recieves all emails marking those that are
      * unread as read and returns an array of said unread emails
+     *
      * @return EmailBean[] returns an array of emails that were recieved from the server
      */
     public EmailBean[] receiveEmail() {
@@ -56,7 +55,7 @@ public class EmailReceiver {
                 .host(imapServerName)
                 .ssl(true)
                 .auth(receiveEmail, receivePassword)
-               // .debugMode(true)
+                // .debugMode(true)
                 .buildImapMailServer();
 
         ArrayList<EmailBean> beanArrayList = new ArrayList<>();
@@ -82,7 +81,7 @@ public class EmailReceiver {
                     LOG.info("RECEIVED DATE: " + email.receivedDate());
                     bean.setFrom(email.from());
                     bean.setTo(new ArrayList<EmailAddress>(Arrays.asList(email.to()[0])));
-                    if(email.cc().length > 0)
+                    if (email.cc().length > 0)
                         bean.setCc(new ArrayList<EmailAddress>(Arrays.asList(email.cc()[0])));
                     bean.setSubject(email.subject());
                     bean.setPriority(email.priority());
@@ -106,15 +105,12 @@ public class EmailReceiver {
                         for (EmailAttachment<? extends DataSource> attachment : attachments) {
                             LOG.info("+++++");
                             LOG.info("name: " + attachment.getName());
-                            fs.setName(attachment.getName());
                             LOG.info("cid: " + attachment.getContentId());
                             LOG.info("size: " + attachment.getSize());
+                            fs.setName(attachment.getName());
                             fs.setFile(attachment.toByteArray());
-                            if (attachment.isEmbedded()) {
-                                bean.getImbedAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName()));
-                            } else {
-                                bean.getAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName()));
-                            }
+                            fs.setType(attachment.isEmbedded());
+                            bean.getAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName(), fs.getType()));
                         }
                     }
                     beanArrayList.add(bean);
