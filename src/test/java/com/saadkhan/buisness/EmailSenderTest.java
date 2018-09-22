@@ -4,6 +4,7 @@ import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,49 +31,40 @@ public class EmailSenderTest {
 
     /**
      * Send an email with all fields to, from, cc,bcc,subject, attachments, imbued, message and html
-     * @throws IOException
      */
     @Test
     public void sendAndReceiveWithAllFields() throws IOException {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean = addAttachments(bean);
         bean = addImbeddedAttachments(bean);
         es.send(bean, false);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
      * Send an email with an invalid to address and catches the error
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sendInvalidTo() {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean.setTo(new ArrayList<EmailAddress>());
         bean.getTo().add(new EmailAddress("invalid Email", "hfagdsgjfhakjdsfafdddasd"));
-        try {
-            es.send(bean, true);
-        } catch (IllegalArgumentException e) {
-            Assert.assertTrue(true);
-        }
-        EmailBean[] rbean = re.receiveEmail();
+        es.send(bean, true);
+        Assert.fail("Sent Invalid TO");
     }
 
     /**
      * Send an Email with an invalid CC and catch the error
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sendInvalidCC() {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean.setCc(new ArrayList<EmailAddress>());
         bean.getCc().add(new EmailAddress("invalid CC Email", "hfagdsgjfhakjdsfafdddasd"));
-        try {
-            es.send(bean, true);
-        } catch (IllegalArgumentException e) {
-            Assert.assertTrue(true);
-        }
-        EmailBean[] rbean = re.receiveEmail();
+        es.send(bean, true);
+        Assert.fail("Sent Invalid CC");
     }
 
     /**
@@ -80,12 +72,12 @@ public class EmailSenderTest {
      */
     @Test
     public void sendNullSubject() {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean.setSubject(null);
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -100,7 +92,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -115,12 +107,11 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
      * send and receive an email with only attachments set
-     * @throws IOException
      */
     @Test
     public void sendOnlyAttachments() throws IOException {
@@ -131,7 +122,7 @@ public class EmailSenderTest {
         es.send(bean, false);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -142,44 +133,34 @@ public class EmailSenderTest {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
-        try {
-            es.send(bean, true);
-        } catch (Exception e) {
-            Assert.assertTrue(true);
-        }
+        es.send(bean, true);
+        delay();
         EmailBean[] rbean = re.receiveEmail();
+        Assert.assertEquals(bean, rbean[0]);
     }
 
     /**
      * send an email with html field set to null
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sendHtmlNull() {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean.setHtmlMessage(null);
         delay();
-        try {
-            es.send(bean, true);
-        } catch (Exception e) {
-            Assert.assertTrue(true);
-        }
-        EmailBean[] rbean = re.receiveEmail();
+        es.send(bean, true);
+        Assert.fail("Sent null html");
     }
 
     /**
      * send and receive an email with the message field set to null
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sendMessageNull() {
-        EmailBean bean = setup();
+        EmailBean bean = createBasicBean();
         bean.setMessage(null);
         delay();
-        try {
-            es.send(bean, true);
-        } catch (Exception e) {
-            Assert.assertTrue(true);
-        }
-        EmailBean[] rbean = re.receiveEmail();
+        es.send(bean, true);
+        Assert.fail("Sent null message");
     }
 
     //Need to speak to Ken about this one
@@ -190,17 +171,22 @@ public class EmailSenderTest {
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("heres some text and html");
         bean.setHtmlMessage("<html><body><h1>Here's some html and text</h1></body></html>");
-        es.send(bean,true);
+        es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertTrue(bean.equals(rbean[0]));
+        Assert.assertEquals(bean, rbean[0]);
+    }
+
+
+    @After
+    public void getAllEmails() {
+        EmailBean[] rbean = re.receiveEmail();
     }
 
     /**
-     *
      * @return Emailbean with all fields set bar the attachments
      */
-    private EmailBean setup() {
+    private EmailBean createBasicBean() {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
@@ -218,11 +204,10 @@ public class EmailSenderTest {
     }
 
     /**
-     *This method is to add attachments to the emailbean and return it
+     * This method is to add attachments to the emailbean and return it
      *
      * @param bean original emailbean
      * @return emailbean with the attachments added
-     * @throws IOException
      */
     private EmailBean addAttachments(EmailBean bean) throws IOException {
         FileAttachmentBean fa = new FileAttachmentBean();
@@ -244,11 +229,10 @@ public class EmailSenderTest {
     }
 
     /**
-     *This method is to add imbeddedattachments to the emailbean and return it
+     * This method is to add imbeddedattachments to the emailbean and return it
      *
      * @param bean original emailbean
      * @return emailbean with the imbedded attachments added
-     * @throws IOException
      */
     private EmailBean addImbeddedAttachments(EmailBean bean) throws IOException {
         FileAttachmentBean fa = new FileAttachmentBean();
