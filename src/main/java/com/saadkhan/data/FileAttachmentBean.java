@@ -1,6 +1,8 @@
 package com.saadkhan.data;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * FileAttachmentBean is serializable and has getters and setters for files and
@@ -76,5 +78,23 @@ public class FileAttachmentBean implements Serializable {
     public FileAttachmentBean setType(boolean type){
         this.type = type;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FileAttachmentBean that = (FileAttachmentBean) o;
+        return getType() == that.getType() &&
+                Arrays.equals(getFile(), that.getFile()) &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = Objects.hash(getName(), getType());
+        result = 31 * result + Arrays.hashCode(getFile());
+        return result;
     }
 }

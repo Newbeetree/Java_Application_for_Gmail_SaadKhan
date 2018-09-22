@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -211,7 +210,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param send LocalDateTime of the send to set
      */
     public void setSend(LocalDateTime send) {
@@ -219,7 +217,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return LocalDateTime of when object was recieved
      */
     public LocalDateTime getRecived() {
@@ -227,7 +224,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param recived set LocalDateTime of when object was received
      */
     public void setRecived(LocalDateTime recived) {
@@ -235,7 +231,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return string representing which folder email belonged to
      */
     public String getFolder() {
@@ -243,7 +238,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param folder string representing the name of folder to set
      */
     public EmailBean setFolder(String folder) {
@@ -252,7 +246,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return Priorty of email
      */
     public Priority getPriority() {
@@ -260,7 +253,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param priority set the priority of email
      */
     public void setPriority(Priority priority) {
@@ -268,7 +260,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param priority set priority of email using an integer
      */
     public void setPriority(int priority) {
@@ -295,6 +286,7 @@ public class EmailBean implements Serializable {
 
     /**
      * Checks if two email objects are the same
+     *
      * @param o Email bean that is being used to compare with other emailbean
      * @return boolean true if same, false if wrong
      */
@@ -304,12 +296,12 @@ public class EmailBean implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         EmailBean emailBean = (EmailBean) o;
         boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
-        boolean work2 = emailEqual(to,emailBean.to);
-        boolean work3 = emailEqual(cc,emailBean.cc) ;
+        boolean work2 = emailEqual(to, emailBean.to);
+        boolean work3 = emailEqual(cc, emailBean.cc);
         boolean work4 = subjectEquals(subject, emailBean.subject);
-        boolean work5=  Objects.equals(message, emailBean.message);
-        boolean work6=  Objects.equals(htmlMessage, emailBean.htmlMessage);
-        boolean work7 = attachEqual(attachments,emailBean.attachments);
+        boolean work5 = Objects.equals(message, emailBean.message);
+        boolean work6 = Objects.equals(htmlMessage, emailBean.htmlMessage);
+        boolean work7 = attachEqual(attachments, emailBean.attachments);
         return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
                 emailEqual(to, emailBean.to) &&
                 emailEqual(cc, emailBean.cc) &&
@@ -321,7 +313,8 @@ public class EmailBean implements Serializable {
 
     /**
      * checks if two subjects are the same taking into account if one is unknown
-     * @param toSubject subject that was in the bean
+     *
+     * @param toSubject   subject that was in the bean
      * @param fromSubject subject that we received from gmail server
      * @return true if same, false if wrong
      */
@@ -333,7 +326,8 @@ public class EmailBean implements Serializable {
 
     /**
      * takes both arraylists and checks if they are equal
-     * @param to Arraylist of email addresses from emailbean
+     *
+     * @param to   Arraylist of email addresses from emailbean
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
@@ -350,7 +344,8 @@ public class EmailBean implements Serializable {
 
     /**
      * takes both arraylists of attachments and checks if they are equal
-     * @param to Arraylist of email addresses from emailbean
+     *
+     * @param to   Arraylist of email addresses from emailbean
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
@@ -363,5 +358,13 @@ public class EmailBean implements Serializable {
             }
         }
         return true;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFrom(), getTo(), getCc(), getBcc(), getSubject(), getMessage(),
+                getHtmlMessage(), isSeen(), getAttachments(), getMessageType(), getSend(),
+                getRecived(), getFolder(), getPriority());
     }
 }

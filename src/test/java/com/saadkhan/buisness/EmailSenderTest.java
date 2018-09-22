@@ -189,7 +189,7 @@ public class EmailSenderTest {
         bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("heres some text and html");
-        bean.setHtmlMessage("<html><body><h1>Heres some html and text</h1></body></html>");
+        bean.setHtmlMessage("<html><body><h1>Here's some html and text</h1></body></html>");
         es.send(bean,true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
@@ -227,14 +227,19 @@ public class EmailSenderTest {
     private EmailBean addAttachments(EmailBean bean) throws IOException {
         FileAttachmentBean fa = new FileAttachmentBean();
         FileAttachmentBean fb = new FileAttachmentBean();
+        FileAttachmentBean fc = new FileAttachmentBean();
         fa.setName("FreeFall.jpg");
         fa.setFile(Files.readAllBytes(new File("FreeFall.jpg").toPath()));
         fa.setType(false);
         fb.setName("textFile.txt");
         fb.setFile(Files.readAllBytes(new File("textFile.txt").toPath()));
         fb.setType(false);
+        fc.setName("FreeFall.jpg");
+        fc.setFile(Files.readAllBytes(new File("FreeFall.jpg").toPath()));
+        fc.setType(false);
         bean.getAttachments().add(fa);
         bean.getAttachments().add(fb);
+        bean.getAttachments().add(fc);
         return bean;
     }
 

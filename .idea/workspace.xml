@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ba7efd87-b935-4661-82d3-5b7d08ff85b5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ba7efd87-b935-4661-82d3-5b7d08ff85b5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/saadkhan/buisness/EmailSenderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/saadkhan/buisness/EmailSenderTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,21 +38,39 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="@JagProject" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@JagProject" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@JagProject" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="jag: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
   </component>
+  <component name="ExecutionTargetDialog">
+    <checked>
+      <node key="ba7efd87-b935-4661-82d3-5b7d08ff85b5">
+        <node key="jag_schema" />
+      </node>
+    </checked>
+    <expanded>
+      <node key="ba7efd87-b935-4661-82d3-5b7d08ff85b5" />
+    </expanded>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EmailSenderTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmailSenderTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3914">
-              <caret line="195" selection-start-line="195" selection-end-line="195" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="4342">
+              <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -59,7 +78,7 @@
       <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-666">
+            <state relative-caret-position="1274">
               <caret line="67" selection-start-line="67" selection-end-line="67" />
             </state>
           </provider>
@@ -68,8 +87,8 @@
       <file leaf-file-name="Priority.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/Priority.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="520">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -77,7 +96,7 @@
       <file leaf-file-name="EmailReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="2236">
               <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
             </state>
           </provider>
@@ -86,8 +105,75 @@
       <file leaf-file-name="EmailBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="312" selection-start-line="312" selection-end-line="312" />
+            <state relative-caret-position="785">
+              <caret line="367" column="16" selection-start-line="367" selection-start-column="16" selection-end-line="367" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1607#1608#0" expanded="true" />
+                <element signature="e#1634#1635#0" expanded="true" />
+                <element signature="e#1898#1899#0" expanded="true" />
+                <element signature="e#1923#1924#0" expanded="true" />
+                <element signature="e#2208#2209#0" expanded="true" />
+                <element signature="e#2233#2234#0" expanded="true" />
+                <element signature="e#2506#2507#0" expanded="true" />
+                <element signature="e#2532#2533#0" expanded="true" />
+                <element signature="e#2803#2804#0" expanded="true" />
+                <element signature="e#2833#2834#0" expanded="true" />
+                <element signature="e#3096#3097#0" expanded="true" />
+                <element signature="e#3126#3127#0" expanded="true" />
+                <element signature="e#3378#3379#0" expanded="true" />
+                <element signature="e#3412#3413#0" expanded="true" />
+                <element signature="e#3702#3703#0" expanded="true" />
+                <element signature="e#3729#3730#0" expanded="true" />
+                <element signature="e#4026#4027#0" expanded="true" />
+                <element signature="e#4060#4061#0" expanded="true" />
+                <element signature="e#4377#4378#0" expanded="true" />
+                <element signature="e#4411#4412#0" expanded="true" />
+                <element signature="e#4713#4714#0" expanded="true" />
+                <element signature="e#4740#4741#0" expanded="true" />
+                <element signature="e#4862#4863#0" expanded="true" />
+                <element signature="e#4894#4895#0" expanded="true" />
+                <element signature="e#5015#5016#0" expanded="true" />
+                <element signature="e#5045#5046#0" expanded="true" />
+                <element signature="e#5189#5190#0" expanded="true" />
+                <element signature="e#5227#5228#0" expanded="true" />
+                <element signature="e#5349#5350#0" expanded="true" />
+                <element signature="e#5378#5379#0" expanded="true" />
+                <element signature="e#5666#5667#0" expanded="true" />
+                <element signature="e#5697#5698#0" expanded="true" />
+                <element signature="e#5819#5820#0" expanded="true" />
+                <element signature="e#5859#5860#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JagSchema.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JagSchema.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="14" column="15" lean-forward="true" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileAttachmentBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,10 +221,13 @@
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailReceiverTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/Priority.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" />
+        <option value="$PROJECT_DIR$/src/test/java/resources.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql" />
+        <option value="$PROJECT_DIR$/JagSchema.sql" />
       </list>
     </option>
   </component>
@@ -172,10 +261,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1940" />
-    <option name="height" value="1050" />
+    <option name="x" value="-770" />
+    <option name="y" value="236" />
+    <option name="width" value="1552" />
+    <option name="height" value="840" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -184,6 +273,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,13 +358,12 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="DDL Data Source&#10;MySQL" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="full.screen.before.presentation.mode" value="false" />
@@ -293,6 +382,9 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.saadkhan.buisness" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -314,7 +406,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EmailSenderTest">
+  <component name="RunManager" selected="JUnit.EmailSenderTest.sendAndReceiveWithAllFields">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -514,8 +606,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EmailSenderTest" />
         <item itemvalue="JUnit.EmailSenderTest.sendAndReceiveWithAllFields" />
+        <item itemvalue="JUnit.EmailSenderTest" />
         <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtmlAndText" />
         <item itemvalue="JUnit.EmailSenderTest.sendMessageNull" />
         <item itemvalue="JUnit.EmailSenderTest.sendHtmlNull" />
@@ -548,17 +640,14 @@
       <workItem from="1537371939959" duration="5393000" />
       <workItem from="1537452840013" duration="10000" />
       <workItem from="1537472558442" duration="852000" />
-      <workItem from="1537501689438" duration="3633000" />
+      <workItem from="1537501689438" duration="4262000" />
+      <workItem from="1537533215148" duration="2674000" />
+      <workItem from="1537538579063" duration="1831000" />
+      <workItem from="1537642069877" duration="3797000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EmailSenderTest - 2018.09.19 at 15h 24m 39s.xml">
-      <configuration name="EmailSenderTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailSenderTest - 2018.09.21 at 00h 12m 46s.xml">
-      <configuration name="EmailSenderTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="EmailSenderTest - 2018.09.21 at 00h 13m 18s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
@@ -583,9 +672,15 @@
     <history-entry file="EmailSenderTest - 2018.09.21 at 00h 47m 54s.xml">
       <configuration name="EmailSenderTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="EmailSenderTest_sendAndReceiveWithAllFields - 2018.09.21 at 08h 40m 56s.xml">
+      <configuration name="EmailSenderTest.sendAndReceiveWithAllFields" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailSenderTest_sendAndReceiveWithAllFields - 2018.09.21 at 09h 08m 55s.xml">
+      <configuration name="EmailSenderTest.sendAndReceiveWithAllFields" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104522000" />
+    <option name="totallyTimeSpent" value="113453000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -597,12 +692,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32763532" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -610,20 +704,22 @@
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.22684564" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905984" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.5050946" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.5027686" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32965517" />
       <window_info id="Capture Tool" order="6" />
+      <window_info active="true" anchor="bottom" id="Database Console" visible="true" weight="0.32890365" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" visible="true" weight="0.1671141" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.13154362" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" visible="true" weight="0.13752665" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.23987207" />
       <window_info id="Structure" order="1" sideWeight="0.392936" side_tool="true" weight="0.16979866" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3551674" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.65065503" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32763532" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -631,33 +727,33 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32896653" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.5080058" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" visible="true" weight="0.20268457" />
       <window_info id="Structure" order="1" sideWeight="0.392936" side_tool="true" weight="0.16979866" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.6462882" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Database" order="6" visible="true" weight="0.13154362" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32965517" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067115" side_tool="true" weight="0.3231441" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.6462882" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905984" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067115" side_tool="true" weight="0.3231441" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32896653" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32763532" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.22684564" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.607064" visible="true" weight="0.20268457" />
+      <window_info id="Favorites" order="5" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,43 +767,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java</url>
-          <line>359</line>
+          <line>296</line>
           <properties />
-          <option name="timeStamp" value="58" />
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="59" />
+      <option name="time" value="60" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2158">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1118">
-          <caret line="65" column="66" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/textFile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="34" selection-start-column="34" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -750,9 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1612">
           <caret line="73" column="17" lean-forward="true" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -788,9 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -833,9 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,9 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -992,46 +1052,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/Priority.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="520">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="2236">
           <caret line="108" column="70" selection-start-line="108" selection-start-column="70" selection-end-line="108" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4342">
+          <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-666">
+        <state relative-caret-position="1274">
           <caret line="67" selection-start-line="67" selection-end-line="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="73" column="24" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+        <state relative-caret-position="347">
+          <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="312" selection-start-line="312" selection-end-line="312" />
+        <state relative-caret-position="785">
+          <caret line="367" column="16" selection-start-line="367" selection-start-column="16" selection-end-line="367" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1607#1608#0" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1898#1899#0" expanded="true" />
+            <element signature="e#1923#1924#0" expanded="true" />
+            <element signature="e#2208#2209#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
+            <element signature="e#2506#2507#0" expanded="true" />
+            <element signature="e#2532#2533#0" expanded="true" />
+            <element signature="e#2803#2804#0" expanded="true" />
+            <element signature="e#2833#2834#0" expanded="true" />
+            <element signature="e#3096#3097#0" expanded="true" />
+            <element signature="e#3126#3127#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3412#3413#0" expanded="true" />
+            <element signature="e#3702#3703#0" expanded="true" />
+            <element signature="e#3729#3730#0" expanded="true" />
+            <element signature="e#4026#4027#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4377#4378#0" expanded="true" />
+            <element signature="e#4411#4412#0" expanded="true" />
+            <element signature="e#4713#4714#0" expanded="true" />
+            <element signature="e#4740#4741#0" expanded="true" />
+            <element signature="e#4862#4863#0" expanded="true" />
+            <element signature="e#4894#4895#0" expanded="true" />
+            <element signature="e#5015#5016#0" expanded="true" />
+            <element signature="e#5045#5046#0" expanded="true" />
+            <element signature="e#5189#5190#0" expanded="true" />
+            <element signature="e#5227#5228#0" expanded="true" />
+            <element signature="e#5349#5350#0" expanded="true" />
+            <element signature="e#5378#5379#0" expanded="true" />
+            <element signature="e#5666#5667#0" expanded="true" />
+            <element signature="e#5697#5698#0" expanded="true" />
+            <element signature="e#5819#5820#0" expanded="true" />
+            <element signature="e#5859#5860#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/resources.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3914">
-          <caret line="195" selection-start-line="195" selection-end-line="195" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="364">
+          <caret line="14" column="15" lean-forward="true" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JagSchema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
