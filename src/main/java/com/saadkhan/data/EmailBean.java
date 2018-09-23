@@ -36,14 +36,14 @@ public class EmailBean implements Serializable {
      */
     public EmailBean() {
         from = null;
-        to = new ArrayList<EmailAddress>();
-        cc = new ArrayList<EmailAddress>();
-        bcc = new ArrayList<EmailAddress>();
+        to = new ArrayList<>();
+        cc = new ArrayList<>();
+        bcc = new ArrayList<>();
         subject = "";
         message = "";
         htmlMessage = "";
         seen = false;
-        attachments = new ArrayList<FileAttachmentBean>();
+        attachments = new ArrayList<>();
         messageType = "";
         send = LocalDateTime.now();
         recived = LocalDateTime.now();
