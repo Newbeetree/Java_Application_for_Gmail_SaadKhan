@@ -17,7 +17,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
-      <introspection-schemas>*:information_schema,jag</introspection-schemas>
+      <introspection-schemas>*:jag</introspection-schemas>
     </data-source>
   </component>
 </project>

@@ -18,11 +18,11 @@ import jodd.mail.EmailAddress;
 
 public class EmailDOAImpl implements EmailDOA {
     private final static Logger LOG = LoggerFactory.getLogger(EmailDOAImpl.class);
-
-    // This information should be coming from a Properties file
-    private final static String URL = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private final static String URL = "jdbc:mysql://localhost:3306";
     private final static String USER = "root";
     private final static String PASSWORD = "123password";
+
+    public EmailDOAImpl() { super();}
 
     /**
      * Retrieve all the records for the given table and returns the data as an
@@ -60,7 +60,7 @@ public class EmailDOAImpl implements EmailDOA {
      */
     private EmailBean createEmailBean(ResultSet resultSet) throws SQLException {
         EmailBean bean = new EmailBean();
-        bean.setFrom(getEmail(resultSet.getInt("Email_From")));
+        bean.setFrom(getFrom(resultSet.getInt("Email_From")));
         bean.setTo(getEmailList(resultSet.getInt("Bean_Id"), "To"));
         bean.setCc(getEmailList(resultSet.getInt("Bean_Id"), "CC"));
         bean.setBcc(getEmailList(resultSet.getInt("Bean_Id"), "BCC"));
@@ -71,15 +71,28 @@ public class EmailDOAImpl implements EmailDOA {
         bean.setRecived(resultSet.getTimestamp("Receive_Date").toLocalDateTime());
         bean.setPriority(resultSet.getInt("Priority"));
         bean.setFolder(getFolder(resultSet.getInt("Folder_Id")));
-        bean.getAttachments().add(checkForFileAttachments(resultSet.getInt("Bean_Id")));
+        bean.setAttachments(checkForFileAttachments(resultSet.getInt("Bean_Id")));
         return bean;
     }
 
-    private FileAttachmentBean checkForFileAttachments(int bean_id) {
-        return null;
+    public ArrayList<FileAttachmentBean> checkForFileAttachments(int bean_id) throws SQLException {
+        String selectQuery = "SELECT File_Name, File_Attach, File_Type From Attachments WHERE Email_Id = ?";
+        ResultSet resultSet;
+        ArrayList<FileAttachmentBean> fileList = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            PreparedStatement ps = connection.prepareStatement(selectQuery);
+            ps.setInt(1, bean_id);
+            resultSet = ps.executeQuery();
+        }
+        while (resultSet.next()) {
+            boolean file_type = resultSet.getInt("File_Type") == 1;
+            fileList.add(new FileAttachmentBean(resultSet.getBytes("File_Attach"),resultSet.getString("File_Name"), file_type));
+        }
+        return fileList;
     }
 
-    private String getFolder(int folder_id) throws SQLException {
+    @Override
+    public String getFolder(int folder_id) throws SQLException {
         String selectQuery = "SELECT Folder_Name FROM Folder WHERE Folder_Id = ?";
         ResultSet resultSet;
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
@@ -90,23 +103,25 @@ public class EmailDOAImpl implements EmailDOA {
         return resultSet.getString("Folder_Name");
     }
 
-    private ArrayList<EmailAddress> getEmailList(int bean_id, String type) throws SQLException {
+    @Override
+    public ArrayList<EmailAddress> getEmailList(int bean_id, String type) throws SQLException {
         ArrayList<EmailAddress> emailList = new ArrayList<>();
         String selectQuery = "SELECT distinct EA.Name, EA.Address from emailaddresses EA join emailbeanadresses eba on EA.Email_Id = eba.Email_Id join emailbean eb on eba.Bean_Id = eb.Bean_Id where eba.Email_Type = ? AND eb.Bean_Id = ?";
         ResultSet resultSet;
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)){
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             PreparedStatement ps = connection.prepareStatement(selectQuery);
             ps.setString(1, type);
             ps.setInt(2, bean_id);
             resultSet = ps.executeQuery();
         }
-        while (resultSet.next()){
-            emailList.add(new EmailAddress(resultSet.getString("Name"),resultSet.getString("Address")));
+        while (resultSet.next()) {
+            emailList.add(new EmailAddress(resultSet.getString("Name"), resultSet.getString("Address")));
         }
         return emailList;
     }
 
-    private EmailAddress getEmail(int email_from) throws SQLException {
+    @Override
+    public EmailAddress getFrom(int email_from) throws SQLException {
         String selectQuery = "SELECT Name, Address FROM EmailAddresses WHERE Email_Id = ?";
         ResultSet resultSet;
         EmailAddress email = null;
@@ -115,29 +130,24 @@ public class EmailDOAImpl implements EmailDOA {
             ps.setInt(1, email_from);
             resultSet = ps.executeQuery();
         }
-        while(resultSet.next()){
+        while (resultSet.next()) {
             email = new EmailAddress(resultSet.getString("Name"), resultSet.getString("Address"));
         }
         return email;
     }
 
     @Override
-    public EmailBean findID(int id) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public int update(EmailBean Email) throws SQLException {
+    public int update(EmailBean Email) {
         return 0;
     }
 
     @Override
-    public int delete(int ID) throws SQLException {
+    public int delete(int ID) {
         return 0;
     }
 
     @Override
-    public int create(EmailBean Email) throws SQLException {
+    public int create(EmailBean Email) {
         return 0;
     }
 

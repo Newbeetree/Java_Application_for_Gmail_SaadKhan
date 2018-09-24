@@ -1,9 +1,13 @@
 package com.saadkhan.persistence;
 
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.FileAttachmentBean;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import jodd.mail.EmailAddress;
 
 /**
  * Interface for CRUD methods
@@ -17,10 +21,13 @@ public interface EmailDOA {
 
     // Read
     public List<EmailBean> findAll() throws SQLException;
+    public ArrayList<FileAttachmentBean> checkForFileAttachments(int bean_id) throws SQLException;
 
-    public EmailBean findID(int id) throws SQLException;
+    public String getFolder(int folder_id) throws SQLException;
+    public ArrayList<EmailAddress> getEmailList(int bean_id, String type) throws SQLException;
+    public EmailAddress getFrom(int email_from) throws SQLException;
 
-    // Update
+        // Update
     public int update(EmailBean Email) throws SQLException;
 
     // Delete
