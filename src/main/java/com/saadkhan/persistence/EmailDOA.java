@@ -23,9 +23,9 @@ public interface EmailDOA {
     public List<EmailBean> findAll() throws SQLException;
     public ArrayList<FileAttachmentBean> checkForFileAttachments(int bean_id) throws SQLException;
 
-    public String getFolder(int folder_id) throws SQLException;
-    public ArrayList<EmailAddress> getEmailList(int bean_id, String type) throws SQLException;
-    public EmailAddress getFrom(int email_from) throws SQLException;
+    public String findFolder(int folder_id) throws SQLException;
+    public ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException;
+    public EmailAddress findFrom(int email_from) throws SQLException;
 
         // Update
     public int update(EmailBean Email) throws SQLException;

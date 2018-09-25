@@ -229,7 +229,7 @@ values (6, 13, 'Praesent.png', true);
 insert into attachments (Attach_id, Email_Id, File_Name, File_Type)
 values (7, 25, 'Nec.pdf', false);
 insert into attachments (Attach_id, Email_Id, File_Name, File_Type)
-values (8, 18, 'ConsectetuerAdipiscing.png', true);
+values (8, 19, 'ConsectetuerAdipiscing.png', true);
 insert into attachments (Attach_id, Email_Id, File_Name, File_Type)
 values (9, 19, 'LobortisVelDapibus.ppt', false);
 insert into attachments (Attach_id, Email_Id, File_Name, File_Type)

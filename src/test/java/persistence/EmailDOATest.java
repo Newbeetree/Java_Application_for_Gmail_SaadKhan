@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 public class EmailDOATest {
 
-    private final String url = "jdbc:mysql://localhost:3306";
+    private final String URL = "jdbc:mysql://localhost:3306/jag?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
     private final String user = "root";
     private final String password = "123password";
 
@@ -37,6 +37,9 @@ public class EmailDOATest {
     }
 
     private void displayAll(List<EmailBean> emails) {
-        LOG.info(emails.toString());
+        for (EmailBean eb :
+                emails) {
+            LOG.info(eb.getTo().toString());
+        }
     }
 }
