@@ -27,13 +27,27 @@ public class EmailDOATest {
      * @throws SQLException
      */
     @Test(timeout = 1000)
-    public void testFindAll() throws SQLException {
+    public void testFindAllEmails() throws SQLException {
         EmailDOA emailDOA = new EmailDOAImpl();
-        List<EmailBean> emails = emailDOA.findAll();
+        List<EmailBean> emails = emailDOA.findAllEmails();
         // Nothing to do with the test
         displayAll(emails);
 
         assertEquals("# of emails", 25, emails.size());
+    }
+
+    /**
+     * This will test if the expected number of records are in the database
+     *
+     * @throws SQLException
+     */
+    @Test(timeout = 1000)
+    public void testFindAllFolders() throws SQLException {
+        EmailDOA emailDOA = new EmailDOAImpl();
+        List<String> folders = emailDOA.findAllFolders();
+        // Nothing to do with the test
+
+        assertEquals("# of folders", 6, folders.size());
     }
 
     private void displayAll(List<EmailBean> emails) {

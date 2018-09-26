@@ -12,6 +12,7 @@ import java.util.Objects;
  */
 public class FileAttachmentBean implements Serializable {
 
+    private int attachID;
     private byte[] file;
     private String name;
     private boolean type;
@@ -32,6 +33,15 @@ public class FileAttachmentBean implements Serializable {
         this.file = file;
         this.name = name;
         this.type = type;
+    }
+
+    public int getAttachID() {
+        return attachID;
+    }
+
+    public FileAttachmentBean setAttachID(int attachID) {
+        this.attachID = attachID;
+        return this;
     }
 
     /**
@@ -67,15 +77,16 @@ public class FileAttachmentBean implements Serializable {
     /**
      * @return type of file
      */
-    public boolean getType() { return type; }
+    public boolean getType() {
+        return type;
+    }
 
     /**
-     *
      * @param type type of the file to attach, either imbedded or attached
      *             true for imbed
      *             false for attach
      */
-    public FileAttachmentBean setType(boolean type){
+    public FileAttachmentBean setType(boolean type) {
         this.type = type;
         return this;
     }

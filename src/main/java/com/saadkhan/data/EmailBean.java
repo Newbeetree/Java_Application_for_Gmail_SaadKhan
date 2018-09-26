@@ -16,6 +16,7 @@ import jodd.mail.EmailAddress;
  */
 public class EmailBean implements Serializable {
 
+    private int emailID;
     private EmailAddress from;
     private ArrayList<EmailAddress> to;
     private ArrayList<EmailAddress> cc;
@@ -35,6 +36,7 @@ public class EmailBean implements Serializable {
      * Constructor sets all values of the email bean to the defualt values
      */
     public EmailBean() {
+        emailID = -1;
         from = null;
         to = new ArrayList<>();
         cc = new ArrayList<>();
@@ -253,13 +255,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     * @param priority set the priority of email
-     */
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    /**
      * @param priority set priority of email using an integer
      */
     public void setPriority(int priority) {
@@ -282,6 +277,13 @@ public class EmailBean implements Serializable {
             default:
                 this.priority = Priority.PRIORITY_NORMAL;
         }
+    }
+
+    /**
+     * @param priority set the priority of email
+     */
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     /**
@@ -365,6 +367,15 @@ public class EmailBean implements Serializable {
     public int hashCode() {
         return Objects.hash(getFrom(), getTo(), getCc(), getBcc(), getSubject(), getMessage(),
                 getHtmlMessage(), isSeen(), getAttachments(), getMessageType(), getSend(),
-                getRecived(), getFolder(), getPriority());
+                getRecived(), getFolder(), getPriority(), getEmailID());
+    }
+
+    public int getEmailID() {
+        return emailID;
+    }
+
+    public EmailBean setEmailID(int emailID) {
+        this.emailID = emailID;
+        return this;
     }
 }

@@ -69,22 +69,22 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values (2, 26, 'Toys',
         'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
         'aliquet at feugiat non pretium quis lectus suspendisse potenti in', '2018-01-16 14:25:32',
-        '2018-07-07 11:00:04', 5, 1);
+        '2018-07-07 11:00:04', 0,1);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (3, 26, 'Games',
         'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
         'sem fusce consequat nulla nisl nunc nisl duis bibendum felis', '2017-10-05 12:19:28',
-        '2018-04-05 11:58:08', 5, 3);
+        '2018-04-05 11:58:08', 0,3);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (4, 26, 'Outdoors',
         'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.',
         'vestibulum vestibulum ante ipsum primis in faucibus orci luctus et', '2018-01-03 11:55:38',
-        '2018-04-30 04:08:30', 5, 1);
+        '2018-04-30 04:08:30', 0,1);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (5, 26, 'Games',
         'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
         'ipsum integer a nibh in quis justo maecenas rhoncus aliquam', '2017-11-14 11:35:57',
-        '2018-05-26 13:26:52', 5, 4);
+        '2018-05-26 13:26:52', 0,4);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (6, 26, 'Jewelery',
         'Sed ante. Vivamus tortor. Duis mattis egestas metus.',
@@ -104,7 +104,7 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values
   (9, 26, 'Computers', 'Sed ante. Vivamus tortor. Duis mattis egestas metus.',
    'in sagittis dui vel nisl duis ac nibh fusce lacus', '2017-10-13 06:55:09',
-   '2018-07-13 14:00:38', 5, 1);
+   '2018-07-13 14:00:38', 0,1);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (10, 26, 'Industrial',
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.',
@@ -129,7 +129,7 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values (14, 26, 'Electronics',
         'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
         'lectus aliquam sit amet diam in magna bibendum imperdiet nullam', '2017-11-12 03:29:07',
-        '2018-09-04 18:48:11', 5, 2);
+        '2018-09-04 18:48:11', 0,2);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (15, 26, 'Industrial',
         'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.',
@@ -139,7 +139,7 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values (16, 26, 'Automotive',
         'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.',
         'mattis egestas metus aenean fermentum donec ut mauris eget massa', '2017-12-21 21:31:29',
-        '2018-09-20 04:13:36', 5, 3);
+        '2018-09-20 04:13:36', 0,3);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (17, 26, 'Shoes',
         'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.',
@@ -149,7 +149,7 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values (18, 26, 'Kids',
         'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.',
         'ut massa volutpat convallis morbi odio odio elementum eu interdum', '2017-12-18 19:16:06',
-        '2018-06-01 16:33:59', 5, 1);
+        '2018-06-01 16:33:59', 0,1);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values
   (19, 26, 'Health', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.',
@@ -159,7 +159,7 @@ insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_D
 values (20, 26, 'Baby',
         'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.',
         'mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit', '2017-12-20 19:51:57',
-        '2018-03-27 11:05:57', 5, 4);
+        '2018-03-27 11:05:57', 0,4);
 insert into emailbean (Bean_id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id)
 values (21, 26, 'Automotive',
         'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.',

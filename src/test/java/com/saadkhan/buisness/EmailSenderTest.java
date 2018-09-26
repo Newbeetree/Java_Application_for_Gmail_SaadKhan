@@ -5,7 +5,6 @@ import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -15,6 +14,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import jodd.mail.EmailAddress;
+
+import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Class for testing emails sending and receiving
@@ -40,7 +42,7 @@ public class EmailSenderTest {
         es.send(bean, false);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -52,7 +54,7 @@ public class EmailSenderTest {
         bean.setTo(new ArrayList<EmailAddress>());
         bean.getTo().add(new EmailAddress("invalid Email", "hfagdsgjfhakjdsfafdddasd"));
         es.send(bean, true);
-        Assert.fail("Sent Invalid TO");
+        fail("Sent Invalid TO");
     }
 
     /**
@@ -64,7 +66,7 @@ public class EmailSenderTest {
         bean.setCc(new ArrayList<EmailAddress>());
         bean.getCc().add(new EmailAddress("invalid CC Email", "hfagdsgjfhakjdsfafdddasd"));
         es.send(bean, true);
-        Assert.fail("Sent Invalid CC");
+        fail("Sent Invalid CC");
     }
 
     /**
@@ -77,7 +79,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -92,7 +94,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -107,7 +109,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -122,7 +124,7 @@ public class EmailSenderTest {
         es.send(bean, false);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -136,7 +138,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
     /**
@@ -148,7 +150,7 @@ public class EmailSenderTest {
         bean.setHtmlMessage(null);
         delay();
         es.send(bean, true);
-        Assert.fail("Sent null html");
+        fail("Sent null html");
     }
 
     /**
@@ -160,7 +162,7 @@ public class EmailSenderTest {
         bean.setMessage(null);
         delay();
         es.send(bean, true);
-        Assert.fail("Sent null message");
+        fail("Sent null message");
     }
 
     //Need to speak to Ken about this one
@@ -174,7 +176,7 @@ public class EmailSenderTest {
         es.send(bean, true);
         delay();
         EmailBean[] rbean = re.receiveEmail();
-        Assert.assertEquals(bean, rbean[0]);
+        assertEquals(bean, rbean[0]);
     }
 
 
