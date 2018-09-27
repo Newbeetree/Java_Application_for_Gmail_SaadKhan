@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 
+import jodd.mail.EmailAddress;
+
 import static org.junit.Assert.assertEquals;
 
 public class EmailDOATest {
@@ -48,6 +50,27 @@ public class EmailDOATest {
         // Nothing to do with the test
 
         assertEquals("# of folders", 6, folders.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testCreateFolder() throws SQLException{
+        EmailDOA emailDOA = new EmailDOAImpl();
+        int success = emailDOA.createFolder("Read");
+        assertEquals(1, success);
+    }
+
+    @Test(timeout = 1000)
+    public void testCreateSameFolder() throws SQLException{
+        EmailDOA emailDOA = new EmailDOAImpl();
+        int success = emailDOA.createFolder("Inbox");
+        assertEquals(0, success);
+    }
+
+    @Test
+    public void testCreateEmailAddress() throws SQLException{
+        EmailDOA emailDOA = new EmailDOAImpl();
+        int success = emailDOA.createEmailAddress(new EmailAddress("agdssfd","rsghjfdgs"));
+        assertEquals(0, success);
     }
 
     private void displayAll(List<EmailBean> emails) {

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jodd.mail.Email;
 import jodd.mail.EmailAddress;
 
 /**
@@ -19,10 +18,13 @@ public interface EmailDOA {
 
     // Create
     public int createEmailAddress(EmailAddress email) throws SQLException;
+
+    ArrayList<EmailAddress> findAllEmailAddresses() throws SQLException;
+
     public int createEmailBean(EmailBean bean) throws SQLException;
-    public int createEmailBeanAddress()throws SQLException;
+    public void createEmailBeanAddress(int email_id, int id, String type)throws SQLException;
     public int createFolder(String folderName) throws SQLException;
-    public int createAttachments(FileAttachmentBean fab) throws SQLException;
+    public void createAttachments(ArrayList<FileAttachmentBean> fab, int id) throws SQLException;
 
     // Read
     public List<EmailBean> findAllEmails() throws SQLException;
