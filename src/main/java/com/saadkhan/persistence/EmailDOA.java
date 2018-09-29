@@ -34,7 +34,9 @@ public interface EmailDOA {
     public ArrayList<String> findAllFolders() throws SQLException;
     public ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException;
     public EmailAddress findFrom(int email_from) throws SQLException;
+    public ArrayList<EmailBean> findAllEmailBeans() throws SQLException;
+    public int findEmailAddress(EmailAddress emailAddress) throws SQLException;
 
-    // Delete
+        // Delete
     public int delete(int ID) throws SQLException;
 }

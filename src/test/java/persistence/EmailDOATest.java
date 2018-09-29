@@ -1,6 +1,7 @@
 package persistence;
 
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
 import com.saadkhan.persistence.EmailDOA;
 import com.saadkhan.persistence.EmailDOAImpl;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,6 +26,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,10 +56,19 @@ public class EmailDOATest {
     @Test(timeout = 1000)
     public void testFindAllFolders() throws SQLException {
         EmailDOA emailDOA = new EmailDOAImpl();
-        List<String> folders = emailDOA.findAllFolders();
+        ArrayList<String> folders = emailDOA.findAllFolders();
         // Nothing to do with the test
 
         assertEquals("# of folders", 6, folders.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testFindAllEmailBeans() throws SQLException {
+        EmailDOA emailDOA = new EmailDOAImpl();
+        List<EmailBean> folders = emailDOA.findAllEmailBeans();
+        // Nothing to do with the test
+
+        assertEquals("# of folders", 25, folders.size());
     }
 
     @Test(timeout = 1000)
@@ -66,12 +78,21 @@ public class EmailDOATest {
         assertNotEquals(0, success);
     }
 
-    @Test(timeout = 1000)
-    public void testCreateEmailBean() throws SQLException {
+    @Test(timeout = 100000)
+    public void testCreateEmailBean() throws SQLException, IOException {
         EmailDOA emailDOA = new EmailDOAImpl();
         EmailBean bean = createBasicBean();
         int success = emailDOA.createEmailBean(bean);
         assertNotEquals(0, success);
+    }
+
+    @Test(timeout = 100000)
+    public void testCreateDuplicateEmailBean() throws SQLException, IOException {
+        EmailDOA emailDOA = new EmailDOAImpl();
+        EmailBean bean = createBasicBean();
+        int email_id = emailDOA.createEmailBean(bean);
+        int success = emailDOA.createEmailBean(bean);
+        assertEquals(email_id, success);
     }
 
     @Test(timeout = 1000)
@@ -81,11 +102,18 @@ public class EmailDOATest {
         assertNotEquals(0, success);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testCreateEmailAddress() throws SQLException {
         EmailDOA emailDOA = new EmailDOAImpl();
         int success = emailDOA.createEmailAddress(new EmailAddress("agdssfd", "rsghjfdgs"));
         assertNotEquals(0, success);
+    }
+
+    @Test(timeout = 1000)
+    public void testFindEmailAddress() throws SQLException {
+        EmailDOA emailDOA = new EmailDOAImpl();
+        int success = emailDOA.findEmailAddress(new EmailAddress("user name", "send.1633839@gmail.com"));
+        assertEquals("Email found", 26, success);
     }
 
     private void displayAll(List<EmailBean> emails) {
@@ -155,13 +183,13 @@ public class EmailDOATest {
                 || line.startsWith("/*");
     }
 
-    private EmailBean createBasicBean() {
+    private EmailBean createBasicBean() throws IOException {
         EmailBean bean = new EmailBean();
         bean.setFrom(new EmailAddress("name", "send.1633839@gmail.com"));
         bean.getTo().add(new EmailAddress("receiver", "receive.1633839@gmail.com"));
         bean.getCc().add(new EmailAddress("other", "other.1633839@gmail.com"));
-        bean.setSubject("test12");
-        bean.setMessage("hello testing 1 2 3");
+        bean.setSubject("test14");
+        bean.setMessage("hello testing 1 2 3 4 5 6");
         bean.setSend(LocalDateTime.now());
         bean.setHtmlMessage("<html><META http-equiv=Content-Type "
                 + "content=\"text/html; charset=utf-8\">"
@@ -169,6 +197,11 @@ public class EmailDOATest {
                 + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
                 + "<h2>I'm flying!</h2></body></html>");
         bean.setPriority(Priority.PRIORITY_NORMAL);
+        FileAttachmentBean fa = new FileAttachmentBean();
+        fa.setName("WindsorKen180.jpg");
+        fa.setFile(Files.readAllBytes(new File("WindsorKen180.jpg").toPath()));
+        fa.setType(true);
+        bean.getAttachments().add(fa);
         return bean;
     }
 }

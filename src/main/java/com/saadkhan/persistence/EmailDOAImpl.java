@@ -57,13 +57,13 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
-    private int findEmailAddress(EmailAddress emailAddress) throws SQLException {
-        String selectQuery = "SELECT Email_Id FROM EmailAddresses WHERE Address = ? AND Name = ?";
+    public int findEmailAddress(EmailAddress emailAddress) throws SQLException {
+        String selectQuery = "SELECT Email_Id FROM EmailAddresses WHERE Address = ?";
         int email = 0;
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             PreparedStatement ps = connection.prepareStatement(selectQuery);
             ps.setString(1, emailAddress.getEmail());
-            ps.setString(2, emailAddress.getPersonalName());
+            //ps.setString(2, emailAddress.getPersonalName());
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
                     email = resultSet.getInt("Email_Id");
@@ -103,10 +103,11 @@ public class EmailDOAImpl implements EmailDOA {
     public int createEmailBean(EmailBean bean) throws SQLException {
         int id = 0;
         if (checkIfEmailBeanExists(bean)) {
-            String insertQuery = "INSERT INTO EmailBeans (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id) VALUES (?,?,?,?,?,?,?,?)";
+            String insertQuery = "INSERT INTO EmailBean (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id) VALUES (?,?,?,?,?,?,?,?)";
+            int from_id = createEmailAddress(bean.getFrom());
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                  PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
-                pStatement.setInt(1, createEmailAddress(bean.getFrom()));
+                pStatement.setInt(1, from_id);
                 pStatement.setString(2, bean.getSubject());
                 pStatement.setString(3, bean.getMessage());
                 pStatement.setString(4, bean.getHtmlMessage());
@@ -155,9 +156,9 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
-    private ArrayList<EmailBean> findAllEmailBeans() throws SQLException {
+    public ArrayList<EmailBean> findAllEmailBeans() throws SQLException {
         ArrayList<EmailBean> beanList = new ArrayList<>();
-        String selectQuery = "SELECT EmailBeans (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id) FROM EmailBean";
+        String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean";
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pStatement = connection.prepareStatement(selectQuery);
              ResultSet resultSet = pStatement.executeQuery()) {
@@ -171,15 +172,34 @@ public class EmailDOAImpl implements EmailDOA {
 
     @Override
     public void createEmailBeanAddress(int email_id, int bean_id, String type) throws SQLException {
-        String insertQuery = "INSERT INTO EmailBeanAdresses (Bean_Id, Email_Id, Email_Type) values (?, ?,?)";
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
-            pStatement.setInt(1, bean_id);
-            pStatement.setInt(2, email_id);
-            pStatement.setString(3, type);
-            pStatement.executeUpdate();
+        if (checkIfEmailBeanAddressExists(email_id, bean_id, type)) {
+            String insertQuery = "INSERT INTO EmailBeanAdresses (Bean_Id, Email_Id, Email_Type) values (?, ?, ?)";
+            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                 PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
+                pStatement.setInt(1, bean_id);
+                pStatement.setInt(2, email_id);
+                pStatement.setString(3, type);
+                pStatement.executeUpdate();
+            }
         }
     }
+
+    private boolean checkIfEmailBeanAddressExists(int email_id, int bean_id, String type) throws SQLException {
+        String selectQuery = "SELECT Bean_Id,Email_Id, Email_Type FROM EmailBeanAdresses";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pStatement = connection.prepareStatement(selectQuery);
+             ResultSet resultSet = pStatement.executeQuery()) {
+            while (resultSet.next()) {
+                if (email_id == resultSet.getInt("Email_Id") &&
+                        bean_id == resultSet.getInt("Bean_Id") &&
+                        type.equals(resultSet.getString("Email_Type"))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public int createFolder(String folderName) throws SQLException {
@@ -334,9 +354,6 @@ public class EmailDOAImpl implements EmailDOA {
     private EmailBean getEmailBean(ResultSet resultSet) throws SQLException {
         EmailBean bean = new EmailBean();
         bean.setFrom(findFrom(resultSet.getInt("Email_From")));
-        bean.setTo(findEmailList(resultSet.getInt("Bean_Id"), "To"));
-        bean.setCc(findEmailList(resultSet.getInt("Bean_Id"), "CC"));
-        bean.setBcc(findEmailList(resultSet.getInt("Bean_Id"), "BCC"));
         bean.setSubject(resultSet.getString("Email_Subject"));
         bean.setMessage(resultSet.getString("Message"));
         bean.setHtmlMessage(resultSet.getString("HTML"));
@@ -344,6 +361,9 @@ public class EmailDOAImpl implements EmailDOA {
         bean.setRecived(resultSet.getTimestamp("Receive_Date").toLocalDateTime());
         bean.setPriority(resultSet.getInt("Priority"));
         bean.setFolder(findFolder(resultSet.getInt("Folder_Id")));
+        bean.setTo(findEmailList(resultSet.getInt("Bean_Id"), "To"));
+        bean.setBcc(findEmailList(resultSet.getInt("Bean_Id"), "Bcc"));
+        bean.setCc(findEmailList(resultSet.getInt("Bean_Id"), "Cc"));
         bean.setAttachments(findFileAttachments(resultSet.getInt("Bean_Id")));
         return bean;
     }

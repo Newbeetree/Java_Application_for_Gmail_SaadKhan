@@ -1,4 +1,3 @@
---EmailAdresses
 insert into EmailAddresses (Email_Id, Name, Address)
 values (1, 'Stephie Vergine', 'svergine0@ifeng.com');
 insert into EmailAddresses (Email_Id, Name, Address)

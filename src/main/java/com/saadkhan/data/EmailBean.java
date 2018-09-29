@@ -36,7 +36,7 @@ public class EmailBean implements Serializable {
      * Constructor sets all values of the email bean to the defualt values
      */
     public EmailBean() {
-        emailID = -1;
+        emailID = 0;
         from = null;
         to = new ArrayList<>();
         cc = new ArrayList<>();
