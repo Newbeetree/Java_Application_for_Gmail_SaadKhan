@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -450,7 +449,6 @@ public class EmailDOAImpl implements EmailDOA {
      *
      * @param folderName string name of the folder
      * @return false if in the db true if not
-     * @throws SQLException
      */
     private boolean checkIfFolderExists(String folderName) throws SQLException {
         ArrayList<String> listFiles = findAllFolders();
@@ -465,8 +463,8 @@ public class EmailDOAImpl implements EmailDOA {
     /**
      * create an entry in the attachments folder
      *
-     * @param fabList an arraylist of all the file attachments beans to add
-     * @param email_id  id of the email bean the attachment belongs to
+     * @param fabList  an arraylist of all the file attachments beans to add
+     * @param email_id id of the email bean the attachment belongs to
      */
     @Override
     public void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws
@@ -497,10 +495,9 @@ public class EmailDOAImpl implements EmailDOA {
     /**
      * check if the attachment already exists in the db
      *
-     * @param fab list of attachments to check
+     * @param fab      list of attachments to check
      * @param email_id the email id that relates to the atttachments
      * @return false if in db and true if not
-     * @throws SQLException
      */
     private boolean checkIfAttachmentExists(FileAttachmentBean fab, int email_id) throws
             SQLException {
@@ -588,10 +585,10 @@ public class EmailDOAImpl implements EmailDOA {
     }
 
     /**
-     *  using a result we recreate an email bean and return it
+     * using a result we recreate an email bean and return it
+     *
      * @param resultSet result of specific query
      * @return email bean of recreated emailbean
-     * @throws SQLException
      */
     private EmailBean getEmailBean(ResultSet resultSet) throws SQLException {
         EmailBean bean = new EmailBean();
@@ -680,7 +677,7 @@ public class EmailDOAImpl implements EmailDOA {
      * and its type either: To, Bcc, Cc
      *
      * @param bean_id id of the email bean we are looking for
-     * @param type string type of the email addresses in the table: To,Bcc, Cc
+     * @param type    string type of the email addresses in the table: To,Bcc, Cc
      */
     @Override
     public ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException {
@@ -705,6 +702,7 @@ public class EmailDOAImpl implements EmailDOA {
 
     /**
      * find the email address for the from field
+     *
      * @param email_from the email_id in the email address table
      * @return emailaddress from of the sender in the email address table
      */

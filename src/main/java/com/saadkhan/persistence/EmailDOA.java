@@ -5,7 +5,6 @@ import com.saadkhan.data.FileAttachmentBean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import jodd.mail.EmailAddress;
 
@@ -56,8 +55,8 @@ public interface EmailDOA {
     /**
      * create an entry in the attachments folder
      *
-     * @param fabList an arraylist of all the file attachments beans to add
-     * @param email_id  id of the email bean the attachment belongs to
+     * @param fabList  an arraylist of all the file attachments beans to add
+     * @param email_id id of the email bean the attachment belongs to
      */
     void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws SQLException;
 
@@ -143,12 +142,13 @@ public interface EmailDOA {
      * and its type either: To, Bcc, Cc
      *
      * @param bean_id id of the email bean we are looking for
-     * @param type string type of the email addresses in the table: To,Bcc, Cc
+     * @param type    string type of the email addresses in the table: To,Bcc, Cc
      */
     ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException;
 
     /**
      * find the email address for the from field
+     *
      * @param email_from the email_id in the email address table
      * @return emailaddress from of the sender in the email address table
      */

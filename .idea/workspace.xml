@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/createEmailSchema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/createEmailSchema.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,159 +66,25 @@
     </expanded>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="EmailDOATest.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="72" column="61" selection-start-line="72" selection-start-column="61" selection-end-line="72" selection-end-column="61" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#seedDatabase#0;class#EmailDOATest#0" />
-                    <element signature="method#loadAsString#0;class#EmailDOATest#0" />
-                    <element signature="method#splitStatements#0;class#EmailDOATest#0" />
-                    <element signature="method#isComment#0;class#EmailDOATest#0" />
-                    <element signature="method#createBasicBean#0;class#EmailDOATest#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EmailDOA.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="259">
-                  <caret line="149" column="7" lean-forward="true" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="7" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EmailDOAImpl.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-556">
-                  <caret line="541" column="4" lean-forward="true" selection-start-line="541" selection-start-column="4" selection-end-line="541" selection-end-column="4" />
-                  <folding>
-                    <element signature="method#createEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailAddress#1;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailAddress#1;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#updateFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#updateFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#updateEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllEmailAddresses#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createEmailsToSend#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailBeanExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailBeanAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfFolderExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfAttachmentExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFileAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#getEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllFolders#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailList#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFrom#0;class#EmailDOAImpl#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="EmailDOAImpl.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="37">
-                  <caret line="634" lean-forward="true" selection-start-line="634" selection-end-line="634" />
-                  <folding>
-                    <element signature="docComment;method#EmailDOAImpl#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailAddress#1;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailAddress#1;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#deleteEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#deleteEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#updateFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#updateFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#updateEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#updateEmailAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#checkIfEmailAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findAllEmailAddresses#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllEmailAddresses#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createEmailsToSend#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createEmailsToSend#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#checkIfEmailBeanExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailBeanExists#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findAllEmailBeans#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllEmailBeans#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createEmailBeanAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createEmailBeanAddress#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#checkIfEmailBeanAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfEmailBeanAddressExists#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#checkIfFolderExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfFolderExists#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#createAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#createAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#checkIfAttachmentExists#0;class#EmailDOAImpl#0" />
-                    <element signature="method#checkIfAttachmentExists#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findAllAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findEmail#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmail#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findFileAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFileAttachments#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#getEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="method#getEmailBean#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFolder#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="method#findFolder#1;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findAllFolders#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findAllFolders#0;class#EmailDOAImpl#0" />
-                    <element signature="docComment;method#findEmailList#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findEmailList#0;class#EmailDOAImpl#0" />
-                    <element signature="method#findFrom#0;class#EmailDOAImpl#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="EmailDOATest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="255" column="84" selection-start-line="255" selection-start-column="84" selection-end-line="255" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#seedDatabase#0;class#EmailDOATest#0" />
+                <element signature="method#loadAsString#0;class#EmailDOATest#0" />
+                <element signature="method#splitStatements#0;class#EmailDOATest#0" />
+                <element signature="method#isComment#0;class#EmailDOATest#0" />
+                <element signature="method#createBasicBean#0;class#EmailDOATest#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -259,10 +123,10 @@
       <find>createemail</find>
       <find>findallemail</find>
       <find>findallemailbean</find>
-      <find>findallem</find>
       <find>findallemails</find>
       <find>findallemailb</find>
       <find>createemailstosend</find>
+      <find>findallem</find>
     </findStrings>
     <replaceStrings>
       <replace>createBasicBean</replace>
@@ -308,9 +172,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOAImplTest.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ba7efd87-b935-4661-82d3-5b7d08ff85b5/console.sql" />
         <option value="$PROJECT_DIR$/src/test/resources/createEmailSchema.sql" />
-        <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java" />
       </list>
     </option>
   </component>
@@ -523,7 +387,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EmailDOATest.testFindAllEmailsBeans">
+  <component name="RunManager" selected="JUnit.EmailDOATest.testFindEmailAddress">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -550,7 +414,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EmailDOATest.testCreateDuplicateEmailBean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmailDOATest.testDuplicateSameFolder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGMail1633839" />
       <extension name="coverage">
         <pattern>
@@ -562,7 +426,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.saadkhan.persistence" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.persistence.EmailDOATest" />
-      <option name="METHOD_NAME" value="testCreateDuplicateEmailBean" />
+      <option name="METHOD_NAME" value="testDuplicateSameFolder" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -596,6 +460,29 @@
       </option>
       <patterns />
     </configuration>
+    <configuration name="EmailDOATest.testFindEmailAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JavaApplicationGMail1633839" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.saadkhan.persistence.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.saadkhan.persistence" />
+      <option name="MAIN_CLASS_NAME" value="com.saadkhan.persistence.EmailDOATest" />
+      <option name="METHOD_NAME" value="testFindEmailAddress" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
     <configuration name="EmailDOATest.testFindEmailBeanBean" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaApplicationGMail1633839" />
       <extension name="coverage">
@@ -609,29 +496,6 @@
       <option name="PACKAGE_NAME" value="com.saadkhan.persistence" />
       <option name="MAIN_CLASS_NAME" value="com.saadkhan.persistence.EmailDOATest" />
       <option name="METHOD_NAME" value="testFindEmailBeanBean" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="EmailDOATest.testUpdateEmailAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JavaApplicationGMail1633839" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.saadkhan.persistence.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.saadkhan.persistence" />
-      <option name="MAIN_CLASS_NAME" value="com.saadkhan.persistence.EmailDOATest" />
-      <option name="METHOD_NAME" value="testUpdateEmailAddress" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -715,19 +579,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.EmailSenderTest.sendOnlyHtml" />
-      <item itemvalue="JUnit.EmailDOATest.testUpdateEmailAddress" />
       <item itemvalue="JUnit.EmailDOATest" />
-      <item itemvalue="JUnit.EmailDOATest.testCreateDuplicateEmailBean" />
       <item itemvalue="JUnit.EmailDOATest.testFindEmailBeanBean" />
       <item itemvalue="JUnit.EmailDOATest.testFindAllEmailsBeans" />
+      <item itemvalue="JUnit.EmailDOATest.testDuplicateSameFolder" />
+      <item itemvalue="JUnit.EmailDOATest.testFindEmailAddress" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EmailDOATest.testFindEmailAddress" />
         <item itemvalue="JUnit.EmailDOATest.testFindAllEmailsBeans" />
+        <item itemvalue="JUnit.EmailDOATest.testDuplicateSameFolder" />
         <item itemvalue="JUnit.EmailDOATest" />
         <item itemvalue="JUnit.EmailDOATest.testFindEmailBeanBean" />
-        <item itemvalue="JUnit.EmailDOATest.testCreateDuplicateEmailBean" />
-        <item itemvalue="JUnit.EmailDOATest.testUpdateEmailAddress" />
       </list>
     </recent_temporary>
   </component>
@@ -780,20 +644,11 @@
       <workItem from="1538142607559" duration="7233000" />
       <workItem from="1538154362455" duration="7326000" />
       <workItem from="1538238560627" duration="41108000" />
-      <workItem from="1538325121748" duration="11573000" />
+      <workItem from="1538325121748" duration="15471000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EmailDOATest_testCreateDuplicateEmailBean - 2018.09.30 at 01h 31m 40s.xml">
-      <configuration name="EmailDOATest.testCreateDuplicateEmailBean" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailDOATest - 2018.09.30 at 02h 02m 15s.xml">
-      <configuration name="EmailDOATest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EmailDOATest - 2018.09.30 at 02h 03m 14s.xml">
-      <configuration name="EmailDOATest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="EmailDOATest - 2018.09.30 at 02h 04m 50s.xml">
       <configuration name="EmailDOATest" configurationId="JUnit" />
     </history-entry>
@@ -815,9 +670,18 @@
     <history-entry file="EmailDOATest_testFindAllEmailsBeans - 2018.09.30 at 16h 03m 54s.xml">
       <configuration name="EmailDOATest.testFindAllEmailsBeans" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="EmailDOATest_testDuplicateSameFolder - 2018.09.30 at 17h 37m 35s.xml">
+      <configuration name="EmailDOATest.testDuplicateSameFolder" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailDOATest_testFindAllEmailsBeans - 2018.09.30 at 17h 40m 37s.xml">
+      <configuration name="EmailDOATest.testFindAllEmailsBeans" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EmailDOATest_testFindEmailAddress - 2018.09.30 at 17h 53m 58s.xml">
+      <configuration name="EmailDOATest.testFindEmailAddress" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300237000" />
+    <option name="totallyTimeSpent" value="304135000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -902,15 +766,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java</url>
-          <line>75</line>
-          <properties />
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="144" />
+      <option name="time" value="145" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1175,13 +1031,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOAImplTest.java" />
-    <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/folder">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/emailaddresses">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1210,13 +1059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/emailbean">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/createEmailSchema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1234,28 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="88" selection-start-column="88" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="72" column="61" selection-start-line="72" selection-start-column="61" selection-end-line="72" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#seedDatabase#0;class#EmailDOATest#0" />
-            <element signature="method#loadAsString#0;class#EmailDOATest#0" />
-            <element signature="method#splitStatements#0;class#EmailDOATest#0" />
-            <element signature="method#isComment#0;class#EmailDOATest#0" />
-            <element signature="method#createBasicBean#0;class#EmailDOATest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1318">
@@ -1263,22 +1083,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="149" column="7" lean-forward="true" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="634" lean-forward="true" selection-start-line="634" selection-end-line="634" />
+        <state relative-caret-position="124">
+          <caret line="495" column="55" lean-forward="true" selection-start-line="495" selection-start-column="55" selection-end-line="495" selection-end-column="55" />
           <folding>
-            <element signature="docComment;method#EmailDOAImpl#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createEmailAddress#0;class#EmailDOAImpl#0" />
             <element signature="method#createEmailAddress#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findEmailAddress#0;class#EmailDOAImpl#0" />
             <element signature="method#findEmailAddress#0;class#EmailDOAImpl#0" />
             <element signature="docComment;method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
             <element signature="method#deleteEmailAddress#0;class#EmailDOAImpl#0" />
@@ -1292,51 +1102,68 @@
             <element signature="method#deleteEmailBean#0;class#EmailDOAImpl#0" />
             <element signature="docComment;method#updateFolder#0;class#EmailDOAImpl#0" />
             <element signature="method#updateFolder#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#updateEmailAddress#0;class#EmailDOAImpl#0" />
             <element signature="method#updateEmailAddress#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#checkIfEmailAddressExists#0;class#EmailDOAImpl#0" />
             <element signature="method#checkIfEmailAddressExists#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findAllEmailAddresses#0;class#EmailDOAImpl#0" />
             <element signature="method#findAllEmailAddresses#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createEmailBean#0;class#EmailDOAImpl#0" />
-            <element signature="method#createEmailBean#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findEmailBean#0;class#EmailDOAImpl#0" />
             <element signature="method#findEmailBean#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createEmailsToSend#0;class#EmailDOAImpl#0" />
             <element signature="method#createEmailsToSend#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#checkIfEmailBeanExists#0;class#EmailDOAImpl#0" />
             <element signature="method#checkIfEmailBeanExists#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findAllEmailBeans#0;class#EmailDOAImpl#0" />
-            <element signature="method#findAllEmailBeans#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createEmailBeanAddress#0;class#EmailDOAImpl#0" />
-            <element signature="method#createEmailBeanAddress#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#checkIfEmailBeanAddressExists#0;class#EmailDOAImpl#0" />
             <element signature="method#checkIfEmailBeanAddressExists#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createFolder#0;class#EmailDOAImpl#0" />
             <element signature="method#createFolder#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#checkIfFolderExists#0;class#EmailDOAImpl#0" />
             <element signature="method#checkIfFolderExists#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#createAttachments#0;class#EmailDOAImpl#0" />
             <element signature="method#createAttachments#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#checkIfAttachmentExists#0;class#EmailDOAImpl#0" />
             <element signature="method#checkIfAttachmentExists#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findAllAttachments#0;class#EmailDOAImpl#0" />
             <element signature="method#findAllAttachments#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findEmail#0;class#EmailDOAImpl#0" />
-            <element signature="method#findEmail#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findFileAttachments#0;class#EmailDOAImpl#0" />
             <element signature="method#findFileAttachments#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#getEmailBean#0;class#EmailDOAImpl#0" />
             <element signature="method#getEmailBean#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findFolder#0;class#EmailDOAImpl#0" />
             <element signature="method#findFolder#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findFolder#1;class#EmailDOAImpl#0" />
             <element signature="method#findFolder#1;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findAllFolders#0;class#EmailDOAImpl#0" />
             <element signature="method#findAllFolders#0;class#EmailDOAImpl#0" />
-            <element signature="docComment;method#findEmailList#0;class#EmailDOAImpl#0" />
             <element signature="method#findEmailList#0;class#EmailDOAImpl#0" />
             <element signature="method#findFrom#0;class#EmailDOAImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="149" column="7" selection-start-line="149" selection-start-column="7" selection-end-line="149" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/folder">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/emailbean">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="88" selection-start-column="88" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/persistence/EmailDOATest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="255" column="84" selection-start-line="255" selection-start-column="84" selection-end-line="255" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#seedDatabase#0;class#EmailDOATest#0" />
+            <element signature="method#loadAsString#0;class#EmailDOATest#0" />
+            <element signature="method#splitStatements#0;class#EmailDOATest#0" />
+            <element signature="method#isComment#0;class#EmailDOATest#0" />
+            <element signature="method#createBasicBean#0;class#EmailDOATest#0" />
           </folding>
         </state>
       </provider>
