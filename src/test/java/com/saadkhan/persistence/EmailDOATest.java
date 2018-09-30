@@ -194,7 +194,6 @@ public class EmailDOATest {
 
     /**
      * test to delete an email address in emailadddress table using id
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testDeleteEmailAddressId() throws SQLException {
@@ -204,7 +203,6 @@ public class EmailDOATest {
 
     /**
      * test to delete email address in emailaddress table using email
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testDeleteEmailAddressEmail() throws SQLException {
@@ -214,7 +212,6 @@ public class EmailDOATest {
 
     /**
      * test to delete folder in folder table using id
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testDeleteFolderId() throws SQLException {
@@ -224,7 +221,6 @@ public class EmailDOATest {
 
     /**
      * test to delete folder in folder table using folder name
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testDeleteFolderName() throws SQLException {
@@ -234,7 +230,6 @@ public class EmailDOATest {
 
     /**
      * test to delte emailbean in emailbean table using emailid
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testDeleteEmailBean() throws SQLException {
@@ -244,7 +239,6 @@ public class EmailDOATest {
 
     /**
      * update folder name by specifying id and new name of folder
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testUpdateFolder() throws SQLException {
@@ -254,7 +248,6 @@ public class EmailDOATest {
 
     /**
      * update email address and name using email id to specify which email to change
-     * @throws SQLException
      */
     @Test(timeout = 1000)
     public void testUpdateEmailAddress() throws SQLException {
