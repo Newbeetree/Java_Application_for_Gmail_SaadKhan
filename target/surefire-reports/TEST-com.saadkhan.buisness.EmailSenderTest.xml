@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="com.saadkhan.buisness.EmailSenderTest" time="65.434" errors="0" skipped="0">
+<testsuite tests="11" failures="0" name="com.saadkhan.buisness.EmailSenderTest" time="137.684" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2018.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -62,14 +62,15 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendInvalidCC" time="0.078"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendInvalidTo" time="0"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyHtml" time="12.925"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendAndReceiveWithAllFields" time="11.955"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyAttachments" time="11.064"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendHtmlNull" time="5.001"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyMessage" time="8.783"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendMessageNull" time="5.001"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendNullSubject" time="9.736"/>
-  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendNothing" time="0.891"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendInvalidCC" time="4.257"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendInvalidTo" time="2.155"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyHtml" time="16.063"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendAndReceiveWithAllFields" time="19.327"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyAttachments" time="18.138"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendHtmlNull" time="7.121"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyMessage" time="15.776"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendMessageNull" time="7.157"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendNullSubject" time="15.793"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendNothing" time="16.358"/>
+  <testcase classname="com.saadkhan.buisness.EmailSenderTest" name="sendOnlyHtmlAndText" time="15.539"/>
 </testsuite>

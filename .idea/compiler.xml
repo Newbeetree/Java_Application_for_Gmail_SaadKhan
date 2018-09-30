@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JavaApplicationGmail1633839" />
+        <module name="JavaApplicationGMail1633839" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

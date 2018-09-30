@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS JAG   ;
+CREATE DATABASE JAG;
+
+USE JAG;
+
+DROP USER IF EXISTS auser@localhost;
+CREATE USER auser@'localhost' IDENTIFIED BY '123password';
+GRANT ALL ON JAG.* TO auser@'localhost';
+FLUSH PRIVILEGES;

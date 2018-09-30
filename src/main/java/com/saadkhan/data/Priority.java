@@ -1,9 +1,12 @@
+
+
 package com.saadkhan.data;
 
 /**
  * priorit of the email
  */
 public enum Priority {
+
     PRIORITY_LOWEST(0),
     PRIORITY_LOW(1),
     PRIORITY_NORMAL(2),
@@ -14,7 +17,6 @@ public enum Priority {
 
     /**
      * Constructor of Enums which can take an ordinal value to set
-     *
      * @param value ordinal value
      */
     Priority(int value) {
@@ -28,3 +30,4 @@ public enum Priority {
         return value;
     }
 }
+

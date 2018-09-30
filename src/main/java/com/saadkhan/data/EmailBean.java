@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 
 import jodd.mail.EmailAddress;
@@ -15,6 +16,7 @@ import jodd.mail.EmailAddress;
  */
 public class EmailBean implements Serializable {
 
+    private int emailID;
     private EmailAddress from;
     private ArrayList<EmailAddress> to;
     private ArrayList<EmailAddress> cc;
@@ -24,7 +26,6 @@ public class EmailBean implements Serializable {
     private String htmlMessage;
     private boolean seen;
     private ArrayList<FileAttachmentBean> attachments;
-    private ArrayList<FileAttachmentBean> imbedAttachments;
     private String messageType;
     private LocalDateTime send;
     private LocalDateTime recived;
@@ -35,16 +36,16 @@ public class EmailBean implements Serializable {
      * Constructor sets all values of the email bean to the defualt values
      */
     public EmailBean() {
+        emailID = 0;
         from = null;
-        to = new ArrayList<EmailAddress>();
-        cc = new ArrayList<EmailAddress>();
-        bcc = new ArrayList<EmailAddress>();
+        to = new ArrayList<>();
+        cc = new ArrayList<>();
+        bcc = new ArrayList<>();
         subject = "";
         message = "";
         htmlMessage = "";
         seen = false;
-        attachments = new ArrayList<FileAttachmentBean>();
-        imbedAttachments = new ArrayList<FileAttachmentBean>();
+        attachments = new ArrayList<>();
         messageType = "";
         send = LocalDateTime.now();
         recived = LocalDateTime.now();
@@ -187,20 +188,6 @@ public class EmailBean implements Serializable {
         return this;
     }
 
-    /**
-     * @return Arraylist of all imbedded attachments
-     */
-    public ArrayList<FileAttachmentBean> getImbedAttachments() {
-        return imbedAttachments;
-    }
-
-    /**
-     * @param imbedAttachments arraylist of attachments to set
-     */
-    public EmailBean setImbedAttachments(ArrayList<FileAttachmentBean> imbedAttachments) {
-        this.imbedAttachments = imbedAttachments;
-        return this;
-    }
 
     /**
      * @return string of message type
@@ -225,7 +212,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param send LocalDateTime of the send to set
      */
     public void setSend(LocalDateTime send) {
@@ -233,7 +219,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return LocalDateTime of when object was recieved
      */
     public LocalDateTime getRecived() {
@@ -241,7 +226,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param recived set LocalDateTime of when object was received
      */
     public void setRecived(LocalDateTime recived) {
@@ -249,7 +233,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return string representing which folder email belonged to
      */
     public String getFolder() {
@@ -257,7 +240,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @param folder string representing the name of folder to set
      */
     public EmailBean setFolder(String folder) {
@@ -266,7 +248,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
      * @return Priorty of email
      */
     public Priority getPriority() {
@@ -274,15 +255,6 @@ public class EmailBean implements Serializable {
     }
 
     /**
-     *
-     * @param priority set the priority of email
-     */
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    /**
-     *
      * @param priority set priority of email using an integer
      */
     public void setPriority(int priority) {
@@ -308,7 +280,15 @@ public class EmailBean implements Serializable {
     }
 
     /**
+     * @param priority set the priority of email
+     */
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    /**
      * Checks if two email objects are the same
+     *
      * @param o Email bean that is being used to compare with other emailbean
      * @return boolean true if same, false if wrong
      */
@@ -318,26 +298,25 @@ public class EmailBean implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         EmailBean emailBean = (EmailBean) o;
         boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
-        boolean work2 = emailEqual(to,emailBean.to);
-        boolean work3 = emailEqual(cc,emailBean.cc) ;
+        boolean work2 = emailEqual(to, emailBean.to);
+        boolean work3 = emailEqual(cc, emailBean.cc);
         boolean work4 = subjectEquals(subject, emailBean.subject);
-        boolean work5=  Objects.equals(message, emailBean.message);
-        boolean work6=  Objects.equals(htmlMessage, emailBean.htmlMessage);
-        boolean work7 = attachEqual(attachments,emailBean.attachments);
-        boolean work8  = attachEqual(imbedAttachments, emailBean.imbedAttachments);
+        boolean work5 = Objects.equals(message, emailBean.message);
+        boolean work6 = Objects.equals(htmlMessage, emailBean.htmlMessage);
+        boolean work7 = attachEqual(attachments, emailBean.attachments);
         return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
                 emailEqual(to, emailBean.to) &&
                 emailEqual(cc, emailBean.cc) &&
                 subjectEquals(subject, emailBean.subject) &&
                 Objects.equals(message, emailBean.message) &&
                 Objects.equals(htmlMessage, emailBean.htmlMessage) &&
-                attachEqual(attachments, emailBean.attachments) &&
-                attachEqual(imbedAttachments, emailBean.imbedAttachments);
+                attachEqual(attachments, emailBean.attachments);
     }
 
     /**
      * checks if two subjects are the same taking into account if one is unknown
-     * @param toSubject subject that was in the bean
+     *
+     * @param toSubject   subject that was in the bean
      * @param fromSubject subject that we received from gmail server
      * @return true if same, false if wrong
      */
@@ -349,13 +328,16 @@ public class EmailBean implements Serializable {
 
     /**
      * takes both arraylists and checks if they are equal
-     * @param to Arraylist of email addresses from emailbean
+     *
+     * @param to   Arraylist of email addresses from emailbean
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
     private boolean emailEqual(ArrayList<EmailAddress> to, ArrayList<EmailAddress> from) {
         if (to.size() == 0 && from.size() == 0)
             return true;
+        if(to.size() != from.size())
+            return false;
         for (int i = 0; i < to.size(); i++) {
             if (!(to.get(i).getEmail().equals(from.get(i).getEmail()))) {
                 return false;
@@ -366,16 +348,38 @@ public class EmailBean implements Serializable {
 
     /**
      * takes both arraylists of attachments and checks if they are equal
-     * @param to Arraylist of email addresses from emailbean
+     *
+     * @param to   Arraylist of email addresses from emailbean
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
     private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
+        if(to.size() != from.size())
+            return false;
+        to.sort(Comparator.comparing(FileAttachmentBean::getName));
+        from.sort(Comparator.comparing(FileAttachmentBean::getName));
         for (int i = 0; i < to.size(); i++) {
             if (!(Arrays.equals(to.get(0).getFile(), from.get(0).getFile()))) {
                 return false;
             }
         }
         return true;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFrom(), getTo(), getCc(), getBcc(), getSubject(), getMessage(),
+                getHtmlMessage(), isSeen(), getAttachments(), getMessageType(), getSend(),
+                getRecived(), getFolder(), getPriority(), getEmailID());
+    }
+
+    public int getEmailID() {
+        return emailID;
+    }
+
+    public EmailBean setEmailID(int emailID) {
+        this.emailID = emailID;
+        return this;
     }
 }

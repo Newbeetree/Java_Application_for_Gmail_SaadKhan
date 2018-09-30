@@ -8,7 +8,16 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
-      <introspection-schemas>*:information_schema</introspection-schemas>
+      <introspection-schemas>*:information_schema,jag</introspection-schemas>
+    </data-source>
+    <data-source name="@JagProject" uuid="29a8f323-a79a-4333-b8df-14cb9de1de52">
+      <database-info product="MySQL" version="8.0.12" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>root</user-name>
+      <introspection-schemas>*:jag</introspection-schemas>
     </data-source>
   </component>
 </project>

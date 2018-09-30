@@ -1,6 +1,8 @@
 package com.saadkhan.data;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * FileAttachmentBean is serializable and has getters and setters for files and
@@ -10,8 +12,10 @@ import java.io.Serializable;
  */
 public class FileAttachmentBean implements Serializable {
 
+    private int attachID;
     private byte[] file;
     private String name;
+    private boolean type;
 
     /**
      * constructor for default FileAttachmentBean
@@ -25,9 +29,19 @@ public class FileAttachmentBean implements Serializable {
      * @param file the byte array of the file
      * @param name the name of said file
      */
-    public FileAttachmentBean(byte[] file, String name) {
+    public FileAttachmentBean(byte[] file, String name, boolean type) {
         this.file = file;
         this.name = name;
+        this.type = type;
+    }
+
+    public int getAttachID() {
+        return attachID;
+    }
+
+    public FileAttachmentBean setAttachID(int attachID) {
+        this.attachID = attachID;
+        return this;
     }
 
     /**
@@ -58,5 +72,40 @@ public class FileAttachmentBean implements Serializable {
     public FileAttachmentBean setName(String name) {
         this.name = name;
         return this;
+    }
+
+    /**
+     * @return type of file
+     */
+    public boolean getType() {
+        return type;
+    }
+
+    /**
+     * @param type type of the file to attach, either imbedded or attached
+     *             true for imbed
+     *             false for attach
+     */
+    public FileAttachmentBean setType(boolean type) {
+        this.type = type;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FileAttachmentBean that = (FileAttachmentBean) o;
+        return getType() == that.getType() &&
+                Arrays.equals(getFile(), that.getFile()) &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = Objects.hash(getName(), getType());
+        result = 31 * result + Arrays.hashCode(getFile());
+        return result;
     }
 }

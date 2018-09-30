@@ -1,4 +1,6 @@
+com\saadkhan\persistence\EmailDOA.class
 com\saadkhan\buisness\EmailReceiver.class
+com\saadkhan\persistence\EmailDOAImpl.class
 com\saadkhan\data\FileAttachmentBean.class
 com\saadkhan\data\EmailBean.class
 com\saadkhan\data\Priority.class
