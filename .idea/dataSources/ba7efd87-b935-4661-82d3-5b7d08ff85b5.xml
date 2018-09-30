@@ -4174,11 +4174,13 @@
     <column id="968" parent="342" name="Email_Id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="969" parent="342" name="File_Name">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="970" parent="342" name="File_Attach">
@@ -4189,6 +4191,7 @@
     <column id="971" parent="342" name="File_Type">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="972" parent="342" name="Email_Id">
@@ -4220,7 +4223,8 @@
     </column>
     <column id="977" parent="343" name="Address">
       <Position>3</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="978" parent="343" name="PRIMARY">
@@ -4238,6 +4242,7 @@
     <column id="980" parent="344" name="Email_From">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="981" parent="344" name="Email_Subject">
@@ -4258,21 +4263,25 @@
     <column id="984" parent="344" name="Send_Date">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="985" parent="344" name="Receive_Date">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="986" parent="344" name="Priority">
       <Position>8</Position>
-      <DataType>int(1)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="987" parent="344" name="Folder_Id">
       <Position>9</Position>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="988" parent="344" name="Email_From">
@@ -4302,17 +4311,20 @@
     </foreign-key>
     <column id="993" parent="345" name="Bean_Id">
       <Position>1</Position>
-      <DataType>int(10)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="994" parent="345" name="Email_Id">
       <Position>2</Position>
-      <DataType>int(10)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="995" parent="345" name="Email_Type">
       <Position>3</Position>
       <DataType>varchar(4)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="996" parent="345" name="Bean_Id">
@@ -4345,6 +4357,7 @@
     <column id="1001" parent="346" name="Folder_Name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="1002" parent="346" name="PRIMARY">

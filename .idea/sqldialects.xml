@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/test/resources/createEmailDB.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/test/resources/createEmailSchema.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/createEmailTable.sql" dialect="MySQL" />
   </component>
 </project>

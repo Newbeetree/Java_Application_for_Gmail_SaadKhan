@@ -23,8 +23,8 @@ public class EmailDOAImpl implements EmailDOA {
 
     private final Logger LOG = LoggerFactory.getLogger(EmailDOAImpl.class);
 
-    private final String URL = "jdbc:mysql://localhost:3306/jag?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-    private final String USER = "root";
+    private final String URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+    private final String USER = "auser";
     private final String PASSWORD = "123password";
 
     /**
@@ -77,12 +77,20 @@ public class EmailDOAImpl implements EmailDOA {
     /**
      * Deletes an EmailAddress and Name from the EmailAddress table using the email id
      *
-     * @param Email_Id Id for email in EmailAddress Table
+     * @param email_Id Id for email in EmailAddress Table
      * @return int being 0 for failure of delete and 1 be success
      */
     @Override
-    public int deleteEmailAddress(int Email_Id) throws SQLException {
-        return 0;
+    public int deleteEmailAddress(int email_Id) throws SQLException {
+        int result;
+        String deleteQuery = "DELETE FROM EmailAddresses WHERE Email_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(deleteQuery);) {
+            ps.setInt(1, email_Id);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records deleted : " + result);
+        return result;
     }
 
     /**
@@ -93,62 +101,93 @@ public class EmailDOAImpl implements EmailDOA {
      */
     @Override
     public int deleteEmailAddress(String Email_Address) throws SQLException {
-        return 0;
+        int result;
+        String deleteQuery = "DELETE FROM EmailAddresses WHERE Address = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(deleteQuery);) {
+            ps.setString(1, Email_Address);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records deleted : " + result);
+        return result;
     }
 
     /**
      * Deletes a Folder from the Folder table using the folder id
      *
-     * @param Folder_Id Id for email in EmailAddress Table
+     * @param folder_Id Id for email in EmailAddress Table
      * @return int being 0 for failure of delete and 1 be success
      */
     @Override
-    public int deleteFolder(int Folder_Id) throws SQLException {
-        return 0;
+    public int deleteFolder(int folder_Id) throws SQLException {
+        int result;
+        String deleteQuery = "DELETE FROM Folder WHERE Folder_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(deleteQuery);) {
+            ps.setInt(1, folder_Id);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records deleted : " + result);
+        return result;
     }
 
     /**
      * Deletes a Folder from the Folder table using the folder name
      *
-     * @param Folder_Name name of the folder in the table
+     * @param folder_Name name of the folder in the table
      * @return int being 0 for failure and 1 for success
      */
     @Override
-    public int deleteFolder(String Folder_Name) throws SQLException {
-        return 0;
+    public int deleteFolder(String folder_Name) throws SQLException {
+        int result;
+        String deleteQuery = "DELETE FROM Folder WHERE Folder_Name = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(deleteQuery);) {
+            ps.setString(1, folder_Name);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records deleted : " + result);
+        return result;
     }
 
     /**
      * Deletes an Email Bean from the email bean table using the email bean id
      *
-     * @param Email_Id id for the email inside the emailbean table
+     * @param email_Id id for the email inside the emailbean table
      * @return int being 0 for failure and 1 for success
      */
     @Override
-    public int deleteEmailBean(int Email_Id) throws SQLException {
-        return 0;
+    public int deleteEmailBean(int email_Id) throws SQLException {
+        int result;
+        String deleteQuery = "DELETE FROM EmailBean WHERE Bean_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(deleteQuery);) {
+            ps.setInt(1, email_Id);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records deleted : " + result);
+        return result;
     }
 
     /**
      * makes updates in the folder table regarding folder name
      *
      * @param folder_Id id of the folder that is to be changed
+     * @param newName   new name of file to be replaced
      * @return 0 for failure and 1 for success
      */
     @Override
-    public int updateFolder(int folder_Id) throws SQLException {
-        return 0;
-    }
-
-    /**
-     * makes updates in the folder table regarding folder name
-     *
-     * @param folder_name name of the folder that is to be changed
-     * @return 0 for failure and 1 for success
-     */
-    @Override
-    public int updateFolder(String folder_name) throws SQLException {
-        return 0;
+    public int updateFolder(int folder_Id, String newName) throws SQLException {
+        int result;
+        String updateQuery = "UPDATE Folder SET Folder_Name=? WHERE Folder_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(updateQuery);) {
+            ps.setString(1, newName);
+            ps.setInt(2, folder_Id);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records updated : " + result);
+        return result;
     }
 
     /**
@@ -158,41 +197,18 @@ public class EmailDOAImpl implements EmailDOA {
      * @return 0 for failure and 1 for success
      */
     @Override
-    public int updateEmailAddressAddress(int email_Id) throws SQLException {
-        return 0;
-    }
-
-    /**
-     * makes updates in the emailaddress table changing the email address
-     *
-     * @param emailaddress name of the email we want to change
-     * @return 0 for failure and 1 for success
-     */
-    @Override
-    public int updateEmailAddressAddress(String emailaddress) throws SQLException {
-        return 0;
-    }
-
-    /**
-     * makes updates in the email address table changing the name
-     *
-     * @param email_id id of the email to change
-     * @return 0 for failure and 1 for success
-     */
-    @Override
-    public int updateEmailAddressName(int email_id) throws SQLException {
-        return 0;
-    }
-
-    /**
-     * makes updates in the email address the table changing the name
-     *
-     * @param name name of the email to change
-     * @return 0 for failure and 1 for success
-     */
-    @Override
-    public int updateEmailAddressName(String name) throws SQLException {
-        return 0;
+    public int updateEmailAddress(int email_Id, String newName, String newAddress) throws SQLException {
+        int result;
+        String updateQuery = "UPDATE EmailAddresses SET Name=?, Address = ? WHERE Email_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(updateQuery);) {
+            ps.setString(1, newName);
+            ps.setString(2, newAddress);
+            ps.setInt(3, email_Id);
+            result = ps.executeUpdate();
+        }
+        LOG.info("# of records updated : " + result);
+        return result;
     }
 
     private boolean checkIfEmailAddressExists(EmailAddress email) throws SQLException {

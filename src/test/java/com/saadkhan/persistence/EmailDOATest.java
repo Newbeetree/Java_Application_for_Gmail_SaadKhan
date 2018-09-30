@@ -1,10 +1,8 @@
-package persistence;
+package com.saadkhan.persistence;
 
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.data.Priority;
-import com.saadkhan.persistence.EmailDOA;
-import com.saadkhan.persistence.EmailDOAImpl;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,10 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -29,7 +24,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 import jodd.mail.EmailAddress;
 
@@ -39,46 +33,29 @@ import static org.junit.Assert.assertNotEquals;
 public class EmailDOATest {
 
     private final static Logger LOG = LoggerFactory.getLogger(EmailDOATest.class);
+    private EmailDOA emailDOA = new EmailDOAImpl();
 
     @Test(timeout = 1000)
-    public void testFindAllEmails() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
-        List<EmailBean> emails = emailDOA.findAllEmails();
-        assertEquals("# of emails", 25, emails.size());
-    }
-
-    @Test(timeout = 1000)
-    public void testFindAllFolders() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
-        ArrayList<String> folders = emailDOA.findAllFolders();
-        assertEquals("# of folders", 6, folders.size());
-    }
-
-    @Test(timeout = 1000)
-    public void testFindAllEmailBeans() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
-        List<EmailBean> folders = emailDOA.findAllEmailBeans();
-        assertEquals("# of folders", 25, folders.size());
+    public void testCreateEmailAddress() throws SQLException {
+        int success = emailDOA.createEmailAddress(new EmailAddress("agdssfd", "rsghjfdgs"));
+        assertNotEquals(0, success);
     }
 
     @Test(timeout = 1000)
     public void testCreateFolder() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         int success = emailDOA.createFolder("Read");
         assertNotEquals(0, success);
     }
 
-    @Test(timeout = 100000)
+    @Test(timeout = 1000)
     public void testCreateEmailBean() throws SQLException, IOException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         EmailBean bean = createBasicBean();
         int success = emailDOA.createEmailBean(bean);
         assertNotEquals(0, success);
     }
 
-    @Test(timeout = 100000)
+    @Test(timeout = 10000)
     public void testCreateDuplicateEmailBean() throws SQLException, IOException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         EmailBean bean = createBasicBean();
         int email_id = emailDOA.createEmailBean(bean);
         int success = emailDOA.createEmailBean(bean);
@@ -87,44 +64,140 @@ public class EmailDOATest {
 
     @Test(timeout = 1000)
     public void testDuplicateSameFolder() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         int success = emailDOA.createFolder("Inbox");
         assertNotEquals(0, success);
     }
 
     @Test(timeout = 1000)
-    public void testCreateEmailAddress() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
-        int success = emailDOA.createEmailAddress(new EmailAddress("agdssfd", "rsghjfdgs"));
-        assertNotEquals(0, success);
+    public void testFindAllEmails() throws SQLException {
+        List<EmailBean> emails = emailDOA.findAllEmails();
+        assertEquals("# of emails", 25, emails.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testFindAllFolders() throws SQLException {
+        ArrayList<String> folders = emailDOA.findAllFolders();
+        assertEquals("# of folders", 6, folders.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testFindAllEmailBeans() throws SQLException {
+        List<EmailBean> folders = emailDOA.findAllEmailBeans();
+        assertEquals("# of folders", 25, folders.size());
     }
 
     @Test(timeout = 1000)
     public void testFindEmailAddress() throws SQLException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         int success = emailDOA.findEmailAddress(new EmailAddress("user name", "send.1633839@gmail.com"));
         assertEquals("Email not found", 26, success);
     }
 
-    @Test(timeout = 100000)
+    @Test(timeout = 1000)
     public void testFindEmailBean() throws SQLException, IOException {
-        EmailDOA emailDOA = new EmailDOAImpl();
         int email_id = emailDOA.createEmailBean(createBasicBean());
         int success = emailDOA.findEmailBean(createBasicBean());
         assertEquals("emailbean not found", email_id, success);
     }
 
+    @Test(timeout = 1000)
+    public void testFindEmailBeanBean() throws SQLException, IOException {
+        int email_id = emailDOA.createEmailBean(createBasicBean());
+        EmailBean success = emailDOA.findEmail(email_id);
+        assertEquals("emailbean not found", createBasicBean(), success);
+    }
+
+    @Test(timeout = 1000)
+    public void testFindEmail() throws SQLException, IOException {
+        EmailBean basic = createBasicBean();
+        emailDOA.createEmailBean(basic);
+        EmailBean bean = emailDOA.findEmail(26);
+        assertEquals("Beans not Equal", bean, basic);
+    }
+
+    @Test(timeout = 1000)
+    public void testFindFileAttachments() throws SQLException {
+        ArrayList<FileAttachmentBean> fabList = emailDOA.findAllAttachments();
+        assertEquals("all files return", 10, fabList.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testFindFolderID() throws SQLException {
+        String folderName = emailDOA.findFolder(1);
+        assertEquals("folder not found", "Inbox", folderName);
+    }
+
+    @Test(timeout = 1000)
+    public void testFindFolderString() throws SQLException {
+        int folder_id = emailDOA.findFolder("Inbox");
+        assertEquals("folder not found", 1, folder_id);
+    }
+
+    @Test(timeout = 1000)
+    public void testFindEmailList() throws SQLException {
+        ArrayList<EmailAddress> emailaddresslist = emailDOA.findEmailList(12, "To");
+        assertEquals("emails not found", 2, emailaddresslist.size());
+    }
+
+    @Test(timeout = 1000)
+    public void testFindFrom() throws SQLException {
+        EmailAddress ea = emailDOA.findFrom(26);
+        assertEquals("Found from email", "users name", ea.getPersonalName());
+    }
+
+    @Test(timeout = 1000)
+    public void testDeleteEmailAddressId() throws SQLException {
+        int result = emailDOA.deleteEmailAddress(26);
+        assertEquals("message was deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testDeleteEmailAddressEmail() throws SQLException {
+        int result = emailDOA.deleteEmailAddress("send.1633839@gmail.com");
+        assertEquals("message was deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testDeleteFolderId() throws SQLException {
+        int result = emailDOA.deleteFolder(1);
+        assertEquals("folder not deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testDeleteFolderName() throws SQLException {
+        int result = emailDOA.deleteFolder("Inbox");
+        assertEquals("folder not deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testDeleteEmailBean() throws SQLException {
+        int result = emailDOA.deleteEmailBean(1);
+        assertEquals("folder not deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testUpdateFolder() throws SQLException {
+        int result = emailDOA.updateFolder(1, "My Inbox");
+        assertEquals("folder not deleted", 1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testUpdateEmailAddress() throws SQLException {
+        int result = emailDOA.updateEmailAddress(26, "user", "other.1633839@gmail.com");
+        assertEquals("folder not deleted", 1, result);
+    }
+
     @Before
     public void seedDatabase() {
         LOG.info("Seeding Database");
-        String URL = "jdbc:mysql://localhost:3306/jag?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-        String user = "root";
-        String password = "123password";
+        final String URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+        final String user = "auser";
+        final String password = "123password";
         final String seedDataScript = loadAsString("./src/test/resources/createEmailSchema.sql");
         final String seedTableScript = loadAsString("./src/test/resources/createEmailDB.sql");
+        final String seedEmailTable = loadAsString("./src/test/resources/createEmailTable.sql");
         try (Connection connection = DriverManager.getConnection(URL, user, password)) {
             for (String statement : splitStatements(new StringReader(
-                    seedDataScript), ";")) {
+                    seedEmailTable), ";")) {
                 connection.prepareStatement(statement).execute();
             }
             for (String statement : splitStatements(new StringReader(
@@ -173,7 +246,6 @@ public class EmailDOATest {
         return line.startsWith("--") || line.startsWith("//")
                 || line.startsWith("/*");
     }
-
 
     private EmailBean createBasicBean() throws IOException {
         EmailBean bean = new EmailBean();
