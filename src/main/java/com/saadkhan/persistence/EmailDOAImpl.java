@@ -34,6 +34,13 @@ public class EmailDOAImpl implements EmailDOA {
         super();
     }
 
+    /**
+     * create an entry in the emailAddress table using a jodd emailAddress,
+     * if the email is already in the table simply return the emailAddress id
+     *
+     * @param email email address field that contains both name and email address
+     * @return int that represents the id of the email address in the table
+     */
     @Override
     public int createEmailAddress(EmailAddress email) throws SQLException {
         int id = 0;
@@ -57,6 +64,11 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
+    /**
+     * find email address id using this specific jodd email
+     *
+     * @return int the email id of the email address
+     */
     @Override
     public int findEmailAddress(EmailAddress emailAddress) throws SQLException {
         String selectQuery = "SELECT Email_Id FROM EmailAddresses WHERE Address = ?";
@@ -211,6 +223,12 @@ public class EmailDOAImpl implements EmailDOA {
         return result;
     }
 
+    /**
+     * check if this specific email address is already in the database or not
+     *
+     * @param email jodd email object of the email that is supposed to be in the database
+     * @return boolean return false if in db return true if it is
+     */
     private boolean checkIfEmailAddressExists(EmailAddress email) throws SQLException {
         ArrayList<EmailAddress> listEmailAdresses = findAllEmailAddresses();
         for (EmailAddress listedEmail : listEmailAdresses) {
@@ -221,6 +239,11 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    /**
+     * find all the email address and names in the datavase and create an array list of email addresses
+     *
+     * @return List of email address in the database
+     */
     @Override
     public ArrayList<EmailAddress> findAllEmailAddresses() throws SQLException {
         ArrayList<EmailAddress> emailList = new ArrayList<>();
@@ -237,6 +260,13 @@ public class EmailDOAImpl implements EmailDOA {
         return emailList;
     }
 
+    /**
+     * create an entry in the emailBean table using emailBean bean,
+     * if the email bean is already in the table return the emailBean id
+     *
+     * @param bean bean that will be inserted into the table
+     * @return int that represents the id of the email bean in the table
+     */
     @Override
     public int createEmailBean(EmailBean bean) throws SQLException {
         int id = 0;
@@ -272,6 +302,12 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
+    /**
+     * find bean_id of an entry in the emailbean able using the email bean
+     *
+     * @param bean the email which will be searched for in the table
+     * @return int of bean_id
+     */
     @Override
     public int findEmailBean(EmailBean bean) throws SQLException {
         int id = 0;
@@ -284,6 +320,13 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
+    /**
+     * creates entryis in the email address table and the emailbeanaddress table
+     *
+     * @param emailList list of email address to add to the database
+     * @param type      the type of the email list either: To, Cc, Bcc
+     * @param bean_id   id of the email bean these emails relate to
+     */
     private void createEmailsToSend(ArrayList<EmailAddress> emailList, String type, int bean_id) throws SQLException {
         if (emailList.size() > 0) {
             for (EmailAddress email : emailList) {
@@ -293,6 +336,12 @@ public class EmailDOAImpl implements EmailDOA {
         }
     }
 
+    /**
+     * check if the emailbeam already exists in the db
+     *
+     * @param bean the email bean we are checking ig already in the db
+     * @return false if already there true if not
+     */
     private boolean checkIfEmailBeanExists(EmailBean bean) throws SQLException {
         ArrayList<EmailBean> beanList = findAllEmailBeans();
         for (EmailBean cannedBean : beanList) {
@@ -303,6 +352,11 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    /**
+     * Find all emails in the database using the email bean table and creating an array list of emailbeans
+     *
+     * @return list of all emailbeans in the database
+     */
     @Override
     public ArrayList<EmailBean> findAllEmailBeans() throws SQLException {
         ArrayList<EmailBean> beanList = new ArrayList<>();
@@ -314,11 +368,18 @@ public class EmailDOAImpl implements EmailDOA {
                 beanList.add(getEmailBean(resultSet));
             }
         }
-        ArrayList<FileAttachmentBean> fablist = findAllAttachments();
         LOG.info("# of email beans found : " + beanList.size());
         return beanList;
     }
 
+    /**
+     * create an entry in the emailBeanAddress table,
+     * the bridging table between emailbean and email address,
+     *
+     * @param email_id the email_id of the email address in the emailaddress table
+     * @param bean_id  the bean_id of the email bean in the emailbean table
+     * @param type     the type of the address for the email bean either: To, Bcc, Cc
+     */
     @Override
     public void createEmailBeanAddress(int email_id, int bean_id, String type) throws SQLException {
         if (checkIfEmailBeanAddressExists(email_id, bean_id, type)) {
@@ -333,6 +394,14 @@ public class EmailDOAImpl implements EmailDOA {
         }
     }
 
+    /**
+     * check if the entry in the emailbeanadress table already exists
+     *
+     * @param email_id id of the email to be associated
+     * @param bean_id  id of the emeial bean all the emails are associated with
+     * @param type     the type of the emails and how they associate either: To, Bcc, Cc
+     * @return false if there true if not it db
+     */
     private boolean checkIfEmailBeanAddressExists(int email_id, int bean_id, String type) throws SQLException {
         String selectQuery = "SELECT Bean_Id,Email_Id, Email_Type FROM EmailBeanAdresses";
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -349,6 +418,11 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    /**
+     * create an entry in the folder table if folder already exists return the folder id
+     *
+     * @return int repressenting the folder id of the folder that is returned
+     */
     @Override
     public int createFolder(String folderName) throws SQLException {
         int id = 0;
@@ -371,6 +445,13 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
+    /**
+     * check if the folder already exists in the folder table
+     *
+     * @param folderName string name of the folder
+     * @return false if in the db true if not
+     * @throws SQLException
+     */
     private boolean checkIfFolderExists(String folderName) throws SQLException {
         ArrayList<String> listFiles = findAllFolders();
         for (String filename : listFiles) {
@@ -381,6 +462,12 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    /**
+     * create an entry in the attachments folder
+     *
+     * @param fabList an arraylist of all the file attachments beans to add
+     * @param email_id  id of the email bean the attachment belongs to
+     */
     @Override
     public void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws
             SQLException {
@@ -407,6 +494,14 @@ public class EmailDOAImpl implements EmailDOA {
         }
     }
 
+    /**
+     * check if the attachment already exists in the db
+     *
+     * @param fab list of attachments to check
+     * @param email_id the email id that relates to the atttachments
+     * @return false if in db and true if not
+     * @throws SQLException
+     */
     private boolean checkIfAttachmentExists(FileAttachmentBean fab, int email_id) throws
             SQLException {
         ArrayList<FileAttachmentBean> listEmailAdresses = findAllAttachments();
@@ -418,6 +513,11 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    /**
+     * find name of all attachments in the database and create an arraylist  of FileAttachmentBeans
+     *
+     * @return list of all fileattachment beans
+     */
     @Override
     public ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException {
         ArrayList<FileAttachmentBean> attachList = new ArrayList<>();
@@ -439,23 +539,11 @@ public class EmailDOAImpl implements EmailDOA {
         return attachList;
     }
 
-    @Override
-    public List<EmailBean> findAllEmails() throws SQLException {
-
-        ArrayList<EmailBean> emails = new ArrayList<>();
-        String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean";
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pStatement = connection.prepareStatement(selectQuery);
-             ResultSet resultSet = pStatement.executeQuery()) {
-            while (resultSet.next()) {
-                emails.add(getEmailBean(resultSet));
-            }
-        }
-        LOG.info("# of emails found : " + emails.size());
-        return emails;
-    }
-
+    /**
+     * find email bean using the bean_id and return a fully formed bean
+     *
+     * @return email bean of the with the correct email
+     */
     @Override
     public EmailBean findEmail(int bean_id) throws SQLException {
         String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean WHERE Bean_Id = ?";
@@ -472,6 +560,12 @@ public class EmailDOAImpl implements EmailDOA {
         return bean;
     }
 
+    /**
+     * find the file attachemnts of a specific email
+     *
+     * @param email_id the id for the email whose atttachments we are looking for
+     * @return return a list of attachments that we've found associated with that email id
+     */
     @Override
     public ArrayList<FileAttachmentBean> findFileAttachments(int email_id) throws SQLException {
         ArrayList<FileAttachmentBean> fabList = new ArrayList<>();
@@ -493,6 +587,12 @@ public class EmailDOAImpl implements EmailDOA {
         return fabList;
     }
 
+    /**
+     *  using a result we recreate an email bean and return it
+     * @param resultSet result of specific query
+     * @return email bean of recreated emailbean
+     * @throws SQLException
+     */
     private EmailBean getEmailBean(ResultSet resultSet) throws SQLException {
         EmailBean bean = new EmailBean();
         bean.setEmailID(resultSet.getInt("Bean_Id"));
@@ -511,6 +611,12 @@ public class EmailDOAImpl implements EmailDOA {
         return bean;
     }
 
+    /**
+     * Find name of folder that is associated with that email_id
+     *
+     * @param email_id id of the email
+     * @return String name of the folder
+     */
     @Override
     public String findFolder(int email_id) throws SQLException {
         String selectQuery = "SELECT Folder_Name FROM Folder WHERE Folder_Id = ?";
@@ -527,6 +633,12 @@ public class EmailDOAImpl implements EmailDOA {
         return folder;
     }
 
+    /**
+     * find the id of folder that is associated with that specific name
+     *
+     * @param folderName name of the folder
+     * @return int id of the folder
+     */
     @Override
     public int findFolder(String folderName) throws SQLException {
         String selectQuery = "SELECT Folder_Id FROM Folder WHERE Folder_Name = ?";
@@ -543,6 +655,11 @@ public class EmailDOAImpl implements EmailDOA {
         return folder;
     }
 
+    /**
+     * find name of all folders in the database and create an arraylist of folders
+     *
+     * @return list of all folder names
+     */
     @Override
     public ArrayList<String> findAllFolders() throws SQLException {
         ArrayList<String> folderList = new ArrayList<>();
@@ -558,6 +675,13 @@ public class EmailDOAImpl implements EmailDOA {
         return folderList;
     }
 
+    /**
+     * create a list of email address of a specific type associated with a email bean
+     * and its type either: To, Bcc, Cc
+     *
+     * @param bean_id id of the email bean we are looking for
+     * @param type string type of the email addresses in the table: To,Bcc, Cc
+     */
     @Override
     public ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException {
         ArrayList<EmailAddress> emailList = new ArrayList<>();
@@ -579,6 +703,11 @@ public class EmailDOAImpl implements EmailDOA {
         }
     }
 
+    /**
+     * find the email address for the from field
+     * @param email_from the email_id in the email address table
+     * @return emailaddress from of the sender in the email address table
+     */
     @Override
     public EmailAddress findFrom(int email_from) throws SQLException {
         String selectQuery = "SELECT Name, Address FROM EmailAddresses WHERE Email_Id = ?";
@@ -594,6 +723,4 @@ public class EmailDOAImpl implements EmailDOA {
         }
         return email;
     }
-
-
 }

@@ -69,8 +69,8 @@ public class EmailDOATest {
     }
 
     @Test(timeout = 1000)
-    public void testFindAllEmails() throws SQLException {
-        List<EmailBean> emails = emailDOA.findAllEmails();
+    public void testFindAllEmailsBeans() throws SQLException {
+        List<EmailBean> emails = emailDOA.findAllEmailBeans();
         assertEquals("# of emails", 25, emails.size());
     }
 
@@ -78,12 +78,6 @@ public class EmailDOATest {
     public void testFindAllFolders() throws SQLException {
         ArrayList<String> folders = emailDOA.findAllFolders();
         assertEquals("# of folders", 6, folders.size());
-    }
-
-    @Test(timeout = 1000)
-    public void testFindAllEmailBeans() throws SQLException {
-        List<EmailBean> folders = emailDOA.findAllEmailBeans();
-        assertEquals("# of folders", 25, folders.size());
     }
 
     @Test(timeout = 1000)

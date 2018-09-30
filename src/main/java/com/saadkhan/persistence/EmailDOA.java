@@ -17,42 +17,141 @@ import jodd.mail.EmailAddress;
 public interface EmailDOA {
 
     // Create
+
+    /**
+     * create an entry in the emailAddress table using a jodd emailAddress,
+     * if the email is already in the table simply return the emailAddress id
+     *
+     * @param email email address field that contains both name and email address
+     * @return int that represents the id of the email address in the table
+     */
     int createEmailAddress(EmailAddress email) throws SQLException;
 
+    /**
+     * create an entry in the emailBean table using emailBean bean,
+     * if the email bean is already in the table return the emailBean id
+     *
+     * @param bean bean that will be inserted into the table
+     * @return int that represents the id of the email bean in the table
+     */
     int createEmailBean(EmailBean bean) throws SQLException;
 
-    void createEmailBeanAddress(int email_id, int id, String type) throws SQLException;
+    /**
+     * create an entry in the emailBeanAddress table,
+     * the bridging table between emailbean and email address,
+     *
+     * @param email_id the email_id of the email address in the emailaddress table
+     * @param bean_id  the bean_id of the email bean in the emailbean table
+     * @param type     the type of the address for the email bean either: To, Bcc, Cc
+     */
+    void createEmailBeanAddress(int email_id, int bean_id, String type) throws SQLException;
 
+    /**
+     * create an entry in the folder table if folder already exists return the folder id
+     *
+     * @return int repressenting the folder id of the folder that is returned
+     */
     int createFolder(String folderName) throws SQLException;
 
-    void createAttachments(ArrayList<FileAttachmentBean> fab, int id) throws SQLException;
+    /**
+     * create an entry in the attachments folder
+     *
+     * @param fabList an arraylist of all the file attachments beans to add
+     * @param email_id  id of the email bean the attachment belongs to
+     */
+    void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws SQLException;
 
 
     // Read
-    List<EmailBean> findAllEmails() throws SQLException;
 
-    ArrayList<EmailAddress> findAllEmailAddresses() throws SQLException;
-
-    ArrayList<String> findAllFolders() throws SQLException;
-
-    ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException;
-
+    /**
+     * Find all emails in the database using the email bean table and creating an array list of emailbeans
+     *
+     * @return list of all emailbeans in the database
+     */
     ArrayList<EmailBean> findAllEmailBeans() throws SQLException;
 
+    /**
+     * find all the email address and names in the datavase and create an array list of email addresses
+     *
+     * @return List of email address in the database
+     */
+    ArrayList<EmailAddress> findAllEmailAddresses() throws SQLException;
+
+    /**
+     * find name of all folders in the database and create an arraylist of folders
+     *
+     * @return list of all folder names
+     */
+    ArrayList<String> findAllFolders() throws SQLException;
+
+    /**
+     * find name of all attachments in the database and create an arraylist  of FileAttachmentBeans
+     *
+     * @return list of all fileattachment beans
+     */
+    ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException;
+
+    /**
+     * find email address id using this specific jodd email
+     *
+     * @return int the email id of the email address
+     */
     int findEmailAddress(EmailAddress emailAddress) throws SQLException;
 
+    /**
+     * find bean_id of an entry in the emailbean able using the email bean
+     *
+     * @param bean the email which will be searched for in the table
+     * @return int of bean_id
+     */
     int findEmailBean(EmailBean bean) throws SQLException;
 
+    /**
+     * find email bean using the bean_id and return a fully formed bean
+     *
+     * @return email bean of the with the correct email
+     */
     EmailBean findEmail(int bean_id) throws SQLException;
 
+    /**
+     * find the file attachemnts of a specific email
+     *
+     * @param email_id the id for the email whose atttachments we are looking for
+     * @return return a list of attachments that we've found associated with that email id
+     */
     ArrayList<FileAttachmentBean> findFileAttachments(int email_id) throws SQLException;
 
+    /**
+     * Find name of folder that is associated with that email_id
+     *
+     * @param email_id id of the email
+     * @return String name of the folder
+     */
     String findFolder(int email_id) throws SQLException;
 
+    /**
+     * find the id of folder that is associated with that specific name
+     *
+     * @param folderName name of the folder
+     * @return int id of the folder
+     */
     int findFolder(String folderName) throws SQLException;
 
+    /**
+     * create a list of email address of a specific type associated with a email bean
+     * and its type either: To, Bcc, Cc
+     *
+     * @param bean_id id of the email bean we are looking for
+     * @param type string type of the email addresses in the table: To,Bcc, Cc
+     */
     ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException;
 
+    /**
+     * find the email address for the from field
+     * @param email_from the email_id in the email address table
+     * @return emailaddress from of the sender in the email address table
+     */
     EmailAddress findFrom(int email_from) throws SQLException;
 
 
@@ -113,6 +212,6 @@ public interface EmailDOA {
      * @param email_Id id of the email to change
      * @return 0 for failure and 1 for success
      */
-     int updateEmailAddress(int email_Id, String Name, String Address) throws SQLException;
+    int updateEmailAddress(int email_Id, String Name, String Address) throws SQLException;
 
 }
