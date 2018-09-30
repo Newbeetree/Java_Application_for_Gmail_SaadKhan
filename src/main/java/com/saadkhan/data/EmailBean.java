@@ -336,6 +336,8 @@ public class EmailBean implements Serializable {
     private boolean emailEqual(ArrayList<EmailAddress> to, ArrayList<EmailAddress> from) {
         if (to.size() == 0 && from.size() == 0)
             return true;
+        if(to.size() != from.size())
+            return false;
         for (int i = 0; i < to.size(); i++) {
             if (!(to.get(i).getEmail().equals(from.get(i).getEmail()))) {
                 return false;
@@ -352,6 +354,8 @@ public class EmailBean implements Serializable {
      * @return true if same, false if wronge
      */
     private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
+        if(to.size() != from.size())
+            return false;
         to.sort(Comparator.comparing(FileAttachmentBean::getName));
         from.sort(Comparator.comparing(FileAttachmentBean::getName));
         for (int i = 0; i < to.size(); i++) {

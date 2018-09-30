@@ -57,6 +57,7 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
+    @Override
     public int findEmailAddress(EmailAddress emailAddress) throws SQLException {
         String selectQuery = "SELECT Email_Id FROM EmailAddresses WHERE Address = ?";
         int email = 0;
@@ -71,6 +72,127 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         return email;
+    }
+
+    /**
+     * Deletes an EmailAddress and Name from the EmailAddress table using the email id
+     *
+     * @param Email_Id Id for email in EmailAddress Table
+     * @return int being 0 for failure of delete and 1 be success
+     */
+    @Override
+    public int deleteEmailAddress(int Email_Id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * Deletes an EmailAddress and Name from the EmailAddress table using the email address
+     *
+     * @param Email_Address Id for email in EmailAddress Table
+     * @return int being 0 for failure of delete and 1 be success
+     */
+    @Override
+    public int deleteEmailAddress(String Email_Address) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * Deletes a Folder from the Folder table using the folder id
+     *
+     * @param Folder_Id Id for email in EmailAddress Table
+     * @return int being 0 for failure of delete and 1 be success
+     */
+    @Override
+    public int deleteFolder(int Folder_Id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * Deletes a Folder from the Folder table using the folder name
+     *
+     * @param Folder_Name name of the folder in the table
+     * @return int being 0 for failure and 1 for success
+     */
+    @Override
+    public int deleteFolder(String Folder_Name) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * Deletes an Email Bean from the email bean table using the email bean id
+     *
+     * @param Email_Id id for the email inside the emailbean table
+     * @return int being 0 for failure and 1 for success
+     */
+    @Override
+    public int deleteEmailBean(int Email_Id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the folder table regarding folder name
+     *
+     * @param folder_Id id of the folder that is to be changed
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateFolder(int folder_Id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the folder table regarding folder name
+     *
+     * @param folder_name name of the folder that is to be changed
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateFolder(String folder_name) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the emailaddress table changing the email address
+     *
+     * @param email_Id id of the email to change
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateEmailAddressAddress(int email_Id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the emailaddress table changing the email address
+     *
+     * @param emailaddress name of the email we want to change
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateEmailAddressAddress(String emailaddress) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the email address table changing the name
+     *
+     * @param email_id id of the email to change
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateEmailAddressName(int email_id) throws SQLException {
+        return 0;
+    }
+
+    /**
+     * makes updates in the email address the table changing the name
+     *
+     * @param name name of the email to change
+     * @return 0 for failure and 1 for success
+     */
+    @Override
+    public int updateEmailAddressName(String name) throws SQLException {
+        return 0;
     }
 
     private boolean checkIfEmailAddressExists(EmailAddress email) throws SQLException {
@@ -95,7 +217,7 @@ public class EmailDOAImpl implements EmailDOA {
                 emailList.add(email);
             }
         }
-        LOG.info("# of folders found : " + emailList.size());
+        LOG.info("# of emailaddresses found : " + emailList.size());
         return emailList;
     }
 
@@ -119,12 +241,13 @@ public class EmailDOAImpl implements EmailDOA {
                 try (ResultSet rs = pStatement.getGeneratedKeys();) {
                     if (rs.next()) {
                         id = rs.getInt(1);
+                        bean.setEmailID(id);
                     }
                     LOG.debug("New record ID is " + id);
                 }
             }
         } else {
-            id = findEmailBeans(bean);
+            id = findEmailBean(bean);
         }
         createEmailsToSend(bean.getTo(), "To", id);
         createEmailsToSend(bean.getCc(), "Cc", id);
@@ -133,8 +256,16 @@ public class EmailDOAImpl implements EmailDOA {
         return id;
     }
 
-    private int findEmailBeans(EmailBean bean) {
-        return 0;
+    @Override
+    public int findEmailBean(EmailBean bean) throws SQLException {
+        int id = 0;
+        ArrayList<EmailBean> emails = findAllEmailBeans();
+        for (EmailBean eb : emails) {
+            if (bean.equals(eb)) {
+                id = eb.getEmailID();
+            }
+        }
+        return id;
     }
 
     private void createEmailsToSend(ArrayList<EmailAddress> emailList, String type, int bean_id) throws SQLException {
@@ -156,6 +287,7 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
+    @Override
     public ArrayList<EmailBean> findAllEmailBeans() throws SQLException {
         ArrayList<EmailBean> beanList = new ArrayList<>();
         String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean";
@@ -166,7 +298,8 @@ public class EmailDOAImpl implements EmailDOA {
                 beanList.add(getEmailBean(resultSet));
             }
         }
-        LOG.info("# of folders found : " + beanList.size());
+        ArrayList<FileAttachmentBean> fablist = findAllAttachments();
+        LOG.info("# of email beans found : " + beanList.size());
         return beanList;
     }
 
@@ -199,7 +332,6 @@ public class EmailDOAImpl implements EmailDOA {
         }
         return true;
     }
-
 
     @Override
     public int createFolder(String folderName) throws SQLException {
@@ -270,7 +402,8 @@ public class EmailDOAImpl implements EmailDOA {
         return true;
     }
 
-    private ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException {
+    @Override
+    public ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException {
         ArrayList<FileAttachmentBean> attachList = new ArrayList<>();
         String selectQuery = "SELECT Email_Id, FILE_NAME, File_Attach, FILE_TYPE FROM Attachments";
 
@@ -278,37 +411,33 @@ public class EmailDOAImpl implements EmailDOA {
              PreparedStatement pStatement = connection.prepareStatement(selectQuery);
              ResultSet resultSet = pStatement.executeQuery()) {
             while (resultSet.next()) {
-                attachList.add(new FileAttachmentBean(
+                FileAttachmentBean fab = new FileAttachmentBean(
                         resultSet.getBytes("File_Attach"),
                         resultSet.getString("File_Name"),
-                        resultSet.getBoolean("File_Type")));
+                        resultSet.getBoolean("File_Type"));
+                fab.setAttachID(resultSet.getInt("Email_Id"));
+                attachList.add(fab);
             }
         }
-        LOG.info("# of records found : " + attachList.size());
+        LOG.info("# of attachments found : " + attachList.size());
         return attachList;
     }
 
-    /**
-     * Retrieve all the records for the given table and returns the data as an
-     * arraylist of EmailBean objects
-     *
-     * @return The arraylist of EmailBean objects
-     */
     @Override
     public List<EmailBean> findAllEmails() throws SQLException {
 
-        ArrayList<EmailBean> rows = new ArrayList<>();
+        ArrayList<EmailBean> emails = new ArrayList<>();
         String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pStatement = connection.prepareStatement(selectQuery);
              ResultSet resultSet = pStatement.executeQuery()) {
             while (resultSet.next()) {
-                rows.add(getEmailBean(resultSet));
+                emails.add(getEmailBean(resultSet));
             }
         }
-        LOG.info("# of records found : " + rows.size());
-        return rows;
+        LOG.info("# of emails found : " + emails.size());
+        return emails;
     }
 
     @Override
@@ -341,18 +470,16 @@ public class EmailDOAImpl implements EmailDOA {
                     fab.setName(resultSet.getString("File_Name"));
                     fab.setType(resultSet.getBoolean("File_Type"));
                     fab.setAttachID(resultSet.getInt("Attach_Id"));
+                    fabList.add(fab);
                 }
             }
         }
         return fabList;
     }
 
-    /**
-     * Private method that creates an object of type EmailBean from the current
-     * record in the ResultSet
-     */
     private EmailBean getEmailBean(ResultSet resultSet) throws SQLException {
         EmailBean bean = new EmailBean();
+        bean.setEmailID(resultSet.getInt("Bean_Id"));
         bean.setFrom(findFrom(resultSet.getInt("Email_From")));
         bean.setSubject(resultSet.getString("Email_Subject"));
         bean.setMessage(resultSet.getString("Message"));
@@ -384,7 +511,8 @@ public class EmailDOAImpl implements EmailDOA {
         return folder;
     }
 
-    private int findFolder(String folderName) throws SQLException {
+    @Override
+    public int findFolder(String folderName) throws SQLException {
         String selectQuery = "SELECT Folder_Id FROM Folder WHERE Folder_Name = ?";
         int folder = 0;
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
@@ -451,9 +579,5 @@ public class EmailDOAImpl implements EmailDOA {
         return email;
     }
 
-    @Override
-    public int delete(int ID) {
-        return 0;
-    }
 
 }
