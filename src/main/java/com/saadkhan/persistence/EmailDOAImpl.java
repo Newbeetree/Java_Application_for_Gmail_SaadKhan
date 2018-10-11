@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.sql.rowset.serial.SerialBlob;
-
 import jodd.mail.EmailAddress;
 
 public class EmailDOAImpl implements EmailDOA {
@@ -476,7 +474,7 @@ public class EmailDOAImpl implements EmailDOA {
                      PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
                     pStatement.setInt(1, email_id);
                     pStatement.setString(2, fab.getName());
-                    pStatement.setBlob(3, new SerialBlob(fab.getFile()));
+                    pStatement.setBytes(3, fab.getFile());
                     pStatement.setBoolean(4, fab.getType());
                     pStatement.executeUpdate();
                     try (ResultSet rs = pStatement.getGeneratedKeys();) {

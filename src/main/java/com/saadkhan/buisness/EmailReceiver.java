@@ -34,7 +34,7 @@ public class EmailReceiver {
     private String receiveEmail;
     private String receivePassword;
 
-    /**
+    /**x
      * Constructs an EmailReciever when given proper Usernames and Passwords of a gmail account
      * that received emails in order to be able to check all unread emails
      */
