@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.saadkhan.controller.mainController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.mainController">
+   <children>
+      <SplitPane prefHeight="892.0" prefWidth="253.0">
+         <items>
+            <ListView prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.3589108910891089" layoutX="252.0" orientation="VERTICAL" prefHeight="892.0" prefWidth="972.0">
+        <items>
+          <AnchorPane />
+          <AnchorPane>
+               <children>
+                  <TextField layoutX="83.0" layoutY="13.0" prefHeight="31.0" prefWidth="869.0" />
+                  <TextField layoutX="83.0" layoutY="51.0" prefHeight="31.0" prefWidth="869.0" />
+                  <TextField layoutX="83.0" layoutY="88.0" prefHeight="31.0" prefWidth="869.0" />
+                  <Label layoutX="23.0" layoutY="18.0" text="To" />
+                  <Label layoutX="20.0" layoutY="56.0" text="Bcc" />
+                  <Label layoutX="23.0" layoutY="93.0" text="Cc" />
+                  <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="174.0" prefHeight="348.0" prefWidth="970.0" />
+                  <TextField layoutX="83.0" layoutY="126.0" prefHeight="31.0" prefWidth="722.0" />
+                  <Label layoutX="19.0" layoutY="131.0" text="Subject" />
+                  <ToolBar layoutY="523.0" prefHeight="45.0" prefWidth="970.0">
+                    <items>
+                      <Button mnemonicParsing="false" text="Send" />
+                        <Button mnemonicParsing="false" text="Add File" textAlignment="RIGHT" />
+                    </items>
+                  </ToolBar>
+                  <SplitMenuButton layoutX="811.0" layoutY="126.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="Send Option">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Reply" />
+                      <MenuItem mnemonicParsing="false" text="Forward" />
+                        <MenuItem mnemonicParsing="false" text="Forward All" />
+                    </items>
+                  </SplitMenuButton>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
