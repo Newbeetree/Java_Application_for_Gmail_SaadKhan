@@ -45,14 +45,11 @@ public class MainApp extends Application {
     }
 
     private Scene createEmailScene() throws IOException {
-        // Instantiate the FXMLLoader
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/fxml/mainPage.fxml"));
         //loader.setResources(ResourceBundle.getBundle("MessagesBundle"));
         Parent root = (AnchorPane) loader.load();
 
-        // Retrieve a reference to the controller so that we can call
-        // upon a method in the controller
         // rpc = loader.getController();
         //rpc.displayPropertiesInTextArea();
 
@@ -62,25 +59,14 @@ public class MainApp extends Application {
     }
 
     private Scene createConfFile(Scene emailScene) throws IOException {
-        // Instantiate the FXMLLoader
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(this.getClass().getResource("/fxml/confPage.fxml"));
 
-        // Localize the loader with its bundle
-        // Uses the default locale and if a matching bundle is not found
-        // will then use MessagesBundle.properties
         //loader.setResources(ResourceBundle.getBundle("MessagesBundle"));
 
-        // Parent is the base class for all nodes that have children in the
-        // scene graph such as AnchorPane and most other containers
         Parent root = (AnchorPane) loader.load();
 
-        // Retrieve a reference to the controller so that we can pass
-        // in the properties object
         // PropertiesFXMLController controller = loader.getController();
-
-        // Pass the references that the properties controller will need to
-        // display the second scene after entering the mail config data
         // controller.setSceneStageController(scene2, stage, rpc);
 
         Scene scene = new Scene(root);

@@ -7,6 +7,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import jodd.mail.EmailAddress;
 
 /**
@@ -16,56 +24,60 @@ import jodd.mail.EmailAddress;
  */
 public class EmailBean implements Serializable {
 
-    private int emailID;
-    private EmailAddress from;
+    private IntegerProperty emailID;
+    private ObjectProperty<EmailAddress> from;
     private ArrayList<EmailAddress> to;
     private ArrayList<EmailAddress> cc;
     private ArrayList<EmailAddress> bcc;
-    private String subject;
-    private String message;
-    private String htmlMessage;
-    private boolean seen;
+    private StringProperty subject;
+    private StringProperty message;
+    private StringProperty htmlMessage;
+    private BooleanProperty seen;
     private ArrayList<FileAttachmentBean> attachments;
-    private String messageType;
-    private LocalDateTime send;
-    private LocalDateTime recived;
-    private String folder;
-    private Priority priority;
+    private StringProperty messageType;
+    private ObjectProperty<LocalDateTime> send;
+    private ObjectProperty<LocalDateTime> recived;
+    private StringProperty folder;
+    private ObjectProperty<Priority> priority;
 
     /**
      * Constructor sets all values of the email bean to the defualt values
      */
     public EmailBean() {
-        emailID = 0;
+        emailID = new SimpleIntegerProperty();
         from = null;
         to = new ArrayList<>();
         cc = new ArrayList<>();
         bcc = new ArrayList<>();
-        subject = "";
-        message = "";
-        htmlMessage = "";
-        seen = false;
+        subject = new SimpleStringProperty();
+        message = new SimpleStringProperty();
+        htmlMessage = new SimpleStringProperty();
+        seen = new SimpleBooleanProperty();
         attachments = new ArrayList<>();
-        messageType = "";
-        send = LocalDateTime.now();
-        recived = LocalDateTime.now();
-        folder = "";
-        priority = Priority.PRIORITY_NORMAL;
+        messageType = new SimpleStringProperty();
+        send = new SimpleObjectProperty<>(LocalDateTime.now());
+        recived = new SimpleObjectProperty<>(LocalDateTime.now());
+        folder = new SimpleStringProperty();
+        priority = new SimpleObjectProperty<>(Priority.PRIORITY_NORMAL);
     }
 
     /**
      * @return email address of from
      */
     public EmailAddress getFrom() {
-        return from;
+        return from.get();
     }
 
     /**
      * @param from email address to set
      */
     public EmailBean setFrom(EmailAddress from) {
-        this.from = from;
+        this.from.set(from);
         return this;
+    }
+
+    public ObjectProperty<EmailAddress> fromProperty() {
+        return from;
     }
 
     /**
@@ -117,60 +129,76 @@ public class EmailBean implements Serializable {
      * @return string representing subject
      */
     public String getSubject() {
-        return subject;
+        return subject.get();
     }
 
     /**
      * @param subject set the string for subject
      */
     public EmailBean setSubject(String subject) {
-        this.subject = subject;
+        this.subject.set(subject);
         return this;
+    }
+
+    public StringProperty subjectProperty() {
+        return subject;
     }
 
     /**
      * @return string for the message
      */
     public String getMessage() {
-        return message;
+        return message.get();
     }
 
     /**
      * @param message message to set
      */
     public EmailBean setMessage(String message) {
-        this.message = message;
+        this.message.set(message);
         return this;
+    }
+
+    public StringProperty messageProperty() {
+        return message;
     }
 
     /**
      * @return html message to get
      */
     public String getHtmlMessage() {
-        return htmlMessage;
+        return htmlMessage.get();
     }
 
     /**
      * @param htmlMessage html to set
      */
     public EmailBean setHtmlMessage(String htmlMessage) {
-        this.htmlMessage = htmlMessage;
+        this.htmlMessage.set(htmlMessage);
         return this;
+    }
+
+    public StringProperty htmlProperty() {
+        return htmlMessage;
     }
 
     /**
      * @return boolean representing if the email has been seen
      */
     public boolean isSeen() {
-        return seen;
+        return seen.get();
     }
 
     /**
      * @param seen sets if the mail has been seen or not
      */
     public EmailBean setSeen(boolean seen) {
-        this.seen = seen;
+        this.seen.set(seen);
         return this;
+    }
+
+    public BooleanProperty seenProperty() {
+        return seen;
     }
 
     /**
@@ -188,19 +216,18 @@ public class EmailBean implements Serializable {
         return this;
     }
 
-
     /**
      * @return string of message type
      */
     public String getMessageType() {
-        return messageType;
+        return messageType.get();
     }
 
     /**
      * @param messageType string messgae type to set
      */
     public EmailBean setMessageType(String messageType) {
-        this.messageType = messageType;
+        this.messageType.set(messageType);
         return this;
     }
 
@@ -208,50 +235,58 @@ public class EmailBean implements Serializable {
      * @return LocalDateTime of when object was sent
      */
     public LocalDateTime getSend() {
-        return send;
+        return send.get();
     }
 
     /**
      * @param send LocalDateTime of the send to set
      */
     public void setSend(LocalDateTime send) {
-        this.send = send;
+        this.send.set(send);
+    }
+
+    public ObjectProperty<LocalDateTime> sendProperty() {
+        return send;
     }
 
     /**
      * @return LocalDateTime of when object was recieved
      */
     public LocalDateTime getRecived() {
-        return recived;
+        return recived.get();
     }
 
     /**
      * @param recived set LocalDateTime of when object was received
      */
     public void setRecived(LocalDateTime recived) {
-        this.recived = recived;
+        this.recived.set(recived);
     }
 
     /**
      * @return string representing which folder email belonged to
      */
     public String getFolder() {
-        return folder;
+        return folder.get();
     }
 
     /**
      * @param folder string representing the name of folder to set
      */
     public EmailBean setFolder(String folder) {
-        this.folder = folder;
+        this.folder.set(folder);
         return this;
+    }
+
+    public StringProperty folderProperty() {
+        return folder;
     }
 
     /**
      * @return Priorty of email
      */
     public Priority getPriority() {
-        return priority;
+        return priority.get();
     }
 
     /**
@@ -260,22 +295,22 @@ public class EmailBean implements Serializable {
     public void setPriority(int priority) {
         switch (priority) {
             case 0:
-                this.priority = Priority.PRIORITY_LOWEST;
+                this.priority.set(Priority.PRIORITY_LOWEST);
                 break;
             case 1:
-                this.priority = Priority.PRIORITY_LOW;
+                this.priority.set(Priority.PRIORITY_LOW);
                 break;
             case 2:
-                this.priority = Priority.PRIORITY_NORMAL;
+                this.priority.set(Priority.PRIORITY_NORMAL);
                 break;
             case 3:
-                this.priority = Priority.PRIORITY_HIGH;
+                this.priority.set(Priority.PRIORITY_HIGH);
                 break;
             case 4:
-                this.priority = Priority.PRIORITY_HIGHEST;
+                this.priority.set(Priority.PRIORITY_HIGHEST);
                 break;
             default:
-                this.priority = Priority.PRIORITY_NORMAL;
+                this.priority.set(Priority.PRIORITY_NORMAL);
         }
     }
 
@@ -283,7 +318,7 @@ public class EmailBean implements Serializable {
      * @param priority set the priority of email
      */
     public void setPriority(Priority priority) {
-        this.priority = priority;
+        this.priority.set(priority);
     }
 
     /**
@@ -297,14 +332,14 @@ public class EmailBean implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmailBean emailBean = (EmailBean) o;
-        boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
+        boolean work = Objects.equals(from.get().getEmail(), emailBean.from.get().getEmail());
         boolean work2 = emailEqual(to, emailBean.to);
         boolean work3 = emailEqual(cc, emailBean.cc);
         boolean work4 = subjectEquals(subject, emailBean.subject);
         boolean work5 = Objects.equals(message, emailBean.message);
         boolean work6 = Objects.equals(htmlMessage, emailBean.htmlMessage);
         boolean work7 = attachEqual(attachments, emailBean.attachments);
-        return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
+        return Objects.equals(from.get().getEmail(), emailBean.from.get().getEmail()) &&
                 emailEqual(to, emailBean.to) &&
                 emailEqual(cc, emailBean.cc) &&
                 subjectEquals(subject, emailBean.subject) &&
@@ -320,7 +355,7 @@ public class EmailBean implements Serializable {
      * @param fromSubject subject that we received from gmail server
      * @return true if same, false if wrong
      */
-    private boolean subjectEquals(String toSubject, String fromSubject) {
+    private boolean subjectEquals(StringProperty toSubject, StringProperty fromSubject) {
         if (Objects.equals(toSubject, fromSubject))
             return true;
         else return toSubject.equals("") && fromSubject == null;
@@ -336,7 +371,7 @@ public class EmailBean implements Serializable {
     private boolean emailEqual(ArrayList<EmailAddress> to, ArrayList<EmailAddress> from) {
         if (to.size() == 0 && from.size() == 0)
             return true;
-        if(to.size() != from.size())
+        if (to.size() != from.size())
             return false;
         for (int i = 0; i < to.size(); i++) {
             if (!(to.get(i).getEmail().equals(from.get(i).getEmail()))) {
@@ -354,7 +389,7 @@ public class EmailBean implements Serializable {
      * @return true if same, false if wronge
      */
     private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
-        if(to.size() != from.size())
+        if (to.size() != from.size())
             return false;
         to.sort(Comparator.comparing(FileAttachmentBean::getName));
         from.sort(Comparator.comparing(FileAttachmentBean::getName));
@@ -375,11 +410,15 @@ public class EmailBean implements Serializable {
     }
 
     public int getEmailID() {
-        return emailID;
+        return emailID.get();
     }
 
     public EmailBean setEmailID(int emailID) {
-        this.emailID = emailID;
+        this.emailID.set(emailID);
         return this;
+    }
+
+    public IntegerProperty emailIDProperty() {
+        return emailID;
     }
 }
