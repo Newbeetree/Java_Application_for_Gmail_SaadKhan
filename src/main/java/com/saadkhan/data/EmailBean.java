@@ -9,12 +9,15 @@ import java.util.Objects;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 /**
@@ -26,14 +29,14 @@ public class EmailBean implements Serializable {
 
     private IntegerProperty emailID;
     private ObjectProperty<EmailAddress> from;
-    private ArrayList<EmailAddress> to;
-    private ArrayList<EmailAddress> cc;
-    private ArrayList<EmailAddress> bcc;
+    private ListProperty<EmailAddress> to;
+    private ListProperty<EmailAddress> cc;
+    private ListProperty<EmailAddress> bcc;
     private StringProperty subject;
     private StringProperty message;
     private StringProperty htmlMessage;
     private BooleanProperty seen;
-    private ArrayList<FileAttachmentBean> attachments;
+    private ListProperty<FileAttachmentBean> attachments;
     private StringProperty messageType;
     private ObjectProperty<LocalDateTime> send;
     private ObjectProperty<LocalDateTime> recived;
@@ -45,15 +48,15 @@ public class EmailBean implements Serializable {
      */
     public EmailBean() {
         emailID = new SimpleIntegerProperty();
-        from = null;
-        to = new ArrayList<>();
-        cc = new ArrayList<>();
-        bcc = new ArrayList<>();
+        from = new SimpleObjectProperty<>();
+        to = new SimpleListProperty<>();
+        cc = new SimpleListProperty<>();
+        bcc = new SimpleListProperty<>();
         subject = new SimpleStringProperty();
         message = new SimpleStringProperty();
         htmlMessage = new SimpleStringProperty();
         seen = new SimpleBooleanProperty();
-        attachments = new ArrayList<>();
+        attachments = new SimpleListProperty<>();
         messageType = new SimpleStringProperty();
         send = new SimpleObjectProperty<>(LocalDateTime.now());
         recived = new SimpleObjectProperty<>(LocalDateTime.now());
@@ -83,45 +86,45 @@ public class EmailBean implements Serializable {
     /**
      * @return arraylist of email address
      */
-    public ArrayList<EmailAddress> getTo() {
-        return to;
+    public ObservableList<EmailAddress> getTo() {
+        return to.get();
     }
 
     /**
      * @param to Array list of emailadress to set
      */
     public EmailBean setTo(ArrayList<EmailAddress> to) {
-        this.to = to;
+        this.to.addAll(to);
         return this;
     }
 
     /**
      * @return Arraylist of email addresses in cc
      */
-    public ArrayList<EmailAddress> getCc() {
-        return cc;
+    public ObservableList<EmailAddress> getCc() {
+        return cc.get();
     }
 
     /**
      * @param cc sets and arraylist for cc
      */
     public EmailBean setCc(ArrayList<EmailAddress> cc) {
-        this.cc = cc;
+        this.cc.addAll(cc);
         return this;
     }
 
     /**
      * @return Arraylist of Email addresses
      */
-    public ArrayList<EmailAddress> getBcc() {
-        return bcc;
+    public ObservableList<EmailAddress> getBcc() {
+        return bcc.get();
     }
 
     /**
      * @param bcc Arraylist of EmailAddress to set
      */
     public EmailBean setBcc(ArrayList<EmailAddress> bcc) {
-        this.bcc = bcc;
+        this.bcc.addAll(bcc);
         return this;
     }
 
@@ -204,15 +207,15 @@ public class EmailBean implements Serializable {
     /**
      * @return gets an arraylist of attachments
      */
-    public ArrayList<FileAttachmentBean> getAttachments() {
-        return attachments;
+    public ObservableList<FileAttachmentBean> getAttachments() {
+        return attachments.get();
     }
 
     /**
      * @param attachments arraylist of attachments to send
      */
     public EmailBean setAttachments(ArrayList<FileAttachmentBean> attachments) {
-        this.attachments = attachments;
+        this.attachments.addAll(attachments);
         return this;
     }
 
@@ -368,7 +371,7 @@ public class EmailBean implements Serializable {
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
-    private boolean emailEqual(ArrayList<EmailAddress> to, ArrayList<EmailAddress> from) {
+    private boolean emailEqual(ListProperty<EmailAddress> to, ListProperty<EmailAddress> from) {
         if (to.size() == 0 && from.size() == 0)
             return true;
         if (to.size() != from.size())
@@ -388,7 +391,7 @@ public class EmailBean implements Serializable {
      * @param from Arraylist of email addresses from gmail
      * @return true if same, false if wronge
      */
-    private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
+    private boolean attachEqual(ListProperty<FileAttachmentBean> to, ListProperty<FileAttachmentBean> from) {
         if (to.size() != from.size())
             return false;
         to.sort(Comparator.comparing(FileAttachmentBean::getName));
