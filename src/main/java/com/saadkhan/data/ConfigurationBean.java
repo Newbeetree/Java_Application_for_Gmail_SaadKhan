@@ -1,5 +1,7 @@
 package com.saadkhan.data;
 
+import java.util.Objects;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -184,5 +186,30 @@ public class ConfigurationBean {
 
     public void setDBPassword(String DBPassword) {
         this.DBPassword.set(DBPassword);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ConfigurationBean that = (ConfigurationBean) o;
+        return Objects.equals(getUserName(), that.getUserName()) &&
+                Objects.equals(getUserEmailAddress(), that.getUserEmailAddress()) &&
+                Objects.equals(getUserPassword(), that.getUserPassword()) &&
+                Objects.equals(getIMAPServer(), that.getIMAPServer()) &&
+                Objects.equals(getSMTPServer(), that.getSMTPServer()) &&
+                Objects.equals(getIMAPPort(), that.getIMAPPort()) &&
+                Objects.equals(getSMTPPort(), that.getSMTPPort()) &&
+                Objects.equals(getDBUrl(), that.getDBUrl()) &&
+                Objects.equals(getDBName(), that.getDBName()) &&
+                Objects.equals(getDBPort(), that.getDBPort()) &&
+                Objects.equals(getDBUser(), that.getDBUser()) &&
+                Objects.equals(getDBPassword(), that.getDBPassword());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getUserName(), getUserEmailAddress(), getUserPassword(), getIMAPServer(), getSMTPServer(), getIMAPPort(), getSMTPPort(), getDBUrl(), getDBName(), getDBPort(), getDBUser(), getDBPassword());
     }
 }
