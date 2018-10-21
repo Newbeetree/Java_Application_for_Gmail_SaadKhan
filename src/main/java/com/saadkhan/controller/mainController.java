@@ -13,4 +13,7 @@ import javafx.stage.Stage;
 
 public class mainController {
 
+    public void addFolder(ActionEvent actionEvent) {
+
+    }
 }
