@@ -5,7 +5,7 @@ import java.util.Objects;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class ConfigurationBean {
+public class ConfigurationFxBean {
     private final StringProperty userName;
     private final StringProperty userEmailAddress;
     private final StringProperty userPassword;
@@ -19,7 +19,7 @@ public class ConfigurationBean {
     private final StringProperty DBUser;
     private final StringProperty DBPassword;
 
-    public ConfigurationBean(String userName, String userEmailAddress,
+    public ConfigurationFxBean(String userName, String userEmailAddress,
                              String userPassword, String IMAPServer,
                              String SMTPServer, String IMAPPort,
                              String SMTPPort, String DBUrl,
@@ -39,7 +39,7 @@ public class ConfigurationBean {
         this.DBPassword = new SimpleStringProperty(DBPassword);
     }
 
-    public ConfigurationBean(){
+    public ConfigurationFxBean(){
         this("","","","","","",
                 "","","","","","");
     }
@@ -192,7 +192,7 @@ public class ConfigurationBean {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ConfigurationBean that = (ConfigurationBean) o;
+        ConfigurationFxBean that = (ConfigurationFxBean) o;
         return Objects.equals(getUserName(), that.getUserName()) &&
                 Objects.equals(getUserEmailAddress(), that.getUserEmailAddress()) &&
                 Objects.equals(getUserPassword(), that.getUserPassword()) &&

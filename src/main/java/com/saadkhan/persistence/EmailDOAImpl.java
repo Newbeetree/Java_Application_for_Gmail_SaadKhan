@@ -523,6 +523,7 @@ public class EmailDOAImpl implements EmailDOA {
              ResultSet resultSet = pStatement.executeQuery()) {
             while (resultSet.next()) {
                 FileAttachmentBean fab = new FileAttachmentBean(
+                        resultSet.getInt("Attach_Id"),
                         resultSet.getBytes("File_Attach"),
                         resultSet.getString("File_Name"),
                         resultSet.getBoolean("File_Type"));

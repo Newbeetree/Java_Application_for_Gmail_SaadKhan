@@ -47,7 +47,7 @@
                   <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutY="174.0" prefHeight="348.0" prefWidth="970.0" />
                   <TextField layoutX="83.0" layoutY="126.0" prefHeight="31.0" prefWidth="722.0" />
                   <Label layoutX="19.0" layoutY="131.0" text="Subject" />
-                  <ToolBar layoutY="523.0" prefHeight="45.0" prefWidth="970.0">
+                  <ToolBar layoutY="523.0" prefHeight="31.0" prefWidth="970.0">
                     <items>
                       <Button mnemonicParsing="false" text="Send" />
                         <Button mnemonicParsing="false" text="Add File" textAlignment="RIGHT" />
