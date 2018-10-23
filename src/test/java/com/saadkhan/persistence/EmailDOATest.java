@@ -76,7 +76,7 @@ public class EmailDOATest {
      * this test will insert two identical emails into the db, both should contain the same
      * email id since they have the same fields
      */
-    @Test(timeout = 10000)
+    @Test//(timeout = 10000)
     public void testCreateDuplicateEmailBean() throws SQLException, IOException {
         EmailBean bean = createBasicBean();
         int email_id = emailDOA.createEmailBean(bean);

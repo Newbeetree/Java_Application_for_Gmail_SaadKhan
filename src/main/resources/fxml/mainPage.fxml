@@ -10,90 +10,92 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.mainController">
-   <children>
-      <SplitPane prefHeight="892.0" prefWidth="253.0">
-         <items>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-              <items>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+    <children>
+        <SplitPane prefHeight="892.0" prefWidth="252.0">
+            <items>
+                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="887.0" prefWidth="247.0">
                     <items>
-                      <Button fx:id="folderBtn" mnemonicParsing="false" onAction="#addFolder" prefHeight="31.0" prefWidth="231.0" text="\%folderBtn%" />
+                        <ToolBar prefHeight="45.0" prefWidth="253.0">
+                            <items>
+                                <Button fx:id="composeBtn" mnemonicParsing="false" onAction="#showCompose" prefHeight="31.0" prefWidth="109.0" text="%composeBtn" />
+                                <Button fx:id="folderBtn" mnemonicParsing="false" onAction="#addFolder" prefHeight="31.0" prefWidth="115.0" text="%folderBtn" />
+                            </items>
+                        </ToolBar>
+                        <ListView prefHeight="200.0" prefWidth="200.0" />
                     </items>
-                  </ToolBar>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
-              </items>
-            </SplitPane>
-         </items>
-      </SplitPane>
-      <SplitPane dividerPositions="0.3589108910891089" layoutX="252.0" orientation="VERTICAL" prefHeight="892.0" prefWidth="972.0">
-        <items>
-          <AnchorPane>
-               <children>
-                  <SplitPane dividerPositions="0.15335463258785942" orientation="VERTICAL" pickOnBounds="false" prefHeight="315.0" prefWidth="972.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <MenuBar prefHeight="45.0" prefWidth="972.0">
-                                 <menus>
-                                    <Menu fx:id="fileMn" mnemonicParsing="false" text="\%fileMn%">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Close" />
-                                       </items>
-                                    </Menu>
-                                    <Menu fx:id="editMn" mnemonicParsing="false" text="\%editMn%">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Delete" />
-                                       </items>
-                                    </Menu>
-                                    <Menu fx:id="helpMn" mnemonicParsing="false" text="\%helpMn%">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="About" />
-                                       </items>
-                                    </Menu>
-                                 </menus>
-                              </MenuBar>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <TableView layoutX="-1.0" prefHeight="283.0" prefWidth="970.0">
-                                <columns>
-                                  <TableColumn fx:id="fromTxt" prefWidth="196.0" text="\%fromTxt%" />
-                                  <TableColumn fx:id="subjectTxt" minWidth="0.0" prefWidth="527.0" text="\%subjectTxt%" />
-                                    <TableColumn fx:id="dateReTxt" prefWidth="303.0" text="\%dateReTxt%" />
-                                </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <SplitPane dividerPositions="0.08181818181818182" orientation="VERTICAL" prefHeight="567.0" prefWidth="972.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <ToolBar prefHeight="45.0" prefWidth="972.0">
-                                <items>
-                                  <Button fx:id="trashBtn" mnemonicParsing="false" onAction="#moveTrash" text="\%trashBtn%" />
-                                </items>
-                              </ToolBar>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="970.0">
-                           <children>
-                              <WebView layoutY="-2.0" prefHeight="520.0" prefWidth="970.0" />
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+                </SplitPane>
+            </items>
+        </SplitPane>
+        <SplitPane dividerPositions="0.3589108910891089" layoutX="252.0" orientation="VERTICAL" prefHeight="892.0" prefWidth="972.0">
+            <items>
+                <AnchorPane>
+                    <children>
+                        <SplitPane dividerPositions="0.15335463258785942" orientation="VERTICAL" pickOnBounds="false" prefHeight="315.0" prefWidth="972.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <MenuBar prefHeight="45.0" prefWidth="972.0">
+                                            <menus>
+                                                <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
+                                                    <items>
+                                                        <MenuItem mnemonicParsing="false" text="%close" />
+                                                    </items>
+                                                </Menu>
+                                                <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
+                                                    <items>
+                                                        <MenuItem mnemonicParsing="false" text="%delete" />
+                                                    </items>
+                                                </Menu>
+                                                <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
+                                                    <items>
+                                                        <MenuItem mnemonicParsing="false" text="%about" />
+                                                    </items>
+                                                </Menu>
+                                            </menus>
+                                        </MenuBar>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <TableView layoutX="-1.0" prefHeight="283.0" prefWidth="970.0">
+                                            <columns>
+                                                <TableColumn fx:id="fromTxt" prefWidth="196.0" text="%fromTxt" />
+                                                <TableColumn fx:id="subjectTxt" minWidth="0.0" prefWidth="527.0" text="%subjectTxt" />
+                                                <TableColumn fx:id="dateReTxt" prefWidth="303.0" text="%dateReTxt" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <SplitPane dividerPositions="0.08181818181818182" orientation="VERTICAL" prefHeight="567.0" prefWidth="972.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                        <ToolBar prefHeight="45.0" prefWidth="972.0">
+                                            <items>
+                                                <Button fx:id="trashBtn" mnemonicParsing="false" onAction="#moveTrash" text="%trashBtn" />
+                                            </items>
+                                        </ToolBar>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="970.0">
+                                    <children>
+                                        <WebView layoutY="-2.0" prefHeight="520.0" prefWidth="970.0" />
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>

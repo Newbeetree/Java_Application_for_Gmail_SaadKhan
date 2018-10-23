@@ -1,6 +1,7 @@
 package com.saadkhan.presentation;
 
 import com.saadkhan.controller.composeController;
+import com.saadkhan.controller.confController;
 import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.manager.PropertiesManager;
 
@@ -23,6 +24,7 @@ public class MainApp extends Application {
 
     private final static Logger LOG = LoggerFactory.getLogger(MainApp.class);
     private Stage stage;
+    private String language = "En";
 
     public static void main(String[] args) {
         launch(args);
@@ -49,57 +51,36 @@ public class MainApp extends Application {
         boolean result = false;
         ConfigurationFxBean cfb = new ConfigurationFxBean();
         PropertiesManager pm = new PropertiesManager();
-
-        try{
-            if(pm.loadTextProperties(cfb,"","JAGConfig")){
+        try {
+            if (pm.loadTextProperties(cfb, "", "JAGConfig")) {
                 result = true;
             }
-        }catch (IOException ex){
+        } catch (IOException ex) {
             LOG.error("checking properties error", ex);
         }
         return result;
     }
 
     private Scene createEmailScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/fxml/mainPage.fxml"));
-        //loader.setResources(ResourceBundle.getBundle("MessagesBundle"));
+        ResourceBundle rb = ResourceBundle.getBundle("Strings");
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
 
         // rpc = loader.getController();
         //rpc.displayPropertiesInTextArea();
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
         return scene;
     }
 
     private Scene createConfFile(Scene emailScene) throws IOException {
-        ResourceBundle rb = getMyBundle("En", "conf");
+        ResourceBundle rb = ResourceBundle.getBundle("Strings");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
-        //composeController controller = loader.getController();
-        //controller.setSceneStageController(scene2, stage, rpc);
-
+        confController controller = loader.getController();
+        controller.setSceneStageController(stage, language);
         Scene scene = new Scene(root);
         return scene;
 
-    }
-
-    private ResourceBundle getMyBundle(String lang, String spec) {
-        if (lang.equals("En")) {
-            if (spec.equals("conf")) {
-                return ResourceBundle.getBundle("En-confBundle");
-            } else if (spec.equals("comp")) {
-                return ResourceBundle.getBundle("En-compBundle");
-            }
-        } else if (lang.equals("Fr")) {
-            if (spec.equals("conf")) {
-                return ResourceBundle.getBundle("Fr-confBundle");
-            } else if (spec.equals("comp")) {
-                return ResourceBundle.getBundle("Fr-compBundle");
-            }
-        }
-        return null;
     }
 }

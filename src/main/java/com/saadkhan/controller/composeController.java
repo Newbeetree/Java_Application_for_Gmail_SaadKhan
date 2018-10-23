@@ -4,10 +4,11 @@
 
 package com.saadkhan.controller;
 
+import com.saadkhan.data.ConfigurationFxBean;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,6 +19,11 @@ import javafx.scene.control.SplitMenuButton;
 
 public class composeController {
 
+    private final ConfigurationFxBean cfb;
+
+    public composeController(){
+        this.cfb = new ConfigurationFxBean();
+    }
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -69,11 +75,25 @@ public class composeController {
     }
 
     @FXML
-    public void addFile(ActionEvent event) {
+    public void addFolder(ActionEvent event) {
 
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
+        addAllFolders();
+        addAllEmails();
+    }
+
+    private void addAllEmails() {
+
+    }
+
+    private void addAllFolders() {
+
+    }
+
+    public void goBack(ActionEvent actionEvent) {
+
     }
 }

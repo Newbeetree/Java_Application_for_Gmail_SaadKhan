@@ -4,17 +4,30 @@
 
 package com.saadkhan.controller;
 
+import com.saadkhan.data.ConfigurationFxBean;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class mainController {
 
+    private String language;
+    private ConfigurationFxBean cfb;
+
+    public mainController(){}
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -57,14 +70,26 @@ public class mainController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
-        assert dateReTxt != null : "fx:id=\"dateReTxt\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert fileMn != null : "fx:id=\"fileMn\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert fromTxt != null : "fx:id=\"fromTxt\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert editMn != null : "fx:id=\"editMn\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert helpMn != null : "fx:id=\"helpMn\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert subjectTxt != null : "fx:id=\"subjectTxt\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert trashBtn != null : "fx:id=\"trashBtn\" was not injected: check your FXML file 'mainPage.fxml'.";
-        assert folderBtn != null : "fx:id=\"folderBtn\" was not injected: check your FXML file 'mainPage.fxml'.";
+    }
 
+    public mainController(String lang) {
+        this.cfb = new ConfigurationFxBean();
+        this.language = lang;
+    }
+
+    public void showCompose(ActionEvent actionEvent) {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings");
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/composePage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("JAG: Email Create");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

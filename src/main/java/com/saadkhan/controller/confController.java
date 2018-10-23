@@ -18,18 +18,26 @@ import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class confController {
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
-
+    private String language;
     private final ConfigurationFxBean cfb;
-    public confController(){
-        cfb = new ConfigurationFxBean();
+    private Stage primaryStage;
+
+    public confController() {
+        this.cfb = new ConfigurationFxBean();
     }
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -117,16 +125,37 @@ public class confController {
     @FXML
     void submitCredentials(ActionEvent event) {
         PropertiesManager pm = new PropertiesManager();
-        try{
+        try {
             pm.writeTextProperties("", "JAGConfig", cfb);
             LOG.info("create file");
-        }catch (IOException ex){
+            login();
+        } catch (IOException ex) {
             LOG.error("error saving", ex);
         }
 
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /**
+     * Without the ability to pass values thru a constructor we need a set
+     * method for any variables required in this class
+     */
+    public void setSceneStageController(Stage stage, String lang) {
+        this.primaryStage = stage;
+        this.language = lang;
+    }
+
+    private void login() throws IOException {
+        ResourceBundle rb = ResourceBundle.getBundle("Strings");
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
+        Parent root = (AnchorPane) loader.load();
+        Scene scene = new Scene(root);
+        this.primaryStage.setScene(scene);
+        this.primaryStage.setTitle("JAG: Email Client");
+        this.primaryStage.show();
+    }
+
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         Bindings.bindBidirectional(nameIn.textProperty(), cfb.userNameProperty());
         Bindings.bindBidirectional(emailIn.textProperty(), cfb.userEmailAddressProperty());

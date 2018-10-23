@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>${project.groupId}.presentation.MainApp</mainClass>
     </properties>
     <dependencies>
         <dependency>
@@ -57,4 +58,86 @@
             <version>8.0.12</version>
         </dependency>
     </dependencies>
+    <name>1633839</name>
+    <build>
+        <!-- Goals may be set in the IDE or the pom IDE or CLI goals override the
+        defaultGoal -->
+        <defaultGoal>clean compile package exec:java</defaultGoal>
+
+        <!-- Plugins define components that perform actions -->
+        <plugins>
+            <!-- Shade: Create an executable jar containing all the dependencies when
+            the package goal is carried out -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation=
+                                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Exec: Executes the program -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <!-- Runs in separate instance of JVM -->
+                            <goal>exec</goal>
+                            <!-- Runs in same instance of JVM as Maven/IDE -->
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <!--used by java goal -->
+                            <!--executes in the same VM that Maven runs in -->
+                            <mainClass>${mainClass}</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+
+                            <!--used by exec goal -->
+                            <!--runs in a separate VM from the one that Maven runs in -->
+                            <executable>${java.home}/bin/java</executable>
+                            <commandlineArgs>-jar
+                                ${project.build.directory}/${project.build.finalName}.jar
+                            </commandlineArgs>
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Executes JUnit tests and writes the results as an xml and
+            txt file Test classes must include one of the following in their
+            name: Test* *Test *TestCase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+                    <!-- Turn on tests: false, Turn off tests: true
+                    Better practice is to control testing in the
+                    NetBeans-Run Maven-Goals and set the property skipTests
+                    to true or false -->
+                    <!-- <skipTests>false</skipTests> -->
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
