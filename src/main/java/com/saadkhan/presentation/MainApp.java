@@ -1,9 +1,14 @@
 package com.saadkhan.presentation;
 
+import com.saadkhan.controller.composeController;
+import com.saadkhan.data.ConfigurationFxBean;
+import com.saadkhan.manager.PropertiesManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
@@ -30,10 +35,10 @@ public class MainApp extends Application {
         Scene conf = createConfFile(emailScene);
         conf.getStylesheets().add("/styles/confCSS.css");
         emailScene.getStylesheets().add("/styles/emailCSS.css");
-        if(checkIfPropertiesExists()){
+        if (checkIfPropertiesExists()) {
             this.stage.setScene(emailScene);
             this.stage.setTitle("JAG: Email Client");
-        }else{
+        } else {
             this.stage.setScene(conf);
             this.stage.setTitle("JAG: Configure");
         }
@@ -41,7 +46,18 @@ public class MainApp extends Application {
     }
 
     private boolean checkIfPropertiesExists() {
-        return false;
+        boolean result = false;
+        ConfigurationFxBean cfb = new ConfigurationFxBean();
+        PropertiesManager pm = new PropertiesManager();
+
+        try{
+            if(pm.loadTextProperties(cfb,"","JAGConfig")){
+                result = true;
+            }
+        }catch (IOException ex){
+            LOG.error("checking properties error", ex);
+        }
+        return result;
     }
 
     private Scene createEmailScene() throws IOException {
@@ -59,18 +75,31 @@ public class MainApp extends Application {
     }
 
     private Scene createConfFile(Scene emailScene) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/fxml/confPage.fxml"));
-
-        //loader.setResources(ResourceBundle.getBundle("MessagesBundle"));
-
+        ResourceBundle rb = getMyBundle("En", "conf");
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
-
-        // PropertiesFXMLController controller = loader.getController();
-        // controller.setSceneStageController(scene2, stage, rpc);
+        //composeController controller = loader.getController();
+        //controller.setSceneStageController(scene2, stage, rpc);
 
         Scene scene = new Scene(root);
         return scene;
 
+    }
+
+    private ResourceBundle getMyBundle(String lang, String spec) {
+        if (lang.equals("En")) {
+            if (spec.equals("conf")) {
+                return ResourceBundle.getBundle("En-confBundle");
+            } else if (spec.equals("comp")) {
+                return ResourceBundle.getBundle("En-compBundle");
+            }
+        } else if (lang.equals("Fr")) {
+            if (spec.equals("conf")) {
+                return ResourceBundle.getBundle("Fr-confBundle");
+            } else if (spec.equals("comp")) {
+                return ResourceBundle.getBundle("Fr-compBundle");
+            }
+        }
+        return null;
     }
 }

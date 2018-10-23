@@ -7,34 +7,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="708.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.confController">
+<AnchorPane prefHeight="658.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.confController">
    <children>
-      <Label layoutX="76.0" layoutY="117.0" text="Name" />
+      <Label fx:id="nameTxt" layoutX="77.0" layoutY="117.0" text="%nameTxt" />
       <TextField fx:id="nameIn" layoutX="220.0" layoutY="112.0" />
-      <Label layoutX="78.0" layoutY="153.0" text="Email" />
-      <TextField fx:id="emailIn" layoutX="220.0" layoutY="148.0" />
-      <Label layoutX="78.0" layoutY="190.0" prefHeight="21.0" prefWidth="69.0" text="Password" />
-      <TextField fx:id="PasswordIn" layoutX="220.0" layoutY="185.0" />
-      <Label layoutX="77.0" layoutY="227.0" text="IMAP Server" />
-      <Label layoutX="75.0" layoutY="269.0" text="SMTP Server" />
-      <Label layoutX="78.0" layoutY="312.0" text="IMAP Port" />
-      <Label layoutX="76.0" layoutY="355.0" text="SMTP Port" />
-      <Label layoutX="76.0" layoutY="397.0" text="Database URL" />
-      <Label layoutX="76.0" layoutY="436.0" text="Database Name" />
-      <Label layoutX="76.0" layoutY="524.0" text="Database Port" />
-      <Label layoutX="76.0" layoutY="478.0" text="Database Username" />
-      <Label layoutX="76.0" layoutY="567.0" text="Database Password" />
-      <TextField fx:id="IMapServerIn" layoutX="220.0" layoutY="222.0" />
-      <TextField fx:id="DBURLIn" layoutX="220.0" layoutY="392.0" />
-      <TextField fx:id="DBNameIn" layoutX="220.0" layoutY="431.0" />
-      <TextField fx:id="DBUserIn" layoutX="220.0" layoutY="473.0" />
-      <TextField fx:id="DBPortIn" layoutX="220.0" layoutY="519.0" />
-      <TextField fx:id="DBPassIn" layoutX="220.0" layoutY="562.0" />
-      <TextField fx:id="SMTPServerIN" layoutX="220.0" layoutY="264.0" />
-      <TextField fx:id="IMAPPortIn" layoutX="220.0" layoutY="307.0" />
-      <TextField fx:id="SMTPPortIn" layoutX="220.0" layoutY="350.0" />
-      <Button fx:id="submitBtn" layoutX="188.0" layoutY="626.0" mnemonicParsing="false" onAction="#submitCredentials" text="Submit" />
-      <Label layoutX="57.0" layoutY="47.0" text="Java Applicatiob for Gmail Configuration">
+      <Label fx:id="emailTxt" layoutX="77.0" layoutY="154.0" text="%emailTxt" />
+      <TextField fx:id="emailIn" layoutX="220.0" layoutY="149.0" />
+      <Label fx:id="passTxt" layoutX="77.0" layoutY="191.0" prefHeight="21.0" prefWidth="69.0" text="%passTxt" />
+      <PasswordField fx:id="passIn" layoutX="220.0" layoutY="186.0" />
+      <Label fx:id="imapS" layoutX="77.0" layoutY="228.0" text="%imapS" />
+      <TextField fx:id="imapSIn" layoutX="220.0" layoutY="223.0" />
+      <Label fx:id="smtpS" layoutX="77.0" layoutY="265.0" text="%smtpS" />
+      <TextField fx:id="stmpSIn" layoutX="220.0" layoutY="260.0" />
+      <Label fx:id="imapP" layoutX="77.0" layoutY="302.0" text="%imapP" />
+      <TextField fx:id="imapPIn" layoutX="220.0" layoutY="297.0" />
+      <Label fx:id="smtpP" layoutX="77.0" layoutY="339.0" text="%smtpP" />
+      <TextField fx:id="smtpPIn" layoutX="220.0" layoutY="334.0" />
+      <Label fx:id="DBUrlTxt" layoutX="77.0" layoutY="376.0" text="%DBUrlTxt" />
+      <TextField fx:id="DBUrlIn" layoutX="220.0" layoutY="371.0" />
+      <Label fx:id="DBNameTxt" layoutX="77.0" layoutY="413.0" text="%DBNameTxt" />
+      <TextField fx:id="DBNameIn" layoutX="220.0" layoutY="408.0" />
+      <Label fx:id="DBUserTxt" layoutX="77.0" layoutY="450.0" text="%DBUserTxt" />
+      <TextField fx:id="DBUserTxtIn" layoutX="220.0" layoutY="445.0" />
+      <Label fx:id="DBPortTxt" layoutX="77.0" layoutY="487.0" text="%DBPortTxt" />
+      <TextField fx:id="DBPortIn" layoutX="220.0" layoutY="482.0" />
+      <Label fx:id="DBPassTxt" layoutX="77.0" layoutY="523.0" text="%DBPassTxt" />
+      <PasswordField fx:id="DBPassIn" layoutX="220.0" layoutY="518.0" />
+      <Button fx:id="submitBtn" layoutX="175.0" layoutY="580.0" mnemonicParsing="false" onAction="#submitCredentials" text="%submitBtn" />
+      <Label fx:id="jagTxt" layoutX="57.0" layoutY="47.0" text="%jagTxt" textAlignment="CENTER">
          <font>
             <Font size="21.0" />
          </font>
