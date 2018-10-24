@@ -10,54 +10,54 @@
 <?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane prefHeight="642.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.composeController">
-        <children>
-      <MenuBar prefHeight="32.0" prefWidth="975.0">
-         <menus>
-            <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="%delete" />
-               </items>
-            </Menu>
-            <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="%about" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-            <ToolBar layoutX="9.0" layoutY="589.0" prefHeight="40.0" prefWidth="964.0">
-                <items>
-                    <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#sendEmail" text="%sendBtn" />
-                    <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addFolder" text="%addBtn" textAlignment="RIGHT" />
-                </items>
-            </ToolBar>
-            <Label fx:id="toTxt" layoutX="26.0" layoutY="92.0" text="%toTxt" />
-            <TextField fx:id="toIn" layoutX="86.0" layoutY="87.0" prefHeight="31.0" prefWidth="887.0" />
-            <Label fx:id="bccTxt" layoutX="26.0" layoutY="130.0" text="%bccTxt" />
-            <TextField fx:id="bccIn" layoutX="86.0" layoutY="124.0" prefHeight="31.0" prefWidth="887.0" />
-            <Label fx:id="ccTxt" layoutX="26.0" layoutY="167.0" text="%ccTxt" />
-            <TextField fx:id="ccIn" layoutX="86.0" layoutY="162.0" prefHeight="31.0" prefWidth="887.0" />
-            <Label fx:id="subjectTx" layoutX="26.0" layoutY="205.0" text="%subjectTx" />
-            <TextField fx:id="subjectIn" layoutX="86.0" layoutY="200.0" prefHeight="31.0" prefWidth="737.0" />
-            <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
-            <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="%sOptionBtn">
-                <items>
-                    <MenuItem fx:id="replyTxt" mnemonicParsing="false" text="%replyTxt" />
-                    <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
-                    <MenuItem fx:id="fwdAllTxt" mnemonicParsing="false" text="%fwdAllTxt" />
-                </items>
-            </SplitMenuButton>
-      <HBox layoutX="265.0" layoutY="589.0" prefHeight="45.0" prefWidth="708.0" />
-      <Label layoutX="26.0" layoutY="41.0" prefHeight="31.0" prefWidth="190.0" text="%composeTxt">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Button layoutX="892.0" layoutY="41.0" mnemonicParsing="false" onAction="#goBack" prefHeight="31.0" prefWidth="75.0" text="%backBtn" />
-        </children>
+    <children>
+        <MenuBar prefHeight="32.0" prefWidth="975.0">
+            <menus>
+                <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%delete" />
+                    </items>
+                </Menu>
+                <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%about" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <ToolBar layoutX="9.0" layoutY="589.0" prefHeight="40.0" prefWidth="964.0">
+            <items>
+                <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#sendEmail" text="%sendBtn" />
+                <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addFolder" text="%addBtn" textAlignment="RIGHT" />
+            </items>
+        </ToolBar>
+        <Label fx:id="toTxt" layoutX="26.0" layoutY="92.0" text="%toTxt" />
+        <TextField fx:id="toIn" layoutX="86.0" layoutY="87.0" prefHeight="31.0" prefWidth="887.0" />
+        <Label fx:id="bccTxt" layoutX="26.0" layoutY="130.0" text="%bccTxt" />
+        <TextField fx:id="bccIn" layoutX="86.0" layoutY="124.0" prefHeight="31.0" prefWidth="887.0" />
+        <Label fx:id="ccTxt" layoutX="26.0" layoutY="167.0" text="%ccTxt" />
+        <TextField fx:id="ccIn" layoutX="86.0" layoutY="162.0" prefHeight="31.0" prefWidth="887.0" />
+        <Label fx:id="subjectTx" layoutX="26.0" layoutY="205.0" text="%subjectTx" />
+        <TextField fx:id="subjectIn" layoutX="86.0" layoutY="200.0" prefHeight="31.0" prefWidth="737.0" />
+        <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
+        <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="%sOptionBtn">
+            <items>
+                <MenuItem fx:id="replyTxt" mnemonicParsing="false" text="%replyTxt" />
+                <MenuItem fx:id="reAllTxt" mnemonicParsing="false" text="%feAllTxt" />
+                <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
+            </items>
+        </SplitMenuButton>
+        <HBox fx:id="attachHolder" layoutX="265.0" layoutY="598.0" prefHeight="45.0" prefWidth="708.0" />
+        <Label layoutX="26.0" layoutY="41.0" prefHeight="31.0" prefWidth="190.0" text="%composeTxt">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Label>
+        <Button fx:id="closeBtn" layoutX="892.0" layoutY="41.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="75.0" text="%close" />
+    </children>
 </AnchorPane>

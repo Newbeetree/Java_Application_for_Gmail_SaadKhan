@@ -7,56 +7,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="658.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.confController">
-   <children>
-      <Label fx:id="nameTxt" layoutX="77.0" layoutY="117.0" text="%nameTxt" />
-      <TextField fx:id="nameIn" layoutX="220.0" layoutY="112.0" />
-      <Label fx:id="emailTxt" layoutX="77.0" layoutY="154.0" text="%emailTxt" />
-      <TextField fx:id="emailIn" layoutX="220.0" layoutY="149.0" />
-      <Label fx:id="passTxt" layoutX="77.0" layoutY="191.0" prefHeight="21.0" prefWidth="69.0" text="%passTxt" />
-      <PasswordField fx:id="passIn" layoutX="220.0" layoutY="186.0" />
-      <Label fx:id="imapS" layoutX="77.0" layoutY="228.0" text="%imapS" />
-      <TextField fx:id="imapSIn" layoutX="220.0" layoutY="223.0" />
-      <Label fx:id="smtpS" layoutX="77.0" layoutY="265.0" text="%smtpS" />
-      <TextField fx:id="stmpSIn" layoutX="220.0" layoutY="260.0" />
-      <Label fx:id="imapP" layoutX="77.0" layoutY="302.0" text="%imapP" />
-      <TextField fx:id="imapPIn" layoutX="220.0" layoutY="297.0" promptText="993" />
-      <Label fx:id="smtpP" layoutX="77.0" layoutY="339.0" text="%smtpP" />
-      <TextField fx:id="smtpPIn" layoutX="220.0" layoutY="334.0" promptText="465" />
-      <Label fx:id="DBUrlTxt" layoutX="77.0" layoutY="376.0" text="%DBUrlTxt" />
-      <TextField fx:id="DBUrlIn" layoutX="220.0" layoutY="371.0" />
-      <Label fx:id="DBNameTxt" layoutX="77.0" layoutY="413.0" text="%DBNameTxt" />
-      <TextField fx:id="DBNameIn" layoutX="220.0" layoutY="408.0" />
-      <Label fx:id="DBUserTxt" layoutX="77.0" layoutY="450.0" text="%DBUserTxt" />
-      <TextField fx:id="DBUserTxtIn" layoutX="220.0" layoutY="445.0" />
-      <Label fx:id="DBPortTxt" layoutX="77.0" layoutY="487.0" text="%DBPortTxt" />
-      <TextField fx:id="DBPortIn" layoutX="220.0" layoutY="482.0" />
-      <Label fx:id="DBPassTxt" layoutX="77.0" layoutY="523.0" text="%DBPassTxt" />
-      <PasswordField fx:id="DBPassIn" layoutX="220.0" layoutY="518.0" />
-      <Button fx:id="submitBtn" layoutX="175.0" layoutY="580.0" mnemonicParsing="false" onAction="#submitCredentials" text="%submitBtn" />
-      <Label fx:id="jagTxt" layoutX="57.0" layoutY="47.0" text="%jagTxt" textAlignment="CENTER">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <MenuBar prefHeight="31.0" prefWidth="497.0">
-        <menus>
-            <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="%delete" />
-               </items>
-            </Menu>
-            <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="%about" />
-               </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+<AnchorPane prefHeight="658.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.saadkhan.controller.confController">
+    <children>
+        <Label fx:id="nameTxt" layoutX="77.0" layoutY="117.0" text="%nameTxt"/>
+        <TextField fx:id="nameIn" layoutX="220.0" layoutY="112.0"/>
+        <Label fx:id="emailTxt" layoutX="77.0" layoutY="154.0" text="%emailTxt"/>
+        <TextField fx:id="emailIn" layoutX="220.0" layoutY="149.0"/>
+        <Label fx:id="passTxt" layoutX="77.0" layoutY="191.0" prefHeight="21.0" prefWidth="69.0"
+               text="%passTxt"/>
+        <PasswordField fx:id="passIn" layoutX="220.0" layoutY="186.0"/>
+        <Label fx:id="imapS" layoutX="77.0" layoutY="228.0" text="%imapS"/>
+        <TextField fx:id="imapSIn" layoutX="220.0" layoutY="223.0"/>
+        <Label fx:id="smtpS" layoutX="77.0" layoutY="265.0" text="%smtpS"/>
+        <TextField fx:id="stmpSIn" layoutX="220.0" layoutY="260.0"/>
+        <Label fx:id="imapP" layoutX="77.0" layoutY="302.0" text="%imapP"/>
+        <TextField fx:id="imapPIn" layoutX="220.0" layoutY="297.0" promptText="993"/>
+        <Label fx:id="smtpP" layoutX="77.0" layoutY="339.0" text="%smtpP"/>
+        <TextField fx:id="smtpPIn" layoutX="220.0" layoutY="334.0" promptText="465"/>
+        <Label fx:id="DBUrlTxt" layoutX="77.0" layoutY="376.0" text="%DBUrlTxt"/>
+        <TextField fx:id="DBUrlIn" layoutX="220.0" layoutY="371.0"/>
+        <Label fx:id="DBNameTxt" layoutX="77.0" layoutY="413.0" text="%DBNameTxt"/>
+        <TextField fx:id="DBNameIn" layoutX="220.0" layoutY="408.0"/>
+        <Label fx:id="DBUserTxt" layoutX="77.0" layoutY="450.0" text="%DBUserTxt"/>
+        <TextField fx:id="DBUserTxtIn" layoutX="220.0" layoutY="445.0"/>
+        <Label fx:id="DBPortTxt" layoutX="77.0" layoutY="487.0" text="%DBPortTxt"/>
+        <TextField fx:id="DBPortIn" layoutX="220.0" layoutY="482.0"/>
+        <Label fx:id="DBPassTxt" layoutX="77.0" layoutY="523.0" text="%DBPassTxt"/>
+        <PasswordField fx:id="DBPassIn" layoutX="220.0" layoutY="518.0"/>
+        <Button fx:id="submitBtn" layoutX="175.0" layoutY="580.0" mnemonicParsing="false"
+                onAction="#submitCredentials" text="%submitBtn"/>
+        <Label fx:id="jagTxt" layoutX="57.0" layoutY="47.0" text="%jagTxt" textAlignment="CENTER">
+            <font>
+                <Font size="21.0"/>
+            </font>
+        </Label>
+        <MenuBar prefHeight="31.0" prefWidth="497.0">
+            <menus>
+                <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%delete"/>
+                    </items>
+                </Menu>
+                <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="%about"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
 </AnchorPane>

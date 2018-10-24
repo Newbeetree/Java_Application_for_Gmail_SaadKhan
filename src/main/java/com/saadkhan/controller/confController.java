@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 
 public class confController {
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
-    private String language;
     private final ConfigurationFxBean cfb;
     private Stage primaryStage;
 
@@ -132,16 +131,14 @@ public class confController {
         } catch (IOException ex) {
             LOG.error("error saving", ex);
         }
-
     }
 
     /**
      * Without the ability to pass values thru a constructor we need a set
      * method for any variables required in this class
      */
-    public void setSceneStageController(Stage stage, String lang) {
+    public void setSceneStageController(Stage stage) {
         this.primaryStage = stage;
-        this.language = lang;
     }
 
     private void login() throws IOException {
@@ -154,8 +151,7 @@ public class confController {
         this.primaryStage.show();
     }
 
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         Bindings.bindBidirectional(nameIn.textProperty(), cfb.userNameProperty());
         Bindings.bindBidirectional(emailIn.textProperty(), cfb.userEmailAddressProperty());

@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 /**
@@ -63,262 +64,170 @@ public class EmailFxBean implements Serializable {
         priority = new SimpleObjectProperty<>(Priority.PRIORITY_NORMAL);
     }
 
-    /**
-     * @return email address of from
-     */
     public EmailAddress getFrom() {
         return from.get();
-    }
-
-    /**
-     * @param from email address to set
-     */
-    public EmailFxBean setFrom(EmailAddress from) {
-        this.from.set(from);
-        return this;
     }
 
     public ObjectProperty<EmailAddress> fromProperty() {
         return from;
     }
 
-    /**
-     * @return arraylist of email address
-     */
+    public void setFrom(EmailAddress from) {
+        this.from.set(from);
+    }
+
     public ArrayList<EmailAddress> getTo() {
         return new ArrayList<>(to.get());
     }
 
-    /**
-     * @param to Array list of emailadress to set
-     */
-    public EmailFxBean setTo(ArrayList<EmailAddress> to) {
-        this.to.addAll(to);
-        return this;
+    public ListProperty<EmailAddress> toProperty() {
+        return to;
     }
 
-    /**
-     * @return Arraylist of email addresses in cc
-     */
+    public void setTo(ObservableList<EmailAddress> to) {
+        this.to.set(to);
+    }
+
     public ArrayList<EmailAddress> getCc() {
         return new ArrayList<>(cc.get());
     }
 
-    /**
-     * @param cc sets and arraylist for cc
-     */
-    public EmailFxBean setCc(ArrayList<EmailAddress> cc) {
-        this.cc.addAll(cc);
-        return this;
+    public ListProperty<EmailAddress> ccProperty() {
+        return cc;
     }
 
-    /**
-     * @return Arraylist of Email addresses
-     */
+    public void setCc(ObservableList<EmailAddress> cc) {
+        this.cc.set(cc);
+    }
+
     public ArrayList<EmailAddress> getBcc() {
         return new ArrayList<>(bcc.get());
     }
 
-    /**
-     * @param bcc Arraylist of EmailAddress to set
-     */
-    public EmailFxBean setBcc(ArrayList<EmailAddress> bcc) {
-        this.bcc.addAll(bcc);
-        return this;
+    public ListProperty<EmailAddress> bccProperty() {
+        return bcc;
     }
 
-    /**
-     * @return string representing subject
-     */
+    public void setBcc(ObservableList<EmailAddress> bcc) {
+        this.bcc.set(bcc);
+    }
+
     public String getSubject() {
         return subject.get();
-    }
-
-    /**
-     * @param subject set the string for subject
-     */
-    public EmailFxBean setSubject(String subject) {
-        this.subject.set(subject);
-        return this;
     }
 
     public StringProperty subjectProperty() {
         return subject;
     }
 
-    /**
-     * @return string for the message
-     */
-    public String getMessage() {
-        return message.get();
+    public void setSubject(String subject) {
+        this.subject.set(subject);
     }
 
-    /**
-     * @param message message to set
-     */
-    public EmailFxBean setMessage(String message) {
-        this.message.set(message);
-        return this;
+    public String getMessage() {
+        return message.get();
     }
 
     public StringProperty messageProperty() {
         return message;
     }
 
-    /**
-     * @return html message to get
-     */
+    public void setMessage(String message) {
+        this.message.set(message);
+    }
+
     public String getHtmlMessage() {
         return htmlMessage.get();
     }
 
-    /**
-     * @param htmlMessage html to set
-     */
-    public EmailFxBean setHtmlMessage(String htmlMessage) {
-        this.htmlMessage.set(htmlMessage);
-        return this;
-    }
-
-    public StringProperty htmlProperty() {
+    public StringProperty htmlMessageProperty() {
         return htmlMessage;
     }
 
-    /**
-     * @return boolean representing if the email has been seen
-     */
-    public boolean isSeen() {
-        return seen.get();
+    public void setHtmlMessage(String htmlMessage) {
+        this.htmlMessage.set(htmlMessage);
     }
 
-    /**
-     * @param seen sets if the mail has been seen or not
-     */
-    public EmailFxBean setSeen(boolean seen) {
-        this.seen.set(seen);
-        return this;
+    public boolean isSeen() {
+        return seen.get();
     }
 
     public BooleanProperty seenProperty() {
         return seen;
     }
 
-    /**
-     * @return gets an arraylist of attachments
-     */
+    public void setSeen(boolean seen) {
+        this.seen.set(seen);
+    }
+
     public ArrayList<FileAttachmentBean> getAttachments() {
         return new ArrayList<>(attachments.get());
     }
 
-    /**
-     * @param attachments arraylist of attachments to send
-     */
-    public EmailFxBean setAttachments(ArrayList<FileAttachmentBean> attachments) {
-        this.attachments.addAll(attachments);
-        return this;
+    public ListProperty<FileAttachmentBean> attachmentsProperty() {
+        return attachments;
     }
 
-    /**
-     * @return string of message type
-     */
+    public void setAttachments(ObservableList<FileAttachmentBean> attachments) {
+        this.attachments.set(attachments);
+    }
+
     public String getMessageType() {
         return messageType.get();
     }
 
-    /**
-     * @param messageType string messgae type to set
-     */
-    public EmailFxBean setMessageType(String messageType) {
-        this.messageType.set(messageType);
-        return this;
+    public StringProperty messageTypeProperty() {
+        return messageType;
     }
 
-    /**
-     * @return LocalDateTime of when object was sent
-     */
+    public void setMessageType(String messageType) {
+        this.messageType.set(messageType);
+    }
+
     public LocalDateTime getSend() {
         return send.get();
-    }
-
-    /**
-     * @param send LocalDateTime of the send to set
-     */
-    public void setSend(LocalDateTime send) {
-        this.send.set(send);
     }
 
     public ObjectProperty<LocalDateTime> sendProperty() {
         return send;
     }
 
-    /**
-     * @return LocalDateTime of when object was recieved
-     */
+    public void setSend(LocalDateTime send) {
+        this.send.set(send);
+    }
+
     public LocalDateTime getRecived() {
         return recived.get();
     }
 
-    /**
-     * @param recived set LocalDateTime of when object was received
-     */
+    public ObjectProperty<LocalDateTime> recivedProperty() {
+        return recived;
+    }
+
     public void setRecived(LocalDateTime recived) {
         this.recived.set(recived);
     }
 
-    /**
-     * @return string representing which folder email belonged to
-     */
     public String getFolder() {
         return folder.get();
-    }
-
-    /**
-     * @param folder string representing the name of folder to set
-     */
-    public EmailFxBean setFolder(String folder) {
-        this.folder.set(folder);
-        return this;
     }
 
     public StringProperty folderProperty() {
         return folder;
     }
 
-    /**
-     * @return Priorty of email
-     */
+    public void setFolder(String folder) {
+        this.folder.set(folder);
+    }
+
     public Priority getPriority() {
         return priority.get();
     }
 
-    /**
-     * @param priority set priority of email using an integer
-     */
-    public void setPriority(int priority) {
-        switch (priority) {
-            case 0:
-                this.priority.set(Priority.PRIORITY_LOWEST);
-                break;
-            case 1:
-                this.priority.set(Priority.PRIORITY_LOW);
-                break;
-            case 2:
-                this.priority.set(Priority.PRIORITY_NORMAL);
-                break;
-            case 3:
-                this.priority.set(Priority.PRIORITY_HIGH);
-                break;
-            case 4:
-                this.priority.set(Priority.PRIORITY_HIGHEST);
-                break;
-            default:
-                this.priority.set(Priority.PRIORITY_NORMAL);
-        }
+    public ObjectProperty<Priority> priorityProperty() {
+        return priority;
     }
 
-    /**
-     * @param priority set the priority of email
-     */
     public void setPriority(Priority priority) {
         this.priority.set(priority);
     }

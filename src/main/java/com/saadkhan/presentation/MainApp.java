@@ -2,6 +2,7 @@ package com.saadkhan.presentation;
 
 import com.saadkhan.controller.composeController;
 import com.saadkhan.controller.confController;
+import com.saadkhan.controller.mainController;
 import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.manager.PropertiesManager;
 
@@ -65,10 +66,8 @@ public class MainApp extends Application {
         ResourceBundle rb = ResourceBundle.getBundle("Strings");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
-
-        // rpc = loader.getController();
-        //rpc.displayPropertiesInTextArea();
-
+        mainController controller = loader.getController();
+        controller.setSceneStageController(stage);
         Scene scene = new Scene(root);
         return scene;
     }
@@ -78,9 +77,8 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
         confController controller = loader.getController();
-        controller.setSceneStageController(stage, language);
+        controller.setSceneStageController(stage);
         Scene scene = new Scene(root);
         return scene;
-
     }
 }
