@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
@@ -62,6 +63,24 @@ public class EmailFxBean implements Serializable {
         recived = new SimpleObjectProperty<>(LocalDateTime.now());
         folder = new SimpleStringProperty();
         priority = new SimpleObjectProperty<>(Priority.PRIORITY_NORMAL);
+    }
+
+    public EmailFxBean(EmailBean bean) {
+        emailID = new SimpleIntegerProperty(bean.getEmailID());
+        from = new SimpleObjectProperty<>(bean.getFrom());
+        to = new SimpleListProperty<>(FXCollections.observableArrayList(bean.getTo()));
+        cc = new SimpleListProperty<>(FXCollections.observableArrayList(bean.getCc()));
+        bcc = new SimpleListProperty<>(FXCollections.observableArrayList(bean.getBcc()));
+        subject = new SimpleStringProperty(bean.getSubject());
+        message = new SimpleStringProperty(bean.getMessage());
+        htmlMessage = new SimpleStringProperty(bean.getHtmlMessage());
+        seen = new SimpleBooleanProperty(bean.isSeen());
+        attachments = new SimpleListProperty<>(FXCollections.observableArrayList(bean.getAttachments()));
+        messageType = new SimpleStringProperty(bean.getMessageType());
+        send = new SimpleObjectProperty<>(bean.getSend());
+        recived = new SimpleObjectProperty<>(bean.getRecived());
+        folder = new SimpleStringProperty(bean.getFolder());
+        priority = new SimpleObjectProperty<>(bean.getPriority());
     }
 
     public EmailAddress getFrom() {

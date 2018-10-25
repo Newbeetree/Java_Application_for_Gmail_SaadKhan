@@ -4,14 +4,25 @@
 
 package com.saadkhan.controller;
 
+import com.saadkhan.buisness.EmailSender;
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.EmailFxBean;
+import com.saadkhan.persistence.EmailDOA;
+import com.saadkhan.persistence.EmailDOAImpl;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,9 +39,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jodd.mail.EmailAddress;
 
 public class mainController {
 
+    private final static Logger LOG = LoggerFactory.getLogger(mainController.class);
     @FXML
     public ListView folderHolder;
     @FXML
@@ -40,31 +53,37 @@ public class mainController {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
     @FXML // fx:id="dateReTxt"
-    private TableColumn<?, ?> dateReTxt; // Value injected by FXMLLoader
+    private TableColumn<EmailFxBean, LocalDateTime> dateReTxt; // Value injected by FXMLLoader
     @FXML // fx:id="fileMn"
     private Menu fileMn; // Value injected by FXMLLoader
     @FXML // fx:id="fromTxt"
-    private TableColumn<?, ?> fromTxt; // Value injected by FXMLLoader
+    private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
     @FXML // fx:id="editMn"
     private Menu editMn; // Value injected by FXMLLoader
     @FXML // fx:id="helpMn"
     private Menu helpMn; // Value injected by FXMLLoader
     @FXML // fx:id="subjectTxt"
-    private TableColumn<?, ?> subjectTxt; // Value injected by FXMLLoader
+    private TableColumn<EmailFxBean, String> subjectTxt; // Value injected by FXMLLoader
     @FXML // fx:id="trashBtn"
     private Button trashBtn; // Value injected by FXMLLoader
     @FXML // fx:id="folderBtn"
     private Button folderBtn; // Value injected by FXMLLoader
+
     private Stage primaryStage;
     private ArrayList<String> folderList;
+    private Locale locale;
+    private EmailDOA doa;
+    private ArrayList<EmailBean> emailList;
+
     public mainController() {
+        this.doa = new EmailDOAImpl();
     }
 
     @FXML
     public void addFolder(ActionEvent event) {
-        TextInputDialog folderDiag = new TextInputDialog("Folder Name");
-        folderDiag.setTitle("Add Folder");
-        folderDiag.setHeaderText("Enter Folder Name");
+        TextInputDialog folderDiag = new TextInputDialog(this.resources.getString("folderName"));//"Folder Name");
+        folderDiag.setTitle(this.resources.getString("addFolder"));
+        folderDiag.setHeaderText(this.resources.getString("enterFolderName"));
         Optional<String> result = folderDiag.showAndWait();
         result.ifPresent(name -> {
             folderList.add(name);
@@ -76,6 +95,17 @@ public class mainController {
         folderHolder.getItems().clear();
         for (String fName : folderList) {
             Label b = new Label(fName);
+            b.setId(fName);
+            b.setOnMouseClicked(e -> {
+                try {
+                    String folderName = e.getPickResult().getIntersectedNode().getId();
+                    int folderId = doa.findFolder(folderName);
+                    ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
+                    emailHolder.setItems(emailFxList);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            });
             b.setMaxWidth(folderHolder.getPrefWidth());
             folderHolder.getItems().add(b);
         }
@@ -91,8 +121,23 @@ public class mainController {
 
     @FXML
     public void initialize() {
-        addAllEmails();
-        addAllFolders();
+        fromTxt.setCellValueFactory(cellData -> cellData.getValue().fromProperty());
+        dateReTxt.setCellValueFactory(cellData -> cellData.getValue().recivedProperty());
+        subjectTxt.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
+        emailHolder
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (observable, oldValue, newValue) -> showEmailDetails(newValue));
+        try {
+            addAllFolders();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showEmailDetails(Object newValue) {
+        LOG.info((String) newValue);
     }
 
     public void showCompose(ActionEvent actionEvent) {
@@ -118,8 +163,8 @@ public class mainController {
     }
 
 
-    private void addAllEmails() {
-        ArrayList<EmailBean> emailList = getEmailsDB();
+    private void findEmails() throws SQLException {
+        ArrayList<EmailBean> emailList = doa.findAllEmailBeans();
         drawEmails(emailList);
     }
 
@@ -131,31 +176,34 @@ public class mainController {
         }
     }
 
-    private ArrayList<EmailBean> getEmailsDB() {
-        ArrayList<EmailBean> list = new ArrayList<>();
-        list.add(new EmailBean());
-        return list;
-    }
 
-    private void addAllFolders() {
-        folderList = getFolderDB();
+    private void addAllFolders() throws SQLException {
+        folderList = doa.findAllFolders();
         drawFolders();
     }
 
-    private ArrayList<String> getFolderDB() {
-        ArrayList<String> s = new ArrayList<>();
-        s.add("test1");
-        s.add("test2");
-        s.add("test3");
-        return s;
-    }
-
     public void changeFrench(ActionEvent actionEvent) {
-
+        this.locale = new Locale("en", "US");
+        recreateWindow();
     }
 
     public void changeEnglish(ActionEvent actionEvent) {
+        this.locale = new Locale("fr", "CA");
+        recreateWindow();
     }
 
-
+    private void recreateWindow() {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            confController controller = loader.getController();
+            controller.setSceneStageController(primaryStage);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            LOG.error(e.getMessage());
+        }
+    }
 }

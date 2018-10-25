@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane prefHeight="642.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.composeController">
+<AnchorPane prefHeight="659.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.composeController">
     <children>
         <MenuBar prefHeight="32.0" prefWidth="975.0">
             <menus>
@@ -30,7 +30,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <ToolBar layoutX="9.0" layoutY="589.0" prefHeight="40.0" prefWidth="964.0">
+        <ToolBar layoutX="9.0" layoutY="589.0" prefHeight="58.0" prefWidth="964.0">
             <items>
                 <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#sendEmail" text="%sendBtn" />
                 <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addFolder" text="%addBtn" textAlignment="RIGHT" />
@@ -52,12 +52,12 @@
                 <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
             </items>
         </SplitMenuButton>
-        <HBox fx:id="attachHolder" layoutX="265.0" layoutY="598.0" prefHeight="45.0" prefWidth="708.0" />
         <Label layoutX="26.0" layoutY="41.0" prefHeight="31.0" prefWidth="190.0" text="%composeTxt">
             <font>
                 <Font size="21.0" />
             </font>
         </Label>
         <Button fx:id="closeBtn" layoutX="892.0" layoutY="41.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="75.0" text="%close" />
+      <ListView fx:id="attachyHolder" layoutX="372.0" layoutY="589.0" prefHeight="57.0" prefWidth="601.0" />
     </children>
 </AnchorPane>

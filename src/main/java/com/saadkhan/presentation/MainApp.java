@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -45,6 +46,7 @@ public class MainApp extends Application {
             this.stage.setScene(conf);
             this.stage.setTitle("JAG: Configure");
         }
+        this.stage.getIcons().add(new Image(this.getClass().getResourceAsStream("/images/frown.png")));
         this.stage.show();
     }
 

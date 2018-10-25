@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Properties;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.beans.binding.Bindings;
@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -32,9 +33,11 @@ public class confController {
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private final ConfigurationFxBean cfb;
     private Stage primaryStage;
+    private Locale locale;
 
     public confController() {
         this.cfb = new ConfigurationFxBean();
+        locale = new Locale("en", "US");
     }
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -100,8 +103,17 @@ public class confController {
     @FXML // fx:id="DBUrlTxt"
     private Label DBUrlTxt; // Value injected by FXMLLoader
 
+    @FXML // fx:id="fileMn"
+    private Menu fileMn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="helpMn"
+    private Menu helpMn; // Value injected by FXMLLoader
+
     @FXML // fx:id="smtpS"
     private Label smtpS; // Value injected by FXMLLoader
+
+    @FXML // fx:id="langMn"
+    private Menu langMn; // Value injected by FXMLLoader
 
     @FXML // fx:id="emailIn"
     private TextField emailIn; // Value injected by FXMLLoader
@@ -145,13 +157,15 @@ public class confController {
         ResourceBundle rb = ResourceBundle.getBundle("Strings");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
+        mainController controller = loader.getController();
         Scene scene = new Scene(root);
         this.primaryStage.setScene(scene);
         this.primaryStage.setTitle("JAG: Email Client");
         this.primaryStage.show();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         Bindings.bindBidirectional(nameIn.textProperty(), cfb.userNameProperty());
         Bindings.bindBidirectional(emailIn.textProperty(), cfb.userEmailAddressProperty());
@@ -166,4 +180,30 @@ public class confController {
         Bindings.bindBidirectional(DBPortIn.textProperty(), cfb.DBPortProperty());
         Bindings.bindBidirectional(DBPassIn.textProperty(), cfb.DBPasswordProperty());
     }
+
+    public void changeFrench(ActionEvent actionEvent) {
+        this.locale = new Locale("en","US");
+        recreateWindow();
+    }
+
+    public void changeEnglish(ActionEvent actionEvent) {
+        this.locale = new Locale("fr","CA");
+        recreateWindow();
+    }
+
+    private void recreateWindow() {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            confController controller = loader.getController();
+            controller.setSceneStageController(primaryStage);
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            LOG.error(e.getMessage());
+        }
+    }
+
 }

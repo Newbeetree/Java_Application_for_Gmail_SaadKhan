@@ -1,6 +1,7 @@
 package com.saadkhan.persistence;
 
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.data.FileAttachmentBean;
 
 import org.slf4j.Logger;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 public class EmailDOAImpl implements EmailDOA {
@@ -347,6 +350,28 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         return true;
+    }
+
+    /**
+     * Find all emails in the database using the email bean table and creating an array list of emailbeans
+     *
+     * @return list of all emailbeans in the database
+     */
+    @Override
+    public ArrayList<EmailBean> findAllEmailBeansByFolder(int folder) throws SQLException {
+        ArrayList<EmailBean> beanList = new ArrayList<>();
+        String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean WHERE Folder_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pStatement = connection.prepareStatement(selectQuery)) {
+            pStatement.setInt(1, folder);
+            try (ResultSet resultSet = pStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    beanList.add(getEmailBean(resultSet));
+                }
+            }
+            LOG.info("# of email beans found : " + beanList.size());
+            return beanList;
+        }
     }
 
     /**
@@ -719,5 +744,20 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         return email;
+    }
+
+    @Override
+    public ObservableList<EmailFxBean> findAllEmailBeansByFolderFx(int folderId) {
+        ObservableList<EmailFxBean> efList = FXCollections.observableArrayList();
+        try {
+            ArrayList<EmailBean> ebList = findAllEmailBeansByFolder(folderId);
+            for (EmailBean bean : ebList) {
+                EmailFxBean efb = new EmailFxBean(bean);
+                efList.add(efb);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return efList;
     }
 }

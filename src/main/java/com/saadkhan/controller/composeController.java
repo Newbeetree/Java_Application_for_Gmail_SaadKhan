@@ -19,11 +19,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -80,6 +82,8 @@ public class composeController {
     private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
     @FXML // fx:id="attachHolder"
     private HBox attachHolder; // Value injected by FXMLLoader
+    @FXML
+    private ListView attachyHolder;
 
     private Stage primaryStage;
 
@@ -100,23 +104,16 @@ public class composeController {
     public void addFolder(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        ArrayList<FileAttachmentBean> fabList = new ArrayList<>();
         List<File> list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
         for (File f : list) {
-            Button b = new Button(f.getName().substring(0,15));
-            b.setId(f.getName().substring(0,15)+"Btn");
+            Button b = new Button(f.getName().substring(0, 15));
+            b.setId(f.getName().substring(0, 15) + "Btn");
             b.setStyle("-fx-background-color: #b2c3ff; ");
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    removeFolder();
-                }
+            b.setOnMouseClicked(e -> {
 
-                private void removeFolder() {
-                }
             });
-            attachHolder.getChildren().add(b);
-            attachHolder.setSpacing(5);
+            attachyHolder.setOrientation(Orientation.HORIZONTAL);
+            attachyHolder.getItems().add(b);
         }
     }
 
@@ -126,7 +123,6 @@ public class composeController {
 
     public void close(ActionEvent actionEvent) {
         try {
-            System.out.println(attachHolder.getLayoutX());
             Stage stage = (Stage) closeBtn.getScene().getWindow();
             stage.close();
             ResourceBundle rb = ResourceBundle.getBundle("Strings");
