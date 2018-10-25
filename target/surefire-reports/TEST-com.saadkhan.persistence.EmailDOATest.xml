@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.saadkhan.buisness.EmailSenderTest" time="131.173" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.saadkhan.persistence.EmailDOATest" time="32.987" tests="22" errors="5" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,15 +61,76 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="sendInvalidCC" classname="com.saadkhan.buisness.EmailSenderTest" time="4.297"/>
-  <testcase name="sendInvalidTo" classname="com.saadkhan.buisness.EmailSenderTest" time="1.406"/>
-  <testcase name="sendOnlyHtml" classname="com.saadkhan.buisness.EmailSenderTest" time="16.597"/>
-  <testcase name="sendAndReceiveWithAllFields" classname="com.saadkhan.buisness.EmailSenderTest" time="17.245"/>
-  <testcase name="sendOnlyAttachments" classname="com.saadkhan.buisness.EmailSenderTest" time="16.598"/>
-  <testcase name="sendHtmlNull" classname="com.saadkhan.buisness.EmailSenderTest" time="7.345"/>
-  <testcase name="sendOnlyMessage" classname="com.saadkhan.buisness.EmailSenderTest" time="14.69"/>
-  <testcase name="sendMessageNull" classname="com.saadkhan.buisness.EmailSenderTest" time="6.361"/>
-  <testcase name="sendNullSubject" classname="com.saadkhan.buisness.EmailSenderTest" time="15.19"/>
-  <testcase name="sendNothing" classname="com.saadkhan.buisness.EmailSenderTest" time="15.268"/>
-  <testcase name="sendOnlyHtmlAndText" classname="com.saadkhan.buisness.EmailSenderTest" time="15.768"/>
+  <testcase name="testCreateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.797"/>
+  <testcase name="testFindEmailBeanId" classname="com.saadkhan.persistence.EmailDOATest" time="1.938">
+    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
+	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanId(EmailDOATest.java:144)
+</error>
+    <system-out><![CDATA[10:20:34.119 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
+10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
+10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
+10:20:35.994 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:36.025 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
+]]></system-out>
+  </testcase>
+  <testcase name="testFindAllFolders" classname="com.saadkhan.persistence.EmailDOATest" time="1.64"/>
+  <testcase name="testDeleteEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.501"/>
+  <testcase name="testCreateDuplicateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.844">
+    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
+	at com.saadkhan.persistence.EmailDOATest.testCreateDuplicateEmailBean(EmailDOATest.java:82)
+</error>
+    <system-out><![CDATA[10:20:39.198 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
+10:20:40.948 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
+10:20:40.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:40.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
+10:20:40.979 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:41.010 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
+]]></system-out>
+  </testcase>
+  <testcase name="testDeleteEmailAddressEmail" classname="com.saadkhan.persistence.EmailDOATest" time="1.296"/>
+  <testcase name="testCreateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.516"/>
+  <testcase name="testFindAllFileAttachments" classname="com.saadkhan.persistence.EmailDOATest" time="1.734">
+    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
+	at com.saadkhan.persistence.EmailDOATest.testFindAllFileAttachments(EmailDOATest.java:154)
+</error>
+    <system-out><![CDATA[10:20:43.854 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
+]]></system-out>
+  </testcase>
+  <testcase name="testDeleteEmailAddressId" classname="com.saadkhan.persistence.EmailDOATest" time="1.438"/>
+  <testcase name="testUpdateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.406"/>
+  <testcase name="testFindEmailList" classname="com.saadkhan.persistence.EmailDOATest" time="1.329"/>
+  <testcase name="testFindFrom" classname="com.saadkhan.persistence.EmailDOATest" time="1.109"/>
+  <testcase name="testDuplicateSameFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.391"/>
+  <testcase name="testFindEmailBeanBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.704">
+    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
+	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanBean(EmailDOATest.java:133)
+</error>
+    <system-out><![CDATA[10:20:52.261 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
+10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
+10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
+10:20:53.902 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:53.933 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.703">
+    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
+	at com.saadkhan.persistence.EmailDOATest.testCreateEmailBean(EmailDOATest.java:71)
+</error>
+    <system-out><![CDATA[10:20:53.965 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
+10:20:55.558 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
+10:20:55.558 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:55.574 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
+10:20:55.590 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
+10:20:55.621 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.531"/>
+  <testcase name="testDeleteFolderName" classname="com.saadkhan.persistence.EmailDOATest" time="1.406"/>
+  <testcase name="testFindAllEmailsBeans" classname="com.saadkhan.persistence.EmailDOATest" time="1.766"/>
+  <testcase name="testDeleteFolderId" classname="com.saadkhan.persistence.EmailDOATest" time="1.547"/>
+  <testcase name="testFindFolderID" classname="com.saadkhan.persistence.EmailDOATest" time="1.234"/>
+  <testcase name="testFindFolderString" classname="com.saadkhan.persistence.EmailDOATest" time="1.047"/>
+  <testcase name="testFindEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.094"/>
 </testsuite>

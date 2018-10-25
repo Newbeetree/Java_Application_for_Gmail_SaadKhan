@@ -1,11 +1,13 @@
 package com.saadkhan.persistence;
 
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.data.FileAttachmentBean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 /**
@@ -146,12 +148,14 @@ public interface EmailDOA {
      */
     ArrayList<EmailAddress> findEmailList(int bean_id, String type) throws SQLException;
 
-    /**
-     * find the email address for the from field
-     *
-     * @param email_from the email_id in the email address table
-     * @return emailaddress from of the sender in the email address table
-     */
+    ArrayList<EmailBean> findAllEmailBeansByFolder(int folder) throws SQLException;
+
+        /**
+         * find the email address for the from field
+         *
+         * @param email_from the email_id in the email address table
+         * @return emailaddress from of the sender in the email address table
+         */
     EmailAddress findFrom(int email_from) throws SQLException;
 
 
@@ -214,4 +218,5 @@ public interface EmailDOA {
      */
     int updateEmailAddress(int email_Id, String Name, String Address) throws SQLException;
 
+    ObservableList<EmailFxBean> findAllEmailBeansByFolderFx(int folderId);
 }

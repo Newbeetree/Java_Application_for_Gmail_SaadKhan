@@ -1,6 +1,7 @@
 package com.saadkhan.persistence;
 
 import com.saadkhan.data.EmailBean;
+import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.data.FileAttachmentBean;
 
 import org.slf4j.Logger;
@@ -14,8 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.sql.rowset.serial.SerialBlob;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 public class EmailDOAImpl implements EmailDOA {
@@ -357,6 +358,28 @@ public class EmailDOAImpl implements EmailDOA {
      * @return list of all emailbeans in the database
      */
     @Override
+    public ArrayList<EmailBean> findAllEmailBeansByFolder(int folder) throws SQLException {
+        ArrayList<EmailBean> beanList = new ArrayList<>();
+        String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean WHERE Folder_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pStatement = connection.prepareStatement(selectQuery)) {
+            pStatement.setInt(1, folder);
+            try (ResultSet resultSet = pStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    beanList.add(getEmailBean(resultSet));
+                }
+            }
+            LOG.info("# of email beans found : " + beanList.size());
+            return beanList;
+        }
+    }
+
+    /**
+     * Find all emails in the database using the email bean table and creating an array list of emailbeans
+     *
+     * @return list of all emailbeans in the database
+     */
+    @Override
     public ArrayList<EmailBean> findAllEmailBeans() throws SQLException {
         ArrayList<EmailBean> beanList = new ArrayList<>();
         String selectQuery = "SELECT Bean_Id, Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id FROM EmailBean";
@@ -476,7 +499,7 @@ public class EmailDOAImpl implements EmailDOA {
                      PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
                     pStatement.setInt(1, email_id);
                     pStatement.setString(2, fab.getName());
-                    pStatement.setBlob(3, new SerialBlob(fab.getFile()));
+                    pStatement.setBytes(3, fab.getFile());
                     pStatement.setBoolean(4, fab.getType());
                     pStatement.executeUpdate();
                     try (ResultSet rs = pStatement.getGeneratedKeys();) {
@@ -525,6 +548,7 @@ public class EmailDOAImpl implements EmailDOA {
              ResultSet resultSet = pStatement.executeQuery()) {
             while (resultSet.next()) {
                 FileAttachmentBean fab = new FileAttachmentBean(
+                        resultSet.getInt("Attach_Id"),
                         resultSet.getBytes("File_Attach"),
                         resultSet.getString("File_Name"),
                         resultSet.getBoolean("File_Type"));
@@ -720,5 +744,20 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         return email;
+    }
+
+    @Override
+    public ObservableList<EmailFxBean> findAllEmailBeansByFolderFx(int folderId) {
+        ObservableList<EmailFxBean> efList = FXCollections.observableArrayList();
+        try {
+            ArrayList<EmailBean> ebList = findAllEmailBeansByFolder(folderId);
+            for (EmailBean bean : ebList) {
+                EmailFxBean efb = new EmailFxBean(bean);
+                efList.add(efb);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return efList;
     }
 }

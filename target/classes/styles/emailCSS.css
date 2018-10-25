@@ -1,0 +1,7 @@
+#back{
+    -fx-background-image: url("/images/background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 2000 1500;
+    -fx-background-position: center center;
+}
+

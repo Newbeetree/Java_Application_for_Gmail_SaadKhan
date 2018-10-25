@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * FileAttachmentBean is serializable and has getters and setters for files and
  * the names of said files to be used by the EmailBean
@@ -12,15 +21,16 @@ import java.util.Objects;
  */
 public class FileAttachmentBean implements Serializable {
 
-    private int attachID;
+    private IntegerProperty attachID;
     private byte[] file;
-    private String name;
-    private boolean type;
+    private StringProperty name;
+    private BooleanProperty type;
 
     /**
      * constructor for default FileAttachmentBean
      */
     public FileAttachmentBean() {
+        this(-1, null, "", false);
     }
 
     /**
@@ -29,19 +39,25 @@ public class FileAttachmentBean implements Serializable {
      * @param file the byte array of the file
      * @param name the name of said file
      */
-    public FileAttachmentBean(byte[] file, String name, boolean type) {
+    public FileAttachmentBean(final int id, final byte[] file, final String name, final boolean type) {
+        super();
+        this.attachID = new SimpleIntegerProperty(id);
         this.file = file;
-        this.name = name;
-        this.type = type;
+        this.name = new SimpleStringProperty(name);
+        this.type = new SimpleBooleanProperty(type);
     }
 
     public int getAttachID() {
-        return attachID;
+        return attachID.get();
     }
 
-    public FileAttachmentBean setAttachID(int attachID) {
-        this.attachID = attachID;
+    public FileAttachmentBean setAttachID(final int attachID) {
+        this.attachID.set(attachID);
         return this;
+    }
+
+    public IntegerProperty AttachIDPropertty() {
+        return attachID;
     }
 
     /**
@@ -63,22 +79,26 @@ public class FileAttachmentBean implements Serializable {
      * @return String name of file
      */
     public String getName() {
-        return name;
+        return name.get();
     }
 
     /**
      * @param name name of file to be set
      */
     public FileAttachmentBean setName(String name) {
-        this.name = name;
+        this.name.set(name);
         return this;
+    }
+
+    public StringProperty nameProperty(){
+        return name;
     }
 
     /**
      * @return type of file
      */
     public boolean getType() {
-        return type;
+        return type.get();
     }
 
     /**
@@ -87,8 +107,12 @@ public class FileAttachmentBean implements Serializable {
      *             false for attach
      */
     public FileAttachmentBean setType(boolean type) {
-        this.type = type;
+        this.type.set(type);
         return this;
+    }
+
+    public BooleanProperty typeProperty(){
+        return type;
     }
 
     @Override

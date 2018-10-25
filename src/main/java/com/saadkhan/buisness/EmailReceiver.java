@@ -34,7 +34,7 @@ public class EmailReceiver {
     private String receiveEmail;
     private String receivePassword;
 
-    /**
+    /**x
      * Constructs an EmailReciever when given proper Usernames and Passwords of a gmail account
      * that received emails in order to be able to check all unread emails
      */
@@ -120,7 +120,7 @@ public class EmailReceiver {
                 fs.setName(attachment.getName());
                 fs.setFile(attachment.toByteArray());
                 fs.setType(attachment.isEmbedded());
-                bean.getAttachments().add(new FileAttachmentBean(fs.getFile(), fs.getName(), fs.getType()));
+                bean.getAttachments().add(new FileAttachmentBean(fs.getAttachID() ,fs.getFile(), fs.getName(), fs.getType()));
             }
         }
     }
