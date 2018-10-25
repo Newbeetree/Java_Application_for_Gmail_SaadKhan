@@ -95,6 +95,7 @@ public class composeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private Locale locale;
+    private List<File> list;
 
     public composeController() {
         efb = new EmailFxBean();
@@ -114,19 +115,23 @@ public class composeController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         try {
-            List<File> list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
-            for (File f : list) {
-                Button b = new Button(f.getName().substring(0, 15));
-                b.setId(f.getName().substring(0, 15) + "Btn");
-                b.setStyle("-fx-background-color: #b2c3ff; ");
-                b.setOnMouseClicked(e -> {
-
-                });
-                attachyHolder.setOrientation(Orientation.HORIZONTAL);
-                attachyHolder.getItems().add(b);
-            }
+             list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
+            drawAttachList();
         } catch (NullPointerException e) {
             LOG.info(" File explorer closed unexpectedly");
+        }
+    }
+
+    private void drawAttachList() {
+        for (File f : list) {
+            Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+            b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+            b.setStyle("-fx-background-color: #b2c3ff; ");
+            b.setOnMouseClicked(e -> {
+                //list.remove();
+            });
+            attachyHolder.setOrientation(Orientation.HORIZONTAL);
+            attachyHolder.getItems().add(b);
         }
     }
 

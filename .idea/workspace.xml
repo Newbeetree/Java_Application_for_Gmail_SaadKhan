@@ -2,36 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/images/background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JAGConfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/JAGConfig.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/confCSS.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/emailCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/emailCSS.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Strings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Strings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Strings_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Strings_en_US.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Strings_fr_CA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Strings_fr_CA.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/composeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/composeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/confController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/confController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/mainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/mainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/manager/PropertiesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/manager/PropertiesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/presentation/MainApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/presentation/MainApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/composePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/composePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/confPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/confPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/styles/confCSS.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/styles/emailCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/styles/emailCSS.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -94,14 +65,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="composeController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="composeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+            <state relative-caret-position="170">
+              <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#5548#5549#0" expanded="true" />
+                <element signature="e#5589#5590#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,10 +115,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="confController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="confController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="724">
               <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -268,10 +241,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/styles/emailCSS.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" />
       </list>
     </option>
   </component>
@@ -746,7 +719,7 @@
       <workItem from="1540314760817" duration="9680000" />
       <workItem from="1540335642173" duration="20978000" />
       <workItem from="1540384261411" duration="5296000" />
-      <workItem from="1540400919665" duration="29754000" />
+      <workItem from="1540400919665" duration="30440000" />
     </task>
     <servers />
   </component>
@@ -783,7 +756,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="429469000" />
+    <option name="totallyTimeSpent" value="430155000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1313,17 +1286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -1355,11 +1317,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="724">
           <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5548#5549#0" expanded="true" />
+            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>
