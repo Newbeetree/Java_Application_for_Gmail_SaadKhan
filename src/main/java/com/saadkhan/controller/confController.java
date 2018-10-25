@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -28,6 +29,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import static java.nio.file.Paths.get;
 
 public class confController {
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
@@ -158,7 +161,9 @@ public class confController {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
         Parent root = (AnchorPane) loader.load();
         mainController controller = loader.getController();
+        controller.setSceneStageController(primaryStage);
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/emailCSS.css");
         this.primaryStage.setScene(scene);
         this.primaryStage.setTitle("JAG: Email Client");
         this.primaryStage.show();
@@ -181,16 +186,6 @@ public class confController {
         Bindings.bindBidirectional(DBPassIn.textProperty(), cfb.DBPasswordProperty());
     }
 
-    public void changeFrench(ActionEvent actionEvent) {
-        this.locale = new Locale("en","US");
-        recreateWindow();
-    }
-
-    public void changeEnglish(ActionEvent actionEvent) {
-        this.locale = new Locale("fr","CA");
-        recreateWindow();
-    }
-
     private void recreateWindow() {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
@@ -199,6 +194,7 @@ public class confController {
             confController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -206,4 +202,26 @@ public class confController {
         }
     }
 
+    public void changeFrench(ActionEvent actionEvent) {
+        this.locale = new Locale("en", "US");
+        recreateWindow();
+    }
+
+    public void changeEnglish(ActionEvent actionEvent) {
+        this.locale = new Locale("fr", "CA");
+        recreateWindow();
+    }
+
+    public void setData() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            nameIn.setText(cfb.getUserName());
+            System.out.println(nameIn);
+        } catch (IOException e) {
+            LOG.error("cannot find config");
+        }
+    }
 }
+

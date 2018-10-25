@@ -23,31 +23,37 @@ public class PropertiesManager {
     public final boolean loadTextProperties(ConfigurationFxBean bean, String path, String fileName) throws IOException {
 
         boolean found = false;
-        Properties prop = new Properties();
-
         Path txtFile = get(path, fileName + ".properties");
-
-        if (Files.exists(txtFile)) {
-            try (InputStream propFileStream = newInputStream(txtFile);) {
-                prop.load(propFileStream);
+        try {
+            if (Files.exists(txtFile)) {
+                bean = getConfBeanSettings(txtFile);
+                found = true;
             }
-
-            bean.setUserName(prop.getProperty("name"));
-            bean.setUserEmailAddress(prop.getProperty("email"));
-            bean.setUserPassword(prop.getProperty("password"));
-            bean.setIMAPServer(prop.getProperty("IMAPS"));
-            bean.setSMTPServer(prop.getProperty("SMTPS"));
-            bean.setIMAPPort(prop.getProperty("IMAPP"));
-            bean.setSMTPPort(prop.getProperty("SMTPP"));
-            bean.setDBUrl(prop.getProperty("DBUrl"));
-            bean.setDBName(prop.getProperty("DBName"));
-            bean.setDBUser(prop.getProperty("DBUser"));
-            bean.setDBPort(prop.getProperty("DBPort"));
-            bean.setDBPassword(prop.getProperty("DBPassword"));
-
-            found = true;
+        } catch (NullPointerException e) {
+            found = false;
         }
         return found;
+    }
+
+    public ConfigurationFxBean getConfBeanSettings(Path txtFile) throws NullPointerException, IOException {
+        Properties prop = new Properties();
+        try (InputStream propFileStream = newInputStream(txtFile);) {
+            prop.load(propFileStream);
+        }
+        ConfigurationFxBean bean = new ConfigurationFxBean();
+        bean.setUserName(prop.getProperty("name"));
+        bean.setUserEmailAddress(prop.getProperty("email"));
+        bean.setUserPassword(prop.getProperty("password"));
+        bean.setIMAPServer(prop.getProperty("IMAPS"));
+        bean.setSMTPServer(prop.getProperty("SMTPS"));
+        bean.setIMAPPort(prop.getProperty("IMAPP"));
+        bean.setSMTPPort(prop.getProperty("SMTPP"));
+        bean.setDBUrl(prop.getProperty("DBUrl"));
+        bean.setDBName(prop.getProperty("DBName"));
+        bean.setDBUser(prop.getProperty("DBUser"));
+        bean.setDBPort(prop.getProperty("DBPort"));
+        bean.setDBPassword(prop.getProperty("DBPassword"));
+        return bean;
     }
 
     public void writeTextProperties(String path, String fileName, ConfigurationFxBean bean) throws IOException {
@@ -66,7 +72,7 @@ public class PropertiesManager {
         properties.setProperty("DBPassword", bean.getDBPassword());
 
         Path file = get(path, fileName + ".properties");
-        try(OutputStream propFileStream = newOutputStream(file)){
+        try (OutputStream propFileStream = newOutputStream(file)) {
             properties.store(propFileStream, "configuration properties");
         }
 

@@ -1,6 +1,5 @@
 package com.saadkhan.presentation;
 
-import com.saadkhan.controller.composeController;
 import com.saadkhan.controller.confController;
 import com.saadkhan.controller.mainController;
 import com.saadkhan.data.ConfigurationFxBean;
@@ -37,7 +36,7 @@ public class MainApp extends Application {
         this.stage = primaryStage;
         Scene emailScene = createEmailScene();
         Scene conf = createConfFile(emailScene);
-        conf.getStylesheets().add("/styles/confCSS.css");
+        conf.getStylesheets().add("/styles/emailCSS.css");
         emailScene.getStylesheets().add("/styles/emailCSS.css");
         if (checkIfPropertiesExists()) {
             this.stage.setScene(emailScene);

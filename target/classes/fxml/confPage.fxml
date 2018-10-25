@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="658.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.confController">
+<AnchorPane id="back" prefHeight="658.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.confController">
     <children>
         <Label fx:id="nameTxt" layoutX="52.0" layoutY="117.0" text="%nameTxt" />
         <TextField fx:id="nameIn" layoutX="267.0" layoutY="112.0" />
@@ -39,24 +39,14 @@
                 <Font size="21.0" />
             </font>
         </Label>
-        <MenuBar prefHeight="31.0" prefWidth="497.0">
+        <MenuBar id="back" prefHeight="35.0" prefWidth="488.0">
             <menus>
-                <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="%close" />
-                    </items>
-                </Menu>
                 <Menu fx:id="langMn" mnemonicParsing="false" text="%langMn">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#changeFrench" text="%English" />
                     </items>
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#changeEnglish" text="%French" />
-                    </items>
-                </Menu>
-                <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="%about" />
                     </items>
                 </Menu>
             </menus>

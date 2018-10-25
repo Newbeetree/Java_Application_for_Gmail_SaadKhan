@@ -9,23 +9,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane prefHeight="659.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.composeController">
+<AnchorPane id="back" prefHeight="659.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.saadkhan.controller.composeController">
     <children>
-        <MenuBar prefHeight="32.0" prefWidth="975.0">
+        <MenuBar id="back" prefHeight="35.0" prefWidth="981.0">
             <menus>
-                <Menu fx:id="fileMn" mnemonicParsing="false" text="%fileMn">
+                <Menu fx:id="langMn" mnemonicParsing="false" text="%langMn">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#changeFrench" text="%English" />
                     </items>
-                </Menu>
-                <Menu fx:id="editMn" mnemonicParsing="false" text="%editMn">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="%delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#changeEnglish" text="%French" />
                     </items>
                 </Menu>
                 <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="%about" />
+                        <MenuItem mnemonicParsing="false" onAction="#changeSettings" text="%settings" />
+                        <!--<MenuItem mnemonicParsing="false" text="%about" />-->
                     </items>
                 </Menu>
             </menus>
@@ -57,7 +56,7 @@
                 <Font size="21.0" />
             </font>
         </Label>
-        <Button fx:id="closeBtn" layoutX="892.0" layoutY="41.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="75.0" text="%close" />
+        <Button fx:id="closeBtn" layoutX="892.0" layoutY="45.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="75.0" text="%close" />
       <ListView fx:id="attachyHolder" layoutX="372.0" layoutY="589.0" prefHeight="57.0" prefWidth="601.0" />
     </children>
 </AnchorPane>

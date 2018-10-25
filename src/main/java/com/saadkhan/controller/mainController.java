@@ -40,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import jodd.mail.EmailAddress;
 
 public class mainController {
@@ -80,6 +81,7 @@ public class mainController {
 
     public mainController() {
         this.doa = new EmailDOAImpl();
+        this.locale = new Locale("en","US");
     }
 
     @FXML
@@ -151,10 +153,12 @@ public class mainController {
             composeController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("JAG: Email Create");
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -182,9 +186,25 @@ public class mainController {
 
     private void addAllFolders() throws SQLException {
         folderList = doa.findAllFolders();
+        folderList.remove(folderList.size() - 1);
         drawFolders();
     }
 
+    private void recreateWindow() {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            mainController controller = loader.getController();
+            controller.setSceneStageController(primaryStage);
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            LOG.error(e.getMessage());
+        }
+    }
     public void changeFrench(ActionEvent actionEvent) {
         this.locale = new Locale("en", "US");
         recreateWindow();
@@ -195,14 +215,17 @@ public class mainController {
         recreateWindow();
     }
 
-    private void recreateWindow() {
+    public void changeSettings(ActionEvent actionEvent) {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
             Parent root = (AnchorPane) loader.load();
             confController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
+            //controller.setData();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
+            primaryStage.setTitle("JAG: Configure");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
