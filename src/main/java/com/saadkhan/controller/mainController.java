@@ -37,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jodd.mail.EmailAddress;
@@ -68,6 +69,8 @@ public class mainController {
     private Button trashBtn; // Value injected by FXMLLoader
     @FXML // fx:id="folderBtn"
     private Button folderBtn; // Value injected by FXMLLoader
+    @FXML
+    private WebView webViewer;
 
     private Stage primaryStage;
     private ArrayList<String> folderList;
@@ -137,7 +140,7 @@ public class mainController {
     }
 
     private void showEmailDetails(Object newValue) {
-        LOG.info((String) newValue);
+        //webViewer.getEngine().loadContent( newValue);
     }
 
     public void showCompose(ActionEvent actionEvent) {
