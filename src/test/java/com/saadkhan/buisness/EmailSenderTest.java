@@ -27,8 +27,8 @@ public class EmailSenderTest {
     private final String emailSendPwd = "sendpassword";
     private final String emailReceivePwd = "receivepassword";
     private final String emailCC1 = "other.1633839@gmail.com";
-    private EmailSender es = new EmailSender(emailSend, emailSendPwd);
-    private EmailReceiver re = new EmailReceiver(emailReceive, emailReceivePwd);
+    private EmailSender es = new EmailSender();
+    private EmailReceiver re = new EmailReceiver();
 
 
     /**

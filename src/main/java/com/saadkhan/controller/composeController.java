@@ -85,8 +85,6 @@ public class composeController {
     private Label subjectTx; // Value injected by FXMLLoader
     @FXML // fx:id="sOptionBtn"
     private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
-    @FXML // fx:id="attachHolder"
-    private HBox attachHolder; // Value injected by FXMLLoader
     @FXML
     private ListView attachyHolder;
 
@@ -128,7 +126,10 @@ public class composeController {
             b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
             b.setStyle("-fx-background-color: #b2c3ff; ");
             b.setOnMouseClicked(e -> {
-                //list.remove();
+                int spot = attachyHolder.getItems().indexOf(b);
+                attachyHolder.getItems().remove(spot);
+                System.out.println(list.get(spot));
+
             });
             attachyHolder.setOrientation(Orientation.HORIZONTAL);
             attachyHolder.getItems().add(b);

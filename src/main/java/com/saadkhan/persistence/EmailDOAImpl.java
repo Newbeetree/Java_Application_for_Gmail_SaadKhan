@@ -1,12 +1,16 @@
 package com.saadkhan.persistence;
 
+import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,19 +23,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
+import static java.nio.file.Paths.get;
+
 public class EmailDOAImpl implements EmailDOA {
 
     private final Logger LOG = LoggerFactory.getLogger(EmailDOAImpl.class);
 
-    private final String URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-    private final String USER = "auser";
-    private final String PASSWORD = "123password";
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     /**
      * Default Constructor
      */
     public EmailDOAImpl() {
         super();
+        getConfigValues();
+    }
+
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.URL = cfb.getDBUrl();
+            this.USER = cfb.getDBUser();
+            this.PASSWORD = cfb.getDBPassword();
+        } catch (IOException e) {
+            LOG.error("file not found");
+        }
+        this.URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+        this.USER = "auser";
+        this.PASSWORD = "123password";
     }
 
     /**

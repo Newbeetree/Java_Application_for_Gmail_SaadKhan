@@ -1,11 +1,15 @@
 package com.saadkhan.buisness;
 
+import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -24,6 +28,8 @@ import jodd.mail.MailServer;
 import jodd.mail.ReceiveMailSession;
 import jodd.mail.ReceivedEmail;
 
+import static java.nio.file.Paths.get;
+
 /**
  * This class is meant to check gmail servers for unread emails and  return all that are unread
  *
@@ -38,11 +44,21 @@ public class EmailReceiver {
      * Constructs an EmailReciever when given proper Usernames and Passwords of a gmail account
      * that received emails in order to be able to check all unread emails
      */
-    public EmailReceiver(String receiveEmail, String receivePassword) {
-        this.receiveEmail = receiveEmail;
-        this.receivePassword = receivePassword;
+    public EmailReceiver() {
+        getConfigValues();
     }
 
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.receiveEmail = cfb.getUserEmailAddress();
+            this.receivePassword = cfb.getUserPassword();
+        } catch (IOException e) {
+            LOG.error("file not found");
+        }
+    }
     /**
      * Opens a server connection with gmail and recieves all emails marking those that are
      * unread as read and returns an array of said unread emails

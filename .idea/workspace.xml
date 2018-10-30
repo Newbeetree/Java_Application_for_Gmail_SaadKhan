@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JAGConfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/JAGConfig.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/data/EmailFxBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/data/EmailFxBean.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,61 +76,64 @@
       <file leaf-file-name="composeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+            <state relative-caret-position="133">
+              <caret line="130" column="48" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#5548#5549#0" expanded="true" />
-                <element signature="e#5589#5590#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="confPage.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+      <file leaf-file-name="EmailReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="56" column="57" lean-forward="true" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
+              <folding>
+                <element signature="e#1387#1388#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailDOAImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="26">
-              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="57" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
+      <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="228" selection-start-line="228" selection-end-line="228" />
+            <state relative-caret-position="639">
+              <caret line="49" selection-start-line="49" selection-end-line="61" selection-end-column="5" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
+                <element signature="e#1361#1362#0" expanded="true" />
+                <element signature="e#1394#1395#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainApp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java">
+      <file leaf-file-name="EmailFxBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="48" />
+            <state relative-caret-position="134">
+              <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="confController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
+                <element signature="e#3653#3654#0" expanded="true" />
+                <element signature="e#3686#3687#0" expanded="true" />
+                <element signature="e#4367#4368#0" expanded="true" />
+                <element signature="e#4402#4403#0" expanded="true" />
+                <element signature="e#5623#5624#0" expanded="true" />
+                <element signature="e#5664#5665#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -168,12 +179,12 @@
       <find>location</find>
       <find>comp</find>
       <find>com</find>
-      <find>comp</find>
       <find>stage.sh</find>
       <find>show</find>
       <find>about</find>
       <find>help</find>
       <find>locale</find>
+      <find>attachHol</find>
     </findStrings>
     <replaceStrings>
       <replace>createBasicBean</replace>
@@ -203,9 +214,7 @@
         <option value="$PROJECT_DIR$/JagSchema.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImple.java" />
         <option value="$PROJECT_DIR$/createEmailDB.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/Priority.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/29a8f323-a79a-4333-b8df-14cb9de1de52/console.sql" />
         <option value="$PROJECT_DIR$/src/test/resources/createEmailTable.sql" />
         <option value="$PROJECT_DIR$/src/test/resources/createEmailDB.sql" />
@@ -216,7 +225,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/ConfigurationBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/ConfigurationFxBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/I8N/En-compBundle.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/I8N/En-confBundle.properties" />
@@ -233,8 +241,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ba7efd87-b935-4661-82d3-5b7d08ff85b5/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/ConfigBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/styles/confCSS.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" />
@@ -244,6 +250,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" />
       </list>
     </option>
@@ -273,10 +284,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-198" />
-    <option name="y" value="-23" />
-    <option name="width" value="1934" />
-    <option name="height" value="1037" />
+    <option name="x" value="-200" />
+    <option name="y" value="-25" />
+    <option name="width" value="1935" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -286,8 +297,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,24 +329,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="saadkhan" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java_Application_for_Gmail_SaadKhan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="saadkhan" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java_Application_for_Gmail_SaadKhan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="saadkhan" type="462c0819:PsiDirectoryNode" />
-              <item name="presentation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
@@ -386,6 +377,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -720,6 +713,8 @@
       <workItem from="1540335642173" duration="20978000" />
       <workItem from="1540384261411" duration="5296000" />
       <workItem from="1540400919665" duration="30440000" />
+      <workItem from="1540825767279" duration="3345000" />
+      <workItem from="1540910475476" duration="5056000" />
     </task>
     <servers />
   </component>
@@ -756,7 +751,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430155000" />
+    <option name="totallyTimeSpent" value="438556000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -785,21 +780,21 @@
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32965517" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65793306" visible="true" weight="0.23892617" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.65793306" visible="true" weight="0.24563758" />
       <window_info anchor="right" id="Database" order="6" weight="0.38074398" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32896653" />
       <window_info id="Structure" order="1" sideWeight="0.34206694" side_tool="true" weight="0.21744967" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.23726347" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.52838427" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.24806201" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32896653" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -813,13 +808,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java</url>
-          <line>383</line>
+          <line>406</line>
           <properties />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java</url>
-          <line>390</line>
+          <line>413</line>
           <properties />
           <option name="timeStamp" value="148" />
         </line-breakpoint>
@@ -831,15 +826,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java</url>
-          <line>754</line>
+          <line>777</line>
           <properties />
           <option name="timeStamp" value="156" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
+          <line>130</line>
+          <properties />
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="161" />
+      <option name="time" value="162" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5928">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4732">
+          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="das://29a8f323-a79a-4333-b8df-14cb9de1de52/schema/jag/table/attachments">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -912,13 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1846">
-          <caret line="89" column="29" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/EmailForm.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -965,102 +991,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/EmailFXBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="41" column="14" lean-forward="true" selection-end-line="243" />
-          <folding>
-            <element signature="e#0#1079#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-            <element signature="e#1356#1357#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1515#1516#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1439#1440#0" expanded="true" />
-            <element signature="e#1469#1470#0" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1632#1633#0" expanded="true" />
-            <element signature="e#1757#1758#0" expanded="true" />
-            <element signature="e#1788#1789#0" expanded="true" />
-            <element signature="e#1680#1681#0" expanded="true" />
-            <element signature="e#1705#1706#0" expanded="true" />
-            <element signature="e#1833#1834#0" expanded="true" />
-            <element signature="e#1864#1865#0" expanded="true" />
-            <element signature="e#1989#1990#0" expanded="true" />
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#1912#1913#0" expanded="true" />
-            <element signature="e#1937#1938#0" expanded="true" />
-            <element signature="e#2066#2067#0" expanded="true" />
-            <element signature="e#2098#2099#0" expanded="true" />
-            <element signature="e#2227#2228#0" expanded="true" />
-            <element signature="e#2260#2261#0" expanded="true" />
-            <element signature="e#2147#2148#0" expanded="true" />
-            <element signature="e#2173#2174#0" expanded="true" />
-            <element signature="e#2294#2295#0" expanded="true" />
-            <element signature="e#2330#2331#0" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
-            <element signature="e#2494#2495#0" expanded="true" />
-            <element signature="e#2377#2378#0" expanded="true" />
-            <element signature="e#2407#2408#0" expanded="true" />
-            <element signature="e#2525#2526#0" expanded="true" />
-            <element signature="e#2558#2559#0" expanded="true" />
-            <element signature="e#2669#2670#0" expanded="true" />
-            <element signature="e#2704#2705#0" expanded="true" />
-            <element signature="e#2602#2603#0" expanded="true" />
-            <element signature="e#2629#2630#0" expanded="true" />
-            <element signature="e#2758#2759#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2855#2856#0" expanded="true" />
-            <element signature="e#2889#2890#0" expanded="true" />
-            <element signature="e#3045#3046#0" expanded="true" />
-            <element signature="e#3084#3085#0" expanded="true" />
-            <element signature="e#3219#3220#0" expanded="true" />
-            <element signature="e#3266#3267#0" expanded="true" />
-            <element signature="e#3134#3135#0" expanded="true" />
-            <element signature="e#3167#3168#0" expanded="true" />
-            <element signature="e#3298#3299#0" expanded="true" />
-            <element signature="e#3335#3336#0" expanded="true" />
-            <element signature="e#3460#3461#0" expanded="true" />
-            <element signature="e#3503#3504#0" expanded="true" />
-            <element signature="e#3384#3385#0" expanded="true" />
-            <element signature="e#3415#3416#0" expanded="true" />
-            <element signature="e#3545#3546#0" expanded="true" />
-            <element signature="e#3582#3583#0" expanded="true" />
-            <element signature="e#3731#3732#0" expanded="true" />
-            <element signature="e#3774#3775#0" expanded="true" />
-            <element signature="e#3645#3646#0" expanded="true" />
-            <element signature="e#3676#3677#0" expanded="true" />
-            <element signature="e#3819#3820#0" expanded="true" />
-            <element signature="e#3859#3860#0" expanded="true" />
-            <element signature="e#4020#4021#0" expanded="true" />
-            <element signature="e#4069#4070#0" expanded="true" />
-            <element signature="e#3925#3926#0" expanded="true" />
-            <element signature="e#3959#3960#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties">
-      <provider editor-type-id="ResourceBundle" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="32" column="79" selection-start-line="32" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/EmailFXBean.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1117,86 +1048,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/ConfigBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="34" column="25" selection-end-line="223" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#747#748#0" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#917#918#0" expanded="true" />
-            <element signature="e#960#961#0" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1061#1062#0" expanded="true" />
-            <element signature="e#1100#1101#0" expanded="true" />
-            <element signature="e#1258#1259#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
-            <element signature="e#1343#1344#0" expanded="true" />
-            <element signature="e#1374#1375#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1465#1466#0" expanded="true" />
-            <element signature="e#1499#1500#0" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1582#1583#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
-            <element signature="e#1658#1659#0" expanded="true" />
-            <element signature="e#1699#1700#0" expanded="true" />
-            <element signature="e#1733#1734#0" expanded="true" />
-            <element signature="e#1769#1770#0" expanded="true" />
-            <element signature="e#1816#1817#0" expanded="true" />
-            <element signature="e#1846#1847#0" expanded="true" />
-            <element signature="e#1892#1893#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
-            <element signature="e#1968#1969#0" expanded="true" />
-            <element signature="e#2005#2006#0" expanded="true" />
-            <element signature="e#2053#2054#0" expanded="true" />
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2132#2133#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
-            <element signature="e#2210#2211#0" expanded="true" />
-            <element signature="e#2247#2248#0" expanded="true" />
-            <element signature="e#2295#2296#0" expanded="true" />
-            <element signature="e#2326#2327#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
-            <element signature="e#2417#2418#0" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2495#2496#0" expanded="true" />
-            <element signature="e#2546#2547#0" expanded="true" />
-            <element signature="e#2580#2581#0" expanded="true" />
-            <element signature="e#2634#2635#0" expanded="true" />
-            <element signature="e#2683#2684#0" expanded="true" />
-            <element signature="e#2722#2723#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#2815#2816#0" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2906#2907#0" expanded="true" />
-            <element signature="e#2957#2958#0" expanded="true" />
-            <element signature="e#2996#2997#0" expanded="true" />
-            <element signature="e#3037#3038#0" expanded="true" />
-            <element signature="e#3089#3090#0" expanded="true" />
-            <element signature="e#3124#3125#0" expanded="true" />
-            <element signature="e#3180#3181#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3270#3271#0" expanded="true" />
-            <element signature="e#3311#3312#0" expanded="true" />
-            <element signature="e#3363#3364#0" expanded="true" />
-            <element signature="e#3398#3399#0" expanded="true" />
-            <element signature="e#3454#3455#0" expanded="true" />
-            <element signature="e#3505#3506#0" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3585#3586#0" expanded="true" />
-            <element signature="e#3637#3638#0" expanded="true" />
-            <element signature="e#3672#3673#0" expanded="true" />
-            <element signature="e#3728#3729#0" expanded="true" />
-            <element signature="e#3779#3780#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/ConfigBean.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -1215,70 +1067,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
           <caret line="2443" selection-start-line="2443" selection-end-line="2443" />
-          <folding>
-            <element signature="e#66921#66922#0" expanded="true" />
-            <element signature="e#66966#66967#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="754" selection-start-line="754" selection-end-line="754" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Strings.properties">
-      <provider selected="true" editor-type-id="ResourceBundle" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-36" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/confCSS.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-464">
-          <caret line="33" column="33" lean-forward="true" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2785#2786#0" expanded="true" />
-            <element signature="e#2833#2834#0" expanded="true" />
-            <element signature="e#3047#3048#0" expanded="true" />
-            <element signature="e#3095#3096#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="25" column="36" selection-start-line="25" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="38" column="66" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/styles/confCSS.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/styles/emailCSS.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -1286,10 +1078,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="215" column="13" lean-forward="true" selection-start-line="215" selection-start-column="13" selection-end-line="218" selection-end-column="70" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="48" />
+        <state relative-caret-position="26">
+          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1298,7 +1101,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
+        <state relative-caret-position="283">
           <caret line="228" selection-start-line="228" selection-end-line="228" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1307,34 +1110,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        <state relative-caret-position="-955">
+          <caret line="25" column="36" selection-start-line="25" selection-end-line="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
+    <entry file="file://$PROJECT_DIR$/JAGConfig.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+        <state relative-caret-position="26">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="57" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="56" column="57" lean-forward="true" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#1387#1388#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="49" selection-start-line="49" selection-end-line="61" selection-end-column="5" />
+          <folding>
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1394#1395#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="27" column="61" lean-forward="true" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
+          <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3653#3654#0" expanded="true" />
+            <element signature="e#3686#3687#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4402#4403#0" expanded="true" />
+            <element signature="e#5623#5624#0" expanded="true" />
+            <element signature="e#5664#5665#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+        <state relative-caret-position="133">
+          <caret line="130" column="48" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#5548#5549#0" expanded="true" />
-            <element signature="e#5589#5590#0" expanded="true" />
           </folding>
         </state>
       </provider>

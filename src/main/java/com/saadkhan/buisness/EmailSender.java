@@ -1,11 +1,15 @@
 package com.saadkhan.buisness;
 
+import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
 
+import static java.nio.file.Paths.get;
+
 /**
  * This class is meant to take in EmailBeans and convert them into Jodd Email Objects
  * to be sent through to a gmail account
@@ -29,7 +35,7 @@ import jodd.mail.SmtpServer;
 public class EmailSender {
 
     private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
-    private final String smtpServerName = "smtp.gmail.com";
+    private String smtpServerName;
     private String userEmail;
     private String userPassword;
 
@@ -37,9 +43,22 @@ public class EmailSender {
      * Constructs an Email Sender when given proper Usernames and Passwords of a gmail account
      * in order to be able to send emails from said account
      */
-    public EmailSender(String userEmail, String userPassword) {
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
+    public EmailSender() {
+        getConfigValues();
+    }
+
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.userEmail = cfb.getUserEmailAddress();
+            this.userPassword = cfb.getUserPassword();
+            this.smtpServerName = cfb.getSMTPServer();
+        } catch (IOException e) {
+            LOG.error("file not found");
+        }
+        this.smtpServerName = "smtp.gmail.com";
     }
 
     /**
