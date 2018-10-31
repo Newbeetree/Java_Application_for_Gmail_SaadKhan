@@ -113,7 +113,7 @@ public class composeController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         try {
-             list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
+            list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
             drawAttachList();
         } catch (NullPointerException e) {
             LOG.info(" File explorer closed unexpectedly");
@@ -128,8 +128,8 @@ public class composeController {
             b.setOnMouseClicked(e -> {
                 int spot = attachyHolder.getItems().indexOf(b);
                 attachyHolder.getItems().remove(spot);
-                System.out.println(list.get(spot));
-
+                this.list = new ArrayList<>(list);
+                list.remove(spot);
             });
             attachyHolder.setOrientation(Orientation.HORIZONTAL);
             attachyHolder.getItems().add(b);

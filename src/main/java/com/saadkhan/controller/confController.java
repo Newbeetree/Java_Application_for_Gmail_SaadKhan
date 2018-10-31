@@ -29,6 +29,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jodd.mail.MailServer;
+import jodd.mail.SmtpServer;
 
 import static java.nio.file.Paths.get;
 
@@ -157,16 +159,29 @@ public class confController {
     }
 
     private void login() throws IOException {
-        ResourceBundle rb = ResourceBundle.getBundle("Strings");
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
-        Parent root = (AnchorPane) loader.load();
-        mainController controller = loader.getController();
-        controller.setSceneStageController(primaryStage);
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/emailCSS.css");
-        this.primaryStage.setScene(scene);
-        this.primaryStage.setTitle("JAG: Email Client");
-        this.primaryStage.show();
+        if (checkCred()) {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings");
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            mainController controller = loader.getController();
+            controller.setSceneStageController(primaryStage);
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
+            this.primaryStage.setScene(scene);
+            this.primaryStage.setTitle("JAG: Email Client");
+            this.primaryStage.show();
+        }
+    }
+
+    private boolean checkCred() {
+        //try {
+            SmtpServer smtpServer = MailServer.create()
+                    .ssl(true)
+                    .host(cfb.getSMTPServer())
+                    .auth(cfb.getUserEmailAddress(), cfb.getUserPassword())
+                    .buildSmtpMailServer();
+            return true;
+        //}
     }
 
     @FXML
