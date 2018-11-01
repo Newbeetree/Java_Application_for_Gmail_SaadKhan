@@ -22,10 +22,12 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -98,15 +100,24 @@ public class mainController {
 
     private void drawFolders() {
         folderHolder.getItems().clear();
+//        ObservableList<String> items = FXCollections.observableArrayList("Inbox", "Sent");
+//        for (int i = 0; i < arr.length; i++) {
+//            items.add(arr[i]);
+//        }
         for (String fName : folderList) {
             Label b = new Label(fName);
             b.setId(fName);
             b.setOnMouseClicked(e -> {
                 try {
-                    String folderName = e.getPickResult().getIntersectedNode().getId();
+                    Label label = (Label) e.getSource();
+                    String folderName = label.getId();
                     int folderId = doa.findFolder(folderName);
                     ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
                     emailHolder.setItems(emailFxList);
+                    dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
+                    emailHolder.getSortOrder().add(dateReTxt);
+                    //emailHolder.(ev->{ label.setCursor(Cursor.MOVE); });
+
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

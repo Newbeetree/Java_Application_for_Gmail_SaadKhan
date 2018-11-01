@@ -16,6 +16,8 @@ import java.nio.file.Path;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.naming.AuthenticationException;
+
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +31,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jodd.mail.MailException;
 import jodd.mail.MailServer;
+import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
 
 import static java.nio.file.Paths.get;
@@ -140,11 +144,24 @@ public class confController {
 
     @FXML
     void submitCredentials(ActionEvent event) {
-        PropertiesManager pm = new PropertiesManager();
         try {
-            pm.writeTextProperties("", "JAGConfig", cfb);
-            LOG.info("create file");
-            login();
+            if (checkCred()) {
+                PropertiesManager pm = new PropertiesManager();
+                pm.writeTextProperties("", "JAGConfig", cfb);
+                LOG.info("create file");
+                ResourceBundle rb = ResourceBundle.getBundle("Strings");
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
+                Parent root = (AnchorPane) loader.load();
+                mainController controller = loader.getController();
+                controller.setSceneStageController(primaryStage);
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/emailCSS.css");
+                this.primaryStage.setScene(scene);
+                this.primaryStage.setTitle("JAG: Email Client");
+                this.primaryStage.show();
+            } else {
+
+            }
         } catch (IOException ex) {
             LOG.error("error saving", ex);
         }
@@ -158,30 +175,21 @@ public class confController {
         this.primaryStage = stage;
     }
 
-    private void login() throws IOException {
-        if (checkCred()) {
-            ResourceBundle rb = ResourceBundle.getBundle("Strings");
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
-            Parent root = (AnchorPane) loader.load();
-            mainController controller = loader.getController();
-            controller.setSceneStageController(primaryStage);
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/emailCSS.css");
-            this.primaryStage.setScene(scene);
-            this.primaryStage.setTitle("JAG: Email Client");
-            this.primaryStage.show();
-        }
-    }
-
     private boolean checkCred() {
-        //try {
-            SmtpServer smtpServer = MailServer.create()
-                    .ssl(true)
-                    .host(cfb.getSMTPServer())
-                    .auth(cfb.getUserEmailAddress(), cfb.getUserPassword())
-                    .buildSmtpMailServer();
+        submitBtn.setDisable(true);
+        SmtpServer smtpServer = MailServer.create()
+                .ssl(true)
+                .host(cfb.getSMTPServer())
+                .auth(cfb.getUserEmailAddress(), cfb.getUserPassword())
+                .buildSmtpMailServer();
+        try (SendMailSession session = smtpServer.createSession()) {
+            session.open();
             return true;
-        //}
+        } catch (MailException e) {
+            LOG.info("incorrect email");
+            submitBtn.setDisable(false);
+            return false;
+        }
     }
 
     @FXML
