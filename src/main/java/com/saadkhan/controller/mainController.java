@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -165,23 +166,44 @@ public class mainController {
             Label l = new Label(fName);
             l.setId(fName);
             l.setOnMouseClicked(e -> {
-                try {
-                    Label label = (Label) e.getSource();
-                    String folderName = label.getId();
-                    int folderId = doa.findFolder(folderName);
-                    ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
-                    emailHolder.setItems(emailFxList);
-                    dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
-                    emailHolder.getSortOrder().add(dateReTxt);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
+                    try {
+                        Label label = (Label) e.getSource();
+                        String folderName = label.getId();
+                        int folderId = doa.findFolder(folderName);
+                        ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
+                        emailHolder.setItems(emailFxList);
+                        dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
+                        emailHolder.getSortOrder().add(dateReTxt);
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
             });
-
+            l.setOnContextMenuRequested(e -> {openContext(fName).show(l,e.getScreenX(),e.getScreenY());});
             l.setMaxWidth(folderHolder.getPrefWidth());
             folderHolder.getItems().add(l);
 
         }
+    }
+
+    private ContextMenu openContext(String fName) {
+        ContextMenu cm = new ContextMenu();
+        MenuItem m1 = new MenuItem("Rename");
+        m1.setOnAction(event -> renameFolder(fName));
+        MenuItem m2 = new MenuItem("Delete");
+        m2.setOnAction(event -> deleteFolder(fName));
+        cm.getItems().addAll(m1,m2);
+        return cm;
+    }
+
+    private void deleteFolder(String fName) {
+        LOG.info("removing " + fName);
+        folderList.remove(fName);
+        folderHolder.getItems().remove(fName);
+        drawFolders();
+    }
+
+    private void renameFolder(String fName) {
+
     }
 
 
@@ -271,7 +293,7 @@ public class mainController {
             Parent root = (AnchorPane) loader.load();
             confController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
-            //controller.setData();
+            controller.setData();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/emailCSS.css");
             primaryStage.setTitle("JAG: Configure");

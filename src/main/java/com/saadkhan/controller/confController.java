@@ -243,6 +243,7 @@ public class confController {
             Parent root = (AnchorPane) loader.load();
             confController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
+            controller.setData();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/emailCSS.css");
             primaryStage.setScene(scene);
@@ -267,11 +268,25 @@ public class confController {
             PropertiesManager pm = new PropertiesManager();
             Path txtFile = get("", "JAGConfig.properties");
             ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
-            nameIn.setText(cfb.getUserName());
-            System.out.println(nameIn);
+            setFields(cfb);
         } catch (IOException e) {
             LOG.error("cannot find config");
         }
+    }
+
+    private void setFields(ConfigurationFxBean cfb) {
+        nameIn.setText(cfb.getUserName());
+        emailIn.setText(cfb.getUserEmailAddress());
+        passIn.setText(cfb.getUserPassword());
+        imapSIn.setText(cfb.getIMAPServer());
+        stmpSIn.setText(cfb.getSMTPServer());
+        imapPIn.setText(cfb.getIMAPPort());
+        smtpPIn.setText(cfb.getSMTPPort());
+        DBUrlIn.setText(cfb.getDBUrl());
+        DBNameIn.setText(cfb.getDBName());
+        DBUserTxtIn.setText(cfb.getDBUser());
+        DBPortIn.setText(cfb.getDBPort());
+        DBPassIn.setText(cfb.getDBPassword());
     }
 }
 
