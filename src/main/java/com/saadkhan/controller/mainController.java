@@ -4,7 +4,6 @@
 
 package com.saadkhan.controller;
 
-import com.saadkhan.buisness.EmailSender;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.persistence.EmailDOA;
@@ -22,24 +21,23 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -48,42 +46,63 @@ import jodd.mail.EmailAddress;
 public class mainController {
 
     private final static Logger LOG = LoggerFactory.getLogger(mainController.class);
-    @FXML
-    public ListView folderHolder;
-    @FXML
-    public TableView emailHolder;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="replyTxt"
+    private MenuItem replyTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="dateReTxt"
     private TableColumn<EmailFxBean, LocalDateTime> dateReTxt; // Value injected by FXMLLoader
-    @FXML // fx:id="fileMn"
-    private Menu fileMn; // Value injected by FXMLLoader
-    @FXML // fx:id="fromTxt"
-    private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
-    @FXML // fx:id="editMn"
-    private Menu editMn; // Value injected by FXMLLoader
-    @FXML // fx:id="helpMn"
-    private Menu helpMn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="reAllTxt"
+    private MenuItem reAllTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="subjectTxt"
     private TableColumn<EmailFxBean, String> subjectTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="folderHolder"
+    private ListView folderHolder; // Value injected by FXMLLoader
+
+    @FXML // fx:id="composeBtn"
+    private Button composeBtn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="fwdTxt"
+    private MenuItem fwdTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="fromTxt"
+    private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="helpMn"
+    private Menu helpMn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="langMn"
+    private Menu langMn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="sOptionBtn"
+    private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="emailHolder"
+    private TableView<EmailFxBean> emailHolder; // Value injected by FXMLLoader
+
     @FXML // fx:id="trashBtn"
     private Button trashBtn; // Value injected by FXMLLoader
+
     @FXML // fx:id="folderBtn"
     private Button folderBtn; // Value injected by FXMLLoader
-    @FXML
-    private WebView webViewer;
 
     private Stage primaryStage;
-    private ArrayList<String> folderList;
+    private ObservableList<String> folderList;
     private Locale locale;
     private EmailDOA doa;
     private ArrayList<EmailBean> emailList;
 
     public mainController() {
         this.doa = new EmailDOAImpl();
-        this.locale = new Locale("en","US");
+        this.locale = new Locale("en", "US");
     }
 
     @FXML
@@ -98,35 +117,6 @@ public class mainController {
         drawFolders();
     }
 
-    private void drawFolders() {
-        folderHolder.getItems().clear();
-//        ObservableList<String> items = FXCollections.observableArrayList("Inbox", "Sent");
-//        for (int i = 0; i < arr.length; i++) {
-//            items.add(arr[i]);
-//        }
-        for (String fName : folderList) {
-            Label b = new Label(fName);
-            b.setId(fName);
-            b.setOnMouseClicked(e -> {
-                try {
-                    Label label = (Label) e.getSource();
-                    String folderName = label.getId();
-                    int folderId = doa.findFolder(folderName);
-                    ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
-                    emailHolder.setItems(emailFxList);
-                    dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
-                    emailHolder.getSortOrder().add(dateReTxt);
-                    //emailHolder.(ev->{ label.setCursor(Cursor.MOVE); });
-
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-            });
-            b.setMaxWidth(folderHolder.getPrefWidth());
-            folderHolder.getItems().add(b);
-        }
-    }
-
     @FXML
     public void moveTrash(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
@@ -137,6 +127,8 @@ public class mainController {
 
     @FXML
     public void initialize() {
+        trashBtn.setDisable(true);
+        sOptionBtn.setDisable(true);
         fromTxt.setCellValueFactory(cellData -> cellData.getValue().fromProperty());
         dateReTxt.setCellValueFactory(cellData -> cellData.getValue().recivedProperty());
         subjectTxt.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
@@ -145,12 +137,34 @@ public class mainController {
                 .selectedItemProperty()
                 .addListener(
                         (observable, oldValue, newValue) -> showEmailDetails(newValue));
-        try {
-            addAllFolders();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        addAllFolders();
+    }
+
+    private void drawFolders() {
+        folderHolder.getItems().clear();
+        for (String fName : folderList) {
+            Label l = new Label(fName);
+            l.setId(fName);
+            l.setOnMouseClicked(e -> {
+                try {
+                    Label label = (Label) e.getSource();
+                    String folderName = label.getId();
+                    int folderId = doa.findFolder(folderName);
+                    ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
+                    emailHolder.setItems(emailFxList);
+                    dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
+                    emailHolder.getSortOrder().add(dateReTxt);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            });
+
+            l.setMaxWidth(folderHolder.getPrefWidth());
+            folderHolder.getItems().add(l);
+
         }
     }
+
 
     private void showEmailDetails(Object newValue) {
         //webViewer.getEngine().loadContent( newValue);
@@ -195,10 +209,14 @@ public class mainController {
     }
 
 
-    private void addAllFolders() throws SQLException {
-        folderList = doa.findAllFolders();
-        folderList.remove(folderList.size() - 1);
-        drawFolders();
+    private void addAllFolders() {
+        try {
+            folderList = doa.findAllFolders();
+            //folderList.remove(folderList.size() - 1);
+            drawFolders();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void recreateWindow() {
@@ -216,6 +234,7 @@ public class mainController {
             LOG.error(e.getMessage());
         }
     }
+
     public void changeFrench(ActionEvent actionEvent) {
         this.locale = new Locale("en", "US");
         recreateWindow();

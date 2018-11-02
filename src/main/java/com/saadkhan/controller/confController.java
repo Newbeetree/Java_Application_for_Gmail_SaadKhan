@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -112,12 +115,6 @@ public class confController {
     @FXML // fx:id="DBUrlTxt"
     private Label DBUrlTxt; // Value injected by FXMLLoader
 
-    @FXML // fx:id="fileMn"
-    private Menu fileMn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="helpMn"
-    private Menu helpMn; // Value injected by FXMLLoader
-
     @FXML // fx:id="smtpS"
     private Label smtpS; // Value injected by FXMLLoader
 
@@ -148,7 +145,7 @@ public class confController {
             if (checkCred()) {
                 PropertiesManager pm = new PropertiesManager();
                 pm.writeTextProperties("", "JAGConfig", cfb);
-                LOG.info("create file");
+                LOG.info("create config file");
                 ResourceBundle rb = ResourceBundle.getBundle("Strings");
                 FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
                 Parent root = (AnchorPane) loader.load();
@@ -160,7 +157,18 @@ public class confController {
                 this.primaryStage.setTitle("JAG: Email Client");
                 this.primaryStage.show();
             } else {
-
+                nameIn.setStyle("-fx-border-color: red;");
+                emailIn.setStyle("-fx-border-color: red;");
+                passIn.setStyle("-fx-border-color: red;");
+                imapPIn.setStyle("-fx-border-color: red;");
+                imapSIn.setStyle("-fx-border-color: red;");
+                smtpPIn.setStyle("-fx-border-color: red;");
+                stmpSIn.setStyle("-fx-border-color: red;");
+                DBUrlIn.setStyle("-fx-border-color: red;");
+                DBUserTxtIn.setStyle("-fx-border-color: red;");
+                DBPassIn.setStyle("-fx-border-color: red;");
+                DBNameIn.setStyle("-fx-border-color: red;");
+                DBPortIn.setStyle("-fx-border-color: red;");
             }
         } catch (IOException ex) {
             LOG.error("error saving", ex);
@@ -177,6 +185,14 @@ public class confController {
 
     private boolean checkCred() {
         submitBtn.setDisable(true);
+        if (checkDB() & checkEmail()) {
+            return true;
+        }
+        submitBtn.setDisable(false);
+        return false;
+    }
+
+    private boolean checkEmail() {
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
                 .host(cfb.getSMTPServer())
@@ -184,12 +200,23 @@ public class confController {
                 .buildSmtpMailServer();
         try (SendMailSession session = smtpServer.createSession()) {
             session.open();
+            LOG.info("connected to Email");
             return true;
         } catch (MailException e) {
             LOG.info("incorrect email");
-            submitBtn.setDisable(false);
-            return false;
         }
+        return false;
+    }
+
+    private boolean checkDB() {
+        try {
+            Connection connection = DriverManager.getConnection(cfb.getDBUrl(), cfb.getDBUser(), cfb.getDBPassword());
+            LOG.info("connected to DB " + connection.getMetaData().getDatabaseProductName());
+            return true;
+        } catch (SQLException e) {
+            LOG.error("incorrect DB");
+        }
+        return false;
     }
 
     @FXML

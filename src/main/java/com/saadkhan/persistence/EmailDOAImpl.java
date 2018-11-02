@@ -497,7 +497,7 @@ public class EmailDOAImpl implements EmailDOA {
      * @return false if in the db true if not
      */
     private boolean checkIfFolderExists(String folderName) throws SQLException {
-        ArrayList<String> listFiles = findAllFolders();
+        ObservableList<String> listFiles = findAllFolders();
         for (String filename : listFiles) {
             if (filename.equals(folderName)) {
                 return false;
@@ -705,7 +705,7 @@ public class EmailDOAImpl implements EmailDOA {
      * @return list of all folder names
      */
     @Override
-    public ArrayList<String> findAllFolders() throws SQLException {
+    public ObservableList<String> findAllFolders() throws SQLException {
         ArrayList<String> folderList = new ArrayList<>();
         String selectQuery = "SELECT Folder_Name From Folder";
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -716,7 +716,7 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         LOG.info("# of folders found : " + folderList.size());
-        return folderList;
+        return FXCollections.observableArrayList(folderList);
     }
 
     /**

@@ -84,7 +84,7 @@ public interface EmailDOA {
      *
      * @return list of all folder names
      */
-    ArrayList<String> findAllFolders() throws SQLException;
+    ObservableList<String> findAllFolders() throws SQLException;
 
     /**
      * find name of all attachments in the database and create an arraylist  of FileAttachmentBeans

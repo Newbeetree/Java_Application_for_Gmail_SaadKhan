@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
 import static org.junit.Assert.assertEquals;
@@ -111,7 +112,7 @@ public class EmailDOATest {
      */
     @Test(timeout = 1000)
     public void testFindAllFolders() throws SQLException {
-        ArrayList<String> folders = emailDOA.findAllFolders();
+        ObservableList<String> folders = emailDOA.findAllFolders();
         assertEquals("# of folders", 6, folders.size());
     }
 
