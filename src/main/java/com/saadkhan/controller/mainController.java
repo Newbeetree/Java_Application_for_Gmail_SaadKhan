@@ -55,14 +55,17 @@ public class mainController {
     @FXML // fx:id="replyTxt"
     private MenuItem replyTxt; // Value injected by FXMLLoader
 
-    @FXML // fx:id="dateReTxt"
-    private TableColumn<EmailFxBean, LocalDateTime> dateReTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="toTxt"
+    private Label toTxt; // Value injected by FXMLLoader
 
     @FXML // fx:id="reAllTxt"
     private MenuItem reAllTxt; // Value injected by FXMLLoader
 
+    @FXML // fx:id="attachyHolder"
+    private ListView attachyHolder; // Value injected by FXMLLoader
+
     @FXML // fx:id="subjectTxt"
-    private TableColumn<EmailFxBean, String> subjectTxt; // Value injected by FXMLLoader
+    private Label subTxt; // Value injected by FXMLLoader
 
     @FXML // fx:id="folderHolder"
     private ListView folderHolder; // Value injected by FXMLLoader
@@ -70,11 +73,14 @@ public class mainController {
     @FXML // fx:id="composeBtn"
     private Button composeBtn; // Value injected by FXMLLoader
 
+    @FXML // fx:id="ccTxt"
+    private Label ccTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="bccTxt"
+    private Label bccTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="fwdTxt"
     private MenuItem fwdTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="fromTxt"
-    private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
 
     @FXML // fx:id="helpMn"
     private Menu helpMn; // Value injected by FXMLLoader
@@ -85,14 +91,27 @@ public class mainController {
     @FXML // fx:id="sOptionBtn"
     private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
 
-    @FXML // fx:id="emailHolder"
-    private TableView<EmailFxBean> emailHolder; // Value injected by FXMLLoader
-
     @FXML // fx:id="trashBtn"
     private Button trashBtn; // Value injected by FXMLLoader
 
     @FXML // fx:id="folderBtn"
     private Button folderBtn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="dateReTxt"
+    private TableColumn<EmailFxBean, LocalDateTime> dateReTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="subjectTxt"
+    private TableColumn<EmailFxBean, String> subjectTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="fromTxt"
+    private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="emailHolder"
+    private TableView<EmailFxBean> emailHolder; // Value injected by FXMLLoader
+
+    @FXML // fx:id="attachTxt"
+    private Label attachTxt; // Value injected by FXMLLoader
+
 
     private Stage primaryStage;
     private ObservableList<String> folderList;
