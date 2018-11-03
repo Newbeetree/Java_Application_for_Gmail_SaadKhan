@@ -47,7 +47,7 @@
                                                 <Menu fx:id="helpMn" mnemonicParsing="false" text="%helpMn">
                                                     <items>
                                                         <MenuItem mnemonicParsing="false" onAction="#changeSettings" text="%settings" />
-                                                        <!--<MenuItem mnemonicParsing="false" text="%about" />-->
+                                                        <MenuItem mnemonicParsing="false" onAction="#readMeDiag" text="%about" />
                                                     </items>
                                                 </Menu>
                                             </menus>

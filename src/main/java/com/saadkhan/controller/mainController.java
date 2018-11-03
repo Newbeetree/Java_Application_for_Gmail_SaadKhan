@@ -4,6 +4,7 @@
 
 package com.saadkhan.controller;
 
+import com.mysql.cj.xdevapi.SqlDataResult;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.persistence.EmailDOA;
@@ -12,14 +13,21 @@ import com.saadkhan.persistence.EmailDOAImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.lang.Object.*;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +35,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -43,6 +54,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jodd.mail.EmailAddress;
+
+import static java.nio.file.Paths.get;
 
 public class mainController {
 
@@ -166,19 +179,21 @@ public class mainController {
             Label l = new Label(fName);
             l.setId(fName);
             l.setOnMouseClicked(e -> {
-                    try {
-                        Label label = (Label) e.getSource();
-                        String folderName = label.getId();
-                        int folderId = doa.findFolder(folderName);
-                        ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
-                        emailHolder.setItems(emailFxList);
-                        dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
-                        emailHolder.getSortOrder().add(dateReTxt);
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
+                try {
+                    Label label = (Label) e.getSource();
+                    String folderName = label.getId();
+                    int folderId = doa.findFolder(folderName);
+                    ObservableList<EmailFxBean> emailFxList = doa.findAllEmailBeansByFolderFx(folderId);
+                    emailHolder.setItems(emailFxList);
+                    dateReTxt.setSortType(TableColumn.SortType.DESCENDING);
+                    emailHolder.getSortOrder().add(dateReTxt);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             });
-            l.setOnContextMenuRequested(e -> {openContext(fName).show(l,e.getScreenX(),e.getScreenY());});
+            l.setOnContextMenuRequested(e -> {
+                openContext(fName).show(l, e.getScreenX(), e.getScreenY());
+            });
             l.setMaxWidth(folderHolder.getPrefWidth());
             folderHolder.getItems().add(l);
 
@@ -188,22 +203,69 @@ public class mainController {
     private ContextMenu openContext(String fName) {
         ContextMenu cm = new ContextMenu();
         MenuItem m1 = new MenuItem("Rename");
-        m1.setOnAction(event -> renameFolder(fName));
+        m1.setOnAction(event -> {
+            if (!fName.equals("Inbox") && !fName.equals("Trash") && !fName.equals("Spam") && !fName.equals("Sent")) {
+                renameFolder(fName);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error");
+                alert.setContentText("Sorry Cannot Rename This Folder");
+                alert.showAndWait();
+            }
+        });
         MenuItem m2 = new MenuItem("Delete");
-        m2.setOnAction(event -> deleteFolder(fName));
-        cm.getItems().addAll(m1,m2);
+        m2.setOnAction(event -> {
+            if (!fName.equals("Inbox") && !fName.equals("Trash") && !fName.equals("Spam") && !fName.equals("Sent")) {
+                deleteFolder(fName);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error");
+                alert.setContentText("Sorry Cannot Delete This Folder");
+                alert.showAndWait();
+            }
+        });
+        cm.getItems().addAll(m1, m2);
         return cm;
     }
 
     private void deleteFolder(String fName) {
-        LOG.info("removing " + fName);
-        folderList.remove(fName);
-        folderHolder.getItems().remove(fName);
-        drawFolders();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Current project is modified");
+        alert.setContentText("Remove Folder " + fName);
+        ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == okButton) {
+            try {
+                LOG.info("removing " + fName);
+                folderList.remove(fName);
+                folderHolder.getItems().remove(fName);
+                doa.deleteFolder(fName);
+                drawFolders();
+            } catch (SQLException e) {
+                LOG.error("error deleting from DB");
+            }
+        }
     }
 
     private void renameFolder(String fName) {
-
+        TextInputDialog folderDiag = new TextInputDialog(this.resources.getString("folderName"));//"Folder Name");
+        folderDiag.setTitle(this.resources.getString("renameFolder"));
+        folderDiag.setHeaderText(this.resources.getString("enterFolderName"));
+        Optional<String> result = folderDiag.showAndWait();
+        result.ifPresent(name -> {
+            try {
+                LOG.info("changing file name to " + name);
+                Collections.replaceAll(folderList, fName, name);
+                doa.updateFolder(doa.findFolder(fName), name);
+            } catch (SQLException e) {
+                LOG.error("error updating DB");
+            }
+        });
+        drawFolders();
     }
 
 
@@ -253,7 +315,6 @@ public class mainController {
     private void addAllFolders() {
         try {
             folderList = doa.findAllFolders();
-            //folderList.remove(folderList.size() - 1);
             drawFolders();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -302,5 +363,26 @@ public class mainController {
         } catch (IOException e) {
             LOG.error(e.getMessage());
         }
+    }
+
+    public void readMeDiag(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("Look, an Information Dialog");
+        Path filePath = get("", "README.md");
+        File file = filePath.toFile();
+        try {
+            List<String> lines = Files.readAllLines(filePath,
+                    Charset.defaultCharset());
+            StringBuilder sb = new StringBuilder();
+            for (String line : lines) {
+                sb.append(line).append('\n');
+            }
+            String str = sb.toString();
+            alert.setContentText(str);
+        } catch (Exception e) {
+
+        }
+        alert.showAndWait();
     }
 }
