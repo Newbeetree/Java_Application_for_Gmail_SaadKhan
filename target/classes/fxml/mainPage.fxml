@@ -74,13 +74,13 @@
                 </AnchorPane>
                 <AnchorPane prefWidth="200.0">
                     <children>
-                        <SplitPane dividerPositions="0.08181818181818182" orientation="VERTICAL" prefWidth="972.0">
+                        <SplitPane dividerPositions="0.06784660766961652" orientation="VERTICAL" prefWidth="972.0">
                             <items>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                     <children>
                                         <ToolBar id="back" prefHeight="45.0" prefWidth="972.0">
                                             <items>
-                                                <Button fx:id="trashBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" text="%trashBtn" />
+                                                <Button fx:id="trashBtn" mnemonicParsing="false" onMouseClicked="#moveTrash" prefHeight="31.0" prefWidth="91.0" text="%trashBtn" />
                                                 <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="%sOptionBtn">
                                                     <items>
                                                         <MenuItem fx:id="replyTxt" mnemonicParsing="false" text="%replyTxt" />
@@ -94,21 +94,20 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="985.0">
                                     <children>
-                              <SplitPane dividerPositions="0.21555915721231766" orientation="VERTICAL" prefHeight="619.0" prefWidth="970.0">
+                              <SplitPane dividerPositions="0.19448946515397084" orientation="VERTICAL" prefHeight="619.0" prefWidth="970.0">
                                 <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="133.0" prefWidth="968.0">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="968.0">
                                        <children>
-                                          <Label fx:id="toTxt" prefHeight="21.0" prefWidth="970.0" text="%toTxt" />
-                                          <Label fx:id="bccTxt" layoutY="21.0" prefHeight="21.0" prefWidth="958.0" text="%bccTxt" />
-                                          <Label fx:id="ccTxt" layoutY="42.0" prefHeight="21.0" prefWidth="958.0" text="%ccTxt" />
-                                          <Label fx:id="subTxt" layoutY="63.0" prefHeight="21.0" prefWidth="958.0" text="%subjectTxt" />
-                                          <ListView fx:id="attachyHolder" layoutX="101.0" layoutY="90.0" orientation="HORIZONTAL" prefHeight="31.0" prefWidth="845.0" />
-                                          <Label fx:id="attachTxt" layoutY="84.0" prefHeight="31.0" prefWidth="91.0" text="%attachment" />
+                                          <Label fx:id="ccTxt" layoutY="20.0" prefHeight="21.0" prefWidth="958.0" text="%ccTxt" textOverrun="CLIP" />
+                                          <Label fx:id="subTxt" layoutY="39.0" prefHeight="21.0" prefWidth="958.0" text="%subjectTxt" />
+                                          <ListView fx:id="attachyHolder" layoutX="105.0" layoutY="68.0" orientation="HORIZONTAL" prefHeight="42.0" prefWidth="845.0" />
+                                          <Label fx:id="attachTxt" layoutY="72.0" prefHeight="31.0" prefWidth="91.0" text="%attachment" />
+                                          <Label fx:id="from" layoutX="1.0" layoutY="2.0" prefHeight="21.0" prefWidth="958.0" text="%fromTxt" />
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="466.0" prefWidth="968.0">
                                        <children>
-                                                    <WebView layoutY="-3.0" prefHeight="474.0" prefWidth="970.0" />
+                                                    <WebView fx:id="webby" layoutY="1.0" prefHeight="512.0" prefWidth="970.0" />
                                        </children>
                                     </AnchorPane>
                                 </items>

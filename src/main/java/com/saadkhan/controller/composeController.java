@@ -5,7 +5,6 @@
 package com.saadkhan.controller;
 
 import com.saadkhan.data.EmailFxBean;
-import com.saadkhan.data.FileAttachmentBean;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +18,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,7 +32,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -138,13 +134,14 @@ public class composeController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
+        this.locale = new Locale("en", "US");
     }
 
     public void close(ActionEvent actionEvent) {
         try {
             Stage stage = (Stage) closeBtn.getScene().getWindow();
             stage.close();
-            ResourceBundle rb = ResourceBundle.getBundle("Strings");
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
             Parent root = (AnchorPane) loader.load();
             mainController controller = loader.getController();
@@ -209,5 +206,9 @@ public class composeController {
         } catch (IOException e) {
             LOG.error(e.getMessage());
         }
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }

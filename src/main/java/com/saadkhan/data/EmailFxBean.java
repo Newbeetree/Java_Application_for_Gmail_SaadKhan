@@ -87,7 +87,7 @@ public class EmailFxBean implements Serializable {
         return from.get();
     }
 
-    public String getListInString(ListProperty<EmailAddress> list) {
+    public String getListInString(ArrayList<EmailAddress> list) {
         String emailString = "";
         for (EmailAddress email : list) {
             emailString += email.toString();

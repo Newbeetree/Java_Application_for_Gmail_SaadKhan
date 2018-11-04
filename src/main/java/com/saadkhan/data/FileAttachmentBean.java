@@ -95,7 +95,9 @@ public class FileAttachmentBean implements Serializable {
     }
 
     /**
-     * @return type of file
+     * @return type type of the file to attach, either imbedded or attached
+     *         true for imbed
+     *         false for attach
      */
     public boolean getType() {
         return type.get();

@@ -256,6 +256,7 @@ public class EmailDOATest {
         assertEquals("folder not deleted", 1, result);
     }
 
+
     /**
      * This routine recreates the database before every test. This makes sure
      * that a destructive test will not interfere with any other test. Does not

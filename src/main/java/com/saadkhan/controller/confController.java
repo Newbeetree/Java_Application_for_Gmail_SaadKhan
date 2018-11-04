@@ -34,8 +34,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jodd.mail.ImapServer;
 import jodd.mail.MailException;
 import jodd.mail.MailServer;
+import jodd.mail.ReceiveMailSession;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
 
@@ -200,12 +202,24 @@ public class confController {
                 .buildSmtpMailServer();
         try (SendMailSession session = smtpServer.createSession()) {
             session.open();
-            LOG.info("connected to Email");
-            return true;
+            LOG.info("connected to SMTP");
         } catch (MailException e) {
             LOG.info("incorrect email");
+            return false;
         }
-        return false;
+        ImapServer imapServer = MailServer.create()
+                .host(cfb.getIMAPServer())
+                .ssl(true)
+                .auth(cfb.getUserEmailAddress(), cfb.getUserPassword())
+                .buildImapMailServer();
+        try (ReceiveMailSession session = imapServer.createSession()) {
+            session.open();
+            LOG.info("connected to IMAP");
+        } catch (MailException e) {
+            LOG.info("incorrect email");
+            return false;
+        }
+        return true;
     }
 
     private boolean checkDB() {

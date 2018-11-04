@@ -294,7 +294,7 @@ public class EmailDOAImpl implements EmailDOA {
     public int createEmailBean(EmailBean bean) throws SQLException {
         int id = 0;
         if (checkIfEmailBeanExists(bean)) {
-            String insertQuery = "INSERT INTO EmailBean (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id) VALUES (?,?,?,?,?,?,?,?)";
+            String insertQuery = "INSERT INTO EmailBean (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Folder_Id, Priority) VALUES (?,?,?,?,?,?,?,?)";
             int from_id = createEmailAddress(bean.getFrom());
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                  PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
@@ -564,7 +564,7 @@ public class EmailDOAImpl implements EmailDOA {
     @Override
     public ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException {
         ArrayList<FileAttachmentBean> attachList = new ArrayList<>();
-        String selectQuery = "SELECT Email_Id, FILE_NAME, File_Attach, FILE_TYPE FROM Attachments";
+        String selectQuery = "SELECT Attach_Id, Email_Id, FILE_NAME, File_Attach, FILE_TYPE FROM Attachments";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pStatement = connection.prepareStatement(selectQuery);
@@ -782,5 +782,20 @@ public class EmailDOAImpl implements EmailDOA {
             e.printStackTrace();
         }
         return efList;
+    }
+
+    @Override
+    public void moveFolder(String newFolder, EmailFxBean bean) {
+        int result = 0;
+        String updateQuery = "UPDATE EmailBean SET Folder_Id = ? WHERE Bean_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(updateQuery);) {
+            ps.setInt(1, findFolder(newFolder));
+            ps.setInt(2, bean.getEmailID());
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        LOG.info("# of records updated : " + result);
     }
 }

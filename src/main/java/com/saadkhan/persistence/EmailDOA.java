@@ -219,4 +219,6 @@ public interface EmailDOA {
     int updateEmailAddress(int email_Id, String Name, String Address) throws SQLException;
 
     ObservableList<EmailFxBean> findAllEmailBeansByFolderFx(int folderId);
+
+    void moveFolder(String trash, EmailFxBean folder);
 }

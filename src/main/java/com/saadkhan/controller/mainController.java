@@ -4,9 +4,10 @@
 
 package com.saadkhan.controller;
 
-import com.mysql.cj.xdevapi.SqlDataResult;
+import com.saadkhan.buisness.EmailReceiver;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
+import com.saadkhan.data.FileAttachmentBean;
 import com.saadkhan.persistence.EmailDOA;
 import com.saadkhan.persistence.EmailDOAImpl;
 
@@ -14,11 +15,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,12 +30,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.lang.Object.*;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -47,9 +50,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -90,9 +98,6 @@ public class mainController {
     @FXML // fx:id="ccTxt"
     private Label ccTxt; // Value injected by FXMLLoader
 
-    @FXML // fx:id="bccTxt"
-    private Label bccTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="fwdTxt"
     private MenuItem fwdTxt; // Value injected by FXMLLoader
 
@@ -123,17 +128,25 @@ public class mainController {
     @FXML // fx:id="emailHolder"
     private TableView<EmailFxBean> emailHolder; // Value injected by FXMLLoader
 
+    @FXML // fx:id="from"
+    private Label from; // Value injected by FXMLLoader
+
     @FXML // fx:id="attachTxt"
     private Label attachTxt; // Value injected by FXMLLoader
 
+    @FXML // fx:id="webby"
+    private WebView webby; // Value injected by FXMLLoader
 
     private Stage primaryStage;
     private ObservableList<String> folderList;
     private Locale locale;
     private EmailDOA doa;
-    private ArrayList<EmailBean> emailList;
+    private EmailFxBean selectedEmail;
+    private EmailReceiver er;
+
 
     public mainController() {
+        this.er = new EmailReceiver();
         this.doa = new EmailDOAImpl();
         this.locale = new Locale("en", "US");
     }
@@ -152,10 +165,9 @@ public class mainController {
 
     @FXML
     public void moveTrash(MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2) {
-            String id = mouseEvent.getPickResult().getIntersectedNode().getId();
-            //find email bean with this id then set the bean folder id to trash
-        }
+        LOG.info("moving " + selectedEmail + " to Trash");
+        doa.moveFolder("Trash", selectedEmail);
+        recreateWindow();
     }
 
     @FXML
@@ -174,6 +186,7 @@ public class mainController {
     }
 
     private void drawFolders() {
+        refreshEmails();
         folderHolder.getItems().clear();
         for (String fName : folderList) {
             Label l = new Label(fName);
@@ -198,6 +211,109 @@ public class mainController {
             folderHolder.getItems().add(l);
 
         }
+    }
+
+    private void showEmailDetails(EmailFxBean email) {
+        clearFields();
+        this.selectedEmail = email;
+        trashBtn.setDisable(false);
+        sOptionBtn.setDisable(false);
+        sOptionBtn.setOnMouseClicked(e -> sOptionSettings());
+        from.setText(from.getText() + ": " + email.getFrom());
+        ccTxt.setText(ccTxt.getText() + ": " + email.getListInString(email.getCc()));
+        subTxt.setText(subTxt.getText() + ": " + email.getSubject());
+        drawAttachList(email.getAttachments());
+        displayContent();
+    }
+
+    private void displayContent() {
+        String htmlMessage = selectedEmail.getHtmlMessage();
+        String message = selectedEmail.getMessage();
+        for (FileAttachmentBean fab : selectedEmail.getAttachments()) {
+            if (fab.getType()) {
+                createTemp(fab);
+                Path file = Paths.get("C:\\temp\\" + fab.getName());
+                String defaultAttach = "<img src='cid:" + fab.getName() + "'>";
+                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
+                selectedEmail.setHtmlMessage(htmlMessage.replace(defaultAttach, custumAttach));
+            }
+        }
+        StringBuilder str = new StringBuilder(selectedEmail.getHtmlMessage());
+        str.insert(str.indexOf(">") + 1, "<p>" + message + "</p>");
+        LOG.info(str.toString());
+        webby.getEngine().loadContent(str.toString());
+    }
+
+    private void createTemp(FileAttachmentBean fab) {
+        try (FileOutputStream stream = new FileOutputStream("C:\\Temp\\" + fab.getName())) {
+            if(fab.getFile() != null) {
+                LOG.info("creating temp");
+                stream.write(fab.getFile());
+            }
+        } catch (IOException e) {
+            LOG.error("error saving");
+            e.printStackTrace();
+        }
+    }
+
+    private void sOptionSettings() {
+        LOG.info("pew pew");
+    }
+
+    private void drawAttachList(ArrayList<FileAttachmentBean> attachments) {
+        for (FileAttachmentBean f : attachments) {
+            Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+            b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+            b.setStyle("-fx-background-color: #b0ffb6; ");
+            b.setOnContextMenuRequested(e -> {
+                if (f.getFile() != null) {
+                    LOG.info("file name: " + f.getName());
+                    ContextMenu cm = new ContextMenu();
+                    MenuItem m1 = new MenuItem(this.resources.getString("download"));
+                    m1.setOnAction(event -> {
+                        downloadFile(f);
+                    });
+                    cm.getItems().add(m1);
+                    cm.show(b, e.getScreenX(), e.getScreenY());
+                }
+            });
+            attachyHolder.setOrientation(Orientation.HORIZONTAL);
+            attachyHolder.getItems().add(b);
+        }
+    }
+
+    private void downloadFile(FileAttachmentBean bean) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Image");
+        String ext = bean.getName().substring(bean.getName().length() - 3, bean.getName().length());
+        FileChooser.ExtensionFilter current = new FileChooser.ExtensionFilter(this.resources.getString("ThisFile"), "*." + ext);
+        FileChooser.ExtensionFilter txt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter pdfs = new FileChooser.ExtensionFilter("PDF Files", "*.pdf");
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif");
+        FileChooser.ExtensionFilter audio = new FileChooser.ExtensionFilter("Audio Files", "*.mp3", "*.wav");
+        FileChooser.ExtensionFilter html = new FileChooser.ExtensionFilter("Web pages", "*.tpl", "*.html", "*.htm");
+        FileChooser.ExtensionFilter all = new FileChooser.ExtensionFilter("All", "*.*");
+        fileChooser.getExtensionFilters().addAll(txt, images, pdfs, audio, html, current, all);
+        fileChooser.setSelectedExtensionFilter(current);
+        fileChooser.setInitialFileName(bean.getName());
+        System.out.println(bean.getName());
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            try {
+                FileOutputStream stream = new FileOutputStream(file);
+                stream.write(bean.getFile());
+                stream.close();
+            } catch (IOException e) {
+                LOG.error("error saving");
+            }
+        }
+    }
+
+    private void clearFields() {
+        from.setText(this.resources.getString("fromTxt"));
+        ccTxt.setText(this.resources.getString("ccTxt"));
+        subTxt.setText(this.resources.getString("subjectTxt"));
+        attachyHolder.getItems().clear();
     }
 
     private ContextMenu openContext(String fName) {
@@ -268,14 +384,9 @@ public class mainController {
         drawFolders();
     }
 
-
-    private void showEmailDetails(Object newValue) {
-        //webViewer.getEngine().loadContent( newValue);
-    }
-
     public void showCompose(ActionEvent actionEvent) {
         try {
-            ResourceBundle rb = ResourceBundle.getBundle("Strings");
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/composePage.fxml"), rb);
             Parent root = (AnchorPane) loader.load();
             composeController controller = loader.getController();
@@ -296,21 +407,6 @@ public class mainController {
     public void setSceneStageController(Stage stage) {
         this.primaryStage = stage;
     }
-
-
-    private void findEmails() throws SQLException {
-        ArrayList<EmailBean> emailList = doa.findAllEmailBeans();
-        drawEmails(emailList);
-    }
-
-    private void drawEmails(ArrayList<EmailBean> emailList) {
-        folderHolder.getItems().clear();
-        for (EmailBean eb : emailList) {
-            //onDragMethod drag over the folders
-            //onDoubleClickMethod doubl click to display the emails
-        }
-    }
-
 
     private void addAllFolders() {
         try {
@@ -334,6 +430,18 @@ public class mainController {
             primaryStage.show();
         } catch (IOException e) {
             LOG.error(e.getMessage());
+        }
+    }
+
+    private void refreshEmails() {
+        try {
+            LOG.info("Refreshing");
+            EmailBean[] emailBeans = er.receiveEmail();
+            for (EmailBean bean : emailBeans) {
+                doa.createEmailBean(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -366,9 +474,10 @@ public class mainController {
     }
 
     public void readMeDiag(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText("Look, an Information Dialog");
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(this.resources.getString("readMeTitle"));
+        alert.setHeaderText(this.resources.getString("aboutHeaderTxt"));
+        alert.setContentText(this.resources.getString("aboutContent"));
         Path filePath = get("", "README.md");
         File file = filePath.toFile();
         try {
@@ -379,9 +488,21 @@ public class mainController {
                 sb.append(line).append('\n');
             }
             String str = sb.toString();
-            alert.setContentText(str);
+            Label label = new Label("README:");
+            TextArea textArea = new TextArea(str);
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+            textArea.setMaxWidth(Double.MAX_VALUE);
+            textArea.setMaxHeight(Double.MAX_VALUE);
+            GridPane.setVgrow(textArea, Priority.ALWAYS);
+            GridPane.setHgrow(textArea, Priority.ALWAYS);
+            GridPane expContent = new GridPane();
+            expContent.setMaxWidth(Double.MAX_VALUE);
+            expContent.add(label, 0, 0);
+            expContent.add(textArea, 0, 1);
+            alert.getDialogPane().setExpandableContent(expContent);
         } catch (Exception e) {
-
+            LOG.error("Could not Find README File");
         }
         alert.showAndWait();
     }
