@@ -39,50 +39,54 @@ import javafx.stage.StageStyle;
 
 public class composeController {
 
-    @FXML
-    public MenuItem reAllTxt;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-    @FXML // fx:id="replyTxt"
-    private MenuItem replyTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="toTxt"
     private Label toTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="closeBtn"
     private Button closeBtn; // Value injected by FXMLLoader
-    @FXML // fx:id="editMn"
-    private Menu editMn; // Value injected by FXMLLoader
+
+    @FXML // fx:id="attachyHolder"
+    private ListView attachyHolder; // Value injected by FXMLLoader
+
     @FXML // fx:id="ccIn"
     private TextField ccIn; // Value injected by FXMLLoader
-    @FXML // fx:id="fwdAllTxt"
-    private MenuItem fwdAllTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="addBtn"
     private Button addBtn; // Value injected by FXMLLoader
+
     @FXML // fx:id="ccTxt"
     private Label ccTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="bccTxt"
     private Label bccTxt; // Value injected by FXMLLoader
+
     @FXML // fx:id="bccIn"
     private TextField bccIn; // Value injected by FXMLLoader
-    @FXML // fx:id="fwdTxt"
-    private MenuItem fwdTxt; // Value injected by FXMLLoader
-    @FXML // fx:id="fileMn"
-    private Menu fileMn; // Value injected by FXMLLoader
+
     @FXML // fx:id="sendBtn"
     private Button sendBtn; // Value injected by FXMLLoader
+
     @FXML // fx:id="toIn"
     private TextField toIn; // Value injected by FXMLLoader
+
     @FXML // fx:id="helpMn"
     private Menu helpMn; // Value injected by FXMLLoader
+
     @FXML // fx:id="subjectIn"
     private TextField subjectIn; // Value injected by FXMLLoader
+
     @FXML // fx:id="subjectTx"
     private Label subjectTx; // Value injected by FXMLLoader
-    @FXML // fx:id="sOptionBtn"
-    private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
-    @FXML
-    private ListView attachyHolder;
+
+    @FXML // fx:id="langMn"
+    private Menu langMn; // Value injected by FXMLLoader
+
 
     private Stage primaryStage;
     private final EmailFxBean efb;
@@ -193,14 +197,16 @@ public class composeController {
 
     public void changeSettings(ActionEvent actionEvent) {
         try {
+            close(null);
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/comfPage.fxml"), rb);
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);
             Parent root = (AnchorPane) loader.load();
             confController controller = loader.getController();
             controller.setSceneStageController(primaryStage);
-            //controller.setData();
+            controller.setData();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/styles/emailCSS.css");
+            primaryStage.setTitle("JAG: Configure");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -210,5 +216,24 @@ public class composeController {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public void setData(EmailFxBean selectedEmail, int option) {
+        toIn.setText(selectedEmail.getFrom().toString());
+        ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
+        switch (option) {
+            case 1:
+                subjectIn.setText("Re: "+selectedEmail.getSubject());
+                break;
+            case 2:
+                subjectIn.setText("Re: "+selectedEmail.getSubject());
+                break;
+            case 3:
+                subjectIn.setText("FWD: "+selectedEmail.getSubject());
+                break;
+            default:
+                LOG.error("this should never occur");
+        }
+        attachyHolder.getItems().addAll(selectedEmail.attachmentsProperty());
     }
 }

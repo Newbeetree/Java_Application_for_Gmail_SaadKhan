@@ -218,6 +218,24 @@ public class mainController {
         this.selectedEmail = email;
         trashBtn.setDisable(false);
         sOptionBtn.setDisable(false);
+        sOptionBtn.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
+            if (isNowShowing) {
+                sOptionBtn.getItems().clear();
+                MenuItem m1 = new MenuItem("Reply");
+                MenuItem m2 = new MenuItem("Reply All");
+                MenuItem m3 = new MenuItem("Forward");
+                m1.setOnAction(e -> {
+                    sOptionBtn.setText(m1.getText());
+                });
+                m2.setOnAction(e -> {
+                    sOptionBtn.setText(m2.getText());
+                });
+                m3.setOnAction(e -> {
+                    sOptionBtn.setText(m3.getText());
+                });
+                sOptionBtn.getItems().addAll(m1, m2, m3);
+            }
+        });
         sOptionBtn.setOnMouseClicked(e -> sOptionSettings());
         from.setText(from.getText() + ": " + email.getFrom());
         ccTxt.setText(ccTxt.getText() + ": " + email.getListInString(email.getCc()));
@@ -240,13 +258,12 @@ public class mainController {
         }
         StringBuilder str = new StringBuilder(selectedEmail.getHtmlMessage());
         str.insert(str.indexOf(">") + 1, "<p>" + message + "</p>");
-        LOG.info(str.toString());
         webby.getEngine().loadContent(str.toString());
     }
 
     private void createTemp(FileAttachmentBean fab) {
-        try (FileOutputStream stream = new FileOutputStream("C:\\Temp\\" + fab.getName())) {
-            if(fab.getFile() != null) {
+        try (FileOutputStream stream = new FileOutputStream("C:\\temp\\" + fab.getName())) {
+            if (fab.getFile() != null) {
                 LOG.info("creating temp");
                 stream.write(fab.getFile());
             }
@@ -257,7 +274,43 @@ public class mainController {
     }
 
     private void sOptionSettings() {
-        LOG.info("pew pew");
+        switch (sOptionBtn.getText()) {
+            case "Reply":
+                LOG.info("1");
+                optionedCompose(1);
+                break;
+            case "Reply All":
+                LOG.info("2");
+                optionedCompose(2);
+                break;
+            case "Forward":
+                LOG.info("3");
+                optionedCompose(3);
+                break;
+            default:
+                LOG.info("This should never occur");
+        }
+    }
+
+    private void optionedCompose(int option) {
+        try {
+            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/composePage.fxml"), rb);
+            Parent root = (AnchorPane) loader.load();
+            composeController controller = loader.getController();
+            controller.setSceneStageController(primaryStage);
+            controller.setData(selectedEmail, option);
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/emailCSS.css");
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("JAG: Email Create");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void drawAttachList(ArrayList<FileAttachmentBean> attachments) {
