@@ -214,51 +214,54 @@ public class mainController {
     }
 
     private void showEmailDetails(EmailFxBean email) {
-        clearFields();
-        this.selectedEmail = email;
-        trashBtn.setDisable(false);
-        sOptionBtn.setDisable(false);
-        sOptionBtn.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
-            if (isNowShowing) {
-                sOptionBtn.getItems().clear();
-                MenuItem m1 = new MenuItem("Reply");
-                MenuItem m2 = new MenuItem("Reply All");
-                MenuItem m3 = new MenuItem("Forward");
-                m1.setOnAction(e -> {
-                    sOptionBtn.setText(m1.getText());
-                });
-                m2.setOnAction(e -> {
-                    sOptionBtn.setText(m2.getText());
-                });
-                m3.setOnAction(e -> {
-                    sOptionBtn.setText(m3.getText());
-                });
-                sOptionBtn.getItems().addAll(m1, m2, m3);
-            }
-        });
-        sOptionBtn.setOnMouseClicked(e -> sOptionSettings());
-        from.setText(from.getText() + ": " + email.getFrom());
-        ccTxt.setText(ccTxt.getText() + ": " + email.getListInString(email.getCc()));
-        subTxt.setText(subTxt.getText() + ": " + email.getSubject());
-        drawAttachList(email.getAttachments());
-        displayContent();
+        if (email != null) {
+            clearFields();
+            this.selectedEmail = email;
+            trashBtn.setDisable(false);
+            sOptionBtn.setDisable(false);
+            sOptionBtn.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
+                if (isNowShowing) {
+                    sOptionBtn.getItems().clear();
+                    MenuItem m1 = new MenuItem("Reply");
+                    MenuItem m2 = new MenuItem("Reply All");
+                    MenuItem m3 = new MenuItem("Forward");
+                    m1.setOnAction(e -> {
+                        sOptionBtn.setText(m1.getText());
+                    });
+                    m2.setOnAction(e -> {
+                        sOptionBtn.setText(m2.getText());
+                    });
+                    m3.setOnAction(e -> {
+                        sOptionBtn.setText(m3.getText());
+                    });
+                    sOptionBtn.getItems().addAll(m1, m2, m3);
+                }
+            });
+            sOptionBtn.setOnMouseClicked(e -> sOptionSettings());
+            from.setText(from.getText() + ": " + email.getFrom());
+            ccTxt.setText(ccTxt.getText() + ": " + email.getListInString(email.getCc()));
+            subTxt.setText(subTxt.getText() + ": " + email.getSubject());
+            drawAttachList(email.getAttachments());
+            displayContent();
+        }
     }
-
     private void displayContent() {
         String htmlMessage = selectedEmail.getHtmlMessage();
         String message = selectedEmail.getMessage();
-        for (FileAttachmentBean fab : selectedEmail.getAttachments()) {
-            if (fab.getType()) {
-                createTemp(fab);
-                Path file = Paths.get("C:\\temp\\" + fab.getName());
-                String defaultAttach = "<img src='cid:" + fab.getName() + "'>";
-                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
-                selectedEmail.setHtmlMessage(htmlMessage.replace(defaultAttach, custumAttach));
+        if (!htmlMessage.isEmpty()) {
+            for (FileAttachmentBean fab : selectedEmail.getAttachments()) {
+                if (fab.getType()) {
+                    createTemp(fab);
+                    Path file = Paths.get("C:\\temp\\" + fab.getName());
+                    String defaultAttach = "<img src='cid:" + fab.getName() + "'>";
+                    String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
+                    htmlMessage = htmlMessage.replace(defaultAttach, custumAttach);
+                }
             }
+            webby.getEngine().loadContent(htmlMessage);
+        } else {
+            webby.getEngine().loadContent("<html><p>" + message + "</p><html>");
         }
-        StringBuilder str = new StringBuilder(selectedEmail.getHtmlMessage());
-        str.insert(str.indexOf(">") + 1, "<p>" + message + "</p>");
-        webby.getEngine().loadContent(str.toString());
     }
 
     private void createTemp(FileAttachmentBean fab) {
@@ -315,23 +318,25 @@ public class mainController {
 
     private void drawAttachList(ArrayList<FileAttachmentBean> attachments) {
         for (FileAttachmentBean f : attachments) {
-            Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-            b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-            b.setStyle("-fx-background-color: #b0ffb6; ");
-            b.setOnContextMenuRequested(e -> {
-                if (f.getFile() != null) {
-                    LOG.info("file name: " + f.getName());
-                    ContextMenu cm = new ContextMenu();
-                    MenuItem m1 = new MenuItem(this.resources.getString("download"));
-                    m1.setOnAction(event -> {
-                        downloadFile(f);
-                    });
-                    cm.getItems().add(m1);
-                    cm.show(b, e.getScreenX(), e.getScreenY());
-                }
-            });
-            attachyHolder.setOrientation(Orientation.HORIZONTAL);
-            attachyHolder.getItems().add(b);
+            if (!f.getType()) {
+                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+                b.setStyle("-fx-background-color: #b0ffb6; ");
+                b.setOnMouseClicked(e -> {
+                    if (f.getFile() != null) {
+                        LOG.info("file name: " + f.getName());
+                        ContextMenu cm = new ContextMenu();
+                        MenuItem m1 = new MenuItem(this.resources.getString("download"));
+                        m1.setOnAction(event -> {
+                            downloadFile(f);
+                        });
+                        cm.getItems().add(m1);
+                        cm.show(b, e.getScreenX(), e.getScreenY());
+                    }
+                });
+                attachyHolder.setOrientation(Orientation.HORIZONTAL);
+                attachyHolder.getItems().add(b);
+            }
         }
     }
 

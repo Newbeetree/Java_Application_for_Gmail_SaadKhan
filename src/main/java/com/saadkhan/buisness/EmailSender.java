@@ -127,6 +127,13 @@ public class EmailSender {
      * @return boolean  if the email is valid returns true or false
      */
     private boolean validateBean(EmailBean bean) throws IllegalArgumentException {
+        boolean o = checkEmail(bean.getFrom().getEmail());
+        boolean jo = checkListEmail(bean.getTo().toArray(new EmailAddress[0]));
+        boolean ho = checkListEmail(bean.getCc().toArray(new EmailAddress[0]));
+        boolean g= checkEmailName(bean.getFrom().getPersonalName());
+        boolean go = checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));
+        boolean fo = bean.getHtmlMessage() != null;
+        boolean or=bean.getMessage() != null;
         return checkEmail(bean.getFrom().getEmail()) &&
                 checkEmailName(bean.getFrom().getPersonalName()) &&
                 checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
@@ -168,7 +175,7 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmailName(String personalName) {
-        String regx = "^[\\p{L} .'-]+$";
+        String regx ="[A-Za-z0-9]";// "^[\\p{L} .'-]+$";
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(personalName);
         return matcher.find();

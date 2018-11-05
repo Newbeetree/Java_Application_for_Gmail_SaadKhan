@@ -4,7 +4,15 @@
 
 package com.saadkhan.controller;
 
+import com.saadkhan.buisness.EmailReceiver;
+import com.saadkhan.buisness.EmailSender;
+import com.saadkhan.data.ConfigurationFxBean;
+import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
+import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
+import com.saadkhan.persistence.EmailDOA;
+import com.saadkhan.persistence.EmailDOAImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +20,16 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,14 +41,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import jodd.mail.EmailAddress;
+
+import static java.nio.file.Paths.get;
 
 public class composeController {
 
@@ -87,6 +102,9 @@ public class composeController {
     @FXML // fx:id="langMn"
     private Menu langMn; // Value injected by FXMLLoader
 
+    @FXML // fx:id="editor"
+    private HTMLEditor editor; // Value injected by FXMLLoader
+
 
     private Stage primaryStage;
     private final EmailFxBean efb;
@@ -94,18 +112,46 @@ public class composeController {
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private Locale locale;
     private List<File> list;
+    private EmailDOA doa;
+    private EmailSender es;
+    private String userEmail;
+    private String name;
 
     public composeController() {
-        efb = new EmailFxBean();
+        getConfigValues();
+        this.efb = new EmailFxBean();
+        this.doa = new EmailDOAImpl();
+        this.es = new EmailSender();
+    }
+
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.userEmail = cfb.getUserEmailAddress();
+            this.name = cfb.getUserName();
+        } catch (IOException e) {
+            LOG.error("cannot find properties");
+        }
     }
 
     @FXML
     public void sendEmail(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sent");
-        alert.setContentText("Your Email has been succesfully sent");
-        alert.showAndWait();
-        close(null);
+        //try {
+            efb.setFrom(new EmailAddress(name, userEmail));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sent");
+            alert.setContentText("Your Email has been succesfully sent");
+            EmailBean emailBean = efb.toBean(efb);
+            //doa.createEmailBean(emailBean);
+            boolean noAttachments = (!efb.getAttachments().isEmpty());
+            es.send(emailBean, noAttachments);
+            alert.showAndWait();
+            close(null);
+       // } catch (SQLException e) {
+         //   e.printStackTrace();
+       // }
     }
 
     @FXML
@@ -113,7 +159,7 @@ public class composeController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         try {
-            list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
+            this.list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
             drawAttachList();
         } catch (NullPointerException e) {
             LOG.info(" File explorer closed unexpectedly");
@@ -139,6 +185,11 @@ public class composeController {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
         this.locale = new Locale("en", "US");
+        Bindings.bindBidirectional(efb.getStringToList(toIn.textProperty().toString()), efb.toProperty());
+        Bindings.bindBidirectional(efb.getStringToList(toIn.textProperty().toString()), efb.toProperty());
+        Bindings.bindBidirectional(efb.getStringToList(toIn.textProperty().toString()), efb.toProperty());
+        Bindings.bindBidirectional(subjectIn.textProperty(), efb.subjectProperty());
+
     }
 
     public void close(ActionEvent actionEvent) {
@@ -219,21 +270,53 @@ public class composeController {
     }
 
     public void setData(EmailFxBean selectedEmail, int option) {
-        toIn.setText(selectedEmail.getFrom().toString());
-        ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
         switch (option) {
             case 1:
-                subjectIn.setText("Re: "+selectedEmail.getSubject());
+                toIn.setText(selectedEmail.getFrom().toString());
+                efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
+                subjectIn.setText("Re: " + selectedEmail.getSubject());
+                efb.setSubject(selectedEmail.getSubject());
                 break;
             case 2:
-                subjectIn.setText("Re: "+selectedEmail.getSubject());
+                toIn.setText(selectedEmail.getFrom().toString());
+                efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
+                ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
+                subjectIn.setText("Re: " + selectedEmail.getSubject());
+                efb.setSubject(selectedEmail.getSubject());
+                efb.setCc(efb.getStringToList(selectedEmail.getCc().toString()));
                 break;
             case 3:
-                subjectIn.setText("FWD: "+selectedEmail.getSubject());
+                subjectIn.setText("FWD: " + selectedEmail.getSubject());
+                efb.setSubject(selectedEmail.getSubject());
                 break;
             default:
                 LOG.error("this should never occur");
         }
-        attachyHolder.getItems().addAll(selectedEmail.attachmentsProperty());
+        efb.setMessage(selectedEmail.getMessage());
+        efb.setHtmlMessage(selectedEmail.getHtmlMessage());
+        editor.setHtmlText(selectedEmail.getHtmlMessage());
+        for (FileAttachmentBean f : selectedEmail.attachmentsProperty()) {
+            if(!f.getType()) {
+                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+                b.setStyle("-fx-background-color: #b2c3ff; ");
+                b.setOnMouseClicked(e -> {
+                    int spot = attachyHolder.getItems().indexOf(b);
+                    attachyHolder.getItems().remove(spot);
+                    //this.list = new ArrayList<>(list);
+                    //list.remove(spot);
+                });
+                attachyHolder.setOrientation(Orientation.HORIZONTAL);
+                attachyHolder.getItems().add(b);
+            }else{
+                Path file = Paths.get("C:\\temp\\" + f.getName());
+                String defaultAttach = "<img src='cid:" + f.getName() + "'>";
+                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
+                String html = selectedEmail.getHtmlMessage().replace(defaultAttach,custumAttach);
+                editor.setHtmlText(html);
+                efb.setHtmlMessage(selectedEmail.getHtmlMessage());
+            }
+        }
+        efb.setAttachments(selectedEmail.attachmentsProperty());
     }
 }

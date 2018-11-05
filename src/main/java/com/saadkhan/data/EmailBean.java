@@ -49,7 +49,7 @@ public class EmailBean implements Serializable {
         messageType = "";
         send = LocalDateTime.now();
         recived = LocalDateTime.now();
-        folder = "";
+        folder = "Inbox";
         priority = Priority.PRIORITY_NORMAL;
     }
 

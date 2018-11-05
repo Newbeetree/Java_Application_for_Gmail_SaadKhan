@@ -83,6 +83,24 @@ public class EmailFxBean implements Serializable {
         priority = new SimpleObjectProperty<>(bean.getPriority());
     }
 
+    public EmailBean toBean(EmailFxBean efb) {
+        EmailBean eb = new EmailBean();
+        eb.setFrom(efb.getFrom());
+        if (!efb.getTo().isEmpty())
+            eb.setTo(efb.getTo());
+        if (!efb.getCc().isEmpty())
+            eb.setCc(efb.getCc());
+        if (!efb.getBcc().isEmpty())
+            eb.setBcc(efb.getBcc());
+        if (!efb.getAttachments().isEmpty())
+            eb.setAttachments(efb.getAttachments());
+        eb.setSubject(efb.getSubject());
+        eb.setMessage(efb.getMessage());
+        eb.setHtmlMessage(efb.getHtmlMessage());
+        eb.setFolder("Sent");
+        return eb;
+    }
+
     public EmailAddress getFrom() {
         return from.get();
     }
@@ -90,20 +108,21 @@ public class EmailFxBean implements Serializable {
     public String getListInString(ArrayList<EmailAddress> list) {
         String emailString = "";
         for (EmailAddress email : list) {
-            emailString += email.toString()+ ", ";
+            emailString += email.toString() + ", ";
         }
-
         //emailString = emailString.substring(0,emailString.length()-1);
         return emailString;
     }
 
     public ListProperty<EmailAddress> getStringToList(String emailString) {
-        ListProperty<EmailAddress> list = null;
+        emailString = emailString.replace('[', ' ');
+        emailString = emailString.replace(']', ' ');
         String[] emailList = emailString.split(", ");
-        for (String email : emailList) {
-            list.add(EmailAddress.of(emailString));
+        ArrayList<EmailAddress> emailAddresses = new ArrayList<>();
+        for (int i = 0; i < emailList.length; i++) {
+            emailAddresses.add(EmailAddress.of(emailList[i]));
         }
-        return list;
+        return new SimpleListProperty<>(FXCollections.observableArrayList(emailAddresses));
     }
 
     public ObjectProperty<EmailAddress> fromProperty() {
@@ -115,7 +134,7 @@ public class EmailFxBean implements Serializable {
     }
 
     public ArrayList<EmailAddress> getTo() {
-        return new ArrayList<>(to.get());
+        return to.size() > 0 ? new ArrayList<>(to.get()) : new ArrayList<>();
     }
 
     public ListProperty<EmailAddress> toProperty() {
@@ -127,7 +146,7 @@ public class EmailFxBean implements Serializable {
     }
 
     public ArrayList<EmailAddress> getCc() {
-        return new ArrayList<>(cc.get());
+        return cc.size() > 0 ? new ArrayList<>(cc.get()) : new ArrayList<>();
     }
 
     public ListProperty<EmailAddress> ccProperty() {
@@ -139,7 +158,7 @@ public class EmailFxBean implements Serializable {
     }
 
     public ArrayList<EmailAddress> getBcc() {
-        return new ArrayList<>(bcc.get());
+        return bcc.size() > 0 ? new ArrayList<>(bcc.get()) : new ArrayList<>();
     }
 
     public ListProperty<EmailAddress> bccProperty() {
@@ -199,7 +218,7 @@ public class EmailFxBean implements Serializable {
     }
 
     public ArrayList<FileAttachmentBean> getAttachments() {
-        return new ArrayList<>(attachments.get());
+        return attachments.size() > 0 ? new ArrayList<>(attachments.get()) : new ArrayList<>();
     }
 
     public ListProperty<FileAttachmentBean> attachmentsProperty() {

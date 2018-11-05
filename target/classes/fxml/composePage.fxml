@@ -43,7 +43,7 @@
         <TextField fx:id="ccIn" layoutX="86.0" layoutY="162.0" prefHeight="31.0" prefWidth="887.0" />
         <Label fx:id="subjectTx" layoutX="26.0" layoutY="205.0" text="%subjectTx" />
         <TextField fx:id="subjectIn" layoutX="86.0" layoutY="200.0" prefHeight="31.0" prefWidth="887.0" />
-        <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
+        <HTMLEditor fx:id="editor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
         <Label layoutX="26.0" layoutY="41.0" prefHeight="31.0" prefWidth="190.0" text="%composeTxt">
             <font>
                 <Font size="21.0" />
