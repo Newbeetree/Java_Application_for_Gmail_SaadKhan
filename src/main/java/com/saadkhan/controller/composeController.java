@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -30,6 +31,8 @@ import java.util.ResourceBundle;
 
 
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -140,6 +143,7 @@ public class composeController {
     public void sendEmail(ActionEvent event) {
         //try {
             efb.setFrom(new EmailAddress(name, userEmail));
+            efb.setAttachments(efb.convertFiles(list));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Sent");
             alert.setContentText("Your Email has been succesfully sent");
@@ -153,6 +157,8 @@ public class composeController {
          //   e.printStackTrace();
        // }
     }
+
+
 
     @FXML
     public void addFolder(ActionEvent event) {
@@ -189,7 +195,6 @@ public class composeController {
         Bindings.bindBidirectional(efb.getStringToList(toIn.textProperty().toString()), efb.toProperty());
         Bindings.bindBidirectional(efb.getStringToList(toIn.textProperty().toString()), efb.toProperty());
         Bindings.bindBidirectional(subjectIn.textProperty(), efb.subjectProperty());
-
     }
 
     public void close(ActionEvent actionEvent) {
@@ -317,6 +322,7 @@ public class composeController {
                 efb.setHtmlMessage(selectedEmail.getHtmlMessage());
             }
         }
+        //this.list.addAll(efb.listConvertFiles(selectedEmail.getAttachments()));
         efb.setAttachments(selectedEmail.attachmentsProperty());
     }
 }

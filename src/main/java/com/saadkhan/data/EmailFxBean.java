@@ -1,10 +1,15 @@
 package com.saadkhan.data;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.BooleanProperty;
@@ -124,6 +129,23 @@ public class EmailFxBean implements Serializable {
         }
         return new SimpleListProperty<>(FXCollections.observableArrayList(emailAddresses));
     }
+
+    public ObservableList<FileAttachmentBean> convertFiles(List<File> list) {
+        ArrayList<FileAttachmentBean> beanList = new ArrayList<>();
+        try {
+            for (File f : list) {
+                FileAttachmentBean bean = new FileAttachmentBean();
+                bean.setName(f.getName());
+                bean.setType(false);
+                bean.setFile(Files.readAllBytes(f.toPath()));
+                beanList.add(bean);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return FXCollections.observableArrayList(beanList);
+    }
+
 
     public ObjectProperty<EmailAddress> fromProperty() {
         return from;
