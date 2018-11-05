@@ -17,6 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -32,7 +34,7 @@ public class EmailDOAImpl implements EmailDOA {
     private String URL;
     private String USER;
     private String PASSWORD;
-
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     /**
      * Default Constructor
      */
@@ -302,8 +304,8 @@ public class EmailDOAImpl implements EmailDOA {
                 pStatement.setString(2, bean.getSubject());
                 pStatement.setString(3, bean.getMessage());
                 pStatement.setString(4, bean.getHtmlMessage());
-                pStatement.setDate(5, java.sql.Date.valueOf(bean.getSend().toLocalDate()));
-                pStatement.setDate(6, java.sql.Date.valueOf(bean.getRecived().toLocalDate()));
+                pStatement.setTimestamp(5, Timestamp.valueOf(bean.getSend()));
+                pStatement.setTimestamp(6, Timestamp.valueOf(bean.getRecived()));
                 pStatement.setInt(7, createFolder(bean.getFolder()));
                 pStatement.setInt(8, bean.getPriority().getValue());
                 pStatement.executeUpdate();

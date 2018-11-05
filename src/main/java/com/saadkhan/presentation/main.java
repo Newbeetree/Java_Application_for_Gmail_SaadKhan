@@ -48,7 +48,12 @@ public class main {
         fa.setName("WindsorKen180.jpg");
         fa.setFile(Files.readAllBytes(new File("WindsorKen180.jpg").toPath()));
         fa.setType(true);
+        FileAttachmentBean fb = new FileAttachmentBean();
+        fb.setName("bird.jpg");
+        fb.setFile(Files.readAllBytes(new File("bird.jpg").toPath()));
+        fb.setType(false);
         bean.getAttachments().add(fa);
+        bean.getAttachments().add(fb);
         return bean;
     }
 

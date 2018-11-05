@@ -229,8 +229,8 @@ public class confController {
             return true;
         } catch (SQLException e) {
             LOG.error("incorrect DB");
+            return false;
         }
-        return false;
     }
 
     @FXML

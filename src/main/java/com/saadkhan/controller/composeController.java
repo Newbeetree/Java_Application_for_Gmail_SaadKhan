@@ -143,7 +143,10 @@ public class composeController {
     public void sendEmail(ActionEvent event) {
         //try {
             efb.setFrom(new EmailAddress(name, userEmail));
-            efb.setAttachments(efb.convertFiles(list));
+            efb.setTo(efb.getStringToList(toIn.textProperty().getValue()));
+            String s = editor.getHtmlText();
+            //efb.setHtmlMessage(editor.getHtmlText());
+            //efb.setAttachments(efb.convertFiles(list));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Sent");
             alert.setContentText("Your Email has been succesfully sent");
@@ -280,23 +283,21 @@ public class composeController {
                 toIn.setText(selectedEmail.getFrom().toString());
                 efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
-                efb.setSubject(selectedEmail.getSubject());
                 break;
             case 2:
                 toIn.setText(selectedEmail.getFrom().toString());
                 efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
                 ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
-                efb.setSubject(selectedEmail.getSubject());
                 efb.setCc(efb.getStringToList(selectedEmail.getCc().toString()));
                 break;
             case 3:
                 subjectIn.setText("FWD: " + selectedEmail.getSubject());
-                efb.setSubject(selectedEmail.getSubject());
                 break;
             default:
                 LOG.error("this should never occur");
         }
+        efb.setSubject(selectedEmail.getSubject());
         efb.setMessage(selectedEmail.getMessage());
         efb.setHtmlMessage(selectedEmail.getHtmlMessage());
         editor.setHtmlText(selectedEmail.getHtmlMessage());

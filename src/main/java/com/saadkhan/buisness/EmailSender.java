@@ -138,9 +138,9 @@ public class EmailSender {
                 checkEmailName(bean.getFrom().getPersonalName()) &&
                 checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
                 checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
-                bean.getHtmlMessage() != null &&
-                bean.getMessage() != null;
+                checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));// &&
+                //bean.getHtmlMessage() != null &&
+                //bean.getMessage() != null;
     }
 
 
