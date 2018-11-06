@@ -518,7 +518,7 @@ public class EmailDOAImpl implements EmailDOA {
     public void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws
             SQLException {
         for (FileAttachmentBean fab : fabList) {
-            if (checkIfAttachmentExists(fab, email_id)) {
+           // if (checkIfAttachmentExists(fab, email_id)) {
                 String insertQuery = "INSERT INTO Attachments (Email_Id, File_Name, File_Attach, File_Type) values (?, ?, ?, ?)";
                 try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                      PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
@@ -536,7 +536,7 @@ public class EmailDOAImpl implements EmailDOA {
                         LOG.debug("New record ID is " + id);
                     }
                 }
-            }
+            //}
         }
     }
 

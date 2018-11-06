@@ -114,7 +114,7 @@ public class composeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private Locale locale;
-    private List<File> list;
+    private ArrayList<FileAttachmentBean> list;
     private EmailDOA doa;
     private EmailSender es;
     private String userEmail;
@@ -142,25 +142,27 @@ public class composeController {
     @FXML
     public void sendEmail(ActionEvent event) {
         //try {
-            efb.setFrom(new EmailAddress(name, userEmail));
-            efb.setTo(efb.getStringToList(toIn.textProperty().getValue()));
-            String s = editor.getHtmlText();
-            //efb.setHtmlMessage(editor.getHtmlText());
-            //efb.setAttachments(efb.convertFiles(list));
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Sent");
-            alert.setContentText("Your Email has been succesfully sent");
-            EmailBean emailBean = efb.toBean(efb);
-            //doa.createEmailBean(emailBean);
-            boolean noAttachments = (!efb.getAttachments().isEmpty());
-            es.send(emailBean, noAttachments);
-            alert.showAndWait();
-            close(null);
-       // } catch (SQLException e) {
-         //   e.printStackTrace();
-       // }
+        efb.setFrom(new EmailAddress(name, userEmail));
+        efb.setTo(efb.getStringToList(toIn.textProperty().getValue()));
+        efb.setCc(efb.getStringToList(ccIn.textProperty().getValue()));
+        efb.setBcc(efb.getStringToList(bccIn.textProperty().getValue()));
+        efb.setSubject(subjectIn.textProperty().getValue());
+        drawAttachList(false);
+        efb.setHtmlMessage(editor.getHtmlText());
+        efb.setAttachments(FXCollections.observableArrayList(list));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sent");
+        alert.setContentText("Your Email has been succesfully sent");
+        EmailBean emailBean = efb.toBean(efb);
+        //doa.createEmailBean(emailBean);
+        boolean noAttachments = (efb.getAttachments().isEmpty());
+        es.send(emailBean, noAttachments);
+        alert.showAndWait();
+        close(null);
+        // } catch (SQLException e) {
+        //   e.printStackTrace();
+        // }
     }
-
 
 
     @FXML
@@ -168,26 +170,56 @@ public class composeController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         try {
-            this.list = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
-            drawAttachList();
+            convertFileBean((fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow())));
+            drawAttachList(false);
         } catch (NullPointerException e) {
             LOG.info(" File explorer closed unexpectedly");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void drawAttachList() {
-        for (File f : list) {
-            Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-            b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-            b.setStyle("-fx-background-color: #b2c3ff; ");
-            b.setOnMouseClicked(e -> {
-                int spot = attachyHolder.getItems().indexOf(b);
-                attachyHolder.getItems().remove(spot);
-                this.list = new ArrayList<>(list);
-                list.remove(spot);
-            });
-            attachyHolder.setOrientation(Orientation.HORIZONTAL);
-            attachyHolder.getItems().add(b);
+    private void convertFileBean(List<File> files) throws IOException {
+        if (!files.isEmpty()) {
+            for (File f : files) {
+                FileAttachmentBean bean = new FileAttachmentBean();
+                bean.setName(f.getName());
+                bean.setFile(Files.readAllBytes(f.toPath()));
+                bean.setType(false);
+                list.add(bean);
+            }
+        }
+    }
+
+    private void drawAttachList(boolean coverter) {
+        attachyHolder.getItems().clear();
+        for (FileAttachmentBean f : list) {
+            if (!f.getType()) {
+                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+                b.setStyle("-fx-background-color: #b2c3ff; ");
+                b.setOnMouseClicked(e -> {
+                    int spot = attachyHolder.getItems().indexOf(b);
+                    attachyHolder.getItems().remove(spot);
+                    this.list = new ArrayList<>(list);
+                    list.remove(spot);
+                });
+                attachyHolder.setOrientation(Orientation.HORIZONTAL);
+                attachyHolder.getItems().add(b);
+            } else {
+                Path file = Paths.get("C:\\temp\\" + f.getName());
+                String defaultAttach = "<img src='cid:" + f.getName() + "'>";
+                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
+                if (coverter) {
+                    String html = editor.getHtmlText().replace(defaultAttach, custumAttach);
+                    efb.setHtmlMessage(html);
+                    editor.setHtmlText(html);
+                } else {
+                    LOG.info(editor.getHtmlText().replace(custumAttach, defaultAttach));
+                    String gmail = editor.getHtmlText().replace(custumAttach, defaultAttach);
+                    efb.setHtmlMessage(gmail);
+                }
+            }
         }
     }
 
@@ -281,15 +313,15 @@ public class composeController {
         switch (option) {
             case 1:
                 toIn.setText(selectedEmail.getFrom().toString());
-                efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
+                //efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
                 break;
             case 2:
                 toIn.setText(selectedEmail.getFrom().toString());
-                efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
                 ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
-                efb.setCc(efb.getStringToList(selectedEmail.getCc().toString()));
+                //efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
+                //efb.setCc(efb.getStringToList(selectedEmail.getCc().toString()));
                 break;
             case 3:
                 subjectIn.setText("FWD: " + selectedEmail.getSubject());
@@ -297,33 +329,11 @@ public class composeController {
             default:
                 LOG.error("this should never occur");
         }
-        efb.setSubject(selectedEmail.getSubject());
         efb.setMessage(selectedEmail.getMessage());
-        efb.setHtmlMessage(selectedEmail.getHtmlMessage());
+        //this.list.addAll(selectedEmail.getAttachments());
+        //efb.setHtmlMessage(selectedEmail.getHtmlMessage());
         editor.setHtmlText(selectedEmail.getHtmlMessage());
-        for (FileAttachmentBean f : selectedEmail.attachmentsProperty()) {
-            if(!f.getType()) {
-                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-                b.setStyle("-fx-background-color: #b2c3ff; ");
-                b.setOnMouseClicked(e -> {
-                    int spot = attachyHolder.getItems().indexOf(b);
-                    attachyHolder.getItems().remove(spot);
-                    //this.list = new ArrayList<>(list);
-                    //list.remove(spot);
-                });
-                attachyHolder.setOrientation(Orientation.HORIZONTAL);
-                attachyHolder.getItems().add(b);
-            }else{
-                Path file = Paths.get("C:\\temp\\" + f.getName());
-                String defaultAttach = "<img src='cid:" + f.getName() + "'>";
-                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
-                String html = selectedEmail.getHtmlMessage().replace(defaultAttach,custumAttach);
-                editor.setHtmlText(html);
-                efb.setHtmlMessage(selectedEmail.getHtmlMessage());
-            }
-        }
-        //this.list.addAll(efb.listConvertFiles(selectedEmail.getAttachments()));
-        efb.setAttachments(selectedEmail.attachmentsProperty());
+        this.list = selectedEmail.getAttachments();
+        drawAttachList(true);
     }
 }

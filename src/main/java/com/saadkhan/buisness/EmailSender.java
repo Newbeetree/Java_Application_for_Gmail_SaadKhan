@@ -130,17 +130,17 @@ public class EmailSender {
         boolean o = checkEmail(bean.getFrom().getEmail());
         boolean jo = checkListEmail(bean.getTo().toArray(new EmailAddress[0]));
         boolean ho = checkListEmail(bean.getCc().toArray(new EmailAddress[0]));
-        boolean g= checkEmailName(bean.getFrom().getPersonalName());
+        boolean g = checkEmailName(bean.getFrom().getPersonalName());
         boolean go = checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));
         boolean fo = bean.getHtmlMessage() != null;
-        boolean or=bean.getMessage() != null;
+        boolean or = bean.getMessage() != null;
         return checkEmail(bean.getFrom().getEmail()) &&
                 checkEmailName(bean.getFrom().getPersonalName()) &&
                 checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
                 checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
                 checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));// &&
-                //bean.getHtmlMessage() != null &&
-                //bean.getMessage() != null;
+        //bean.getHtmlMessage() != null &&
+        //bean.getMessage() != null;
     }
 
 
@@ -166,7 +166,10 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmail(String address) {
-        return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
+        if (address.equals(""))
+            return true;
+        else
+            return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
     }
 
     /**
@@ -175,7 +178,7 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmailName(String personalName) {
-        String regx ="[A-Za-z0-9]";// "^[\\p{L} .'-]+$";
+        String regx = "[A-Za-z0-9]";// "^[\\p{L} .'-]+$";
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(personalName);
         return matcher.find();
@@ -189,6 +192,9 @@ public class EmailSender {
      * @throws IllegalArgumentException throws the exception in case of invalid email
      */
     private boolean checkListEmail(EmailAddress[] list) throws IllegalArgumentException {
+        if(list[0].getEmail().equals("")){
+            return true;
+        }
         for (EmailAddress email : list) {
             if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
                 throw new IllegalArgumentException("Invalid Email");

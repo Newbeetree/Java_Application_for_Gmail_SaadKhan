@@ -35,8 +35,8 @@ CREATE TABLE EmailBean (
 CREATE TABLE Attachments (
   Attach_Id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
   Email_Id    INT         NOT NULL,
-  File_Name   VARCHAR(50) NOT NULL,
-  File_Attach BLOB,
+  File_Name   VARCHAR(200) NOT NULL,
+  File_Attach LONGBLOB,
   File_Type   BOOL        NOT NULL,
   FOREIGN KEY (Email_Id) REFERENCES EmailBean (Bean_Id)
   ON DELETE CASCADE

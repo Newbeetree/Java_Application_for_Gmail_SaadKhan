@@ -61,6 +61,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import jodd.io.FileNameUtil;
 import jodd.mail.EmailAddress;
 
 import static java.nio.file.Paths.get;
@@ -245,6 +246,7 @@ public class mainController {
             displayContent();
         }
     }
+
     private void displayContent() {
         String htmlMessage = selectedEmail.getHtmlMessage();
         String message = selectedEmail.getMessage();
@@ -343,7 +345,7 @@ public class mainController {
     private void downloadFile(FileAttachmentBean bean) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Image");
-        String ext = bean.getName().substring(bean.getName().length() - 3, bean.getName().length());
+        String ext = FileNameUtil.getExtension(bean.getName());
         FileChooser.ExtensionFilter current = new FileChooser.ExtensionFilter(this.resources.getString("ThisFile"), "*." + ext);
         FileChooser.ExtensionFilter txt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         FileChooser.ExtensionFilter pdfs = new FileChooser.ExtensionFilter("PDF Files", "*.pdf");
@@ -357,10 +359,8 @@ public class mainController {
         System.out.println(bean.getName());
         File file = fileChooser.showSaveDialog(primaryStage);
         if (file != null) {
-            try {
-                FileOutputStream stream = new FileOutputStream(file);
+            try (FileOutputStream stream = new FileOutputStream(file);) {
                 stream.write(bean.getFile());
-                stream.close();
             } catch (IOException e) {
                 LOG.error("error saving");
             }

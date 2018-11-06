@@ -3,6 +3,7 @@ CREATE DATABASE JAG;
 
 USE JAG;
 
+SET GLOBAL max_allowed_packet = 1024 * 1024 * 14;
 DROP USER IF EXISTS auser@localhost;
 CREATE USER auser@'localhost' IDENTIFIED BY '123password';
 GRANT ALL ON JAG.* TO auser@'localhost';
