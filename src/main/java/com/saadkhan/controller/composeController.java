@@ -141,27 +141,26 @@ public class composeController {
 
     @FXML
     public void sendEmail(ActionEvent event) {
-        //try {
-        efb.setFrom(new EmailAddress(name, userEmail));
-        efb.setTo(efb.getStringToList(toIn.textProperty().getValue()));
-        efb.setCc(efb.getStringToList(ccIn.textProperty().getValue()));
-        efb.setBcc(efb.getStringToList(bccIn.textProperty().getValue()));
-        efb.setSubject(subjectIn.textProperty().getValue());
-        drawAttachList(false);
-        efb.setHtmlMessage(editor.getHtmlText());
-        efb.setAttachments(FXCollections.observableArrayList(list));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sent");
-        alert.setContentText("Your Email has been succesfully sent");
-        EmailBean emailBean = efb.toBean(efb);
-        //doa.createEmailBean(emailBean);
-        boolean noAttachments = (efb.getAttachments().isEmpty());
-        es.send(emailBean, noAttachments);
-        alert.showAndWait();
-        close(null);
-        // } catch (SQLException e) {
-        //   e.printStackTrace();
-        // }
+        try {
+            efb.setFrom(new EmailAddress(name, userEmail));
+            efb.setTo(efb.getStringToList(toIn.textProperty().getValue()));
+            efb.setCc(efb.getStringToList(ccIn.textProperty().getValue()));
+            efb.setBcc(efb.getStringToList(bccIn.textProperty().getValue()));
+            efb.setSubject(subjectIn.textProperty().getValue());
+            drawAttachList(false);
+            efb.setAttachments(FXCollections.observableArrayList(list));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sent");
+            alert.setContentText("Your Email has been succesfully sent");
+            EmailBean emailBean = efb.toBean(efb);
+            doa.createEmailBean(emailBean);
+            boolean noAttachments = (efb.getAttachments().isEmpty());
+            es.send(emailBean, noAttachments);
+            alert.showAndWait();
+            close(null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -208,15 +207,15 @@ public class composeController {
                 attachyHolder.getItems().add(b);
             } else {
                 Path file = Paths.get("C:\\temp\\" + f.getName());
-                String defaultAttach = "<img src='cid:" + f.getName() + "'>";
-                String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
+                String defaultAttach = "<img src=\"cid:" + f.getName() + "\">";
+                String custumAttach = "<img src=\"" + file.toUri().toString() + "\">";
                 if (coverter) {
                     String html = editor.getHtmlText().replace(defaultAttach, custumAttach);
-                    efb.setHtmlMessage(html);
                     editor.setHtmlText(html);
                 } else {
                     LOG.info(editor.getHtmlText().replace(custumAttach, defaultAttach));
-                    String gmail = editor.getHtmlText().replace(custumAttach, defaultAttach);
+                    String gmail = editor.getHtmlText();
+                    gmail = gmail.replace(custumAttach, defaultAttach);
                     efb.setHtmlMessage(gmail);
                 }
             }
@@ -313,15 +312,12 @@ public class composeController {
         switch (option) {
             case 1:
                 toIn.setText(selectedEmail.getFrom().toString());
-                //efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
                 break;
             case 2:
                 toIn.setText(selectedEmail.getFrom().toString());
                 ccIn.setText(selectedEmail.getListInString(selectedEmail.getCc()));
                 subjectIn.setText("Re: " + selectedEmail.getSubject());
-                //efb.setTo(efb.getStringToList(selectedEmail.getFrom().toString()));
-                //efb.setCc(efb.getStringToList(selectedEmail.getCc().toString()));
                 break;
             case 3:
                 subjectIn.setText("FWD: " + selectedEmail.getSubject());
@@ -330,8 +326,6 @@ public class composeController {
                 LOG.error("this should never occur");
         }
         efb.setMessage(selectedEmail.getMessage());
-        //this.list.addAll(selectedEmail.getAttachments());
-        //efb.setHtmlMessage(selectedEmail.getHtmlMessage());
         editor.setHtmlText(selectedEmail.getHtmlMessage());
         this.list = selectedEmail.getAttachments();
         drawAttachList(true);

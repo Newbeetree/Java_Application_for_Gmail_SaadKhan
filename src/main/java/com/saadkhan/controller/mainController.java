@@ -52,7 +52,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -144,8 +148,9 @@ public class mainController {
     private EmailDOA doa;
     private EmailFxBean selectedEmail;
     private EmailReceiver er;
+    private EmailFxBean selected;
 
-
+    private String folderName="";
     public mainController() {
         this.er = new EmailReceiver();
         this.doa = new EmailDOAImpl();
@@ -183,6 +188,26 @@ public class mainController {
                 .selectedItemProperty()
                 .addListener(
                         (observable, oldValue, newValue) -> showEmailDetails(newValue));
+
+        emailHolder.setOnDragDetected(e -> {
+            selected = emailHolder.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                Dragboard drg = emailHolder.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent cb = new ClipboardContent();
+                cb.put(DataFormat.RTF, selected);
+                drg.setContent(cb);
+                e.consume();
+            }
+        });
+
+        emailHolder.setOnDragOver(e -> {
+            Dragboard drb = e.getDragboard();
+        });
+
+        emailHolder.setOnDragDone(e -> {
+            int email_Id = selectedEmail.getEmailID();
+            //doa.
+        });
         addAllFolders();
     }
 
@@ -210,7 +235,12 @@ public class mainController {
             });
             l.setMaxWidth(folderHolder.getPrefWidth());
             folderHolder.getItems().add(l);
-
+            folderHolder.setOnDragOver(e -> {
+                Dragboard drg = e.getDragboard();
+                String text = drg.getString();
+                String filename = e.getPickResult().getIntersectedNode().getId();
+                folderName = filename;
+            });
         }
     }
 
@@ -255,7 +285,7 @@ public class mainController {
                 if (fab.getType()) {
                     createTemp(fab);
                     Path file = Paths.get("C:\\temp\\" + fab.getName());
-                    String defaultAttach = "<img src='cid:" + fab.getName() + "'>";
+                    String defaultAttach = "<img src=\"cid:" + fab.getName() + "\">";
                     String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
                     htmlMessage = htmlMessage.replace(defaultAttach, custumAttach);
                 }

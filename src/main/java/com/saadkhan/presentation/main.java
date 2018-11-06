@@ -41,7 +41,7 @@ public class main {
         bean.setHtmlMessage("<html><META http-equiv=Content-Type "
                 + "content=\"text/html; charset=utf-8\">"
                 + "<body><h1>Here is my photograph embedded in "
-                + "this email.</h1><img src='cid:WindsorKen180.jpg'>"
+                + "this email.</h1><img src=\"cid:WindsorKen180.jpg\">"
                 + "<h2>I'm flying!</h2></body></html>");
         bean.setPriority(Priority.PRIORITY_NORMAL);
         FileAttachmentBean fa = new FileAttachmentBean();
