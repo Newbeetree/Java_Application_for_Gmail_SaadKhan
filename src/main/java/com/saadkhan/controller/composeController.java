@@ -156,11 +156,15 @@ public class composeController {
             alert.setTitle("Sent");
             alert.setContentText("Your Email has been succesfully sent");
             EmailBean emailBean = efb.toBean(efb);
-            doa.createEmailBean(emailBean);
-            boolean noAttachments = (efb.getAttachments().isEmpty());
-            es.send(emailBean, noAttachments);
-            alert.showAndWait();
-            close(null);
+            if (es.validateBean(emailBean)) {
+                doa.createEmailBean(emailBean);
+                boolean noAttachments = (efb.getAttachments().isEmpty());
+                es.send(emailBean, noAttachments);
+                alert.showAndWait();
+                close(null);
+            }else{
+                toIn.setStyle("-fx-border-color: red;");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -225,8 +229,8 @@ public class composeController {
                     }
                 }
             }
-            if(list.isEmpty())
-            efb.setHtmlMessage(editor.getHtmlText());
+            if (list.isEmpty())
+                efb.setHtmlMessage(editor.getHtmlText());
         } else {
             efb.setHtmlMessage(editor.getHtmlText());
         }
@@ -261,6 +265,9 @@ public class composeController {
 
     public void setSceneStageController(Stage stage) {
         this.primaryStage = stage;
+        toIn.setPromptText(name + " <" + userEmail + ">");
+        ccIn.setPromptText(name + " <" + userEmail + ">, " + name + "<" + userEmail + ">, ");
+        bccIn.setPromptText(name + " <" + userEmail + ">, " + name + "<" + userEmail + ">, ");
     }
 
     public void changeFrench(ActionEvent actionEvent) {

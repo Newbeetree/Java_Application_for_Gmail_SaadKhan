@@ -126,7 +126,7 @@ public class EmailSender {
      * @param bean email bean to be converted
      * @return boolean  if the email is valid returns true or false
      */
-    private boolean validateBean(EmailBean bean) throws IllegalArgumentException {
+    public boolean validateBean(EmailBean bean) throws IllegalArgumentException {
         boolean o = checkEmail(bean.getFrom().getEmail());
         boolean jo = checkListEmail(bean.getTo().toArray(new EmailAddress[0]));
         boolean ho = checkListEmail(bean.getCc().toArray(new EmailAddress[0]));
@@ -178,6 +178,9 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmailName(String personalName) {
+        if(personalName == null){
+            return false;
+        }
         String regx = "[A-Za-z0-9]";// "^[\\p{L} .'-]+$";
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(personalName);
@@ -192,12 +195,14 @@ public class EmailSender {
      * @throws IllegalArgumentException throws the exception in case of invalid email
      */
     private boolean checkListEmail(EmailAddress[] list) throws IllegalArgumentException {
-        if(list[0].getEmail().equals("")){
+        if (list[0].getEmail().equals("")) {
             return true;
         }
         for (EmailAddress email : list) {
-            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
-                throw new IllegalArgumentException("Invalid Email");
+            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName())) {
+                LOG.error("Invalid Email");
+                return false;
+            }
         }
         return true;
     }

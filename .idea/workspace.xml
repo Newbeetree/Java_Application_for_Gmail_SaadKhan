@@ -3,8 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Strings_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Strings_en_US.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Strings_fr_CA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Strings_fr_CA.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/buisness/EmailSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/composeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/composeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/mainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/saadkhan/controller/mainController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -62,29 +72,21 @@
       <file leaf-file-name="mainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="459" column="36" selection-start-line="459" selection-start-column="36" selection-end-line="459" selection-end-column="36" />
+            <state relative-caret-position="-3376">
+              <caret line="341" column="79" lean-forward="true" selection-start-line="341" selection-start-column="79" selection-end-line="341" selection-end-column="79" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#19801#19802#0" expanded="true" />
-                <element signature="e#19842#19843#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Strings.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/Strings.properties">
-          <provider selected="true" editor-type-id="text-editor" />
-          <provider editor-type-id="ResourceBundle" />
-        </entry>
-      </file>
       <file leaf-file-name="EmailReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3094">
-              <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+            <state relative-caret-position="1378">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
             </state>
           </provider>
         </entry>
@@ -92,20 +94,48 @@
       <file leaf-file-name="composeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2808">
-              <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
+            <state relative-caret-position="2886">
+              <caret line="161" selection-start-line="161" selection-end-line="161" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="confController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3172">
+              <caret line="161" column="58" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="58" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="method#getConfigValues#0;class#composeController#0" />
-                <element signature="method#initialize#0;class#composeController#0" />
-                <element signature="method#close#0;class#composeController#0" />
-                <element signature="method#changeFrench#0;class#composeController#0" />
-                <element signature="method#changeEnglish#0;class#composeController#0" />
-                <element signature="method#recreateWindow#0;class#composeController#0" />
-                <element signature="method#changeSettings#0;class#composeController#0" />
-                <element signature="method#addImage#0;class#composeController#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailFxBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2184">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="858">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1534">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
         </entry>
@@ -126,16 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tablevi</find>
-      <find>emailHolder</find>
-      <find>setOndrag</find>
-      <find>foldername</find>
-      <find>drawAtta</find>
-      <find>setAttac</find>
-      <find>drawA</find>
-      <find>editor</find>
-      <find>editor.set</find>
-      <find>file</find>
       <find>convertFi</find>
       <find>files</find>
       <find>img</find>
@@ -145,7 +165,6 @@
       <find>i</find>
       <find>convertF</find>
       <find>html</find>
-      <find>send</find>
       <find>createTem</find>
       <find>//do</find>
       <find>temp</find>
@@ -156,6 +175,17 @@
       <find>moving</find>
       <find>To</find>
       <find>deletefolder</find>
+      <find>setSce</find>
+      <find>colo</find>
+      <find>send</find>
+      <find>compose</find>
+      <find>+ u</find>
+      <find>res</find>
+      <find>inters</find>
+      <find>recrea</find>
+      <find>adda</find>
+      <find>draw</find>
+      <find>createT</find>
     </findStrings>
     <replaceStrings>
       <replace>createBasicBean</replace>
@@ -207,7 +237,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/manager/PropertiesManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/MainApp.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/confPage.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/styles/emailCSS.css" />
         <option value="$PROJECT_DIR$/README.md" />
@@ -217,16 +246,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java" />
         <option value="$PROJECT_DIR$/JAGConfig.properties" />
         <option value="$PROJECT_DIR$/src/test/java/com/saadkhan/buisness/EmailSenderTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/FileAttachmentBean.java" />
         <option value="$PROJECT_DIR$/src/test/resources/createEmailSchema.sql" />
         <option value="$PROJECT_DIR$/src/test/resources/createEmailTable.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" />
       </list>
     </option>
@@ -257,9 +287,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-25" />
-    <option name="y" value="-29" />
-    <option name="width" value="1939" />
-    <option name="height" value="1059" />
+    <option name="y" value="-30" />
+    <option name="width" value="1940" />
+    <option name="height" value="1060" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -269,7 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -338,6 +367,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="saadkhan" type="462c0819:PsiDirectoryNode" />
+              <item name="manager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java_Application_for_Gmail_SaadKhan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="saadkhan" type="462c0819:PsiDirectoryNode" />
               <item name="persistence" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -363,14 +401,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="fxml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java_Application_for_Gmail_SaadKhan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Resource Bundle 'Strings'" type="a6c14932:ResourceBundleNode" />
             </path>
             <path>
               <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
@@ -422,6 +452,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -445,6 +476,9 @@
     <property name="settings.editor.selected.configurable" value="database.main" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.saadkhan.presentation" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.saadkhan.persistence" />
       <recent name="com.saadkhan.buisness" />
@@ -456,11 +490,6 @@
       <recent name="com.saadkhan.persistence" />
       <recent name="com.saadkhan.buisness" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\src\main\resources" />
-      <recent name="C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\src\main\resources\I8N" />
-      <recent name="C:\Users\Saad\Documents\school\Sem4\proj\project\Java_Application_for_Gmail_SaadKhan\src\test\resources" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Saad\Documents\school\Sem4\proj\JavaApplicationGmail1633839\src\main\java\com\saadkhan\buisness\data" />
       <recent name="C:\Users\Saad\Documents\school\Sem4\proj\JavaApplicationGmail1633839\src\main\java\com\saadkhan" />
@@ -468,8 +497,10 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.saadkhan.presentation" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\src\main\resources" />
+      <recent name="C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\src\main\resources\I8N" />
+      <recent name="C:\Users\Saad\Documents\school\Sem4\proj\project\Java_Application_for_Gmail_SaadKhan\src\test\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -763,7 +794,10 @@
       <workItem from="1541532357906" duration="11110000" />
       <workItem from="1541551685338" duration="21309000" />
       <workItem from="1541594159408" duration="53000" />
-      <workItem from="1541602590871" duration="5838000" />
+      <workItem from="1541602590871" duration="5889000" />
+      <workItem from="1541614257804" duration="3370000" />
+      <workItem from="1541618054038" duration="5885000" />
+      <workItem from="1541626321475" duration="1689000" />
     </task>
     <servers />
   </component>
@@ -800,7 +834,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="650431000" />
+    <option name="totallyTimeSpent" value="661426000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -825,12 +859,11 @@
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.2260128" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32897604" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49932885" visible="true" weight="0.3580786" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.3295302" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49932885" weight="0.3580786" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32896653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6448326" visible="true" weight="0.14228188" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6448326" visible="true" weight="0.14832215" />
       <window_info anchor="right" id="Database" order="5" weight="0.12885906" />
       <window_info id="Structure" order="1" sideWeight="0.3551674" side_tool="true" weight="0.22147651" />
       <window_info anchor="right" id="Ant Build" order="9" weight="0.24966443" />
@@ -846,6 +879,7 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32890365" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.3295302" />
     </layout>
     <layout-to-restore>
       <window_info id="Designer" order="3" />
@@ -909,39 +943,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
-          <line>160</line>
+          <line>161</line>
           <properties />
           <option name="timeStamp" value="297" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
-          <line>215</line>
+          <line>219</line>
           <properties />
           <option name="timeStamp" value="306" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
-          <line>358</line>
+          <line>365</line>
           <properties />
           <option name="timeStamp" value="307" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
-          <line>151</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java</url>
+          <line>612</line>
           <properties />
-          <option name="timeStamp" value="309" />
+          <option name="timeStamp" value="310" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java</url>
+          <line>158</line>
+          <properties />
+          <option name="timeStamp" value="311" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="316" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="317" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java</url>
-          <line>607</line>
+          <line>538</line>
           <properties />
-          <option name="timeStamp" value="310" />
+          <option name="timeStamp" value="322" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="323" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="311" />
+      <option name="time" value="324" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -949,22 +1007,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4108">
-          <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="method#getConfigValues#0;class#composeController#0" />
-            <element signature="method#initialize#0;class#composeController#0" />
-            <element signature="method#close#0;class#composeController#0" />
-            <element signature="method#changeFrench#0;class#composeController#0" />
-            <element signature="method#changeEnglish#0;class#composeController#0" />
-            <element signature="method#recreateWindow#0;class#composeController#0" />
-            <element signature="method#changeSettings#0;class#composeController#0" />
-            <element signature="method#addImage#0;class#composeController#0" />
-          </folding>
+        <state relative-caret-position="1534">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
@@ -1066,24 +1112,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4940">
-          <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1266,27 +1294,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="189" column="53" lean-forward="true" selection-start-line="189" selection-start-column="53" selection-end-line="189" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/scene/web/HTMLEditor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1297,7 +1304,7 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="83">
-          <caret line="1768" selection-start-line="1768" selection-end-line="1768" />
+          <caret line="1772" selection-start-line="1772" selection-end-line="1772" />
           <folding>
             <element signature="e#66921#66922#0" expanded="true" />
             <element signature="e#66966#66967#0" expanded="true" />
@@ -1305,46 +1312,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sun/mail/javax.mail/1.6.1/javax.mail-1.6.1.jar!/com/sun/mail/smtp/SMTPTransport.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2808">
-          <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
+        <state relative-caret-position="124">
+          <caret line="605" selection-start-line="605" selection-end-line="605" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/confController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3172">
+          <caret line="161" column="58" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="58" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="method#getConfigValues#0;class#composeController#0" />
-            <element signature="method#initialize#0;class#composeController#0" />
-            <element signature="method#close#0;class#composeController#0" />
-            <element signature="method#changeFrench#0;class#composeController#0" />
-            <element signature="method#changeEnglish#0;class#composeController#0" />
-            <element signature="method#recreateWindow#0;class#composeController#0" />
-            <element signature="method#changeSettings#0;class#composeController#0" />
-            <element signature="method#addImage#0;class#composeController#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="42" />
+        <state relative-caret-position="858">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Strings.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="ResourceBundle" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2184">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2886">
+          <caret line="161" selection-start-line="161" selection-end-line="161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jodd/jodd-mail/5.0.4/jodd-mail-5.0.4-sources.jar!/jodd/mail/SendMailSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1534">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/buisness/EmailReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1378">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="459" column="36" selection-start-line="459" selection-start-column="36" selection-end-line="459" selection-end-column="36" />
+        <state relative-caret-position="-3376">
+          <caret line="341" column="79" lean-forward="true" selection-start-line="341" selection-start-column="79" selection-end-line="341" selection-end-column="79" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#19801#19802#0" expanded="true" />
-            <element signature="e#19842#19843#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -31,6 +31,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,7 +53,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
@@ -176,7 +176,7 @@ public class mainController {
 
     @FXML
     public void moveTrash(MouseEvent mouseEvent) {
-        if(selectedEmail != null) {
+        if (selectedEmail != null) {
             LOG.info("moving " + selectedEmail + " to Trash");
             doa.moveFolder("Trash", selectedEmail);
             recreateWindow();
@@ -212,7 +212,7 @@ public class mainController {
         });
 
         emailHolder.setOnDragDone(e -> {
-            if(selected != null && folderName != null) {
+            if (selected != null && folderName != null) {
                 int email_Id = selectedEmail.getEmailID();
                 LOG.info("Moving " + selectedEmail.getSubject() + " To " + folderName);
                 doa.moveFolder(folderName, selected);
@@ -249,8 +249,7 @@ public class mainController {
             folderHolder.setOnDragOver(e -> {
                 Dragboard drg = e.getDragboard();
                 String text = drg.getString();
-                String filename = e.getPickResult().getIntersectedNode().getId();
-                folderName = filename;
+                folderName = e.getPickResult().getIntersectedNode().getId();
             });
         }
     }
@@ -337,48 +336,52 @@ public class mainController {
     }
 
     private void optionedCompose(int option) {
-        try {
-            ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/composePage.fxml"), rb);
-            Parent root = (AnchorPane) loader.load();
-            composeController controller = loader.getController();
-            controller.setSceneStageController(primaryStage);
-            controller.setData(selectedEmail, option);
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/emailCSS.css");
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("JAG: Email Create");
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Platform.runLater(() -> {
+            try {
+                ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/composePage.fxml"), rb);
+                Parent root = (AnchorPane) loader.load();
+                composeController controller = loader.getController();
+                controller.setSceneStageController(primaryStage);
+                controller.setData(selectedEmail, option);
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/emailCSS.css");
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("JAG: Email Create");
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void drawAttachList(ArrayList<FileAttachmentBean> attachments) {
-        for (FileAttachmentBean f : attachments) {
-            if (!f.getType()) {
-                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-                b.setStyle("-fx-background-color: #b0ffb6; ");
-                b.setOnMouseClicked(e -> {
-                    if (f.getFile() != null) {
-                        LOG.info("file name: " + f.getName());
-                        ContextMenu cm = new ContextMenu();
-                        MenuItem m1 = new MenuItem(this.resources.getString("download"));
-                        m1.setOnAction(event -> {
-                            downloadFile(f);
-                        });
-                        cm.getItems().add(m1);
-                        cm.show(b, e.getScreenX(), e.getScreenY());
-                    }
-                });
-                attachyHolder.setOrientation(Orientation.HORIZONTAL);
-                attachyHolder.getItems().add(b);
+        Platform.runLater(() -> {
+            for (FileAttachmentBean f : attachments) {
+                if (!f.getType()) {
+                    Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+                    b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+                    b.setStyle("-fx-background-color: #b0ffb6; ");
+                    b.setOnMouseClicked(e -> {
+                        if (f.getFile() != null) {
+                            LOG.info("file name: " + f.getName());
+                            ContextMenu cm = new ContextMenu();
+                            MenuItem m1 = new MenuItem(this.resources.getString("download"));
+                            m1.setOnAction(event -> {
+                                downloadFile(f);
+                            });
+                            cm.getItems().add(m1);
+                            cm.show(b, e.getScreenX(), e.getScreenY());
+                        }
+                    });
+                    attachyHolder.setOrientation(Orientation.HORIZONTAL);
+                    attachyHolder.getItems().add(b);
+                }
             }
-        }
+        });
     }
 
     private void downloadFile(FileAttachmentBean bean) {
@@ -457,7 +460,7 @@ public class mainController {
                 folderList.remove(fName);
                 folderHolder.getItems().remove(fName);
                 doa.deleteFolder(fName);
-                recreateWindow();   
+                recreateWindow();
             } catch (SQLException e) {
                 LOG.error("error deleting from DB");
             }
@@ -531,15 +534,17 @@ public class mainController {
     }
 
     private void refreshEmails() {
-        try {
-            LOG.info("Refreshing");
-            EmailBean[] emailBeans = er.receiveEmail();
-            for (EmailBean bean : emailBeans) {
-                doa.createEmailBean(bean);
+       // Platform.runLater(() -> {
+            try {
+                LOG.info("Refreshing");
+                EmailBean[] emailBeans = er.receiveEmail();
+                for (EmailBean bean : emailBeans) {
+                    doa.createEmailBean(bean);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //});
     }
 
     public void changeFrench(ActionEvent actionEvent) {
