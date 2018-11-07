@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e98eb1e3-0dc3-42b1-8271-01a10f62635f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_en_US.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Strings_fr_CA.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/composePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,15 +55,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mainController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="306" column="33" lean-forward="true" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="33" />
+            <state relative-caret-position="57">
+              <caret line="593" column="5" lean-forward="true" selection-start-line="593" selection-start-column="5" selection-end-line="593" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#23288#23289#0" expanded="true" />
+                <element signature="e#23319#23320#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainPage.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="112" column="83" selection-start-line="112" selection-start-column="83" selection-end-line="112" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -83,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composeController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="composeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="228" column="12" lean-forward="true" selection-start-line="228" selection-start-column="12" selection-end-line="228" selection-end-column="12" />
+            <state relative-caret-position="26">
+              <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -120,8 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>draw</find>
-      <find>findfile</find>
       <find>createAt</find>
       <find>downlo</find>
       <find>checkifA</find>
@@ -150,6 +154,8 @@
       <find>html</find>
       <find>send</find>
       <find>createTem</find>
+      <find>//do</find>
+      <find>refres</find>
     </findStrings>
     <replaceStrings>
       <replace>createBasicBean</replace>
@@ -220,8 +226,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOAImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/presentation/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/data/EmailFxBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java" />
       </list>
     </option>
   </component>
@@ -355,14 +361,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="fxml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java_Application_for_Gmail_SaadKhan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Resource Bundle 'Strings'" type="a6c14932:ResourceBundleNode" />
             </path>
             <path>
               <item name="Java_Application_for_Gmail_SaadKhan" type="b2602c69:ProjectViewProjectNode" />
@@ -755,7 +753,7 @@
       <workItem from="1541458337077" duration="24262000" />
       <workItem from="1541525173136" duration="5083000" />
       <workItem from="1541532357906" duration="11110000" />
-      <workItem from="1541551685338" duration="19904000" />
+      <workItem from="1541551685338" duration="21273000" />
     </task>
     <servers />
   </component>
@@ -792,7 +790,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="643135000" />
+    <option name="totallyTimeSpent" value="644504000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -817,11 +815,11 @@
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.2260128" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32897604" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49932885" weight="0.3988604" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49932885" visible="true" weight="0.3988604" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32896653" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6448326" weight="0.13825503" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6448326" visible="true" weight="0.13825503" />
       <window_info anchor="right" id="Database" order="5" weight="0.12885906" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32890365" />
       <window_info id="Structure" order="1" sideWeight="0.3551674" side_tool="true" weight="0.22147651" />
@@ -829,7 +827,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.39601138" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.39601138" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.27796236" />
@@ -934,13 +932,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://ba7efd87-b935-4661-82d3-5b7d08ff85b5/schema/jag/table/folder">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/persistence/EmailDOA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -1301,21 +1292,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="306" column="33" lean-forward="true" selection-start-line="306" selection-start-column="33" selection-end-line="306" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/composeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="228" column="12" lean-forward="true" selection-start-line="228" selection-start-column="12" selection-end-line="228" selection-end-column="12" />
+        <state relative-caret-position="26">
+          <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -1327,6 +1307,27 @@
             <element signature="method#recreateWindow#0;class#composeController#0" />
             <element signature="method#changeSettings#0;class#composeController#0" />
             <element signature="method#addImage#0;class#composeController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/mainPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="112" column="83" selection-start-line="112" selection-start-column="83" selection-end-line="112" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/saadkhan/controller/mainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="593" column="5" lean-forward="true" selection-start-line="593" selection-start-column="5" selection-end-line="593" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#23288#23289#0" expanded="true" />
+            <element signature="e#23319#23320#0" expanded="true" />
           </folding>
         </state>
       </provider>

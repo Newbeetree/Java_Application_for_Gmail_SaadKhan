@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
@@ -17,8 +18,22 @@
                     <items>
                         <ToolBar id="back" prefHeight="45.0" prefWidth="253.0">
                             <items>
-                                <Button fx:id="composeBtn" mnemonicParsing="false" onAction="#showCompose" prefHeight="31.0" prefWidth="109.0" text="%composeBtn" />
-                                <Button fx:id="folderBtn" mnemonicParsing="false" onAction="#addFolder" prefHeight="31.0" prefWidth="115.0" text="%folderBtn" />
+                                <Button fx:id="composeBtn" mnemonicParsing="false" onAction="#showCompose" prefHeight="31.0" prefWidth="109.0" text="%composeBtn">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/compose.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                                <Button fx:id="folderBtn" mnemonicParsing="false" onAction="#addFolder" prefHeight="31.0" prefWidth="115.0" text="%folderBtn">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/addfolder.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                             </items>
                         </ToolBar>
                         <ListView fx:id="folderHolder" prefHeight="1000.0" prefWidth="249.0" />
@@ -80,14 +95,30 @@
                                     <children>
                                         <ToolBar id="back" prefHeight="45.0" prefWidth="972.0">
                                             <items>
-                                                <Button fx:id="trashBtn" mnemonicParsing="false" onMouseClicked="#moveTrash" prefHeight="31.0" prefWidth="91.0" text="%trashBtn" />
-                                                <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="%sOptionBtn">
+                                                <Button fx:id="trashBtn" mnemonicParsing="false" onMouseClicked="#moveTrash" prefHeight="31.0" prefWidth="140.0" text="%trashBtn">
+                                       <graphic>
+                                          <ImageView fitHeight="27.0" fitWidth="30.0">
+                                             <image>
+                                                <Image url="@../images/trash.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                                <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="140.0" text="%sOptionBtn">
                                                     <items>
                                                         <MenuItem fx:id="replyTxt" mnemonicParsing="false" text="%replyTxt" />
                                                         <MenuItem fx:id="reAllTxt" mnemonicParsing="false" text="%feAllTxt" />
                                                         <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
                                                     </items>
                                                 </SplitMenuButton>
+                                    <Button mnemonicParsing="false" onAction="#callRefresh">
+                                       <graphic>
+                                          <ImageView fitHeight="27.0" fitWidth="34.0">
+                                             <image>
+                                                <Image url="@../images/refresh.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                             </items>
                                         </ToolBar>
                                     </children>

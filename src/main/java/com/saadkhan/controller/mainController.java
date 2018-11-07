@@ -592,4 +592,8 @@ public class mainController {
         }
         alert.showAndWait();
     }
+
+    public void callRefresh(ActionEvent actionEvent) {
+        refreshEmails();
+    }
 }
