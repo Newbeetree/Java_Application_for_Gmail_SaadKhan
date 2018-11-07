@@ -284,7 +284,8 @@ public class mainController {
             for (FileAttachmentBean fab : selectedEmail.getAttachments()) {
                 if (fab.getType()) {
                     createTemp(fab);
-                    Path file = Paths.get("C:\\temp\\" + fab.getName());
+                    String temp = System.getProperty("java.io.tmpdir");
+                    Path file = Paths.get(temp + fab.getName());
                     String defaultAttach = "<img src=\"cid:" + fab.getName() + "\">";
                     String custumAttach = "<img src='" + file.toUri().toString() + "'/>";
                     htmlMessage = htmlMessage.replace(defaultAttach, custumAttach);
@@ -297,7 +298,8 @@ public class mainController {
     }
 
     private void createTemp(FileAttachmentBean fab) {
-        try (FileOutputStream stream = new FileOutputStream("C:\\temp\\" + fab.getName())) {
+        String temp = System.getProperty("java.io.tmpdir");
+        try (FileOutputStream stream = new FileOutputStream(temp + fab.getName())) {
             if (fab.getFile() != null) {
                 LOG.info("creating temp");
                 stream.write(fab.getFile());
@@ -311,19 +313,15 @@ public class mainController {
     private void sOptionSettings() {
         switch (sOptionBtn.getText()) {
             case "Reply":
-                LOG.info("1");
                 optionedCompose(1);
                 break;
             case "Reply All":
-                LOG.info("2");
                 optionedCompose(2);
                 break;
             case "Forward":
-                LOG.info("3");
                 optionedCompose(3);
                 break;
             default:
-                LOG.info("This should never occur");
         }
     }
 

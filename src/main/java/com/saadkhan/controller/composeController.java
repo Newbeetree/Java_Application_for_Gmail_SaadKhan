@@ -4,7 +4,6 @@
 
 package com.saadkhan.controller;
 
-import com.saadkhan.buisness.EmailReceiver;
 import com.saadkhan.buisness.EmailSender;
 import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,6 +101,9 @@ public class composeController {
     @FXML // fx:id="subjectTx"
     private Label subjectTx; // Value injected by FXMLLoader
 
+    @FXML // fx:id="addImage"
+    private Button addImage; // Value injected by FXMLLoader
+
     @FXML // fx:id="langMn"
     private Menu langMn; // Value injected by FXMLLoader
 
@@ -114,7 +116,7 @@ public class composeController {
 
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private Locale locale;
-    private ArrayList<FileAttachmentBean> list;
+    private ArrayList<FileAttachmentBean> list = new ArrayList<>();
     private EmailDOA doa;
     private EmailSender es;
     private String userEmail;
@@ -148,7 +150,8 @@ public class composeController {
             efb.setBcc(efb.getStringToList(bccIn.textProperty().getValue()));
             efb.setSubject(subjectIn.textProperty().getValue());
             drawAttachList(false);
-            efb.setAttachments(FXCollections.observableArrayList(list));
+            if (list != null)
+                efb.setAttachments(FXCollections.observableArrayList(list));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Sent");
             alert.setContentText("Your Email has been succesfully sent");
@@ -169,7 +172,7 @@ public class composeController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         try {
-            convertFileBean((fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow())));
+            convertFileBean((fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow())), false);
             drawAttachList(false);
         } catch (NullPointerException e) {
             LOG.info(" File explorer closed unexpectedly");
@@ -178,13 +181,13 @@ public class composeController {
         }
     }
 
-    private void convertFileBean(List<File> files) throws IOException {
+    private void convertFileBean(List<File> files, boolean b) throws IOException {
         if (!files.isEmpty()) {
             for (File f : files) {
                 FileAttachmentBean bean = new FileAttachmentBean();
                 bean.setName(f.getName());
                 bean.setFile(Files.readAllBytes(f.toPath()));
-                bean.setType(false);
+                bean.setType(b);
                 list.add(bean);
             }
         }
@@ -192,33 +195,40 @@ public class composeController {
 
     private void drawAttachList(boolean coverter) {
         attachyHolder.getItems().clear();
-        for (FileAttachmentBean f : list) {
-            if (!f.getType()) {
-                Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-                b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-                b.setStyle("-fx-background-color: #b2c3ff; ");
-                b.setOnMouseClicked(e -> {
-                    int spot = attachyHolder.getItems().indexOf(b);
-                    attachyHolder.getItems().remove(spot);
-                    this.list = new ArrayList<>(list);
-                    list.remove(spot);
-                });
-                attachyHolder.setOrientation(Orientation.HORIZONTAL);
-                attachyHolder.getItems().add(b);
-            } else {
-                Path file = Paths.get("C:\\temp\\" + f.getName());
-                String defaultAttach = "<img src=\"cid:" + f.getName() + "\">";
-                String custumAttach = "<img src=\"" + file.toUri().toString() + "\">";
-                if (coverter) {
-                    String html = editor.getHtmlText().replace(defaultAttach, custumAttach);
-                    editor.setHtmlText(html);
+        if (list != null) {
+            for (FileAttachmentBean f : list) {
+                if (!f.getType()) {
+                    Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+                    b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+                    b.setStyle("-fx-background-color: #b2c3ff; ");
+                    b.setOnMouseClicked(e -> {
+                        int spot = attachyHolder.getItems().indexOf(b);
+                        attachyHolder.getItems().remove(spot);
+                        this.list = new ArrayList<>(list);
+                        list.remove(spot);
+                    });
+                    attachyHolder.setOrientation(Orientation.HORIZONTAL);
+                    attachyHolder.getItems().add(b);
                 } else {
-                    LOG.info(editor.getHtmlText().replace(custumAttach, defaultAttach));
-                    String gmail = editor.getHtmlText();
-                    gmail = gmail.replace(custumAttach, defaultAttach);
-                    efb.setHtmlMessage(gmail);
+                    String temp = System.getProperty("java.io.tmpdir");
+                    Path file = Paths.get(temp + f.getName());
+                    String defaultAttach = "<img src=\"cid:" + f.getName() + "\">";
+                    String custumAttach = "<img src=\"" + file.toUri().toString() + "\">";
+                    if (coverter) {
+                        String html = editor.getHtmlText().replaceAll(defaultAttach, custumAttach);
+                        editor.setHtmlText(html);
+                    } else {
+                        LOG.info(editor.getHtmlText().replace(custumAttach, defaultAttach));
+                        String gmail = editor.getHtmlText();
+                        gmail = gmail.replaceAll(custumAttach, defaultAttach);
+                        efb.setHtmlMessage(gmail);
+                    }
                 }
             }
+            if(list.isEmpty())
+            efb.setHtmlMessage(editor.getHtmlText());
+        } else {
+            efb.setHtmlMessage(editor.getHtmlText());
         }
     }
 
@@ -326,8 +336,35 @@ public class composeController {
                 LOG.error("this should never occur");
         }
         efb.setMessage(selectedEmail.getMessage());
-        editor.setHtmlText(selectedEmail.getHtmlMessage());
+        editor.setHtmlText("<br><hr>" + selectedEmail.getHtmlMessage());
         this.list = selectedEmail.getAttachments();
         drawAttachList(true);
+    }
+
+    public void addImage(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        try {
+            List<File> files = fileChooser.showOpenMultipleDialog((Stage) closeBtn.getScene().getWindow());
+            convertFileBean(files, true);
+            if (!files.isEmpty()) {
+                for (File f : files) {
+                    String temp = System.getProperty("java.io.tmpdir");
+                    try (FileOutputStream stream = new FileOutputStream(temp + f.getName())) {
+                        stream.write(Files.readAllBytes(f.toPath()));
+                        f = new File(temp + f.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    String h = "<img src=\"cid:" + f.getName() + "\">" + editor.getHtmlText();
+                    editor.setHtmlText("<img src=\"cid:" + f.getName() + "\">" + editor.getHtmlText());
+                }
+                drawAttachList(true);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            LOG.info("closed Explorer");
+        }
     }
 }

@@ -99,9 +99,12 @@ public class EmailFxBean implements Serializable {
             eb.setBcc(efb.getBcc());
         if (!efb.getAttachments().isEmpty())
             eb.setAttachments(efb.getAttachments());
-        eb.setSubject(efb.getSubject());
-        eb.setMessage(efb.getMessage());
-        eb.setHtmlMessage(efb.getHtmlMessage());
+        if (efb.getSubject() != null)
+            eb.setSubject(efb.getSubject());
+        if (efb.getMessage() != null)
+            eb.setMessage(efb.getMessage());
+        if (efb.getHtmlMessage() != null)
+            eb.setHtmlMessage(efb.getHtmlMessage());
         eb.setFolder("Sent");
         return eb;
     }
