@@ -110,9 +110,9 @@
                                                         <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
                                                     </items>
                                                 </SplitMenuButton>
-                                    <Button mnemonicParsing="false" onAction="#callRefresh">
+                                    <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#callRefresh">
                                        <graphic>
-                                          <ImageView fitHeight="27.0" fitWidth="34.0">
+                                          <ImageView fitHeight="27.0" fitWidth="30.0">
                                              <image>
                                                 <Image url="@../images/refresh.png" />
                                              </image>

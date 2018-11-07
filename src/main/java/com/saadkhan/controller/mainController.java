@@ -52,6 +52,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
@@ -87,6 +88,9 @@ public class mainController {
 
     @FXML // fx:id="reAllTxt"
     private MenuItem reAllTxt; // Value injected by FXMLLoader
+
+    @FXML // fx:id="refreshBtn"
+    private Button refreshBtn; // Value injected by FXMLLoader
 
     @FXML // fx:id="attachyHolder"
     private ListView attachyHolder; // Value injected by FXMLLoader
@@ -150,7 +154,8 @@ public class mainController {
     private EmailReceiver er;
     private EmailFxBean selected;
 
-    private String folderName="";
+    private String folderName = "";
+
     public mainController() {
         this.er = new EmailReceiver();
         this.doa = new EmailDOAImpl();
@@ -171,9 +176,11 @@ public class mainController {
 
     @FXML
     public void moveTrash(MouseEvent mouseEvent) {
-        LOG.info("moving " + selectedEmail + " to Trash");
-        doa.moveFolder("Trash", selectedEmail);
-        recreateWindow();
+        if(selectedEmail != null) {
+            LOG.info("moving " + selectedEmail + " to Trash");
+            doa.moveFolder("Trash", selectedEmail);
+            recreateWindow();
+        }
     }
 
     @FXML
@@ -205,8 +212,12 @@ public class mainController {
         });
 
         emailHolder.setOnDragDone(e -> {
-            int email_Id = selectedEmail.getEmailID();
-            //doa.
+            if(selected != null && folderName != null) {
+                int email_Id = selectedEmail.getEmailID();
+                LOG.info("Moving " + selectedEmail.getSubject() + " To " + folderName);
+                doa.moveFolder(folderName, selected);
+                recreateWindow();
+            }
         });
         addAllFolders();
     }
@@ -446,7 +457,7 @@ public class mainController {
                 folderList.remove(fName);
                 folderHolder.getItems().remove(fName);
                 doa.deleteFolder(fName);
-                drawFolders();
+                recreateWindow();   
             } catch (SQLException e) {
                 LOG.error("error deleting from DB");
             }
@@ -594,6 +605,8 @@ public class mainController {
     }
 
     public void callRefresh(ActionEvent actionEvent) {
+        refreshBtn.setDisable(true);
         refreshEmails();
+        refreshBtn.setDisable(false);
     }
 }
