@@ -475,6 +475,7 @@ public class mainController {
                 try {
                     LOG.info("deleteing all trash");
                     doa.createFolder(fName);
+                    recreateWindow();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
