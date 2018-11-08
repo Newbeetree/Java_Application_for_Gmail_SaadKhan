@@ -470,7 +470,15 @@ public class mainController {
         });
         MenuItem m2 = new MenuItem("Delete");
         m2.setOnAction(event -> {
-            if (!fName.equals("Inbox") && !fName.equals("Trash") && !fName.equals("Spam") && !fName.equals("Sent")) {
+            if(fName.equals("Trash")) {
+                deleteFolder(fName);
+                try {
+                    LOG.info("deleteing all trash");
+                    doa.createFolder(fName);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }else if (!fName.equals("Inbox") && !fName.equals("Spam") && !fName.equals("Sent")) {
                 deleteFolder(fName);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
