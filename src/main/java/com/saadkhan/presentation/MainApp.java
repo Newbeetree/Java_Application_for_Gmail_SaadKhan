@@ -25,12 +25,16 @@ public class MainApp extends Application {
 
     private final static Logger LOG = LoggerFactory.getLogger(MainApp.class);
     private Stage stage;
-    private String language = "En";
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * method to display primary stage
+     * @param primaryStage
+     * @throws IOException
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.stage = primaryStage;
@@ -49,6 +53,10 @@ public class MainApp extends Application {
         this.stage.show();
     }
 
+    /**
+     * check if the properties file exists
+     * @return if they exist
+     */
     private boolean checkIfPropertiesExists() {
         boolean result = false;
         ConfigurationFxBean cfb = new ConfigurationFxBean();
@@ -63,6 +71,11 @@ public class MainApp extends Application {
         return result;
     }
 
+    /**
+     * if the properties file exists display the main emailGUI
+     * @return Scene of the main scene
+     * @throws IOException
+     */
     private Scene createEmailScene() throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Strings");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainPage.fxml"), rb);
@@ -73,6 +86,12 @@ public class MainApp extends Application {
         return scene;
     }
 
+    /**
+     * if property file doesnt exist open config page to allow user to write it
+     * @param emailScene
+     * @return properties scene
+     * @throws IOException
+     */
     private Scene createConfFile(Scene emailScene) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Strings");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/confPage.fxml"), rb);

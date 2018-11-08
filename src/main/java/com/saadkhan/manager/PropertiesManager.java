@@ -20,6 +20,14 @@ import static java.nio.file.Paths.get;
  */
 public class PropertiesManager {
 
+    /**
+     * load the text properties from specified path and acheck if bean is loaded properly
+     *
+     * @param bean     new Config bean to load properties to
+     * @param path     path of the properties file
+     * @param fileName name of the property file
+     * @return if all fields were correctly loaded
+     */
     public final boolean loadTextProperties(ConfigurationFxBean bean, String path, String fileName) throws IOException {
 
         boolean found = false;
@@ -35,6 +43,12 @@ public class PropertiesManager {
         return found;
     }
 
+    /**
+     * using a path get the config bean, set all fields and return it
+     *
+     * @param txtFile path of where the config file is located
+     * @return config file with all fields set
+     */
     public ConfigurationFxBean getConfBeanSettings(Path txtFile) throws NullPointerException, IOException {
         Properties prop = new Properties();
         try (InputStream propFileStream = newInputStream(txtFile);) {
@@ -56,6 +70,13 @@ public class PropertiesManager {
         return bean;
     }
 
+    /**
+     * write to the text proprty file of the inputed confige bean
+     *
+     * @param path     of where the file should be located
+     * @param fileName of the file
+     * @param bean     where all the data is set
+     */
     public void writeTextProperties(String path, String fileName, ConfigurationFxBean bean) throws IOException {
         Properties properties = new Properties();
         properties.setProperty("name", bean.getUserName());
@@ -75,6 +96,5 @@ public class PropertiesManager {
         try (OutputStream propFileStream = newOutputStream(file)) {
             properties.store(propFileStream, "configuration properties");
         }
-
     }
 }

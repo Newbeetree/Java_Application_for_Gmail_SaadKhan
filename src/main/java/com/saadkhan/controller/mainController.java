@@ -76,92 +76,74 @@ public class mainController {
     private final static Logger LOG = LoggerFactory.getLogger(mainController.class);
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
-
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
     @FXML // fx:id="replyTxt"
     private MenuItem replyTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="toTxt"
     private Label toTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="reAllTxt"
     private MenuItem reAllTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="refreshBtn"
     private Button refreshBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="attachyHolder"
     private ListView attachyHolder; // Value injected by FXMLLoader
-
     @FXML // fx:id="subjectTxt"
     private Label subTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="folderHolder"
     private ListView folderHolder; // Value injected by FXMLLoader
-
     @FXML // fx:id="composeBtn"
     private Button composeBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="ccTxt"
     private Label ccTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="fwdTxt"
     private MenuItem fwdTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="helpMn"
     private Menu helpMn; // Value injected by FXMLLoader
-
     @FXML // fx:id="langMn"
     private Menu langMn; // Value injected by FXMLLoader
-
     @FXML // fx:id="sOptionBtn"
     private SplitMenuButton sOptionBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="trashBtn"
     private Button trashBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="folderBtn"
     private Button folderBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="dateReTxt"
     private TableColumn<EmailFxBean, LocalDateTime> dateReTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="subjectTxt"
     private TableColumn<EmailFxBean, String> subjectTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="fromTxt"
     private TableColumn<EmailFxBean, EmailAddress> fromTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="emailHolder"
     private TableView<EmailFxBean> emailHolder; // Value injected by FXMLLoader
-
     @FXML // fx:id="from"
     private Label from; // Value injected by FXMLLoader
-
     @FXML // fx:id="attachTxt"
     private Label attachTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="webby"
     private WebView webby; // Value injected by FXMLLoader
-
     private Stage primaryStage;
     private ObservableList<String> folderList;
     private Locale locale;
     private EmailDOA doa;
     private EmailFxBean selectedEmail;
     private EmailReceiver er;
+    private String folderName = "";
     private EmailFxBean selected;
 
-    private String folderName = "";
-
+    /**
+     * constructor for the maincontroller class; sets receiver, DOA and local
+     */
     public mainController() {
         this.er = new EmailReceiver();
         this.doa = new EmailDOAImpl();
         this.locale = new Locale("en", "US");
     }
 
+    /**
+     * onClick open a trext input dialgo to ask user for the name of the new folder to input
+     * then redraw all the folders in the listview
+     */
     @FXML
     public void addFolder(ActionEvent event) {
         TextInputDialog folderDiag = new TextInputDialog(this.resources.getString("folderName"));//"Folder Name");
@@ -174,15 +156,32 @@ public class mainController {
         drawFolders();
     }
 
+    /**
+     * onClick move email to the Trash folder if the email is already in the trash folder delter from
+     * the Db the email then recreate the window
+     */
     @FXML
     public void moveTrash(MouseEvent mouseEvent) {
-        if (selectedEmail != null) {
-            LOG.info("moving " + selectedEmail + " to Trash");
-            doa.moveFolder("Trash", selectedEmail);
-            recreateWindow();
+        try {
+            if (selectedEmail != null) {
+                LOG.info("moving " + selectedEmail + " to Trash");
+                if (selectedEmail.getFolder().equals("Trash")) {
+                    LOG.info("deleting permanently email");
+                    doa.deleteEmailBean(selectedEmail.getEmailID());
+                } else {
+                    doa.moveFolder("Trash", selectedEmail);
+                }
+                recreateWindow();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * initialize method, sets button to disabled by default and populates the the table view with
+     * data then attaches the events for drag and drop
+     */
     @FXML
     public void initialize() {
         trashBtn.setDisable(true);
@@ -190,12 +189,8 @@ public class mainController {
         fromTxt.setCellValueFactory(cellData -> cellData.getValue().fromProperty());
         dateReTxt.setCellValueFactory(cellData -> cellData.getValue().recivedProperty());
         subjectTxt.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
-        emailHolder
-                .getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (observable, oldValue, newValue) -> showEmailDetails(newValue));
-
+        emailHolder.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> showEmailDetails(newValue));
         emailHolder.setOnDragDetected(e -> {
             selected = emailHolder.getSelectionModel().getSelectedItem();
             if (selected != null) {
@@ -206,11 +201,9 @@ public class mainController {
                 e.consume();
             }
         });
-
         emailHolder.setOnDragOver(e -> {
             Dragboard drb = e.getDragboard();
         });
-
         emailHolder.setOnDragDone(e -> {
             if (selected != null && folderName != null) {
                 int email_Id = selectedEmail.getEmailID();
@@ -222,6 +215,11 @@ public class mainController {
         addAllFolders();
     }
 
+    /**
+     * get emails from server, clear the listview of folders for each folder name in the folder list
+     * we add them to the listview then on click display the email, if right click dsiplay
+     * delete option or the rename option, then add the drag over event
+     */
     private void drawFolders() {
         refreshEmails();
         folderHolder.getItems().clear();
@@ -245,15 +243,20 @@ public class mainController {
                 openContext(fName).show(l, e.getScreenX(), e.getScreenY());
             });
             l.setMaxWidth(folderHolder.getPrefWidth());
-            folderHolder.getItems().add(l);
             folderHolder.setOnDragOver(e -> {
-                Dragboard drg = e.getDragboard();
-                String text = drg.getString();
+                e.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 folderName = e.getPickResult().getIntersectedNode().getId();
             });
+            folderHolder.getItems().add(l);
         }
     }
 
+    /**
+     * clear all fieds in the GUI, allow buttons to be clicable and attach correct events to splitmenu
+     * set the information from the beans into the correct fields
+     *
+     * @param email email that has been selected to display
+     */
     private void showEmailDetails(EmailFxBean email) {
         if (email != null) {
             clearFields();
@@ -287,6 +290,9 @@ public class mainController {
         }
     }
 
+    /**
+     * convert html and message to be displayed properly along with attachments
+     */
     private void displayContent() {
         String htmlMessage = selectedEmail.getHtmlMessage();
         String message = selectedEmail.getMessage();
@@ -307,6 +313,9 @@ public class mainController {
         }
     }
 
+    /**
+     * create file for specified attachment inside the computers temp folder
+     */
     private void createTemp(FileAttachmentBean fab) {
         String temp = System.getProperty("java.io.tmpdir");
         try (FileOutputStream stream = new FileOutputStream(temp + fab.getName())) {
@@ -320,6 +329,9 @@ public class mainController {
         }
     }
 
+    /**
+     * how to display compose depending on btn click
+     */
     private void sOptionSettings() {
         switch (sOptionBtn.getText()) {
             case "Reply":
@@ -335,6 +347,12 @@ public class mainController {
         }
     }
 
+    /**
+     * in a seperate thread use the selected option and create the stage to be dispalyed along with
+     * the selected email that was chosen to reply with
+     *
+     * @param option reply option 1, 2 or 3
+     */
     private void optionedCompose(int option) {
         Platform.runLater(() -> {
             try {
@@ -358,6 +376,10 @@ public class mainController {
         });
     }
 
+    /**
+     * take an arraylist of attachments and through a new thread attach them as buttons to the
+     * attachment holder
+     */
     private void drawAttachList(ArrayList<FileAttachmentBean> attachments) {
         Platform.runLater(() -> {
             for (FileAttachmentBean f : attachments) {
@@ -384,6 +406,12 @@ public class mainController {
         });
     }
 
+    /**
+     * when file is lciked for download display a filechooser with appropiate file extensions
+     * and allow the user to save their attachments
+     *
+     * @param bean The file to be downloaded
+     */
     private void downloadFile(FileAttachmentBean bean) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Image");
@@ -409,6 +437,9 @@ public class mainController {
         }
     }
 
+    /**
+     * remove the emails from the to,cc and bcc fields
+     */
     private void clearFields() {
         from.setText(this.resources.getString("fromTxt"));
         ccTxt.setText(this.resources.getString("ccTxt"));
@@ -416,6 +447,13 @@ public class mainController {
         attachyHolder.getItems().clear();
     }
 
+    /**
+     * create contexr menu for delete and rename, however they cannot be used on the mandatory fields
+     * Mandatory fields: Inbox, Trash, Spam, Sent
+     *
+     * @param fName name of the folder that is clicked when event is called
+     * @return Contextmenu for rename and delete
+     */
     private ContextMenu openContext(String fName) {
         ContextMenu cm = new ContextMenu();
         MenuItem m1 = new MenuItem("Rename");
@@ -446,6 +484,11 @@ public class mainController {
         return cm;
     }
 
+    /**
+     * remove folder from list of folders
+     *
+     * @param fName selected folder
+     */
     private void deleteFolder(String fName) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Current project is modified");
@@ -467,6 +510,11 @@ public class mainController {
         }
     }
 
+    /**
+     * rename the selected folder in the list and update GUI
+     *
+     * @param fName selected folder
+     */
     private void renameFolder(String fName) {
         TextInputDialog folderDiag = new TextInputDialog(this.resources.getString("folderName"));//"Folder Name");
         folderDiag.setTitle(this.resources.getString("renameFolder"));
@@ -484,6 +532,9 @@ public class mainController {
         drawFolders();
     }
 
+    /**
+     * display the compose page
+     */
     public void showCompose(ActionEvent actionEvent) {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
@@ -504,10 +555,16 @@ public class mainController {
         }
     }
 
+    /**
+     * set the primary stage
+     */
     public void setSceneStageController(Stage stage) {
         this.primaryStage = stage;
     }
 
+    /**
+     * add all folders from the db to the list then display them
+     */
     private void addAllFolders() {
         try {
             folderList = doa.findAllFolders();
@@ -517,6 +574,9 @@ public class mainController {
         }
     }
 
+    /**
+     * recreate the current window
+     */
     private void recreateWindow() {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
@@ -533,8 +593,11 @@ public class mainController {
         }
     }
 
+    /**
+     * in another thread receive emails from the gmail server again then insert each one to the db
+     */
     private void refreshEmails() {
-       // Platform.runLater(() -> {
+        Platform.runLater(() -> {
             try {
                 LOG.info("Refreshing");
                 EmailBean[] emailBeans = er.receiveEmail();
@@ -544,19 +607,28 @@ public class mainController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        //});
+        });
     }
 
+    /**
+     * onclick set the local
+     */
     public void changeFrench(ActionEvent actionEvent) {
         this.locale = new Locale("en", "US");
         recreateWindow();
     }
 
+    /**
+     * on click set the local
+     */
     public void changeEnglish(ActionEvent actionEvent) {
         this.locale = new Locale("fr", "CA");
         recreateWindow();
     }
 
+    /**
+     * onclick display page to change file configurations
+     */
     public void changeSettings(ActionEvent actionEvent) {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
@@ -575,6 +647,9 @@ public class mainController {
         }
     }
 
+    /**
+     * onclick display an error alert which contains the readme file in the more information section
+     */
     public void readMeDiag(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(this.resources.getString("readMeTitle"));
@@ -609,6 +684,9 @@ public class mainController {
         alert.showAndWait();
     }
 
+    /**
+     * onclick of the refresh btn disable the button, refresh emails from server and then enable btn
+     */
     public void callRefresh(ActionEvent actionEvent) {
         refreshBtn.setDisable(true);
         refreshEmails();

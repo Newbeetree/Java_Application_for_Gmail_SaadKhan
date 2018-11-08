@@ -178,7 +178,7 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmailName(String personalName) {
-        if(personalName == null){
+        if (personalName == null) {
             return false;
         }
         String regx = "[A-Za-z0-9]";// "^[\\p{L} .'-]+$";

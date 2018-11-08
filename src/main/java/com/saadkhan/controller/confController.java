@@ -19,8 +19,6 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.naming.AuthenticationException;
-
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,103 +42,82 @@ import jodd.mail.SmtpServer;
 import static java.nio.file.Paths.get;
 
 public class confController {
+
     private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private final ConfigurationFxBean cfb;
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    private URL location;
+    @FXML // fx:id="DBPortTxt"
+    private Label DBPortTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="stmpSIn"
+    private TextField stmpSIn; // Value injected by FXMLLoader
+    @FXML // fx:id="nameTxt"
+    private Label nameTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="DBUserTxtIn"
+    private TextField DBUserTxtIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBPassIn"
+    private PasswordField DBPassIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBNameTxt"
+    private Label DBNameTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="passTxt"
+    private Label passTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="imapS"
+    private Label imapS; // Value injected by FXMLLoader
+    @FXML // fx:id="imapPIn"
+    private TextField imapPIn; // Value injected by FXMLLoader
+    @FXML // fx:id="imapSIn"
+    private TextField imapSIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBNameIn"
+    private TextField DBNameIn; // Value injected by FXMLLoader
+    @FXML // fx:id="submitBtn"
+    private Button submitBtn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBPortIn"
+    private TextField DBPortIn; // Value injected by FXMLLoader
+    @FXML // fx:id="imapP"
+    private Label imapP; // Value injected by FXMLLoader
+    @FXML // fx:id="jagTxt"
+    private Label jagTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="DBUserTxt"
+    private Label DBUserTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="emailTxt"
+    private Label emailTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="nameIn"
+    private TextField nameIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBUrlTxt"
+    private Label DBUrlTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="smtpS"
+    private Label smtpS; // Value injected by FXMLLoader
+    @FXML // fx:id="langMn"
+    private Menu langMn; // Value injected by FXMLLoader
+    @FXML // fx:id="emailIn"
+    private TextField emailIn; // Value injected by FXMLLoader
+    @FXML // fx:id="smtpPIn"
+    private TextField smtpPIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBUrlIn"
+    private TextField DBUrlIn; // Value injected by FXMLLoader
+    @FXML // fx:id="DBPassTxt"
+    private Label DBPassTxt; // Value injected by FXMLLoader
+    @FXML // fx:id="passIn"
+    private PasswordField passIn; // Value injected by FXMLLoader
+    @FXML // fx:id="smtpP"
+    private Label smtpP; // Value injected by FXMLLoader
     private Stage primaryStage;
     private Locale locale;
 
+    /**
+     * constructor for conf controller, creates new bean and locale
+     */
     public confController() {
         this.cfb = new ConfigurationFxBean();
         locale = new Locale("en", "US");
     }
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="DBPortTxt"
-    private Label DBPortTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="stmpSIn"
-    private TextField stmpSIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="nameTxt"
-    private Label nameTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBUserTxtIn"
-    private TextField DBUserTxtIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBPassIn"
-    private PasswordField DBPassIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBNameTxt"
-    private Label DBNameTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="passTxt"
-    private Label passTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="imapS"
-    private Label imapS; // Value injected by FXMLLoader
-
-    @FXML // fx:id="imapPIn"
-    private TextField imapPIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="imapSIn"
-    private TextField imapSIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBNameIn"
-    private TextField DBNameIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="submitBtn"
-    private Button submitBtn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBPortIn"
-    private TextField DBPortIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="imapP"
-    private Label imapP; // Value injected by FXMLLoader
-
-    @FXML // fx:id="jagTxt"
-    private Label jagTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBUserTxt"
-    private Label DBUserTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="emailTxt"
-    private Label emailTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="nameIn"
-    private TextField nameIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBUrlTxt"
-    private Label DBUrlTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="smtpS"
-    private Label smtpS; // Value injected by FXMLLoader
-
-    @FXML // fx:id="langMn"
-    private Menu langMn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="emailIn"
-    private TextField emailIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="smtpPIn"
-    private TextField smtpPIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBUrlIn"
-    private TextField DBUrlIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="DBPassTxt"
-    private Label DBPassTxt; // Value injected by FXMLLoader
-
-    @FXML // fx:id="passIn"
-    private PasswordField passIn; // Value injected by FXMLLoader
-
-    @FXML // fx:id="smtpP"
-    private Label smtpP; // Value injected by FXMLLoader
-
+    /**
+     * on submit btn clicke check credentials, if they are correct write to properties file in root
+     * followed by switching stages, however if they are incorrect highlight all textfields with red
+     */
     @FXML
     void submitCredentials(ActionEvent event) {
         try {
@@ -185,6 +162,11 @@ public class confController {
         this.primaryStage = stage;
     }
 
+    /**
+     * disable the click button, then check if both are correct then reenable the button
+     *
+     * @return result if the credentials supplied are correct
+     */
     private boolean checkCred() {
         submitBtn.setDisable(true);
         if (checkDB() & checkEmail()) {
@@ -194,6 +176,10 @@ public class confController {
         return false;
     }
 
+    /**
+     * using credentials provided create both smtp and imap servers and try to open a seesion;
+     * if unsuccessful return false other wise return true
+     */
     private boolean checkEmail() {
         SmtpServer smtpServer = MailServer.create()
                 .ssl(true)
@@ -222,6 +208,10 @@ public class confController {
         return true;
     }
 
+    /**
+     * using credentials try to connect to the database if everything is alright return true else
+     * return false
+     */
     private boolean checkDB() {
         try {
             Connection connection = DriverManager.getConnection(cfb.getDBUrl(), cfb.getDBUser(), cfb.getDBPassword());
@@ -233,8 +223,11 @@ public class confController {
         }
     }
 
+    /**
+     * inizialtize method attach all textfields with the configBean
+     */
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+    // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         Bindings.bindBidirectional(nameIn.textProperty(), cfb.userNameProperty());
         Bindings.bindBidirectional(emailIn.textProperty(), cfb.userEmailAddressProperty());
@@ -250,6 +243,9 @@ public class confController {
         Bindings.bindBidirectional(DBPassIn.textProperty(), cfb.DBPasswordProperty());
     }
 
+    /**
+     * recreate current window selected with correct local and with property fields if they are set
+     */
     private void recreateWindow() {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("Strings", locale);
@@ -267,16 +263,25 @@ public class confController {
         }
     }
 
+    /**
+     * onclick change local and recreate window
+     */
     public void changeFrench(ActionEvent actionEvent) {
         this.locale = new Locale("en", "US");
         recreateWindow();
     }
 
+    /**
+     * onclick change local and recreate window
+     */
     public void changeEnglish(ActionEvent actionEvent) {
         this.locale = new Locale("fr", "CA");
         recreateWindow();
     }
 
+    /**
+     * get the properties fields from the file and set them using the configbean
+     */
     public void setData() {
         try {
             PropertiesManager pm = new PropertiesManager();
@@ -288,6 +293,9 @@ public class confController {
         }
     }
 
+    /**
+     * using the config bean set all the data inside the config page as default values
+     */
     private void setFields(ConfigurationFxBean cfb) {
         nameIn.setText(cfb.getUserName());
         emailIn.setText(cfb.getUserEmailAddress());

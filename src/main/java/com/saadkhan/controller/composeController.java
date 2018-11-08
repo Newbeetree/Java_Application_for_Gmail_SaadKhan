@@ -56,65 +56,45 @@ import static java.nio.file.Paths.get;
 
 public class composeController {
 
+    private final static Logger LOG = LoggerFactory.getLogger(confController.class);
+    private final EmailFxBean efb;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
-
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
     @FXML // fx:id="toTxt"
     private Label toTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="closeBtn"
     private Button closeBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="attachyHolder"
     private ListView attachyHolder; // Value injected by FXMLLoader
-
     @FXML // fx:id="ccIn"
     private TextField ccIn; // Value injected by FXMLLoader
-
     @FXML // fx:id="addBtn"
     private Button addBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="ccTxt"
     private Label ccTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="bccTxt"
     private Label bccTxt; // Value injected by FXMLLoader
-
     @FXML // fx:id="bccIn"
     private TextField bccIn; // Value injected by FXMLLoader
-
     @FXML // fx:id="sendBtn"
     private Button sendBtn; // Value injected by FXMLLoader
-
     @FXML // fx:id="toIn"
     private TextField toIn; // Value injected by FXMLLoader
-
     @FXML // fx:id="helpMn"
     private Menu helpMn; // Value injected by FXMLLoader
-
     @FXML // fx:id="subjectIn"
     private TextField subjectIn; // Value injected by FXMLLoader
-
     @FXML // fx:id="subjectTx"
     private Label subjectTx; // Value injected by FXMLLoader
-
     @FXML // fx:id="addImage"
     private Button addImage; // Value injected by FXMLLoader
-
     @FXML // fx:id="langMn"
     private Menu langMn; // Value injected by FXMLLoader
-
     @FXML // fx:id="editor"
     private HTMLEditor editor; // Value injected by FXMLLoader
-
-
     private Stage primaryStage;
-    private final EmailFxBean efb;
-
-    private final static Logger LOG = LoggerFactory.getLogger(confController.class);
     private Locale locale;
     private ArrayList<FileAttachmentBean> list = new ArrayList<>();
     private EmailDOA doa;
@@ -122,6 +102,10 @@ public class composeController {
     private String userEmail;
     private String name;
 
+    /**
+     * Basic Constructor for composeController;
+     * gets config, creates new emailfxbean, EmailDOA, and EmailSender Objects
+     */
     public composeController() {
         getConfigValues();
         this.efb = new EmailFxBean();
@@ -129,6 +113,9 @@ public class composeController {
         this.es = new EmailSender();
     }
 
+    /**
+     * get configurations from config properties file and set username and name
+     */
     private void getConfigValues() {
         try {
             PropertiesManager pm = new PropertiesManager();
@@ -141,6 +128,9 @@ public class composeController {
         }
     }
 
+    /**
+     * On Click set and check fields of the emailFxbean then convert the bean
+     */
     @FXML
     public void sendEmail(ActionEvent event) {
         try {
@@ -162,15 +152,17 @@ public class composeController {
                 es.send(emailBean, noAttachments);
                 alert.showAndWait();
                 close(null);
-            }else{
-                toIn.setStyle("-fx-border-color: red;");
+            } else {
+                toIn.setStyle("-fx-border-color: #ff3d38;");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
+    /**
+     * on click open File chooser and select which email to attach to this email
+     */
     @FXML
     public void addFolder(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -185,6 +177,10 @@ public class composeController {
         }
     }
 
+    /**
+     * Taking a list of files and if they are imbedded and converting them to File Attachment Beans
+     * and adding them to the privatte list of File Attachment Beans
+     */
     private void convertFileBean(List<File> files, boolean b) throws IOException {
         if (!files.isEmpty()) {
             for (File f : files) {
@@ -197,36 +193,20 @@ public class composeController {
         }
     }
 
-    private void drawAttachList(boolean coverter) {
+    /**
+     * clear where all the attachments are held, then after checking if list is not null iterate
+     * through the list of attachments depending on their type either add them as buttons or
+     * insert them as html as embedded attachments. Converter field tells the code of how the
+     * paths should be formatted, then setthe html text in message
+     */
+    private void drawAttachList(boolean converter) {
         attachyHolder.getItems().clear();
         if (list != null) {
             for (FileAttachmentBean f : list) {
                 if (!f.getType()) {
-                    Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
-                    b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
-                    b.setStyle("-fx-background-color: #b2c3ff; ");
-                    b.setOnMouseClicked(e -> {
-                        int spot = attachyHolder.getItems().indexOf(b);
-                        attachyHolder.getItems().remove(spot);
-                        this.list = new ArrayList<>(list);
-                        list.remove(spot);
-                    });
-                    attachyHolder.setOrientation(Orientation.HORIZONTAL);
-                    attachyHolder.getItems().add(b);
+                    attachFileToHolder(f);
                 } else {
-                    String temp = System.getProperty("java.io.tmpdir");
-                    Path file = Paths.get(temp + f.getName());
-                    String defaultAttach = "<img src=\"cid:" + f.getName() + "\">";
-                    String custumAttach = "<img src=\"" + file.toUri().toString() + "\">";
-                    if (coverter) {
-                        String html = editor.getHtmlText().replaceAll(defaultAttach, custumAttach);
-                        editor.setHtmlText(html);
-                    } else {
-                        LOG.info(editor.getHtmlText().replace(custumAttach, defaultAttach));
-                        String gmail = editor.getHtmlText();
-                        gmail = gmail.replaceAll(custumAttach, defaultAttach);
-                        efb.setHtmlMessage(gmail);
-                    }
+                    attachImbed(f, converter);
                 }
             }
             if (list.isEmpty())
@@ -236,6 +216,49 @@ public class composeController {
         }
     }
 
+    /**
+     * Saves files to temp directory and convertes the html to properly set the html
+     *
+     * @param f         the imbed attach to set
+     * @param converter how the file should be converted
+     */
+    private void attachImbed(FileAttachmentBean f, boolean converter) {
+        String temp = System.getProperty("java.io.tmpdir");
+        Path file = Paths.get(temp + f.getName());
+        String defaultAttach = "<img src=\"cid:" + f.getName() + "\">";
+        String custumAttach = "<img src=\"" + file.toUri().toString() + "\">";
+        if (converter) {
+            String html = editor.getHtmlText().replaceAll(defaultAttach, custumAttach);
+            editor.setHtmlText(html);
+        } else {
+            String gmail = editor.getHtmlText();
+            gmail = gmail.replaceAll(custumAttach, defaultAttach);
+            efb.setHtmlMessage(gmail);
+        }
+    }
+
+    /**
+     * Attach the file to the atachment holder
+     *
+     * @param f the fileattachmentbean to attach to the email
+     */
+    private void attachFileToHolder(FileAttachmentBean f) {
+        Button b = new Button(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15));
+        b.setId(f.getName().length() < 15 ? f.getName() : f.getName().substring(0, 15) + "Btn");
+        b.setStyle("-fx-background-color: #b2c3ff; ");
+        b.setOnMouseClicked(e -> {
+            int spot = attachyHolder.getItems().indexOf(b);
+            attachyHolder.getItems().remove(spot);
+            this.list = new ArrayList<>(list);
+            list.remove(spot);
+        });
+        attachyHolder.setOrientation(Orientation.HORIZONTAL);
+        attachyHolder.getItems().add(b);
+    }
+
+    /**
+     * Initializer method sets bindings for bean
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize() {
         this.locale = new Locale("en", "US");
@@ -245,6 +268,9 @@ public class composeController {
         Bindings.bindBidirectional(subjectIn.textProperty(), efb.subjectProperty());
     }
 
+    /**
+     * when close button is clicked recreate main page with proper local and close the current stage
+     */
     public void close(ActionEvent actionEvent) {
         try {
             Stage stage = (Stage) closeBtn.getScene().getWindow();
@@ -263,6 +289,9 @@ public class composeController {
         }
     }
 
+    /**
+     * when controller is set specify the primary stage and put examples of input into the Text Fields
+     */
     public void setSceneStageController(Stage stage) {
         this.primaryStage = stage;
         toIn.setPromptText(name + " <" + userEmail + ">");
@@ -270,16 +299,25 @@ public class composeController {
         bccIn.setPromptText(name + " <" + userEmail + ">, " + name + "<" + userEmail + ">, ");
     }
 
+    /**
+     * change local on btn click and recreate window
+     */
     public void changeFrench(ActionEvent actionEvent) {
         this.locale = new Locale("en", "US");
         recreateWindow();
     }
 
+    /**
+     * change local on btn click and recreate window
+     */
     public void changeEnglish(ActionEvent actionEvent) {
         this.locale = new Locale("fr", "CA");
         recreateWindow();
     }
 
+    /**
+     * recreate compose controller window
+     */
     private void recreateWindow() {
         try {
             Stage stage = (Stage) closeBtn.getScene().getWindow();
@@ -302,6 +340,9 @@ public class composeController {
         }
     }
 
+    /**
+     * on setting button click open settings config stage
+     */
     public void changeSettings(ActionEvent actionEvent) {
         try {
             close(null);
@@ -321,10 +362,23 @@ public class composeController {
         }
     }
 
+    /**
+     * set the local of the application from another stage
+     */
     public void setLocale(Locale locale) {
         this.locale = locale;
     }
 
+    /**
+     * Get an EmailFxBean from other stage and int representing setData Option;
+     * 1 being reply
+     * 2 being reply all
+     * 3 being forward
+     * displays properly all the data from previous window
+     *
+     * @param selectedEmail EmailFxBean from other window
+     * @param option        type of reply
+     */
     public void setData(EmailFxBean selectedEmail, int option) {
         switch (option) {
             case 1:
@@ -348,6 +402,10 @@ public class composeController {
         drawAttachList(true);
     }
 
+    /**
+     * add an embbeded image using a file chooser, converts the files selected and adds them to the
+     * private list then goes about adding it the temp file with proper path and displaying it
+     */
     public void addImage(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
