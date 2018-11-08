@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.saadkhan.persistence.EmailDOATest" time="32.987" tests="22" errors="5" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.saadkhan.persistence.EmailDOATest" time="23.177" tests="22" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\Saad\AppData\Local\Temp\surefire964575444795657823\surefirebooter8840207618925853516.jar C:\Users\Saad\AppData\Local\Temp\surefire964575444795657823 2018-10-23T10-18-20_420-jvmRun1 surefire1241288055559961793tmp surefire_01143719966775006847tmp"/>
+    <property name="sun.java.command" value="C:\Users\Saad\AppData\Local\Temp\surefire2899610456879089936\surefirebooter4493565841183006312.jar C:\Users\Saad\AppData\Local\Temp\surefire2899610456879089936 2018-11-08T00-31-06_741-jvmRun1 surefire8248766464059763036tmp surefire_06005910145365567778tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\target\test-classes;C:\Users\Saad\Desktop\Java_Application_for_Gmail_SaadKhan\target\classes;C:\Users\Saad\.m2\repository\org\jodd\jodd-mail\5.0.4\jodd-mail-5.0.4.jar;C:\Users\Saad\.m2\repository\org\jodd\jodd-core\5.0.4\jodd-core-5.0.4.jar;C:\Users\Saad\.m2\repository\javax\mail\javax.mail-api\1.6.1\javax.mail-api-1.6.1.jar;C:\Users\Saad\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;C:\Users\Saad\.m2\repository\com\sun\mail\javax.mail\1.6.1\javax.mail-1.6.1.jar;C:\Users\Saad\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\Saad\.m2\repository\org\apache\logging\log4j\log4j-slf4j-impl\2.11.0\log4j-slf4j-impl-2.11.0.jar;C:\Users\Saad\.m2\repository\org\apache\logging\log4j\log4j-api\2.11.0\log4j-api-2.11.0.jar;C:\Users\Saad\.m2\repository\org\apache\logging\log4j\log4j-core\2.11.0\log4j-core-2.11.0.jar;C:\Users\Saad\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Saad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Saad\.m2\repository\mysql\mysql-connector-java\8.0.12\mysql-connector-java-8.0.12.jar;C:\Users\Saad\.m2\repository\com\google\protobuf\protobuf-java\2.6.0\protobuf-java-2.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Saad"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Saad\AppData\Local\Temp\surefire964575444795657823\surefirebooter8840207618925853516.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Saad\AppData\Local\Temp\surefire2899610456879089936\surefirebooter4493565841183006312.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -53,7 +53,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\PuTTY\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\HashiCorp\Vagrant\bin;C:\Users\Saad\AppData\Local\Microsoft\WindowsApps;C:\Users\Saad\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\Saad\AppData\Roaming\npm;C:\Users\Saad\AppData\Local\Microsoft\WindowsApps;C:\Users\Saad\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\PuTTY\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\HashiCorp\Vagrant\bin;C:\Users\Saad\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Saad\AppData\Roaming\npm;C:\Users\Saad\AppData\Local\Microsoft\WindowsApps;C:\Users\Saad\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;."/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="25.121-b13"/>
@@ -61,76 +61,26 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testCreateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.797"/>
-  <testcase name="testFindEmailBeanId" classname="com.saadkhan.persistence.EmailDOATest" time="1.938">
-    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanId(EmailDOATest.java:144)
-</error>
-    <system-out><![CDATA[10:20:34.119 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
-10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
-10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:35.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
-10:20:35.994 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:36.025 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
-]]></system-out>
-  </testcase>
-  <testcase name="testFindAllFolders" classname="com.saadkhan.persistence.EmailDOATest" time="1.64"/>
-  <testcase name="testDeleteEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.501"/>
-  <testcase name="testCreateDuplicateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.844">
-    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testCreateDuplicateEmailBean(EmailDOATest.java:82)
-</error>
-    <system-out><![CDATA[10:20:39.198 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
-10:20:40.948 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
-10:20:40.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:40.963 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
-10:20:40.979 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:41.010 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
-]]></system-out>
-  </testcase>
-  <testcase name="testDeleteEmailAddressEmail" classname="com.saadkhan.persistence.EmailDOATest" time="1.296"/>
-  <testcase name="testCreateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.516"/>
-  <testcase name="testFindAllFileAttachments" classname="com.saadkhan.persistence.EmailDOATest" time="1.734">
-    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindAllFileAttachments(EmailDOATest.java:154)
-</error>
-    <system-out><![CDATA[10:20:43.854 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
-]]></system-out>
-  </testcase>
-  <testcase name="testDeleteEmailAddressId" classname="com.saadkhan.persistence.EmailDOATest" time="1.438"/>
-  <testcase name="testUpdateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.406"/>
-  <testcase name="testFindEmailList" classname="com.saadkhan.persistence.EmailDOATest" time="1.329"/>
-  <testcase name="testFindFrom" classname="com.saadkhan.persistence.EmailDOATest" time="1.109"/>
-  <testcase name="testDuplicateSameFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.391"/>
-  <testcase name="testFindEmailBeanBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.704">
-    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanBean(EmailDOATest.java:133)
-</error>
-    <system-out><![CDATA[10:20:52.261 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
-10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
-10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:53.886 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
-10:20:53.902 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:53.933 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
-]]></system-out>
-  </testcase>
-  <testcase name="testCreateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.703">
-    <error message="Column &apos;Attach_Id&apos; not found." type="java.sql.SQLException">java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testCreateEmailBean(EmailDOATest.java:71)
-</error>
-    <system-out><![CDATA[10:20:53.965 [main] INFO  com.saadkhan.persistence.EmailDOATest - Seeding Database
-10:20:55.558 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of email beans found : 25
-10:20:55.558 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:55.574 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of folders found : 6
-10:20:55.590 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 26
-10:20:55.621 [Time-limited test] INFO  com.saadkhan.persistence.EmailDOAImpl - # of emailaddresses found : 27
-]]></system-out>
-  </testcase>
-  <testcase name="testUpdateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.531"/>
-  <testcase name="testDeleteFolderName" classname="com.saadkhan.persistence.EmailDOATest" time="1.406"/>
-  <testcase name="testFindAllEmailsBeans" classname="com.saadkhan.persistence.EmailDOATest" time="1.766"/>
-  <testcase name="testDeleteFolderId" classname="com.saadkhan.persistence.EmailDOATest" time="1.547"/>
-  <testcase name="testFindFolderID" classname="com.saadkhan.persistence.EmailDOATest" time="1.234"/>
-  <testcase name="testFindFolderString" classname="com.saadkhan.persistence.EmailDOATest" time="1.047"/>
-  <testcase name="testFindEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.094"/>
+  <testcase name="testCreateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="1.089"/>
+  <testcase name="testFindEmailBeanId" classname="com.saadkhan.persistence.EmailDOATest" time="1.404"/>
+  <testcase name="testFindAllFolders" classname="com.saadkhan.persistence.EmailDOATest" time="0.934"/>
+  <testcase name="testDeleteEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="0.95"/>
+  <testcase name="testCreateDuplicateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.999"/>
+  <testcase name="testDeleteEmailAddressEmail" classname="com.saadkhan.persistence.EmailDOATest" time="0.91"/>
+  <testcase name="testCreateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="0.894"/>
+  <testcase name="testFindAllFileAttachments" classname="com.saadkhan.persistence.EmailDOATest" time="0.905"/>
+  <testcase name="testDeleteEmailAddressId" classname="com.saadkhan.persistence.EmailDOATest" time="0.74"/>
+  <testcase name="testUpdateFolder" classname="com.saadkhan.persistence.EmailDOATest" time="0.894"/>
+  <testcase name="testFindEmailList" classname="com.saadkhan.persistence.EmailDOATest" time="0.823"/>
+  <testcase name="testFindFrom" classname="com.saadkhan.persistence.EmailDOATest" time="0.975"/>
+  <testcase name="testDuplicateSameFolder" classname="com.saadkhan.persistence.EmailDOATest" time="0.867"/>
+  <testcase name="testFindEmailBeanBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.555"/>
+  <testcase name="testCreateEmailBean" classname="com.saadkhan.persistence.EmailDOATest" time="1.219"/>
+  <testcase name="testUpdateEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="0.791"/>
+  <testcase name="testDeleteFolderName" classname="com.saadkhan.persistence.EmailDOATest" time="0.992"/>
+  <testcase name="testFindAllEmailsBeans" classname="com.saadkhan.persistence.EmailDOATest" time="1.149"/>
+  <testcase name="testDeleteFolderId" classname="com.saadkhan.persistence.EmailDOATest" time="0.853"/>
+  <testcase name="testFindFolderID" classname="com.saadkhan.persistence.EmailDOATest" time="1.015"/>
+  <testcase name="testFindFolderString" classname="com.saadkhan.persistence.EmailDOATest" time="1.024"/>
+  <testcase name="testFindEmailAddress" classname="com.saadkhan.persistence.EmailDOATest" time="1.189"/>
 </testsuite>

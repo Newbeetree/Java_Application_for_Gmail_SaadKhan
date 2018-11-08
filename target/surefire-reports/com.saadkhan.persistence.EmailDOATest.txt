@@ -1,24 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.saadkhan.persistence.EmailDOATest
 -------------------------------------------------------------------------------
-Tests run: 22, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 32.987 s <<< FAILURE! - in com.saadkhan.persistence.EmailDOATest
-testFindEmailBeanId(com.saadkhan.persistence.EmailDOATest)  Time elapsed: 1.938 s  <<< ERROR!
-java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanId(EmailDOATest.java:144)
-
-testCreateDuplicateEmailBean(com.saadkhan.persistence.EmailDOATest)  Time elapsed: 1.844 s  <<< ERROR!
-java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testCreateDuplicateEmailBean(EmailDOATest.java:82)
-
-testFindAllFileAttachments(com.saadkhan.persistence.EmailDOATest)  Time elapsed: 1.734 s  <<< ERROR!
-java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindAllFileAttachments(EmailDOATest.java:154)
-
-testFindEmailBeanBean(com.saadkhan.persistence.EmailDOATest)  Time elapsed: 1.704 s  <<< ERROR!
-java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testFindEmailBeanBean(EmailDOATest.java:133)
-
-testCreateEmailBean(com.saadkhan.persistence.EmailDOATest)  Time elapsed: 1.703 s  <<< ERROR!
-java.sql.SQLException: Column 'Attach_Id' not found.
-	at com.saadkhan.persistence.EmailDOATest.testCreateEmailBean(EmailDOATest.java:71)
-
+Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.177 s - in com.saadkhan.persistence.EmailDOATest

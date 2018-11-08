@@ -1,27 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <artifactId>desktop_project_dependencies</artifactId>
-    <groupId>com.kfdesktopstandard</groupId>
-    <version>1.0</version>
-    <relativePath>../pom.xml/pom.xml</relativePath>
-  </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.saadkhan</groupId>
-  <artifactId>jag</artifactId>
-  <name>jag1633839</name>
-  <version>1.0.0-SNAPSHOT</version>
-  <description>Email demo project</description>
-  <developers>
-    <developer>
-      <id>Dawson College</id>
-      <name>saad khan</name>
-      <email>saaadkhan23@yahoo.ca</email>
-    </developer>
-  </developers>
-  <organization>
-    <name>Dawson College</name>
-  </organization>
+  <artifactId>JavaApplicationGMail1633839</artifactId>
+  <name>1633839</name>
+  <version>1.0-SNAPSHOT</version>
+  <build>
+    <defaultGoal>clean compile package exec:java</defaultGoal>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer>
+                  <mainClass>${mainClass}</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <goals>
+              <goal>exec</goal>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>${mainClass}</mainClass>
+              <cleanupDaemonThreads>false</cleanupDaemonThreads>
+              <executable>${java.home}/bin/java</executable>
+              <commandlineArgs>-jar
+                                ${project.build.directory}/${project.build.finalName}.jar</commandlineArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -37,6 +71,10 @@
     </dependency>
   </dependencies>
   <properties>
-    <mainClass>${project.groupId}.${project.artifactId}.MainApp</mainClass>
+    <mainClass>${project.groupId}.presentation.MainApp</mainClass>
+    <name>1633839</name>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 </project>

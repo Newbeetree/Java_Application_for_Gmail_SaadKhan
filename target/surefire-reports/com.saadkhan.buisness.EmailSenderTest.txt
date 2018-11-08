@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.saadkhan.buisness.EmailSenderTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 131.173 s - in com.saadkhan.buisness.EmailSenderTest
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 138.732 s - in com.saadkhan.buisness.EmailSenderTest

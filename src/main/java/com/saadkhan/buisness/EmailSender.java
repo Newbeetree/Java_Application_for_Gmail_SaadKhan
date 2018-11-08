@@ -138,9 +138,9 @@ public class EmailSender {
                 checkEmailName(bean.getFrom().getPersonalName()) &&
                 checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
                 checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-                checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));// &&
-        //bean.getHtmlMessage() != null &&
-        //bean.getMessage() != null;
+                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
+                bean.getHtmlMessage() != null &&
+                bean.getMessage() != null;
     }
 
 
@@ -195,13 +195,15 @@ public class EmailSender {
      * @throws IllegalArgumentException throws the exception in case of invalid email
      */
     private boolean checkListEmail(EmailAddress[] list) throws IllegalArgumentException {
-        if (list[0].getEmail().equals("")) {
-            return true;
-        }
-        for (EmailAddress email : list) {
-            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName())) {
-                LOG.error("Invalid Email");
-                return false;
+        if(list.length > 0) {
+            if (list[0].getEmail().equals("")) {
+                return true;
+            }
+            for (EmailAddress email : list) {
+                if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName())) {
+                    LOG.error("Invalid Email");
+                    return false;
+                }
             }
         }
         return true;
