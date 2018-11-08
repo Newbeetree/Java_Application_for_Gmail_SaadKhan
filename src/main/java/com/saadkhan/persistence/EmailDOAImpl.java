@@ -1,37 +1,63 @@
 package com.saadkhan.persistence;
 
+import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.EmailFxBean;
 import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jodd.mail.EmailAddress;
 
+import static java.nio.file.Paths.get;
+
 public class EmailDOAImpl implements EmailDOA {
 
     private final Logger LOG = LoggerFactory.getLogger(EmailDOAImpl.class);
 
-    private final String URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-    private final String USER = "auser";
-    private final String PASSWORD = "123password";
+    private String URL;
+    private String USER;
+    private String PASSWORD;
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Default Constructor
      */
     public EmailDOAImpl() {
         super();
+        getConfigValues();
+    }
+
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.URL = cfb.getDBUrl();
+            this.USER = cfb.getDBUser();
+            this.PASSWORD = cfb.getDBPassword();
+        } catch (IOException e) {
+            LOG.error("file not found");
+        }
+        this.URL = "jdbc:mysql://localhost:3306/JAG?zeroDateTimeBehavior=CONVERT_TO_NULL&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+        this.USER = "auser";
+        this.PASSWORD = "123password";
     }
 
     /**
@@ -271,7 +297,7 @@ public class EmailDOAImpl implements EmailDOA {
     public int createEmailBean(EmailBean bean) throws SQLException {
         int id = 0;
         if (checkIfEmailBeanExists(bean)) {
-            String insertQuery = "INSERT INTO EmailBean (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Priority, Folder_Id) VALUES (?,?,?,?,?,?,?,?)";
+            String insertQuery = "INSERT INTO EmailBean (Email_From, Email_Subject, Message, HTML, Send_Date, Receive_Date, Folder_Id, Priority) VALUES (?,?,?,?,?,?,?,?)";
             int from_id = createEmailAddress(bean.getFrom());
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                  PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
@@ -279,8 +305,8 @@ public class EmailDOAImpl implements EmailDOA {
                 pStatement.setString(2, bean.getSubject());
                 pStatement.setString(3, bean.getMessage());
                 pStatement.setString(4, bean.getHtmlMessage());
-                pStatement.setDate(5, java.sql.Date.valueOf(bean.getSend().toLocalDate()));
-                pStatement.setDate(6, java.sql.Date.valueOf(bean.getRecived().toLocalDate()));
+                pStatement.setTimestamp(5, Timestamp.valueOf(bean.getSend()));
+                pStatement.setTimestamp(6, Timestamp.valueOf(bean.getRecived()));
                 pStatement.setInt(7, createFolder(bean.getFolder()));
                 pStatement.setInt(8, bean.getPriority().getValue());
                 pStatement.executeUpdate();
@@ -474,7 +500,7 @@ public class EmailDOAImpl implements EmailDOA {
      * @return false if in the db true if not
      */
     private boolean checkIfFolderExists(String folderName) throws SQLException {
-        ArrayList<String> listFiles = findAllFolders();
+        ObservableList<String> listFiles = findAllFolders();
         for (String filename : listFiles) {
             if (filename.equals(folderName)) {
                 return false;
@@ -493,25 +519,25 @@ public class EmailDOAImpl implements EmailDOA {
     public void createAttachments(ArrayList<FileAttachmentBean> fabList, int email_id) throws
             SQLException {
         for (FileAttachmentBean fab : fabList) {
-            if (checkIfAttachmentExists(fab, email_id)) {
-                String insertQuery = "INSERT INTO Attachments (Email_Id, File_Name, File_Attach, File_Type) values (?, ?, ?, ?)";
-                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                     PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
-                    pStatement.setInt(1, email_id);
-                    pStatement.setString(2, fab.getName());
-                    pStatement.setBytes(3, fab.getFile());
-                    pStatement.setBoolean(4, fab.getType());
-                    pStatement.executeUpdate();
-                    try (ResultSet rs = pStatement.getGeneratedKeys();) {
-                        int id = 0;
-                        if (rs.next()) {
-                            id = rs.getInt(1);
-                        }
-                        fab.setAttachID(id);
-                        LOG.debug("New record ID is " + id);
+            // if (checkIfAttachmentExists(fab, email_id)) {
+            String insertQuery = "INSERT INTO Attachments (Email_Id, File_Name, File_Attach, File_Type) values (?, ?, ?, ?)";
+            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                 PreparedStatement pStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);) {
+                pStatement.setInt(1, email_id);
+                pStatement.setString(2, fab.getName());
+                pStatement.setBytes(3, fab.getFile());
+                pStatement.setBoolean(4, fab.getType());
+                pStatement.executeUpdate();
+                try (ResultSet rs = pStatement.getGeneratedKeys();) {
+                    int id = 0;
+                    if (rs.next()) {
+                        id = rs.getInt(1);
                     }
+                    fab.setAttachID(id);
+                    LOG.debug("New record ID is " + id);
                 }
             }
+            //}
         }
     }
 
@@ -541,7 +567,7 @@ public class EmailDOAImpl implements EmailDOA {
     @Override
     public ArrayList<FileAttachmentBean> findAllAttachments() throws SQLException {
         ArrayList<FileAttachmentBean> attachList = new ArrayList<>();
-        String selectQuery = "SELECT Email_Id, FILE_NAME, File_Attach, FILE_TYPE FROM Attachments";
+        String selectQuery = "SELECT Attach_Id, Email_Id, FILE_NAME, File_Attach, FILE_TYPE FROM Attachments";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pStatement = connection.prepareStatement(selectQuery);
@@ -682,7 +708,7 @@ public class EmailDOAImpl implements EmailDOA {
      * @return list of all folder names
      */
     @Override
-    public ArrayList<String> findAllFolders() throws SQLException {
+    public ObservableList<String> findAllFolders() throws SQLException {
         ArrayList<String> folderList = new ArrayList<>();
         String selectQuery = "SELECT Folder_Name From Folder";
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -693,7 +719,7 @@ public class EmailDOAImpl implements EmailDOA {
             }
         }
         LOG.info("# of folders found : " + folderList.size());
-        return folderList;
+        return FXCollections.observableArrayList(folderList);
     }
 
     /**
@@ -746,6 +772,12 @@ public class EmailDOAImpl implements EmailDOA {
         return email;
     }
 
+    /**
+     * using a folder id find the all emails associated with that folder
+     *
+     * @param folderId id of folder for emails we are looking for
+     * @return list of all the emails converted to fxbeans
+     */
     @Override
     public ObservableList<EmailFxBean> findAllEmailBeansByFolderFx(int folderId) {
         ObservableList<EmailFxBean> efList = FXCollections.observableArrayList();
@@ -759,5 +791,26 @@ public class EmailDOAImpl implements EmailDOA {
             e.printStackTrace();
         }
         return efList;
+    }
+
+    /**
+     * move the specified bean the folder we chose
+     *
+     * @param newFolder name of new folder to choose
+     * @param bean      email bean we have selected to move
+     */
+    @Override
+    public void moveFolder(String newFolder, EmailFxBean bean) {
+        int result = 0;
+        String updateQuery = "UPDATE EmailBean SET Folder_Id = ? WHERE Bean_Id = ?";
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = connection.prepareStatement(updateQuery);) {
+            ps.setInt(1, findFolder(newFolder));
+            ps.setInt(2, bean.getEmailID());
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        LOG.info("# of records updated : " + result);
     }
 }

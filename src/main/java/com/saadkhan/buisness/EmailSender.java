@@ -1,11 +1,15 @@
 package com.saadkhan.buisness;
 
+import com.saadkhan.data.ConfigurationFxBean;
 import com.saadkhan.data.EmailBean;
 import com.saadkhan.data.FileAttachmentBean;
+import com.saadkhan.manager.PropertiesManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Date;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -20,6 +24,8 @@ import jodd.mail.RFC2822AddressParser;
 import jodd.mail.SendMailSession;
 import jodd.mail.SmtpServer;
 
+import static java.nio.file.Paths.get;
+
 /**
  * This class is meant to take in EmailBeans and convert them into Jodd Email Objects
  * to be sent through to a gmail account
@@ -29,7 +35,7 @@ import jodd.mail.SmtpServer;
 public class EmailSender {
 
     private final static Logger LOG = LoggerFactory.getLogger(EmailSender.class);
-    private final String smtpServerName = "smtp.gmail.com";
+    private String smtpServerName;
     private String userEmail;
     private String userPassword;
 
@@ -37,9 +43,22 @@ public class EmailSender {
      * Constructs an Email Sender when given proper Usernames and Passwords of a gmail account
      * in order to be able to send emails from said account
      */
-    public EmailSender(String userEmail, String userPassword) {
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
+    public EmailSender() {
+        getConfigValues();
+    }
+
+    private void getConfigValues() {
+        try {
+            PropertiesManager pm = new PropertiesManager();
+            Path txtFile = get("", "JAGConfig.properties");
+            ConfigurationFxBean cfb = pm.getConfBeanSettings(txtFile);
+            this.userEmail = cfb.getUserEmailAddress();
+            this.userPassword = cfb.getUserPassword();
+            this.smtpServerName = cfb.getSMTPServer();
+        } catch (IOException e) {
+            LOG.error("file not found");
+        }
+        this.smtpServerName = "smtp.gmail.com";
     }
 
     /**
@@ -107,14 +126,21 @@ public class EmailSender {
      * @param bean email bean to be converted
      * @return boolean  if the email is valid returns true or false
      */
-    private boolean validateBean(EmailBean bean) throws IllegalArgumentException {
+    public boolean validateBean(EmailBean bean) throws IllegalArgumentException {
+        boolean o = checkEmail(bean.getFrom().getEmail());
+        boolean jo = checkListEmail(bean.getTo().toArray(new EmailAddress[0]));
+        boolean ho = checkListEmail(bean.getCc().toArray(new EmailAddress[0]));
+        boolean g = checkEmailName(bean.getFrom().getPersonalName());
+        boolean go = checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));
+        boolean fo = bean.getHtmlMessage() != null;
+        boolean or = bean.getMessage() != null;
         return checkEmail(bean.getFrom().getEmail()) &&
                 checkEmailName(bean.getFrom().getPersonalName()) &&
                 checkListEmail(bean.getTo().toArray(new EmailAddress[0])) &&
                 checkListEmail(bean.getCc().toArray(new EmailAddress[0])) &&
-                checkListEmail(bean.getBcc().toArray(new EmailAddress[0])) &&
-                bean.getHtmlMessage() != null &&
-                bean.getMessage() != null;
+                checkListEmail(bean.getBcc().toArray(new EmailAddress[0]));// &&
+        //bean.getHtmlMessage() != null &&
+        //bean.getMessage() != null;
     }
 
 
@@ -140,7 +166,10 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmail(String address) {
-        return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
+        if (address.equals(""))
+            return true;
+        else
+            return RFC2822AddressParser.STRICT.parseToEmailAddress(address) != null;
     }
 
     /**
@@ -149,7 +178,10 @@ public class EmailSender {
      * @return true is OK, false if not
      */
     private boolean checkEmailName(String personalName) {
-        String regx = "^[\\p{L} .'-]+$";
+        if (personalName == null) {
+            return false;
+        }
+        String regx = "[A-Za-z0-9]";// "^[\\p{L} .'-]+$";
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(personalName);
         return matcher.find();
@@ -163,9 +195,14 @@ public class EmailSender {
      * @throws IllegalArgumentException throws the exception in case of invalid email
      */
     private boolean checkListEmail(EmailAddress[] list) throws IllegalArgumentException {
+        if (list[0].getEmail().equals("")) {
+            return true;
+        }
         for (EmailAddress email : list) {
-            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName()))
-                throw new IllegalArgumentException("Invalid Email");
+            if (!checkEmail(email.getEmail()) || !checkEmailName(email.getPersonalName())) {
+                LOG.error("Invalid Email");
+                return false;
+            }
         }
         return true;
     }

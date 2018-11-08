@@ -42,15 +42,8 @@
         <Label fx:id="ccTxt" layoutX="26.0" layoutY="167.0" text="%ccTxt" />
         <TextField fx:id="ccIn" layoutX="86.0" layoutY="162.0" prefHeight="31.0" prefWidth="887.0" />
         <Label fx:id="subjectTx" layoutX="26.0" layoutY="205.0" text="%subjectTx" />
-        <TextField fx:id="subjectIn" layoutX="86.0" layoutY="200.0" prefHeight="31.0" prefWidth="737.0" />
-        <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
-        <SplitMenuButton fx:id="sOptionBtn" layoutX="833.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" text="%sOptionBtn">
-            <items>
-                <MenuItem fx:id="replyTxt" mnemonicParsing="false" text="%replyTxt" />
-                <MenuItem fx:id="reAllTxt" mnemonicParsing="false" text="%feAllTxt" />
-                <MenuItem fx:id="fwdTxt" mnemonicParsing="false" text="%fwdTxt" />
-            </items>
-        </SplitMenuButton>
+        <TextField fx:id="subjectIn" layoutX="86.0" layoutY="200.0" prefHeight="31.0" prefWidth="887.0" />
+        <HTMLEditor fx:id="editor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="9.0" layoutY="240.0" prefHeight="350.0" prefWidth="964.0" />
         <Label layoutX="26.0" layoutY="41.0" prefHeight="31.0" prefWidth="190.0" text="%composeTxt">
             <font>
                 <Font size="21.0" />
@@ -58,5 +51,6 @@
         </Label>
         <Button fx:id="closeBtn" layoutX="892.0" layoutY="45.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="75.0" text="%close" />
       <ListView fx:id="attachyHolder" layoutX="372.0" layoutY="589.0" prefHeight="57.0" prefWidth="601.0" />
+      <Button fx:id="addImage" layoutX="577.0" layoutY="247.0" mnemonicParsing="false" onAction="#addImage" prefHeight="31.0" prefWidth="65.0" text="%ImageIn" />
     </children>
 </AnchorPane>

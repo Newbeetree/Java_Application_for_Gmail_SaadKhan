@@ -5,3 +5,11 @@
     -fx-background-position: center center;
 }
 
+#input{
+    -fx-border-color: transparent;
+}
+
+#incorrect{
+    -fx-border-color: red;
+}
+

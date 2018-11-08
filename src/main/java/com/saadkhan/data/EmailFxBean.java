@@ -65,6 +65,11 @@ public class EmailFxBean implements Serializable {
         priority = new SimpleObjectProperty<>(Priority.PRIORITY_NORMAL);
     }
 
+    /**
+     * create EmailFXbean using and email bean and converting all appropriate fields
+     *
+     * @param bean bean to be converted
+     */
     public EmailFxBean(EmailBean bean) {
         emailID = new SimpleIntegerProperty(bean.getEmailID());
         from = new SimpleObjectProperty<>(bean.getFrom());
@@ -83,172 +88,242 @@ public class EmailFxBean implements Serializable {
         priority = new SimpleObjectProperty<>(bean.getPriority());
     }
 
-    public EmailAddress getFrom() {
-        return from.get();
+    /**
+     * convert EmailFxbean to an emailBean
+     *
+     * @param efb emailfxbean to convert
+     * @return Email bean with all appropriate fields set
+     */
+    public EmailBean toBean(EmailFxBean efb) {
+        EmailBean eb = new EmailBean();
+        eb.setFrom(efb.getFrom());
+        if (!efb.getTo().isEmpty())
+            eb.setTo(efb.getTo());
+        if (!efb.getCc().isEmpty())
+            eb.setCc(efb.getCc());
+        if (!efb.getBcc().isEmpty())
+            eb.setBcc(efb.getBcc());
+        if (!efb.getAttachments().isEmpty())
+            eb.setAttachments(efb.getAttachments());
+        if (efb.getSubject() != null)
+            eb.setSubject(efb.getSubject());
+        if (efb.getMessage() != null)
+            eb.setMessage(efb.getMessage());
+        if (efb.getHtmlMessage() != null)
+            eb.setHtmlMessage(efb.getHtmlMessage());
+        eb.setFolder("Sent");
+        return eb;
     }
 
-    public ObjectProperty<EmailAddress> fromProperty() {
-        return from;
+    public EmailAddress getFrom() {
+        return from.get();
     }
 
     public void setFrom(EmailAddress from) {
         this.from.set(from);
     }
 
-    public ArrayList<EmailAddress> getTo() {
-        return new ArrayList<>(to.get());
+    /**
+     * convert a list of email addresses to a string
+     *
+     * @param list email addresss
+     * @return string of all email addresses together
+     */
+    public String getListInString(ArrayList<EmailAddress> list) {
+        String emailString = "";
+        for (EmailAddress email : list) {
+            emailString += email.toString() + ", ";
+        }
+        return emailString;
     }
 
-    public ListProperty<EmailAddress> toProperty() {
-        return to;
+    /**
+     * convert a string of email address into a list property of emailaddress
+     *
+     * @param emailString string of all emails
+     * @return list of email addresses
+     */
+    public ListProperty<EmailAddress> getStringToList(String emailString) {
+        emailString = emailString.replace('[', ' ');
+        emailString = emailString.replace(']', ' ');
+        String[] emailList = emailString.split(", ");
+        ArrayList<EmailAddress> emailAddresses = new ArrayList<>();
+        for (int i = 0; i < emailList.length; i++) {
+            emailAddresses.add(EmailAddress.of(emailList[i]));
+        }
+        return new SimpleListProperty<>(FXCollections.observableArrayList(emailAddresses));
+    }
+
+    public ObjectProperty<EmailAddress> fromProperty() {
+        return from;
+    }
+
+    /**
+     * retrun a new array if to has nothing or return it with proper email addresses
+     */
+    public ArrayList<EmailAddress> getTo() {
+        return to.size() > 0 ? new ArrayList<>(to.get()) : new ArrayList<>();
     }
 
     public void setTo(ObservableList<EmailAddress> to) {
         this.to.set(to);
     }
 
-    public ArrayList<EmailAddress> getCc() {
-        return new ArrayList<>(cc.get());
+    public ListProperty<EmailAddress> toProperty() {
+        return to;
     }
 
-    public ListProperty<EmailAddress> ccProperty() {
-        return cc;
+    /**
+     * return a new array if cc has nothing or return it with proper email addresses
+     */
+    public ArrayList<EmailAddress> getCc() {
+        return cc.size() > 0 ? new ArrayList<>(cc.get()) : new ArrayList<>();
     }
 
     public void setCc(ObservableList<EmailAddress> cc) {
         this.cc.set(cc);
     }
 
-    public ArrayList<EmailAddress> getBcc() {
-        return new ArrayList<>(bcc.get());
+    public ListProperty<EmailAddress> ccProperty() {
+        return cc;
     }
 
-    public ListProperty<EmailAddress> bccProperty() {
-        return bcc;
+    /**
+     * s     * retrun a new array if bcc has nothing or return it with proper email addresses
+     */
+    public ArrayList<EmailAddress> getBcc() {
+        return bcc.size() > 0 ? new ArrayList<>(bcc.get()) : new ArrayList<>();
     }
 
     public void setBcc(ObservableList<EmailAddress> bcc) {
         this.bcc.set(bcc);
     }
 
-    public String getSubject() {
-        return subject.get();
+    public ListProperty<EmailAddress> bccProperty() {
+        return bcc;
     }
 
-    public StringProperty subjectProperty() {
-        return subject;
+    public String getSubject() {
+        return subject.get();
     }
 
     public void setSubject(String subject) {
         this.subject.set(subject);
     }
 
-    public String getMessage() {
-        return message.get();
+    public StringProperty subjectProperty() {
+        return subject;
     }
 
-    public StringProperty messageProperty() {
-        return message;
+    public String getMessage() {
+        return message.get();
     }
 
     public void setMessage(String message) {
         this.message.set(message);
     }
 
-    public String getHtmlMessage() {
-        return htmlMessage.get();
+    public StringProperty messageProperty() {
+        return message;
     }
 
-    public StringProperty htmlMessageProperty() {
-        return htmlMessage;
+    public String getHtmlMessage() {
+        return htmlMessage.get();
     }
 
     public void setHtmlMessage(String htmlMessage) {
         this.htmlMessage.set(htmlMessage);
     }
 
-    public boolean isSeen() {
-        return seen.get();
+    public StringProperty htmlMessageProperty() {
+        return htmlMessage;
     }
 
-    public BooleanProperty seenProperty() {
-        return seen;
+    public boolean isSeen() {
+        return seen.get();
     }
 
     public void setSeen(boolean seen) {
         this.seen.set(seen);
     }
 
-    public ArrayList<FileAttachmentBean> getAttachments() {
-        return new ArrayList<>(attachments.get());
+    public BooleanProperty seenProperty() {
+        return seen;
     }
 
-    public ListProperty<FileAttachmentBean> attachmentsProperty() {
-        return attachments;
+    /**
+     * retrun a new array if attachments has nothing or return it with proper email addresses
+     */
+    public ArrayList<FileAttachmentBean> getAttachments() {
+        return attachments.size() > 0 ? new ArrayList<>(attachments.get()) : new ArrayList<>();
     }
 
     public void setAttachments(ObservableList<FileAttachmentBean> attachments) {
         this.attachments.set(attachments);
     }
 
-    public String getMessageType() {
-        return messageType.get();
+    public ListProperty<FileAttachmentBean> attachmentsProperty() {
+        return attachments;
     }
 
-    public StringProperty messageTypeProperty() {
-        return messageType;
+    public String getMessageType() {
+        return messageType.get();
     }
 
     public void setMessageType(String messageType) {
         this.messageType.set(messageType);
     }
 
-    public LocalDateTime getSend() {
-        return send.get();
+    public StringProperty messageTypeProperty() {
+        return messageType;
     }
 
-    public ObjectProperty<LocalDateTime> sendProperty() {
-        return send;
+    public LocalDateTime getSend() {
+        return send.get();
     }
 
     public void setSend(LocalDateTime send) {
         this.send.set(send);
     }
 
-    public LocalDateTime getRecived() {
-        return recived.get();
+    public ObjectProperty<LocalDateTime> sendProperty() {
+        return send;
     }
 
-    public ObjectProperty<LocalDateTime> recivedProperty() {
-        return recived;
+    public LocalDateTime getRecived() {
+        return recived.get();
     }
 
     public void setRecived(LocalDateTime recived) {
         this.recived.set(recived);
     }
 
-    public String getFolder() {
-        return folder.get();
+    public ObjectProperty<LocalDateTime> recivedProperty() {
+        return recived;
     }
 
-    public StringProperty folderProperty() {
-        return folder;
+    public String getFolder() {
+        return folder.get();
     }
 
     public void setFolder(String folder) {
         this.folder.set(folder);
     }
 
+    public StringProperty folderProperty() {
+        return folder;
+    }
+
     public Priority getPriority() {
         return priority.get();
     }
 
-    public ObjectProperty<Priority> priorityProperty() {
-        return priority;
-    }
-
     public void setPriority(Priority priority) {
         this.priority.set(priority);
+    }
+
+    public ObjectProperty<Priority> priorityProperty() {
+        return priority;
     }
 
     /**
