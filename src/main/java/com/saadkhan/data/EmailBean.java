@@ -286,31 +286,54 @@ public class EmailBean implements Serializable {
         this.priority = priority;
     }
 
-    /**
-     * Checks if two email objects are the same
-     *
-     * @param o Email bean that is being used to compare with other emailbean
-     * @return boolean true if same, false if wrong
-     */
+//    /**
+//     * Checks if two email objects are the same
+//     *
+//     * @param o Email bean that is being used to compare with other emailbean
+//     * @return boolean true if same, false if wrong
+//     */
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        EmailBean emailBean = (EmailBean) o;
+//        boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
+//        boolean work2 = emailEqual(to, emailBean.to);
+//        boolean work3 = emailEqual(cc, emailBean.cc);
+//        boolean work4 = subjectEquals(subject, emailBean.subject);
+//        boolean work5 = Objects.equals(message, emailBean.message);
+//        boolean work6 = Objects.equals(htmlMessage, emailBean.htmlMessage);
+//        boolean work7 = attachEqual(attachments, emailBean.attachments);
+//        return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
+//                emailEqual(to, emailBean.to) &&
+//                emailEqual(cc, emailBean.cc) &&
+//                subjectEquals(subject, emailBean.subject) &&
+//                Objects.equals(message, emailBean.message) &&
+//                Objects.equals(htmlMessage, emailBean.htmlMessage) &&
+//                attachEqual(attachments, emailBean.attachments);
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmailBean emailBean = (EmailBean) o;
-        boolean work = Objects.equals(from.getEmail(), emailBean.from.getEmail());
-        boolean work2 = emailEqual(to, emailBean.to);
-        boolean work3 = emailEqual(cc, emailBean.cc);
-        boolean work4 = subjectEquals(subject, emailBean.subject);
-        boolean work5 = Objects.equals(message, emailBean.message);
-        boolean work6 = Objects.equals(htmlMessage, emailBean.htmlMessage);
-        boolean work7 = attachEqual(attachments, emailBean.attachments);
-        return Objects.equals(from.getEmail(), emailBean.from.getEmail()) &&
-                emailEqual(to, emailBean.to) &&
-                emailEqual(cc, emailBean.cc) &&
-                subjectEquals(subject, emailBean.subject) &&
-                Objects.equals(message, emailBean.message) &&
-                Objects.equals(htmlMessage, emailBean.htmlMessage) &&
-                attachEqual(attachments, emailBean.attachments);
+        String a = getSubject();
+        String b = emailBean.getSubject();
+        boolean work = getFrom().getEmail().equals(emailBean.getFrom().getEmail());
+        boolean work2 = emailEqual(getTo(), emailBean.getTo());
+        boolean work3 = emailEqual(getCc(), emailBean.getCc());
+        boolean work4 = subjectEquals(getSubject(), emailBean.getSubject());
+        boolean work5 = getMessage().equals(emailBean.getMessage());
+        boolean work6 = getHtmlMessage().equals(emailBean.getHtmlMessage());
+        boolean work7 = Objects.equals(getAttachments(), emailBean.getAttachments());
+        return getFrom().getEmail().equals(emailBean.getFrom().getEmail()) &&
+                emailEqual(getTo(), emailBean.getTo()) &&
+                emailEqual(getCc(), emailBean.getCc()) &&
+                emailEqual(getBcc(), emailBean.getBcc()) &&
+                subjectEquals(getSubject(), emailBean.getSubject()) &&
+                getMessage().equals(emailBean.getMessage()) &&
+                getHtmlMessage().equals(emailBean.getHtmlMessage()) &&
+                attachEqual(getAttachments(), emailBean.getAttachments());
     }
 
     /**
@@ -321,9 +344,13 @@ public class EmailBean implements Serializable {
      * @return true if same, false if wrong
      */
     private boolean subjectEquals(String toSubject, String fromSubject) {
-        if (Objects.equals(toSubject, fromSubject))
+        toSubject = toSubject == null ? "" : toSubject;
+        fromSubject = fromSubject == null ? "" : fromSubject;
+        if (Objects.equals(toSubject, fromSubject)) {
             return true;
-        else return toSubject.equals("") && fromSubject == null;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -336,7 +363,7 @@ public class EmailBean implements Serializable {
     private boolean emailEqual(ArrayList<EmailAddress> to, ArrayList<EmailAddress> from) {
         if (to.size() == 0 && from.size() == 0)
             return true;
-        if(to.size() != from.size())
+        if (to.size() != from.size())
             return false;
         for (int i = 0; i < to.size(); i++) {
             if (!(to.get(i).getEmail().equals(from.get(i).getEmail()))) {
@@ -354,7 +381,7 @@ public class EmailBean implements Serializable {
      * @return true if same, false if wronge
      */
     private boolean attachEqual(ArrayList<FileAttachmentBean> to, ArrayList<FileAttachmentBean> from) {
-        if(to.size() != from.size())
+        if (to.size() != from.size())
             return false;
         to.sort(Comparator.comparing(FileAttachmentBean::getName));
         from.sort(Comparator.comparing(FileAttachmentBean::getName));
