@@ -48,6 +48,10 @@ public class EmailReceiver {
         getConfigValues();
     }
 
+    public EmailReceiver(String receiveEmail, String receivePassword){
+        this.receiveEmail = receiveEmail;
+        this.receivePassword = receivePassword;
+    }
     /**
      * create a Property manager object and retain and set values
      */

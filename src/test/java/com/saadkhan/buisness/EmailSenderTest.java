@@ -27,8 +27,8 @@ public class EmailSenderTest {
     private final String emailSendPwd = "sendpassword";
     private final String emailReceivePwd = "receivepassword";
     private final String emailCC1 = "other.1633839@gmail.com";
-    private EmailSender es = new EmailSender();
-    private EmailReceiver re = new EmailReceiver();
+    private EmailSender es = new EmailSender(emailSend, emailSendPwd, "smtp.gmail.com");
+    private EmailReceiver re = new EmailReceiver(emailReceive, emailReceivePwd);
 
 
     /**
@@ -88,7 +88,7 @@ public class EmailSenderTest {
     @Test
     public void sendOnlyMessage() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("Hi im only sending a message");
         es.send(bean, true);
@@ -103,7 +103,7 @@ public class EmailSenderTest {
     @Test
     public void sendOnlyHtml() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setHtmlMessage("<html><body><h1>Only a Html message</h1></body></html>");
         es.send(bean, true);
@@ -118,7 +118,7 @@ public class EmailSenderTest {
     @Test
     public void sendOnlyAttachments() throws IOException {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean = addAttachments(bean);
         es.send(bean, false);
@@ -133,7 +133,7 @@ public class EmailSenderTest {
     @Test
     public void sendNothing() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         es.send(bean, true);
         delay();
@@ -169,7 +169,7 @@ public class EmailSenderTest {
     @Test
     public void sendOnlyHtmlAndText() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.setMessage("heres some text and html");
         bean.setHtmlMessage("<html><body><h1>Here's some html and text</h1></body></html>");
@@ -190,7 +190,7 @@ public class EmailSenderTest {
      */
     private EmailBean createBasicBean() {
         EmailBean bean = new EmailBean();
-        bean.setFrom(new EmailAddress("name", emailReceive));
+        bean.setFrom(new EmailAddress("name", emailSend));
         bean.getTo().add(new EmailAddress("receiver", emailReceive));
         bean.getCc().add(new EmailAddress("other", emailCC1));
         bean.setSubject("test12");

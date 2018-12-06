@@ -47,6 +47,11 @@ public class EmailSender {
         getConfigValues();
     }
 
+    public EmailSender(String userEmail, String userPassword, String smtpServerName){
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.smtpServerName = smtpServerName;
+    }
     private void getConfigValues() {
         try {
             PropertiesManager pm = new PropertiesManager();
